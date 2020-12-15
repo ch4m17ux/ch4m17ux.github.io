@@ -55,6 +55,7 @@ Procedemos a descomprimir el ZIP y nos da como resultado dos nuevos ficheros:
 >- Un fichero ZIP que esta bloqueado a traves de una contraseña.
 
 ![Ficheros JPG y ZIP](https://ch4m17ux.github.io/img/posts/Que_Pais.jpg)
+
 Tomamos la imagen y trataremos de descifrar el mensaje oculto, que nos dara la contraseña con la qué descomprimir el fichero ZIP.
 
 Analizamos el fichero JPG y vemos que los magic numbers corresponden:
@@ -66,53 +67,53 @@ Analizamos el fichero JPG y vemos que los magic numbers corresponden:
 Verificamos con `binwalk` sin hay alguna imagen que podria estar embebida, y encontramos que hay alguna imagen mas que podria estar alli:
 
 ```sh
-    root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo binwalk Que_Pais.jpg 
+root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo binwalk Que_Pais.jpg 
     
-    DECIMAL       HEXADECIMAL     DESCRIPTION
-    --------------------------------------------------------------------------------
-    0             0x0             JPEG image data, EXIF standard
-    12            0xC             TIFF image data, big-endian, offset of first image directory: 8
-    184           0xB8            JPEG image data, EXIF standard
-    196           0xC4            TIFF image data, big-endian, offset of first image directory: 8
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             JPEG image data, EXIF standard
+12            0xC             TIFF image data, big-endian, offset of first image directory: 8
+184           0xB8            JPEG image data, EXIF standard
+196           0xC4            TIFF image data, big-endian, offset of first image directory: 8
 ```
 
 Utilizamos entonces `exiftool` para ver si vemos algo mas:
 
 ```sh
-    root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo exiftool Que_Pais.jpg 
-    ExifTool Version Number         : 12.10
-    File Name                       : Que_Pais.jpg
-    Directory                       : .
-    File Size                       : 3.7 MB
-    File Modification Date/Time     : 2020:11:29 03:05:10+01:00
-    File Access Date/Time           : 2020:12:15 20:28:31+01:00
-    File Inode Change Date/Time     : 2020:12:12 18:08:19+01:00
-    File Permissions                : rw-r--r--
-    File Type                       : JPEG
-    File Type Extension             : jpg
-    MIME Type                       : image/jpeg
-    Warning                         : [minor] File contains multi-segment EXIF
-    Exif Byte Order                 : Big-endian (Motorola, MM)
-    X Resolution                    : 72
-    Y Resolution                    : 72
-    Resolution Unit                 : inches
-    Y Cb Cr Positioning             : Centered
-    Compression                     : JPEG (old-style)
-    Thumbnail Offset                : 184
-    Thumbnail Length                : 3755286
-    DCT Encode Version              : 100
-    APP14 Flags 0                   : [14], Encoded with Blend=1 downsampling
-    APP14 Flags 1                   : (none)
-    Color Transform                 : YCbCr
-    Image Width                     : 938
-    Image Height                    : 898
-    Encoding Process                : Baseline DCT, Huffman coding
-    Bits Per Sample                 : 8
-    Color Components                : 3
-    Y Cb Cr Sub Sampling            : YCbCr4:4:4 (1 1)
-    Image Size                      : 938x898
-    Megapixels                      : 0.842
-    Thumbnail Image                 : (Binary data 3755286 bytes, use -b option to extract)
+root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo exiftool Que_Pais.jpg 
+ExifTool Version Number         : 12.10
+File Name                       : Que_Pais.jpg
+Directory                       : .
+File Size                       : 3.7 MB
+File Modification Date/Time     : 2020:11:29 03:05:10+01:00
+File Access Date/Time           : 2020:12:15 20:28:31+01:00
+File Inode Change Date/Time     : 2020:12:12 18:08:19+01:00
+File Permissions                : rw-r--r--
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+Warning                         : [minor] File contains multi-segment EXIF
+Exif Byte Order                 : Big-endian (Motorola, MM)
+X Resolution                    : 72
+Y Resolution                    : 72
+Resolution Unit                 : inches
+Y Cb Cr Positioning             : Centered
+Compression                     : JPEG (old-style)
+Thumbnail Offset                : 184
+Thumbnail Length                : 3755286
+DCT Encode Version              : 100
+APP14 Flags 0                   : [14], Encoded with Blend=1 downsampling
+APP14 Flags 1                   : (none)
+Color Transform                 : YCbCr
+Image Width                     : 938
+Image Height                    : 898
+Encoding Process                : Baseline DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:4:4 (1 1)
+Image Size                      : 938x898
+Megapixels                      : 0.842
+Thumbnail Image                 : (Binary data 3755286 bytes, use -b option to extract)
 ```
 
 Podemos ver que nos da la posibilidad de obtener una imagen Thumbnail
@@ -122,7 +123,7 @@ Podemos ver que nos da la posibilidad de obtener una imagen Thumbnail
 Procedemos a sacar la imagen:
 
 ```sh
-    root@kali: exitftool -b --ThumbnailImage Que-Pais.jpg > my_thumbnail.jpg
+root@kali: exitftool -b --ThumbnailImage Que-Pais.jpg > my_thumbnail.jpg
 ```
 
 ![Estadio Manaos Brasil](https://ch4m17ux.github.io/img/posts/Estadio-Stego-Aurora.jpg)
@@ -134,11 +135,11 @@ Verificamos los strings de la imagen que hemos sacado, para ver si podemos ident
 Encontramos una secuencia interesante:
 
 ```sh
-    ch4m0@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ strings -n 10 my_thumbnail.jpg
-        A=4 I=1 S=5 B=8
-        %&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
-        &'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
-        O1a%CuTl+s
+root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ strings -n 10 my_thumbnail.jpg
+ A=4 I=1 S=5 B=8
+ %&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
+ &'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
+ O1a%CuTl+s
 ```
 
 >A=4 I=1 S=5 B=8
