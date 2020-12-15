@@ -27,7 +27,7 @@ Lo primero que debemos hacer es verificar los `"Magic Numbers"` del fichero PDF,
 
 Posteriormente procedemos a verificar si dentro de los strings del fichero vemos algun mensaje o codigo oculto:
 
-```sh
+```shell
 root@kali:$ strings -n 10 Donde_Estoy.pdf 
 <</Filter/FlateDecode/Length 44>>
 <</Subtype/Image/BitsPerComponent 8/Width 1024/Interpolate true/ColorSpace/DeviceRGB/Height 576/Filter[/DCTDecode]/Type/XObject
@@ -66,7 +66,7 @@ Analizamos el fichero JPG y vemos que los magic numbers corresponden:
 
 Verificamos con `binwalk` sin hay alguna imagen que podria estar embebida, y encontramos que hay alguna imagen mas que podria estar alli:
 
-```sh
+```shell
 root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo binwalk Que_Pais.jpg 
     
 DECIMAL       HEXADECIMAL     DESCRIPTION
@@ -79,7 +79,7 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 
 Utilizamos entonces `exiftool` para ver si vemos algo mas:
 
-```sh
+```shell
 root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo exiftool Que_Pais.jpg 
 ExifTool Version Number         : 12.10
 File Name                       : Que_Pais.jpg
@@ -122,7 +122,7 @@ Podemos ver que nos da la posibilidad de obtener una imagen Thumbnail
 
 Procedemos a sacar la imagen:
 
-```sh
+```shell
 root@kali: exitftool -b --ThumbnailImage Que-Pais.jpg > my_thumbnail.jpg
 ```
 
@@ -130,11 +130,13 @@ root@kali: exitftool -b --ThumbnailImage Que-Pais.jpg > my_thumbnail.jpg
 
 Verificamos los strings de la imagen que hemos sacado, para ver si podemos identificar alguna cadena de texto o algun codigo encriptado:
 
-	strings -n 10 my_thumbnail.jpg
+```shell
+strings -n 10 my_thumbnail.jpg
+```
 
 Encontramos una secuencia interesante:
 
-```sh
+```shell
 root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ strings -n 10 my_thumbnail.jpg
  A=4 I=1 S=5 B=8
  %&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
@@ -153,28 +155,30 @@ Con esta clave descomprimimos el zip que nos sacamos de los pasos anteriores y, 
 
 La imagen es del Cristo Redentor de Rio de Janeiro (Brasil) y el fichero TXT nos da algunas instrucciones: 
 
-        ..,.,,,....                                                      
-                     #&  .&(                 ,(#&@@&#,                                        
-                       %%  ,@/                         ,#&@#.                                 
-                        ,@.  #&                              ,%@#.                            
-      @&&&&&&&&&&&&&&&&&&&&&&&&&.                                .%@/                         
-                           &,  .&.                                   (@/                      
-                           .@   /&                                      &&                    
-                            %%   &/                                       %&                  
-                            ,@   (%      ULTIMO PASO!!!                    &%                
-                            .@   /%      DECIFRA LA FLAG                   *&&@@@@@@@@@@@@. 
-                            .@   (#                                         &%                
-                            (%   &*                                       %&                  
-                            @.  (%                                      &&                    
-                           &#  ,&                                    #&*                      
-      @&&&&&&&&&&&&&&&&&&&&&&&&&.                                 %@/                         
-                         &(  (&                              .#@%.                            
-                       *@.  @#                          ,%@&/                                 
-                      &(  %&.                ..,/%&&&#*                                       
-                               .,*********.                                                   
-    
-    FLAG= ProyectoAurora{71,!)//: I&=3+..*J1!7I1 <:*#0#3N)(R)>((n#/-'& &.1  * 9@ODc4#3.RDV_5^<6A!-;^T:.R1/]<\C;_}
-	
+```shell
+                                                                                          
+                         ..,.,,,....                                                      
+                 #&  .&(                 ,(#&@@&#,                                        
+                   %%  ,@/                         ,#&@#.                                 
+                    ,@.  #&                              ,%@#.                            
+  @&&&&&&&&&&&&&&&&&&&&&&&&&.                                .%@/                         
+                       &,  .&.                                   (@/                      
+                       .@   /&                                      &&                    
+                        %%   &/                                       %&                  
+                        ,@   (%      ULTIMO PASO!!!                    &%                
+                        .@   /%      DECIFRA LA FLAG                   *&&@@@@@@@@@@@@. 
+                        .@   (#                                         &%                
+                        (%   &*                                       %&                  
+                        @.  (%                                      &&                    
+                       &#  ,&                                    #&*                      
+  @&&&&&&&&&&&&&&&&&&&&&&&&&.                                 %@/                         
+                     &(  (&                              .#@%.                            
+                   *@.  @#                          ,%@&/                                 
+                  &(  %&.                ..,/%&&&#*                                       
+                           .,*********.                                                   
+
+FLAG= ProyectoAurora{71,!)//: I&=3+..*J1!7I1 <:*#0#3N)(R)>((n#/-'& &.1  * 9@ODc4#3.RDV_5^<6A!-;^T:.R1/]<\C;_}
+```
 	
 Asi que, lo que debemos hacer es realizar un `XOR`, por descarte entre las palabras "Cristo Redentor" y "Rio de Janeiro" probamos a hacer un XOR a la clave que nos han dado, pero utilizamos la de la ciudad (que es el nombre de los ficheros)
 
