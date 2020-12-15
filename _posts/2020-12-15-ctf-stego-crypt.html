@@ -6,6 +6,15 @@ date: 2020-12-15 23:45:13 +0100
 background: '/img/posts/06.jpg'
 ---
 
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">local@local:~/Documents/tryhackme/unbaked_pie$</span><span class="w"> </span>nmap <span class="nt">-v</span> <span class="nt">-p-</span> <span class="nt">-Pn</span> <span class="nt">--min-rate</span> 10000 <span class="nt">-oN</span> nmap/all-ports 10.10.28.159
+<span class="go">Nmap scan report for 10.10.28.159
+Host is up (0.35s latency).
+Not shown: 999 filtered ports
+PORT     STATE SERVICE
+5003/tcp open  filemaker
+
+</span></code></pre></div></div>
+
 <h1 class="code-line" data-line-start=2 data-line-end=3 ><a id="CTF_StegoCrypt_2"></a>CTF Stego/Crypt</h1>
 <p class="has-line-data" data-line-start="4" data-line-end="5">Durante los días del 10 al 12 de Diciembre de 2020, estuvimos participando como equipo (<strong>L4r0_134W Team</strong>) en el CTF organizado por <a href="https://www.proyecto-aurora.org/">Proyecto Aurora</a>.</p>
 <p class="has-line-data" data-line-start="6" data-line-end="7">En este CTF encontramos un reto correspondiente al grupo de Stego/Crypt, donde nos entregaban dos archivos:</p>
