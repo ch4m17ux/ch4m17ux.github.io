@@ -1,11 +1,3 @@
----
-layout: post
-title: "CTF Stego/Crypt"
-subtitle: "#ProyectoAurora"
-date: 2020-12-15 17:27:00 +0100
-background: '/img/posts/06.jpg'
----
-
 # CTF Stego/Crypt
 
 Durante los días del 10 al 12 de Diciembre de 2020, estuvimos participando como equipo (**L4r0_134W Team**) en el CTF organizado por [Proyecto Aurora](https://www.proyecto-aurora.org/).
