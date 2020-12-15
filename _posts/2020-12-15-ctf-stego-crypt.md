@@ -22,6 +22,7 @@ Lo primero que debemos hacer es verificar los `"Magic Numbers"` del fichero PDF,
 | 25 50 44 46 2D |  |  %PDF |
 |--|--|--|
 |  |  |  |
+
 Posteriormente procedemos a verificar si dentro de los strings del fichero vemos algun mensaje o codigo oculto:
 
 ```sh
