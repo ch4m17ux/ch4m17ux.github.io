@@ -15,7 +15,7 @@ background: '/img/posts/06.jpg'
 <li class="has-line-data" data-line-start="9" data-line-end="10">Un fichero ZIP que esta bloqueado a traves de una contraseña.</li>
 </ul>
 </blockquote>
-<p class="has-line-data" data-line-start="11" data-line-end="12"><img src="https://ch4m17ux.github.io/img/posts/Donde_Estoy.jpg" alt="Ficheros PDF y ZIP"></p>
+<div align="center"><p class="has-line-data" data-line-start="11" data-line-end="12"><img src="https://ch4m17ux.github.io/img/posts/Donde_Estoy.jpg" alt="Ficheros PDF y ZIP"></p></div>
 <p class="has-line-data" data-line-start="13" data-line-end="14">Inicialmente tratamos de romper la contraseña del ZIP a traves de <code>Zip2John</code>, pero encontramos que no hay forma de crackearla, por lo que la clave debe estar en el PDF, por esta razón, trataremos a traves de tecnicas de estenografía obtener la informacion embebida en el fichero PDF y conseguir la contraseña para descomprimir el fichero ZIP.</p>
 <p class="has-line-data" data-line-start="15" data-line-end="16">Lo primero que debemos hacer es verificar los <code>&quot;Magic Numbers&quot;</code> del fichero PDF, puede que realmente no sea un fichero real y se enmascare con otro, por lo que a traves de un editor Hex verificamos la informacion, y encontramos que coincide con lo correspondiente a un PDF real:</p>
 <table class="table table-striped table-bordered">
