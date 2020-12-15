@@ -56,7 +56,7 @@ I_^2sHp[qbGLR
 <blockquote>
 <p class="has-line-data" data-line-start="42" data-line-end="43">password= Am3r1c@L4t1n@</p>
 </blockquote>
-<p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/stego-1.jpg" alt="iCyberchef - Decode string"></p>
+<div align="center"><p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/stego-1.jpg" alt="iCyberchef - Decode string"></p></div>
 <p class="has-line-data" data-line-start="46" data-line-end="47">Procedemos a descomprimir el ZIP y nos da como resultado dos nuevos ficheros:</p>
 <blockquote>
 <ul>
@@ -64,7 +64,7 @@ I_^2sHp[qbGLR
 <li class="has-line-data" data-line-start="48" data-line-end="49">Un fichero ZIP que esta bloqueado a traves de una contraseña.</li>
 </ul>
 </blockquote>
-<p class="has-line-data" data-line-start="50" data-line-end="51"><img src="https://ch4m17ux.github.io/img/posts/Que_Pais.jpg" alt="Ficheros JPG y ZIP"></p>
+<div align="center"><p class="has-line-data" data-line-start="50" data-line-end="51"><img src="https://ch4m17ux.github.io/img/posts/Que_Pais.jpg" alt="Ficheros JPG y ZIP"></p></div>
 <p class="has-line-data" data-line-start="52" data-line-end="53">Tomamos la imagen y trataremos de descifrar el mensaje oculto, que nos dara la contraseña con la qué descomprimir el fichero ZIP.</p>
 <p class="has-line-data" data-line-start="54" data-line-end="55">Analizamos el fichero JPG y vemos que los magic numbers corresponden:</p>
 <table class="table table-striped table-bordered">
@@ -136,7 +136,7 @@ Thumbnail Image                 : (Binary data 3755286 bytes, use -b option to e
 <p class="has-line-data" data-line-start="116" data-line-end="117">Procedemos a sacar la imagen:</p>
 <pre><code class="has-line-data" data-line-start="119" data-line-end="121" class="language-shell">root@kali: exitftool -b --ThumbnailImage Que-Pais.jpg &gt; my_thumbnail.jpg
 </code></pre>
-<p class="has-line-data" data-line-start="122" data-line-end="123"><img src="https://ch4m17ux.github.io/img/posts/Estadio-Stego-Aurora.jpg" alt="Estadio Manaos Brasil"></p>
+<div align="center"><p class="has-line-data" data-line-start="122" data-line-end="123"><img src="https://ch4m17ux.github.io/img/posts/Estadio-Stego-Aurora.jpg" alt="Estadio Manaos Brasil"></p></div>
 <p class="has-line-data" data-line-start="124" data-line-end="125">Verificamos los strings de la imagen que hemos sacado, para ver si podemos identificar alguna cadena de texto o algun codigo encriptado:</p>
 <pre><code class="has-line-data" data-line-start="127" data-line-end="129" class="language-shell">strings -n 10 my_thumbnail.jpg
 </code></pre>
@@ -155,7 +155,7 @@ Thumbnail Image                 : (Binary data 3755286 bytes, use -b option to e
 <p class="has-line-data" data-line-start="143" data-line-end="144">Brasil - 8r451l</p>
 </blockquote>
 <p class="has-line-data" data-line-start="145" data-line-end="146">Con esta clave descomprimimos el zip que nos sacamos de los pasos anteriores y, vemos que contiene una imagen y una fichero TXT.</p>
-<p class="has-line-data" data-line-start="147" data-line-end="148"><img src="https://ch4m17ux.github.io/img/posts/Que_Ciudad.jpg" alt="enter image description here"></p>
+<div align="center"><p class="has-line-data" data-line-start="147" data-line-end="148"><img src="https://ch4m17ux.github.io/img/posts/Que_Ciudad.jpg" alt="enter image description here"></p></div>
 <p class="has-line-data" data-line-start="149" data-line-end="150">La imagen es del Cristo Redentor de Rio de Janeiro (Brasil) y el fichero TXT nos da algunas instrucciones:</p>
 <pre><code class="has-line-data" data-line-start="152" data-line-end="175" class="language-shell">                                                                                          
                          ..,.,,,....                                                      
@@ -182,7 +182,7 @@ FLAG= ProyectoAurora{71,!)//: I&amp;=3+..*J1!7I1 &lt;:*#0#3N)(R)&gt;((n#/-'&amp;
 </code></pre>
 <p class="has-line-data" data-line-start="176" data-line-end="177">Asi que, lo que debemos hacer es realizar un <code>XOR</code>, por descarte entre las palabras “Cristo Redentor” y “Rio de Janeiro” probamos a hacer un XOR a la clave que nos han dado, pero utilizamos la de la ciudad (que es el nombre de los ficheros)</p>
 <p class="has-line-data" data-line-start="178" data-line-end="179">Realizando esta operación nos da la flag que andábamos buscando.</p>
-<p class="has-line-data" data-line-start="180" data-line-end="181"><img src="https://ch4m17ux.github.io/img/posts/rio-de-janeiro.jpg" alt="enter image description here"></p>
+<div align="center"><p class="has-line-data" data-line-start="180" data-line-end="181"><img src="https://ch4m17ux.github.io/img/posts/rio-de-janeiro.jpg" alt="enter image description here"></p></div>
 <blockquote>
 <p class="has-line-data" data-line-start="181" data-line-end="182"><strong><em>flag{35T0Y_3N_R10_D3_J4N31R0}</em></strong></p>
 </blockquote>
