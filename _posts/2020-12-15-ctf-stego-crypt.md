@@ -65,6 +65,7 @@ Analizamos el fichero JPG y vemos que los magic numbers corresponden:
 
 Verificamos con `binwalk` sin hay alguna imagen que podria estar embebida, y encontramos que hay alguna imagen mas que podria estar alli:
 
+```sh
     root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo binwalk Que_Pais.jpg 
     
     DECIMAL       HEXADECIMAL     DESCRIPTION
@@ -73,9 +74,11 @@ Verificamos con `binwalk` sin hay alguna imagen que podria estar embebida, y enc
     12            0xC             TIFF image data, big-endian, offset of first image directory: 8
     184           0xB8            JPEG image data, EXIF standard
     196           0xC4            TIFF image data, big-endian, offset of first image directory: 8
+```
 
 Utilizamos entonces `exiftool` para ver si vemos algo mas:
 
+```sh
     root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo exiftool Que_Pais.jpg 
     ExifTool Version Number         : 12.10
     File Name                       : Que_Pais.jpg
@@ -110,6 +113,7 @@ Utilizamos entonces `exiftool` para ver si vemos algo mas:
     Image Size                      : 938x898
     Megapixels                      : 0.842
     Thumbnail Image                 : (Binary data 3755286 bytes, use -b option to extract)
+```
 
 Podemos ver que nos da la posibilidad de obtener una imagen Thumbnail
 
@@ -117,20 +121,26 @@ Podemos ver que nos da la posibilidad de obtener una imagen Thumbnail
 
 Procedemos a sacar la imagen:
 
+```sh
     root@kali: exitftool -b --ThumbnailImage Que-Pais.jpg > my_thumbnail.jpg
+```
 
 ![Estadio Manaos Brasil](https://ch4m17ux.github.io/img/posts/Estadio-Stego-Aurora.jpg)
+
 Verificamos los strings de la imagen que hemos sacado, para ver si podemos identificar alguna cadena de texto o algun codigo encriptado:
 
 	strings -n 10 my_thumbnail.jpg
 
 Encontramos una secuencia interesante:
 
+```sh
     ch4m0@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ strings -n 10 my_thumbnail.jpg
         A=4 I=1 S=5 B=8
         %&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
         &'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
         O1a%CuTl+s
+```
+
 >A=4 I=1 S=5 B=8
 
 Identificamos que el estadio de la miniatura esta en Brasil, asi que procedemos a reemplazar las letras con la secuencia que nos han dado, lo cual resulta: 
