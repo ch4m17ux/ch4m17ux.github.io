@@ -19,9 +19,9 @@ Inicialmente tratamos de romper la contraseña del ZIP a traves de `Zip2John`, p
 
 Lo primero que debemos hacer es verificar los `"Magic Numbers"` del fichero PDF, puede que realmente no sea un fichero real y se enmascare con otro, por lo que a traves de un editor Hex verificamos la informacion, y encontramos que coincide con lo correspondiente a un PDF real:
 
-| 25 50 44 46 2D       |      %PDF |
-|--|--|
-|  |  |
+| 25 50 44 46 2D |  |  %PDF |
+|--|--|--|
+|  |  |  |
 
 Posteriormente procedemos a verificar si dentro de los strings del fichero vemos algun mensaje o codigo oculto:
 
