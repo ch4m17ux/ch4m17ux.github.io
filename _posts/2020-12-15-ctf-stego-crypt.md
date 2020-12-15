@@ -2,7 +2,7 @@
 layout: post
 title: "CTF Stego/Crypt"
 subtitle: "#ProyectoAurora"
-date: 2020-12-26 23:45:13 -0400
+date: 2020-12-15 23:45:13 +0100
 background: '/img/posts/stego-1.jpg'
 ---
 
