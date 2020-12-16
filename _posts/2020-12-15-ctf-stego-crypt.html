@@ -35,7 +35,7 @@ background: '/img/posts/06.jpg'
 </tbody>
 </table>
 <p class="has-line-data" data-line-start="21" data-line-end="22">Posteriormente procedemos a verificar si dentro de los strings del fichero vemos algun mensaje o codigo oculto:</p>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code1-ctf-stego.png" alt="enter image description here"></p>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code1-ctf-stego.png" alt="codigo linux ctf"></p>
 <p class="has-line-data" data-line-start="37" data-line-end="38">Encontramos que tenemos una sencuencia alfanumerica que podria ser algun texto cifrado:</p>
 <blockquote>
 <p class="has-line-data" data-line-start="38" data-line-end="39"><strong><em>H4sIAO+3wl8A/wVAyQkAIAxbxRWCfoX67xKiXw8SwfXL7dI/nDW1lYlhXh62BQDOV0cXAAAA</em></strong></p>
@@ -72,15 +72,7 @@ background: '/img/posts/06.jpg'
 </tbody>
 </table>
 <p class="has-line-data" data-line-start="60" data-line-end="61">Verificamos con <code>binwalk</code> sin hay alguna imagen que podria estar embebida, y encontramos que hay alguna imagen mas que podria estar alli:</p>
-<pre><code class="has-line-data" data-line-start="63" data-line-end="72" class="language-shell">root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo binwalk Que_Pais.jpg 
-    
-DECIMAL       HEXADECIMAL     DESCRIPTION
---------------------------------------------------------------------------------
-0             0x0             JPEG image data, EXIF standard
-12            0xC             TIFF image data, big-endian, offset of first image directory: 8
-184           0xB8            JPEG image data, EXIF standard
-196           0xC4            TIFF image data, big-endian, offset of first image directory: 8
-</code></pre>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code2-ctf-stego.png" alt="codigo linux ctf"></p>
 <p class="has-line-data" data-line-start="73" data-line-end="74">Utilizamos entonces <code>exiftool</code> para ver si vemos algo mas:</p>
 <pre><code class="has-line-data" data-line-start="76" data-line-end="111" class="language-shell">root@kali:~/Descargas/CTF-ProyectoAurora/Stego-Crypt/Donde_Estoy$ sudo exiftool Que_Pais.jpg 
 ExifTool Version Number         : 12.10
