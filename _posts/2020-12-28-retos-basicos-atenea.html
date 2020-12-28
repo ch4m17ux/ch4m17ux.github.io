@@ -10,12 +10,46 @@ background: '/img/posts/06.jpg'
 <p class="has-line-data" data-line-start="2" data-line-end="3">Hemos descubierto la plataforma del <em><code>CCN-CERT</code></em>, llamada <a href="https://atenea.ccn-cert.cni.es/challenges"><code>ATENEA</code></a>.  CCN-CERT es la Capacidad de Respuesta a incidentes de Seguridad de la Información del Centro Criptológico Nacional, adscrito al CNI.</p>
 <p class="has-line-data" data-line-start="4" data-line-end="5">Voy a eliminar los flags, para que os toméis el trabajo de leer la forma de solucionarlo, y por orden de la organización.</p>
 <h2 class="code-line" data-line-start=6 data-line-end=7 ><a id="Reto_1__Hash_6"></a>Reto 1 – Hash</h2>
-<h4 class="code-line" data-line-start=8 data-line-end=9 ><a id="Enunciado_8"></a><strong>Enunciado:</strong></h4>
-<p class="has-line-data" data-line-start="10" data-line-end="11">Nos dan una cadena de texto y nos piden que calculemos su hash md5, tenemos que tener en cuenta que la solución debe ir en el formato: flag{md5}</p>
+<h3 class="code-line" data-line-start=8 data-line-end=9 ><a id="Enunciado_8"></a><strong>Enunciado:</strong></h3>
+<p class="has-line-data" data-line-start="10" data-line-end="11">Nos dan una cadena de texto y nos piden que calculemos su hash <strong><code>md5</code></strong>, tenemos que tener en cuenta que la solución debe ir en el formato: <strong><code>flag{md5}</code></strong></p>
 <blockquote>
 <h5 class="code-line" data-line-start=12 data-line-end=13 ><a id="Todas_las_soluciones_deben_ir_en_este_formato_independiente_del_resultado_obtenido_esto_es_que_siempre_daremos_la_solucin_con_su_hash_md5_12"></a>Todas las soluciones deben ir en este formato, independiente del resultado obtenido, esto es que siempre daremos la solución con su hash md5.</h5>
 </blockquote>
 <p class="has-line-data" data-line-start="14" data-line-end="15">La contraseña para superar este reto es <strong>LearnTheHashFunction</strong></p>
-<h4 class="code-line" data-line-start=16 data-line-end=17 ><a id="Solucin_16"></a><strong>Solución:</strong></h4>
-<p class="has-line-data" data-line-start="18" data-line-end="19">La resolución de este primer reto es muy sencilla, bastará con usar el módulo md5 de la librería hashlib de python, para esto creare un script:</p>
-<p class="has-line-data" data-line-start="20" data-line-end="21"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-1.png" alt="Retos Basicos Atenea"></p>
+<h3 class="code-line" data-line-start=16 data-line-end=17 ><a id="Solucin_16"></a><strong>Solución:</strong></h3>
+<p class="has-line-data" data-line-start="18" data-line-end="19">La resolución de este primer reto es muy sencilla, bastará con usar el módulo md5 de la librería hashlib de python, para esto creare un script, voy a escribirlo para que me de el formato de la flag que debo introducir como solución:</p>
+<p class="has-line-data" data-line-start="20" data-line-end="21"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-1.png" alt="Retos Básicos Atenea"></p>
+<p class="has-line-data" data-line-start="22" data-line-end="23">Lo ejecutamos y obtenemos la respuesta del primer reto:</p>
+<p class="has-line-data" data-line-start="24" data-line-end="25"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-2.png" alt="Retos Básicos Atenea"></p>
+<hr>
+<blockquote>
+<p class="has-line-data" data-line-start="27" data-line-end="28">He decidido, luego de este reto, crear un script que me permita introducir la cadena de texto que deseo codificar en md5, así me permitirá sacar la flag en el formato que solicita la plataforma.</p>
+</blockquote>
+<blockquote>
+<p class="has-line-data" data-line-start="29" data-line-end="30"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-3.png" alt="Retos Básicos Atenea"></p>
+</blockquote>
+<hr>
+<h2 class="code-line" data-line-start=32 data-line-end=33 ><a id="Reto_2__Hash_2_32"></a>Reto 2 – Hash 2</h2>
+<h4 class="code-line" data-line-start=34 data-line-end=35 ><a id="Enunciado_34"></a><strong>Enunciado:</strong></h4>
+<p class="has-line-data" data-line-start="36" data-line-end="37">En este reto nos dan una cadena de texto y nos piden que calculemos su hash <strong><code>sha256</code></strong> y posteriormente su hash <strong><code>md5</code></strong> para que como hemos indicado anteriormente podamos introducir la respuesta en el formato que la plataforma exige (<em><code>flag{md5}</code></em>)-</p>
+<p class="has-line-data" data-line-start="38" data-line-end="39">La contraseña para superar este reto es <strong><strong>ThisIsAMoreSecureHashFunction</strong></strong></p>
+<h4 class="code-line" data-line-start=40 data-line-end=41 ><a id="Solucin_40"></a><strong>Solución:</strong></h4>
+<p class="has-line-data" data-line-start="42" data-line-end="43">Como en el primer reto, esta solución es bastante sencilla.  Vamos de nuevo con un script en python, que nos permitirá obtener la respuesta; podríamos utilizar algún codificador online y nos dará el mismo resultado.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="44" data-line-end="45">He dejado que mi script me muestre como seria la codificación en <code>SHA256</code> y la flag en <code>MD5</code> que debo introducir.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="47" data-line-end="48"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-4.png" alt="Retos Básicos Atenea"></p>
+<h2 class="code-line" data-line-start=50 data-line-end=51 ><a id="Reto_3__Hash_3_50"></a>Reto 3 – Hash 3</h2>
+<h4 class="code-line" data-line-start=52 data-line-end=53 ><a id="Enunciado_52"></a><strong>Enunciado:</strong></h4>
+<p class="has-line-data" data-line-start="54" data-line-end="55">En este reto nos dan una cadena codificada en md5 y nos solicitan buscar cual seria su texto correspondiente.</p>
+<p class="has-line-data" data-line-start="56" data-line-end="57">La contraseña para superar este reto es: <strong>54f662a095fa3d5fbbdaac72d176701b</strong></p>
+<h4 class="code-line" data-line-start=58 data-line-end=59 ><a id="Solucin_58"></a><strong>Solución:</strong></h4>
+<p class="has-line-data" data-line-start="60" data-line-end="61">Hay múltiples forma de solucionar esto reto:</p>
+<ol>
+<li class="has-line-data" data-line-start="62" data-line-end="63">Podríamos utilizar un decodificador online.</li>
+<li class="has-line-data" data-line-start="63" data-line-end="65">Podríamos utilizar hashcat o JohnTheRipper.</li>
+</ol>
+<p class="has-line-data" data-line-start="65" data-line-end="66">Por temas prácticos utilizare un decodificador online:</p>
+<p class="has-line-data" data-line-start="67" data-line-end="68"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-5.png" alt="Retos Básicos Atenea"></p>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Posteriormente, nos piden que convirtamos la cadena de texo en mayusculas, y calculemos su hash md5.  Asi que podemos hacerlo manualmente o utilizar un script en python. En este caso utilizare un script que convierta el texto en mayusculas y me de la flag que debo introducir:</p>
+<p class="has-line-data" data-line-start="71" data-line-end="72"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-6.png" alt="Retos Básicos Atenea"></p>
