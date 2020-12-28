@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Retos básicos de Atenea"
+subtitle: "# WriteUp"
+date: 2020-12-28 23:45:13 +0100
+background: '/img/posts/06.jpg'
+---
+
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Resolviendo_los_retos_bsicos_de_Atenea_CCNCERT_0"></a>Resolviendo los retos básicos de Atenea (CCN-CERT)</h1>
+<p class="has-line-data" data-line-start="2" data-line-end="3">Hemos descubierto la plataforma del <em><code>CCN-CERT</code></em>, llamada <a href="https://atenea.ccn-cert.cni.es/challenges"><code>ATENEA</code></a>.  CCN-CERT es la Capacidad de Respuesta a incidentes de Seguridad de la Información del Centro Criptológico Nacional, adscrito al CNI.</p>
+<p class="has-line-data" data-line-start="4" data-line-end="5">Voy a eliminar los flags, para que os toméis el trabajo de leer la forma de solucionarlo, y por orden de la organización.</p>
+<h2 class="code-line" data-line-start=6 data-line-end=7 ><a id="Reto_1__Hash_6"></a>Reto 1 – Hash</h2>
+<h4 class="code-line" data-line-start=8 data-line-end=9 ><a id="Enunciado_8"></a><strong>Enunciado:</strong></h4>
+<p class="has-line-data" data-line-start="10" data-line-end="11">Nos dan una cadena de texto y nos piden que calculemos su hash md5, tenemos que tener en cuenta que la solución debe ir en el formato: flag{md5}</p>
+<blockquote>
+<h5 class="code-line" data-line-start=12 data-line-end=13 ><a id="Todas_las_soluciones_deben_ir_en_este_formato_independiente_del_resultado_obtenido_esto_es_que_siempre_daremos_la_solucin_con_su_hash_md5_12"></a>Todas las soluciones deben ir en este formato, independiente del resultado obtenido, esto es que siempre daremos la solución con su hash md5.</h5>
+</blockquote>
+<p class="has-line-data" data-line-start="14" data-line-end="15">La contraseña para superar este reto es <strong>LearnTheHashFunction</strong></p>
+<h4 class="code-line" data-line-start=16 data-line-end=17 ><a id="Solucin_16"></a><strong>Solución:</strong></h4>
+<p class="has-line-data" data-line-start="18" data-line-end="19">La resolución de este primer reto es muy sencilla, bastará con usar el módulo md5 de la librería hashlib de python, para esto creare un script:</p>
+<p class="has-line-data" data-line-start="20" data-line-end="21"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-1.png" alt="Retos Basicos Atenea"></p>
