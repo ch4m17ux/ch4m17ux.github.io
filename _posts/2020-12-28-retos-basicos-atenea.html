@@ -31,7 +31,7 @@ background: '/img/posts/06.jpg'
 <hr>
 <h2 class="code-line" data-line-start=32 data-line-end=33 ><a id="Reto_2__Hash_2_32"></a>Reto 2 – Hash 2</h2>
 <h4 class="code-line" data-line-start=34 data-line-end=35 ><a id="Enunciado_34"></a><strong>Enunciado:</strong></h4>
-<p class="has-line-data" data-line-start="36" data-line-end="37">En este reto nos dan una cadena de texto y nos piden que calculemos su hash <strong><code>sha256</code></strong> y posteriormente su hash <strong><code>md5</code></strong> para que como hemos indicado anteriormente podamos introducir la respuesta en el formato que la plataforma exige (<em><code>flag{md5}</code></em>)-</p>
+<p class="has-line-data" data-line-start="36" data-line-end="37">En este reto nos dan una cadena de texto y nos piden que calculemos su hash <strong><code>sha256</code></strong> y posteriormente su hash <strong><code>md5</code></strong> para que como hemos indicado anteriormente podamos introducir la respuesta en el formato que la plataforma exige (<em><code>flag{md5}</code></em>).</p>
 <p class="has-line-data" data-line-start="38" data-line-end="39">La contraseña para superar este reto es <strong><strong>ThisIsAMoreSecureHashFunction</strong></strong></p>
 <h4 class="code-line" data-line-start=40 data-line-end=41 ><a id="Solucin_40"></a><strong>Solución:</strong></h4>
 <p class="has-line-data" data-line-start="42" data-line-end="43">Como en el primer reto, esta solución es bastante sencilla.  Vamos de nuevo con un script en python, que nos permitirá obtener la respuesta; podríamos utilizar algún codificador online y nos dará el mismo resultado.</p>
@@ -51,5 +51,12 @@ background: '/img/posts/06.jpg'
 </ol>
 <p class="has-line-data" data-line-start="65" data-line-end="66">Por temas prácticos utilizare un decodificador online:</p>
 <p class="has-line-data" data-line-start="67" data-line-end="68"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-5.png" alt="Retos Básicos Atenea"></p>
-<p class="has-line-data" data-line-start="69" data-line-end="70">Posteriormente, nos piden que convirtamos la cadena de texo en mayusculas, y calculemos su hash md5.  Asi que podemos hacerlo manualmente o utilizar un script en python. En este caso utilizare un script que convierta el texto en mayusculas y me de la flag que debo introducir:</p>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Posteriormente, nos piden que convirtamos la cadena de texto en mayúsculas, y calculemos su hash md5.  Así que podemos hacerlo manualmente o utilizar un script en python. En este caso utilizare un script que haga justamente esta operación en un solo paso:</p>
 <p class="has-line-data" data-line-start="71" data-line-end="72"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-6.png" alt="Retos Básicos Atenea"></p>
+<h2 class="code-line" data-line-start=72 data-line-end=73 ><a id="Reto_4__ASCII_72"></a>Reto 4 – ASCII</h2>
+<h4 class="code-line" data-line-start=74 data-line-end=75 ><a id="Enunciado_74"></a><strong>Enunciado:</strong></h4>
+<p class="has-line-data" data-line-start="76" data-line-end="77">Nos dan una explicación de los codigos ascii,: Los códigos del 33 al 126 se conocen como caracteres imprimibles, y representan letras, dígitos, signos de puntuación y varios símbolos.</p>
+<p class="has-line-data" data-line-start="78" data-line-end="79">Nos piden encontrar los los caracteres correspondientes a la codificación ASCII que nos entregan:</p>
+<p class="has-line-data" data-line-start="80" data-line-end="81"><strong>080 097 115 115 119 111 114 100 032 112 097 114 097 032 115 117 112 101 114 097 114 032 101 108 032 114 101 116 111 058 032 084 104 101 065 083 067 073 073 084 097 098 108 101 033</strong></p>
+<h4 class="code-line" data-line-start=82 data-line-end=83 ><a id="Solucin_82"></a><strong>Solución:</strong></h4>
+<p class="has-line-data" data-line-start="84" data-line-end="85">Para solucionar esto, podemos utilizar algun decodificador online o realizarlo con python.  Una de las paginas mas utilizadas para codificar y decodificar es <a href="http://icyberchef.com/">iCyberchef</a>, pero para seguir con el uso de python, lo resolveré asi.</p>
