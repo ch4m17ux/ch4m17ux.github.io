@@ -7,7 +7,7 @@ background: '/img/posts/06.jpg'
 ---
 
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Resolviendo_los_retos_bsicos_de_Atenea_CCNCERT_0"></a>Resolviendo los retos básicos de Atenea (CCN-CERT)</h1>
-<p class="has-line-data" data-line-start="2" data-line-end="3">Hemos descubierto la plataforma del <em><code>CCN-CERT</code></em>, llamada <a href="https://atenea.ccn-cert.cni.es/challenges"><code>ATENEA</code></a>.  CCN-CERT es la Capacidad de Respuesta a incidentes de Seguridad de la Información del Centro Criptológico Nacional, adscrito al CNI.</p>
+<p class="has-line-data" data-line-start="2" data-line-end="3">Hemos descubierto la plataforma del <em><code>CCN-CERT</code></em>, llamada <a href="https://atenea.ccn-cert.cni.es/challenges"><code>ATENEA</code></a>.  CCN-CERT significa o son las siglas de <em>Capacidad de Respuesta a incidentes de Seguridad de la Información del Centro Criptológico Nacional</em>, adscrito al CNI.</p>
 <p class="has-line-data" data-line-start="4" data-line-end="5">Voy a eliminar los flags, para que os toméis el trabajo de leer la forma de solucionarlo, y por orden de la organización.</p>
 <h2 class="code-line" data-line-start=6 data-line-end=7 ><a id="Reto_1__Hash_6"></a>Reto 1 – Hash</h2>
 <h3 class="code-line" data-line-start=8 data-line-end=9 ><a id="Enunciado_8"></a><strong>Enunciado:</strong></h3>
@@ -57,8 +57,45 @@ background: '/img/posts/06.jpg'
 <img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-7.png" alt="Retos Básicos Atenea"></p>
 <h2 class="code-line" data-line-start=72 data-line-end=73 ><a id="Reto_4__ASCII_72"></a>Reto 4 – ASCII</h2>
 <h4 class="code-line" data-line-start=74 data-line-end=75 ><a id="Enunciado_74"></a><strong>Enunciado:</strong></h4>
-<p class="has-line-data" data-line-start="76" data-line-end="77">Nos dan una explicación de los codigos ascii,: Los códigos del 33 al 126 se conocen como caracteres imprimibles, y representan letras, dígitos, signos de puntuación y varios símbolos.</p>
+<p class="has-line-data" data-line-start="76" data-line-end="77">Nos dan una explicación de los códigos ascii,: Los códigos del 33 al 126 se conocen como caracteres imprimibles, y representan letras, dígitos, signos de puntuación y varios símbolos.</p>
 <p class="has-line-data" data-line-start="78" data-line-end="79">Nos piden encontrar los los caracteres correspondientes a la codificación ASCII que nos entregan:</p>
 <p class="has-line-data" data-line-start="80" data-line-end="81"><strong>080 097 115 115 119 111 114 100 032 112 097 114 097 032 115 117 112 101 114 097 114 032 101 108 032 114 101 116 111 058 032 084 104 101 065 083 067 073 073 084 097 098 108 101 033</strong></p>
 <h4 class="code-line" data-line-start=82 data-line-end=83 ><a id="Solucin_82"></a><strong>Solución:</strong></h4>
-<p class="has-line-data" data-line-start="84" data-line-end="85">Para solucionar esto, podemos utilizar algun decodificador online o realizarlo con python.  Una de las paginas mas utilizadas para codificar y decodificar es <a href="http://icyberchef.com/">iCyberchef</a>, pero para seguir con el uso de python, lo resolveré asi.</p>
+<p class="has-line-data" data-line-start="84" data-line-end="85">Para solucionar esto, podemos utilizar algún decodificador online o realizarlo con python.  Una de las paginas mas utilizadas para codificar y decodificar es <a href="http://icyberchef.com/">iCyberchef</a>, pero para seguir con el uso de python, lo resolveré asi.</p>
+<p class="has-line-data" data-line-start="86" data-line-end="87">Vamos a ir convirtiendo cada código ascii en letras (char), recorriendo la cadena que nos han dado separando por espacios, para lo cual aprovecharemos la función split.</p>
+<p class="has-line-data" data-line-start="88" data-line-end="90"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-8.png" alt="Retos Básicos Atenea"><br>
+Lo cual nos da la contraseña o texto que nos piden.</p>
+<p class="has-line-data" data-line-start="91" data-line-end="93"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-9.png" alt="Retos Básicos Atenea"><br>
+Como he dicho al comienzo, he creado un script para convertir las contraseñas de los retos al formato que solicita el sitio como respuesta, en hash <em>MD5</em>.</p>
+<p class="has-line-data" data-line-start="94" data-line-end="95"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-10.png" alt="Retos Basicos Atenea"></p>
+<h2 class="code-line" data-line-start=96 data-line-end=97 ><a id="Reto_5__Base64_96"></a>Reto 5 – Base64</h2>
+<h4 class="code-line" data-line-start=98 data-line-end=99 ><a id="Enunciado_98"></a><strong>Enunciado:</strong></h4>
+<p class="has-line-data" data-line-start="100" data-line-end="101">En este reto nos dan un fichero txt con una cadena de texto, la cual debemos descodificar y poner la respuesta en el formato que nos solicitan (<em><code>flag{md5-hash}</code></em>)</p>
+<p class="has-line-data" data-line-start="102" data-line-end="103">El contenido del fichero es:</p>
+<pre><code>UmVjdWVyZGEgcXVlIGN1YW5kbyBjb2RpZmljYXMgYWxnbyBlbiBiYXNlNjQgTk8gbG8gZXN0w6Fz
+IGNpZnJhbmRvLCBzaW5vIHF1ZSBzaW1wbGVtZW50ZSBsbyBlc3TDoXMgY29kaWZpY2FuZG8uDQoN
+CkxhIGNvbnRyYXNlw7FhIHBhcmEgc3VwZXJhciBlc3RlIHJldG8gZXM6IHJlY3VlcmRhcXVlYmFz
+ZTY0Tk9lc2NpZnJhcg0KCg==
+</code></pre>
+<h4 class="code-line" data-line-start=110 data-line-end=111 ><a id="Solucin_110"></a><strong>Solución:</strong></h4>
+<p class="has-line-data" data-line-start="111" data-line-end="112">Podemos utilizar cualquier web que nos descodifique, usar bash o utilizar python.  Mostrare la forma con bash y el resultado en una web.</p>
+<p class="has-line-data" data-line-start="113" data-line-end="115"><strong>Bash:</strong><br>
+<img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-11.png" alt="Retos Básicos Atenea"></p>
+<p class="has-line-data" data-line-start="116" data-line-end="118"><strong>Web:</strong><br>
+<img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-12.png" alt="Retos Básicos Atenea"></p>
+<p class="has-line-data" data-line-start="119" data-line-end="120">Calculamos el hash de la respuesta, para dar la respuesta de la flag:</p>
+<p class="has-line-data" data-line-start="121" data-line-end="122"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-13.png" alt="Retos Básicos Atenea"></p>
+<h2 class="code-line" data-line-start=123 data-line-end=124 ><a id="Reto_6__Hex_123"></a>Reto 6 – Hex</h2>
+<h4 class="code-line" data-line-start=125 data-line-end=126 ><a id="Enunciado_125"></a><strong>Enunciado:</strong></h4>
+<p class="has-line-data" data-line-start="127" data-line-end="128">En esta ocasión nos dan una cadena que debemos convertir de Hex a Char:</p>
+<p class="has-line-data" data-line-start="129" data-line-end="130"><strong>50617373776f72643a2044346d7054686548337821</strong></p>
+<h4 class="code-line" data-line-start=131 data-line-end=132 ><a id="Solucin_131"></a><strong>Solución:</strong></h4>
+<p class="has-line-data" data-line-start="132" data-line-end="133">Podemos utilizar una web que nos descodifique la cadena, o realizar un script en python.  Os mostrare ambas opciones.</p>
+<p class="has-line-data" data-line-start="134" data-line-end="136"><strong>Web:</strong><br>
+<img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-14.png" alt="Retos Básicos Atenea"></p>
+<p class="has-line-data" data-line-start="137" data-line-end="139"><strong>Python</strong><br>
+<img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-15.png" alt="Retos Básicos Atenea"></p>
+<p class="has-line-data" data-line-start="140" data-line-end="141">Obtenemos la flag que nos piden:</p>
+<p class="has-line-data" data-line-start="142" data-line-end="143"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-16.png" alt="Retos Básicos Atenea"></p>
+<hr>
+<p class="has-line-data" data-line-start="145" data-line-end="146">Esta seria la primera parte de estas soluciones, en próximos días continuare publicando los siguientes retos.</p>
