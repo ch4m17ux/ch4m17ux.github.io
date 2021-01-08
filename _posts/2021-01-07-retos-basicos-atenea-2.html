@@ -6,7 +6,6 @@ date: 2021-01-07 13:45:13 +0100
 background: '/img/posts/06.jpg'
 ---
 
-
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Resolviendo_los_retos_bsicos_de_Atenea_CCNCERT_0"></a>Resolviendo los retos básicos de Atenea (CCN-CERT)</h1>
 <p class="has-line-data" data-line-start="2" data-line-end="3">En un <a href="https://ch4m17ux.github.io/2021/01/06/retos-basicos-atenea.html">post anterior</a> estuve presentando la resolucion de los retos basicos de Atenea, en esta segunda entrega continuare con algunas retos mas, y quiza nos alcance para realizar una tercera entrega.</p>
 <p class="has-line-data" data-line-start="4" data-line-end="5">Como en el post anterior, voy a eliminar los flags, para que os toméis el trabajo de leer la forma de solucionarlo, y por orden de la organización.</p>
@@ -32,7 +31,7 @@ background: '/img/posts/06.jpg'
 <h3 class="code-line" data-line-start=39 data-line-end=40 ><a id="Enunciado_39"></a><strong>Enunciado:</strong></h3>
 <p class="has-line-data" data-line-start="40" data-line-end="41">Nos dan una serie de imágenes y nos piden que calculemos la entropía de cada uno de ellos, y la solución es el nombre del fichero con mayor entropía, incluyendo la extensión (<em>por ejemplo: imagen25.jpg</em>).</p>
 <h3 class="code-line" data-line-start=42 data-line-end=43 ><a id="Solucin_42"></a><strong>Solución:</strong></h3>
-<p class="has-line-data" data-line-start="44" data-line-end="45">Dentro de la explicación y las referencias que nos dan en el reto, podemos ver que hay un sitio donde encontramos un script en Python que nos calcula la entropía<a href="https://kennethghartman.com/calculate-file-entropy/"> [Aquí]</a>, así que lo tomaremos como base y haremos algunas modificaciones para que recorra el directorio, compare la entropía de cada fichero y nos muestre solo el que tenga la mayor.  Tambien que ese nombre lo convierta en el formato de la flag de la plataforma.</p>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Dentro de la explicación y las referencias que nos dan en el reto, podemos ver que hay un sitio donde encontramos un script en Python que nos calcula la entropía<a href="https://kennethghartman.com/calculate-file-entropy/"> [Aquí]</a>, así que lo tomaremos como base y haremos algunas modificaciones para que recorra el directorio, compare la entropía de cada fichero y nos muestre solo el que tenga la mayor.  También que ese nombre lo convierta en el formato de la flag de la plataforma.</p>
 <p class="has-line-data" data-line-start="46" data-line-end="47"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-5.png" alt="Retos Básicos Atenea"></p>
 <p class="has-line-data" data-line-start="48" data-line-end="49"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-6.png" alt="Retos Básicos Atenea"></p>
 <h2 class="code-line" data-line-start=49 data-line-end=50 ><a id="Reto_9__Magic_Number_49"></a>Reto 9 – Magic Number</h2>
@@ -44,7 +43,19 @@ background: '/img/posts/06.jpg'
 <p class="has-line-data" data-line-start="60" data-line-end="61"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-7.png" alt="Retos Básicos Atenea"></p>
 <h2 class="code-line" data-line-start=61 data-line-end=62 ><a id="Reto_10__Strings_61"></a>Reto 10 – Strings</h2>
 <h3 class="code-line" data-line-start=63 data-line-end=64 ><a id="Enunciado_63"></a><strong>Enunciado:</strong></h3>
-<p class="has-line-data" data-line-start="64" data-line-end="65">Para este reto se nos ha dado un fichero que segun se indica es un <em><code>binario</code></em>, y nos piden que revisemos dentro de los <strong><em><code>strings</code></em></strong> del mismo a que URL se esta intentando conectar.</p>
+<p class="has-line-data" data-line-start="64" data-line-end="65">Para este reto se nos ha dado un fichero que según se indica es un <em><code>binario</code></em>, y nos piden que revisemos dentro de los <strong><em><code>strings</code></em></strong> del mismo a que URL se esta intentando conectar.</p>
 <h3 class="code-line" data-line-start=66 data-line-end=67 ><a id="Solucin_66"></a><strong>Solución:</strong></h3>
 <p class="has-line-data" data-line-start="68" data-line-end="69">Para poder dar solución a este reto, basta con buscar con el comando <strong><em><code>strings</code></em></strong> (para que nos muestre las posibles &quot;<em>palabras legibles</em>&quot;) y filtrar por la cadena que buscamos; en este caso algo similar a <strong><em>www</em></strong>.</p>
 <p class="has-line-data" data-line-start="70" data-line-end="71"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-8.png" alt="Retos Básicos Atenea"></p>
+<h2 class="code-line" data-line-start=71 data-line-end=72 ><a id="Reto_11__Metadatos_71"></a>Reto 11 – Metadatos</h2>
+<h3 class="code-line" data-line-start=73 data-line-end=74 ><a id="Enunciado_73"></a><strong>Enunciado:</strong></h3>
+<p class="has-line-data" data-line-start="74" data-line-end="75">Nos dan un fichero <strong><em>PDF</em></strong>, del cual debemos buscar quien es el autor.</p>
+<h3 class="code-line" data-line-start=76 data-line-end=77 ><a id="Solucin_76"></a><strong>Solución:</strong></h3>
+<p class="has-line-data" data-line-start="77" data-line-end="78">Este reto es muy sencillo, debemos utilizar <strong><em><code>exiftool</code></em></strong> para poder ver sus metadatos y buscar la información que nos solicitan.</p>
+<p class="has-line-data" data-line-start="79" data-line-end="80"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-9.png" alt="Retos Básicos Atenea"></p>
+<h2 class="code-line" data-line-start=80 data-line-end=81 ><a id="Reto_12__Metadatos_2_80"></a>Reto 12 – Metadatos 2</h2>
+<h3 class="code-line" data-line-start=82 data-line-end=83 ><a id="Enunciado_82"></a><strong>Enunciado:</strong></h3>
+<p class="has-line-data" data-line-start="83" data-line-end="84">Nos dan un fichero <strong><em>JPG</em></strong>, del cual debemos averiguar el modelo de la cámara con la que se tomó la fotografía (la solución es sólo el modelo, sin incluir la marca, y todo en mayúsculas)</p>
+<h3 class="code-line" data-line-start=85 data-line-end=86 ><a id="Solucin_85"></a><strong>Solución:</strong></h3>
+<p class="has-line-data" data-line-start="86" data-line-end="87">La solución al igual que en el reto anterior, es utilizar exiftool para buscar la información que nos están pidiendo.</p>
+<p class="has-line-data" data-line-start="88" data-line-end="89"><img src="https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-10.png" alt="Retos Básicos Atenea"></p>

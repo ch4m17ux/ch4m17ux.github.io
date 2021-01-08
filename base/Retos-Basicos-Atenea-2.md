@@ -42,7 +42,7 @@ Nos dan una serie de imágenes y nos piden que calculemos la entropía de cada u
 
 ### **Solución:**
 
-Dentro de la explicación y las referencias que nos dan en el reto, podemos ver que hay un sitio donde encontramos un script en Python que nos calcula la entropía[ \[Aquí\]](https://kennethghartman.com/calculate-file-entropy/), así que lo tomaremos como base y haremos algunas modificaciones para que recorra el directorio, compare la entropía de cada fichero y nos muestre solo el que tenga la mayor.  Tambien que ese nombre lo convierta en el formato de la flag de la plataforma.
+Dentro de la explicación y las referencias que nos dan en el reto, podemos ver que hay un sitio donde encontramos un script en Python que nos calcula la entropía[ \[Aquí\]](https://kennethghartman.com/calculate-file-entropy/), así que lo tomaremos como base y haremos algunas modificaciones para que recorra el directorio, compare la entropía de cada fichero y nos muestre solo el que tenga la mayor.  También que ese nombre lo convierta en el formato de la flag de la plataforma.
 
 ![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-5.png)
 
@@ -62,10 +62,28 @@ Teniendo la primera fila de los *números mágicos* que tiene el fichero podemos
 ## Reto 10 – Strings
 
 ### **Enunciado:**
-Para este reto se nos ha dado un fichero que segun se indica es un *`binario`*, y nos piden que revisemos dentro de los ***`strings`*** del mismo a que URL se esta intentando conectar.
+Para este reto se nos ha dado un fichero que según se indica es un *`binario`*, y nos piden que revisemos dentro de los ***`strings`*** del mismo a que URL se esta intentando conectar.
 
 ### **Solución:**
 
 Para poder dar solución a este reto, basta con buscar con el comando ***`strings`*** (para que nos muestre las posibles "*palabras legibles*") y filtrar por la cadena que buscamos; en este caso algo similar a ***www***.
 
 ![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-8.png)
+## Reto 11 – Metadatos
+
+### **Enunciado:**
+Nos dan un fichero ***PDF***, del cual debemos buscar quien es el autor.
+
+### **Solución:**
+Este reto es muy sencillo, debemos utilizar ***`exiftool`*** para poder ver sus metadatos y buscar la información que nos solicitan.
+
+![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-9.png)
+## Reto 12 – Metadatos 2
+
+### **Enunciado:**
+Nos dan un fichero ***JPG***, del cual debemos averiguar el modelo de la cámara con la que se tomó la fotografía (la solución es sólo el modelo, sin incluir la marca, y todo en mayúsculas)
+
+### **Solución:**
+La solución al igual que en el reto anterior, es utilizar exiftool para buscar la información que nos están pidiendo.
+
+![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-10.png)
