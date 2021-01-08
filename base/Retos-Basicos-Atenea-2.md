@@ -87,3 +87,8 @@ Nos dan un fichero ***JPG***, del cual debemos averiguar el modelo de la cámara
 La solución al igual que en el reto anterior, es utilizar exiftool para buscar la información que nos están pidiendo.
 
 ![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-10.png)
+
+---
+Con esto finalizamos con la segunda entrega. En el siguiente post finalizaremos con los retos básicos de Atenea.
+
+Si desea ver la primera sección de retos, puedes ir a este ***`[enlace](https://ch4m17ux.github.io/2021/01/06/retos-basicos-atenea.html)`***
