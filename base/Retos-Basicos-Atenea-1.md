@@ -143,4 +143,4 @@ Obtenemos la flag que nos piden:
 ![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea/basico-atenea-16.png)
 
 --- 
-Esta seria la primera parte de estas soluciones, en el siguiente ***`[post](https://ch4m17ux.github.io/2021/01/06/retos-basicos-atenea.html)`*** seguiremos con la segunda parte de estos retos.
+Esta seria la primera parte de estas soluciones, en el siguiente [`post`](https://ch4m17ux.github.io/2021/01/06/retos-basicos-atenea.html) seguiremos con la segunda parte de estos retos.
