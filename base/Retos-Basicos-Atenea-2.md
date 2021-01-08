@@ -50,10 +50,22 @@ Dentro de la explicación y las referencias que nos dan en el reto, podemos ver 
 ## Reto 9 – Magic Number
 
 ### **Enunciado:**
-En esta ocasión nos dan un fichero sin extensión; debemos buscar cual es su "*`numero mágico`*" o "*`file signature`*", expresado en mayúsculas.
+En esta ocasión nos dan un fichero sin extensión; debemos buscar cual es su "*`número mágico`*" o "*`file signature`*", expresado en mayúsculas.
 
 ### **Solución:**
 
 Para dar solución podemos hacer uso de la consola de linux y utilizar **`xxd`**, que nos da los números mágicos del fichero, también podemos hacer uso de **`file`**, para saber de que fichero se trata.
 
+Teniendo la primera fila de los *números mágicos* que tiene el fichero podemos calcular la flag solicitada.
+
 ![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-7.png)
+## Reto 10 – Strings
+
+### **Enunciado:**
+Para este reto se nos ha dado un fichero que segun se indica es un *`binario`*, y nos piden que revisemos dentro de los ***`strings`*** del mismo a que URL se esta intentando conectar.
+
+### **Solución:**
+
+Para poder dar solución a este reto, basta con buscar con el comando ***`strings`*** (para que nos muestre las posibles "*palabras legibles*") y filtrar por la cadena que buscamos; en este caso algo similar a ***www***.
+
+![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-8.png)
