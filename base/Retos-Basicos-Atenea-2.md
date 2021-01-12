@@ -35,7 +35,7 @@ También podríamos resolver este reto con un script de python:
 Que nos da la misma respuesta que conseguimos con la web.  Finalmente, convertimos la respuesta en el formato de la flag:
 
 ![Retos Básicos Atenea](https://ch4m17ux.github.io/img/posts/reto-basico-atenea-2/basico-atenea-2-4.png)
-## Reto 8 – XOR
+## Reto 8 – Entropy
 
 ### **Enunciado:**
 Nos dan una serie de imágenes y nos piden que calculemos la entropía de cada uno de ellos, y la solución es el nombre del fichero con mayor entropía, incluyendo la extensión (*por ejemplo: imagen25.jpg*).
