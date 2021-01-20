@@ -6,7 +6,10 @@ date: 2020-12-15 20:34:00 +0100
 background: '/img/posts/06.jpg'
 ---
 
-<h1 class="code-line" data-line-start=2 data-line-end=3 ><a id="CTF_StegoCrypt_2"></a>CTF Stego/Crypt</h1>
+
+
+<h1 class="code-line" data-line-start=1 data-line-end=2 ><a id="CTF_StegoCrypt_1"></a>CTF Stego/Crypt</h1>
+<hr>
 <p class="has-line-data" data-line-start="4" data-line-end="5">Durante los días del 10 al 12 de Diciembre de 2020, estuvimos participando como equipo (<strong>L4r0_134W Team</strong>) en el CTF organizado por <a href="https://www.proyecto-aurora.org/">Proyecto Aurora</a>.</p>
 <p class="has-line-data" data-line-start="6" data-line-end="7">En este CTF encontramos un reto correspondiente al grupo de Stego/Crypt, donde nos entregaban dos archivos:</p>
 <blockquote>
@@ -15,93 +18,72 @@ background: '/img/posts/06.jpg'
 <li class="has-line-data" data-line-start="9" data-line-end="10">Un fichero ZIP que esta bloqueado a traves de una contraseña.</li>
 </ul>
 </blockquote>
-<div align="center"><p class="has-line-data" data-line-start="11" data-line-end="12"><img src="https://ch4m17ux.github.io/img/posts/Donde_Estoy.jpg" alt="Ficheros PDF y ZIP"></p></div>
+<p class="has-line-data" data-line-start="11" data-line-end="12"><img src="https://ch4m17ux.github.io/img/posts/Donde_Estoy.jpg" alt="Ficheros PDF y ZIP"></p>
 <p class="has-line-data" data-line-start="13" data-line-end="14">Inicialmente tratamos de romper la contraseña del ZIP a traves de <code>Zip2John</code>, pero encontramos que no hay forma de crackearla, por lo que la clave debe estar en el PDF, por esta razón, trataremos a traves de tecnicas de estenografía obtener la informacion embebida en el fichero PDF y conseguir la contraseña para descomprimir el fichero ZIP.</p>
 <p class="has-line-data" data-line-start="15" data-line-end="16">Lo primero que debemos hacer es verificar los <code>&quot;Magic Numbers&quot;</code> del fichero PDF, puede que realmente no sea un fichero real y se enmascare con otro, por lo que a traves de un editor Hex verificamos la informacion, y encontramos que coincide con lo correspondiente a un PDF real:</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>25 50 44 46 2D</th>
-<th></th>
-<th>%PDF</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p class="has-line-data" data-line-start="21" data-line-end="22">Posteriormente procedemos a verificar si dentro de los strings del fichero vemos algun mensaje o codigo oculto:</p>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code1-ctf-stego.png" alt="codigo linux ctf"></p>
-<p class="has-line-data" data-line-start="37" data-line-end="38">Encontramos que tenemos una sencuencia alfanumerica que podria ser algun texto cifrado:</p>
+<p class="has-line-data" data-line-start="17" data-line-end="18">25 50 44 46 2D      %PDF</p>
+<hr>
+<p class="has-line-data" data-line-start="20" data-line-end="21">Posteriormente procedemos a verificar si dentro de los strings del fichero vemos algun mensaje o codigo oculto:</p>
+<p class="has-line-data" data-line-start="22" data-line-end="23"><img src="https://ch4m17ux.github.io/img/posts/code1-ctf-stego.png" alt="codigo linux ctf"></p>
+<p class="has-line-data" data-line-start="24" data-line-end="25">Encontramos que tenemos una sencuencia alfanumerica que podria ser algun texto cifrado:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="38" data-line-end="39"><strong><em>H4sIAO+3wl8A/wVAyQkAIAxbxRWCfoX67xKiXw8SwfXL7dI/nDW1lYlhXh62BQDOV0cXAAAA</em></strong></p>
+<p class="has-line-data" data-line-start="26" data-line-end="27"><strong><em>H4sIAO+3wl8A/wVAyQkAIAxbxRWCfoX67xKiXw8SwfXL7dl/nDW1lYlhXh62BQDOV0cXAAAA</em></strong></p>
 </blockquote>
-<p class="has-line-data" data-line-start="40" data-line-end="41">Procedemos con alguna herramienta a tratar de descifrarlo, para este caso hemos usado <a href="http://icyberchef.com/"><strong>iCyberchef</strong></a>.  Y nos indica que es una cadena con doble cifrado: <code>Base64</code>  y <code>Gunzip</code>.  Resultando la contraseña que necesitamos para descomprimir el fichero ZIP que nos han entregado.</p>
+<p class="has-line-data" data-line-start="28" data-line-end="29">Procedemos con alguna herramienta a tratar de descifrarlo, para este caso hemos usado <a href="https://gchq.github.io/CyberChef/"><strong>iCyberchef</strong></a>.</p>
+<p class="has-line-data" data-line-start="30" data-line-end="31">Cuando copiamos la cadena de texto podemos ver que se activa una “varita” que nos sugiere que tiene un cifrado <code>Base64</code>.</p>
+<p class="has-line-data" data-line-start="32" data-line-end="33"><img src="https://ch4m17ux.github.io/img/posts/stego-0-1.jpg" alt="iCyberchef - Decode string"></p>
+<p class="has-line-data" data-line-start="34" data-line-end="35">Posteriormente esta misma “varita” nos indica que presuntamente el resultado esta cifrado en <code>Gunzip</code>.</p>
+<p class="has-line-data" data-line-start="36" data-line-end="37"><img src="https://ch4m17ux.github.io/img/posts/stego-0-2.jpg" alt="iCyberchef - Decode string"></p>
+<p class="has-line-data" data-line-start="38" data-line-end="39">Con lo cual podemos resumir que la herramienta online nos indica que es una cadena con doble cifrado: <code>Base64</code> y <code>Gunzip</code>. Resultando la contraseña que necesitamos para descomprimir el fichero ZIP que nos han entregado.</p>
 <blockquote>
-<p class="has-line-data" data-line-start="42" data-line-end="43">password= Am3r1c@L4t1n@</p>
+<p class="has-line-data" data-line-start="40" data-line-end="41">password= Am3r1c@L4t1n@</p>
 </blockquote>
-<div align="center"><p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/stego-1.jpg" alt="iCyberchef - Decode string"></p></div>
-<p class="has-line-data" data-line-start="46" data-line-end="47">Procedemos a descomprimir el ZIP y nos da como resultado dos nuevos ficheros:</p>
+<p class="has-line-data" data-line-start="42" data-line-end="43"><img src="https://ch4m17ux.github.io/img/posts/stego-1.jpg" alt="iCyberchef - Decode string"></p>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Procedemos a descomprimir el ZIP y nos da como resultado dos nuevos ficheros:</p>
 <blockquote>
 <ul>
-<li class="has-line-data" data-line-start="47" data-line-end="48">Un fichero JPG con una imagen de America.</li>
-<li class="has-line-data" data-line-start="48" data-line-end="49">Un fichero ZIP que esta bloqueado a traves de una contraseña.</li>
+<li class="has-line-data" data-line-start="46" data-line-end="47">Un fichero JPG con una imagen de America.</li>
+<li class="has-line-data" data-line-start="47" data-line-end="48">Un fichero ZIP que esta bloqueado a traves de una contraseña.</li>
 </ul>
 </blockquote>
-<div align="center"><p class="has-line-data" data-line-start="50" data-line-end="51"><img src="https://ch4m17ux.github.io/img/posts/Que_Pais.jpg" alt="Ficheros JPG y ZIP"></p></div>
-<p class="has-line-data" data-line-start="52" data-line-end="53">Tomamos la imagen y trataremos de descifrar el mensaje oculto, que nos dara la contraseña con la qué descomprimir el fichero ZIP.</p>
-<p class="has-line-data" data-line-start="54" data-line-end="55">Analizamos el fichero JPG y vemos que los magic numbers corresponden:</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>FF D8 FF E1</th>
-<th></th>
-<th>%JPG</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p class="has-line-data" data-line-start="60" data-line-end="61">Verificamos con <code>binwalk</code> sin hay alguna imagen que podria estar embebida, y encontramos que hay alguna imagen mas que podria estar alli:</p>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code2-ctf-stego.png" alt="codigo linux ctf"></p>
-<p class="has-line-data" data-line-start="73" data-line-end="74">Utilizamos entonces <code>exiftool</code> para ver si vemos algo mas:</p>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code3-ctf-stego.png" alt="codigo linux ctf"></p>
-<p class="has-line-data" data-line-start="112" data-line-end="113">Podemos ver que nos da la posibilidad de obtener una imagen Thumbnail</p>
+<p class="has-line-data" data-line-start="49" data-line-end="50"><img src="https://ch4m17ux.github.io/img/posts/Que_Pais.jpg" alt="Ficheros JPG y ZIP"></p>
+<p class="has-line-data" data-line-start="51" data-line-end="52">Tomamos la imagen y trataremos de descifrar el mensaje oculto, que nos dara la contraseña con la qué descomprimir el fichero ZIP.</p>
+<p class="has-line-data" data-line-start="53" data-line-end="54">Analizamos el fichero JPG y vemos que los magic numbers corresponden:</p>
+<p class="has-line-data" data-line-start="55" data-line-end="56">FF D8 FF E1      %JPG</p>
+<hr>
+<p class="has-line-data" data-line-start="59" data-line-end="60">Verificamos con <code>binwalk</code> sin hay alguna imagen que podria estar embebida, y encontramos que hay alguna imagen mas que podria estar alli:</p>
+<p class="has-line-data" data-line-start="61" data-line-end="62"><img src="https://ch4m17ux.github.io/img/posts/code2-ctf-stego.png" alt="codigo linux ctf"></p>
+<p class="has-line-data" data-line-start="63" data-line-end="64">Utilizamos entonces <code>exiftool</code> para ver si vemos algo mas:</p>
+<p class="has-line-data" data-line-start="65" data-line-end="66"><img src="https://ch4m17ux.github.io/img/posts/code3-ctf-stego.png" alt="codigo linux ctf"></p>
+<p class="has-line-data" data-line-start="67" data-line-end="68">Podemos ver que nos da la posibilidad de obtener una imagen Thumbnail</p>
 <blockquote>
-<p class="has-line-data" data-line-start="114" data-line-end="115">Thumbnail Image                 : (Binary data 3755286 bytes, use -b option to extract)</p>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Thumbnail Image : (Binary data 3755286 bytes, use -b option to extract)</p>
 </blockquote>
-<p class="has-line-data" data-line-start="116" data-line-end="117">Procedemos a sacar la imagen:</p>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code4-ctf-stego.png" alt="codigo linux ctf"></p>
-<div align="center"><p class="has-line-data" data-line-start="122" data-line-end="123"><img src="https://ch4m17ux.github.io/img/posts/Estadio-Stego-Aurora.jpg" alt="Estadio Manaos Brasil"></p></div>
-<p class="has-line-data" data-line-start="124" data-line-end="125">Verificamos los strings de la imagen que hemos sacado, para ver si podemos identificar alguna cadena de texto o algun codigo encriptado:</p>
-<pre><code class="has-line-data" data-line-start="127" data-line-end="129" class="language-shell">strings -n 10 my_thumbnail.jpg
+<p class="has-line-data" data-line-start="71" data-line-end="72">Procedemos a sacar la imagen:</p>
+<p class="has-line-data" data-line-start="73" data-line-end="74"><img src="https://ch4m17ux.github.io/img/posts/code4-ctf-stego.png" alt="codigo linux ctf"></p>
+<p class="has-line-data" data-line-start="75" data-line-end="76"><img src="https://ch4m17ux.github.io/img/posts/Estadio-Stego-Aurora.jpg" alt="Estadio Manaos Brasil"></p>
+<p class="has-line-data" data-line-start="77" data-line-end="78">Verificamos los strings de la imagen que hemos sacado, para ver si podemos identificar alguna cadena de texto o algun codigo encriptado:</p>
+<pre><code>strings -n 10 my_thumbnail.jpg
 </code></pre>
-<p class="has-line-data" data-line-start="130" data-line-end="131">Encontramos una secuencia interesante:</p>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code5-ctf-stego.png" alt="codigo linux ctf"></p>
+<p class="has-line-data" data-line-start="81" data-line-end="82">Encontramos una secuencia interesante:</p>
+<p class="has-line-data" data-line-start="83" data-line-end="84"><img src="https://ch4m17ux.github.io/img/posts/code5-ctf-stego.png" alt="codigo linux ctf"></p>
 <blockquote>
-<p class="has-line-data" data-line-start="140" data-line-end="141">A=4 I=1 S=5 B=8</p>
+<p class="has-line-data" data-line-start="85" data-line-end="86">A=4 I=1 S=5 B=8</p>
 </blockquote>
-<p class="has-line-data" data-line-start="142" data-line-end="143">Identificamos que el estadio de la miniatura esta en Brasil, asi que procedemos a reemplazar las letras con la secuencia que nos han dado, lo cual resulta:</p>
+<p class="has-line-data" data-line-start="87" data-line-end="88">Identificamos que el estadio de la miniatura esta en Brasil, asi que procedemos a reemplazar las letras con la secuencia que nos han dado, lo cual resulta:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="143" data-line-end="144">Brasil - 8r451l</p>
+<p class="has-line-data" data-line-start="89" data-line-end="90">Brasil - 8r451l</p>
 </blockquote>
-<p class="has-line-data" data-line-start="145" data-line-end="146">Con esta clave descomprimimos el zip que nos sacamos de los pasos anteriores y, vemos que contiene una imagen y una fichero TXT.</p>
-<div align="center"><p class="has-line-data" data-line-start="147" data-line-end="148"><img src="https://ch4m17ux.github.io/img/posts/Que_Ciudad.jpg" alt="enter image description here"></p></div>
-<p class="has-line-data" data-line-start="149" data-line-end="150">La imagen es del Cristo Redentor de Rio de Janeiro (Brasil) y el fichero TXT nos da algunas instrucciones:</p>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/code6-ctf-stego.png" alt="codigo linux ctf"></p>
-<p class="has-line-data" data-line-start="176" data-line-end="177">Asi que, lo que debemos hacer es realizar un <code>XOR</code>, por descarte entre las palabras “Cristo Redentor” y “Rio de Janeiro” probamos a hacer un XOR a la clave que nos han dado, pero utilizamos la de la ciudad (que es el nombre de los ficheros)</p>
-<p class="has-line-data" data-line-start="178" data-line-end="179">Realizando esta operación nos da la flag que andábamos buscando.</p>
-<div align="center"><p class="has-line-data" data-line-start="180" data-line-end="181"><img src="https://ch4m17ux.github.io/img/posts/rio-de-janeiro.jpg" alt="enter image description here"></p></div>
+<p class="has-line-data" data-line-start="91" data-line-end="92">Con esta clave descomprimimos el zip que nos sacamos de los pasos anteriores y, vemos que contiene una imagen y una fichero TXT.</p>
+<p class="has-line-data" data-line-start="93" data-line-end="94"><img src="https://ch4m17ux.github.io/img/posts/Que_Ciudad.jpg" alt="enter image description here"></p>
+<p class="has-line-data" data-line-start="95" data-line-end="96">La imagen es del Cristo Redentor de Rio de Janeiro (Brasil) y el fichero TXT nos da algunas instrucciones:</p>
+<p class="has-line-data" data-line-start="97" data-line-end="98"><img src="https://ch4m17ux.github.io/img/posts/code6-ctf-stego.png" alt="codigo linux ctf"></p>
+<p class="has-line-data" data-line-start="99" data-line-end="100">Asi que, lo que debemos hacer es realizar un <code>XOR</code>, por descarte entre las palabras “Cristo Redentor” y “Rio de Janeiro” probamos a hacer un XOR a la clave que nos han dado, pero utilizamos la de la ciudad (que es el nombre de los ficheros)</p>
+<p class="has-line-data" data-line-start="101" data-line-end="102">Realizando esta operación nos da la flag que andábamos buscando.</p>
+<p class="has-line-data" data-line-start="103" data-line-end="104"><img src="https://ch4m17ux.github.io/img/posts/rio-de-janeiro.jpg" alt="Decode String"></p>
 <blockquote>
-<p class="has-line-data" data-line-start="181" data-line-end="182"><strong><em>flag{35T0Y_3N_R10_D3_J4N31R0}</em></strong></p>
+<p class="has-line-data" data-line-start="105" data-line-end="106"><strong><em>flag{35T0Y_3N_R10_D3_J4N31R0}</em></strong></p>
 </blockquote>
-<div align="center"><h2 class="code-line" data-line-start=183 data-line-end=184 ><a id="FIN_183"></a>FIN</h2></div>
+<p class="has-line-data" data-line-start="108" data-line-end="109">Y de esta forma finalizamos el reto que se nos ha presentado.</p>
+<h2 class="code-line" data-line-start=110 data-line-end=112 ><a id="FIN_110"></a>FIN</h2>
+

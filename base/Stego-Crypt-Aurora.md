@@ -4,7 +4,7 @@ date: 2020-12-15 23:45:13 +0100
 background: '/img/posts/06.jpg' 
 ---
 
-CTF Stego/Crypt {.code-line data-line-start="2" data-line-end="3"}
+# CTF Stego/Crypt {.code-line data-line-start="2" data-line-end="3"}
 ---
 
 Durante los días del 10 al 12 de Diciembre de 2020, estuvimos
