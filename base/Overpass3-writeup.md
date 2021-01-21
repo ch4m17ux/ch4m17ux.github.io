@@ -47,6 +47,7 @@ Una ves que lo hemos descargado encontramos que hay dos ficheros:
 Lo que debemos hacer primero es importar esta llave que hemos obtenido (y que seguro nos vendra muy bien)
 
 ![OverPass3 - WriteUp](https://ch4m17ux.github.io/img/posts/overpass3/overpass3-5.png)
+
 Posteriormente desencriptamos el fichero excel encriptado.
 
 ![OverPass3 - WriteUp](https://ch4m17ux.github.io/img/posts/overpass3/overpass3-6.png)
@@ -116,4 +117,4 @@ A traves de ensayo/error hemos encontrado un fichero denominado web.flag, que su
 >* Buscar por la palabra flag como extension
 >* Etc
 
-![OverPass3 - WriteUp](https://ch4m17ux.github.io/img/posts/overpass3/overpass3-14.png)
+![OverPass3 - WriteUp](https://ch4m17ux.github.io/img/posts/overpass3/overpass3-15.png)
