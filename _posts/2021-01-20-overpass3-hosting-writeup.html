@@ -7,16 +7,15 @@ background: '/img/posts/06.jpg'
 ---
 
 
-
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="OverPass3__Hosting_Writeup__TryHackMe_0"></a>OverPass3 - Hosting (Writeup - TryHackMe)</h1>
-<div align="center"><p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/overpass3/tryhackme-overpass3.jpg" alt="Reto Overpass3 - TryHackMe"></p></div>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/overpass3/tryhackme-overpass3.jpg" alt="Reto Overpass3 - TryHackMe"></p>
 <blockquote>
 <p class="has-line-data" data-line-start="4" data-line-end="5"><em>En esta maquina se nos indica que debemos lanzar la maquina y esperar a que inicie, tardara cerca de 5 minutos, de otro modo no podremos acceder a la misma.  Se ha establecido que la maquina tenga un nivel intermedio de expertiz, y esta bien denominada, ya que hay que trabajar un poco para poder escalar privilegios, las vulnerabilidades para poder hacerlo solo podran ser explotadas casi al final del desarrollo de la misma</em>.</p>
 </blockquote>
-<h2 class="code-line" data-line-start=6 data-line-end=7 ><a id="Recoleccion_de_informacion_6"></a>Recoleccion de informacion</h2>
+<h2 class="code-line" data-line-start=6 data-line-end=7 ><a id="Recoleccion_de_informacin_6"></a>Recoleccion de información</h2>
 <p class="has-line-data" data-line-start="8" data-line-end="9">Como generalmente creo que se deberia comenzar, es realizando un un escaneo de puertos; asi podremos saber que puertos abiertos tiene la maquina y poder tener un panorama general de los pasos a realizar.</p>
 <h3 class="code-line" data-line-start=10 data-line-end=11 ><a id="NMAP_10"></a>NMAP</h3>
-<div align="center"><p class="has-line-data" data-line-start="12" data-line-end="13"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-1.png" alt="OverPass3 - WriteUp"></p></div>
+<p class="has-line-data" data-line-start="12" data-line-end="13"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-1.png" alt="OverPass3 - WriteUp"></p>
 <p class="has-line-data" data-line-start="14" data-line-end="15">Podemos ver que tenemos 3 puertos abiertos:</p>
 <blockquote>
 <ul>
@@ -36,23 +35,24 @@ background: '/img/posts/06.jpg'
 </blockquote>
 <p class="has-line-data" data-line-start="26" data-line-end="27">Vamos a ejecutar un escaneo de directorios sobre el sitio web, verificamos si encuentra alguna zona de administracion o similar.</p>
 <h3 class="code-line" data-line-start=28 data-line-end=29 ><a id="Gobuster_28"></a>Gobuster</h3>
-<div align="center"><p class="has-line-data" data-line-start="30" data-line-end="31"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-2.png" alt="OverPass3 - WriteUp"></p></div>
+<p class="has-line-data" data-line-start="30" data-line-end="31"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-2.png" alt="OverPass3 - WriteUp"></p>
 <p class="has-line-data" data-line-start="32" data-line-end="33">Observamos que nos ha encontrado un directorio interesante (<code>/backups</code>), ya que no es comun que se tenga en un sitio web.  Al verificar este directorio encontramos que tiene un fichero <code>ZIP</code>, que nos lo descargaremos y verificaremos que contiene.</p>
-<p class="has-line-data" data-line-start="34" data-line-end="35">PONER IMAGEN DEL SITIO WEB</p>
-<p class="has-line-data" data-line-start="36" data-line-end="37">Una ves que lo hemos descargado encontramos que hay dos ficheros:</p>
+<p class="has-line-data" data-line-start="34" data-line-end="35"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-3.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=36 data-line-end=37 ><a id="UnzipDecrypt_36"></a>Unzip&amp;Decrypt</h3>
+<p class="has-line-data" data-line-start="38" data-line-end="39">Una ves que lo hemos descargado encontramos que hay dos ficheros:</p>
 <blockquote>
 <ul>
-<li class="has-line-data" data-line-start="38" data-line-end="39">Un fichero excel encriptado con <code>GPG</code></li>
-<li class="has-line-data" data-line-start="39" data-line-end="40">Una llave que suponemos que seria la que nos permita descencriptar el fichero.</li>
+<li class="has-line-data" data-line-start="40" data-line-end="41">Un fichero excel encriptado con <code>GPG</code></li>
+<li class="has-line-data" data-line-start="41" data-line-end="42">Una llave que suponemos que seria la que nos permita descencriptar el fichero.</li>
 </ul>
 </blockquote>
-<div align="center"><p class="has-line-data" data-line-start="42" data-line-end="43"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-3.png" alt="OverPass3 - WriteUp"></p></div>
-<p class="has-line-data" data-line-start="44" data-line-end="45">Lo que debemos hacer primero es importar esta llave que hemos obtenido (y que seguro nos vendra muy bien)</p>
-<div align="center"><p class="has-line-data" data-line-start="46" data-line-end="48"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-4.png" alt="OverPass3 - WriteUp"><br></div>
+<p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-4.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="46" data-line-end="47">Lo que debemos hacer primero es importar esta llave que hemos obtenido (y que seguro nos vendra muy bien)</p>
+<p class="has-line-data" data-line-start="48" data-line-end="50"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-5.png" alt="OverPass3 - WriteUp"><br>
 Posteriormente desencriptamos el fichero excel encriptado.</p>
-<div align="center"><p class="has-line-data" data-line-start="49" data-line-end="51"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-5.png" alt="OverPass3 - WriteUp"><br></div>
-Obtenemos un fichero excel que podemos visualizar, bien sea con algun editor que tengas en tu maquina (<em>como <code>LibreOffice</code></em>) o utilizar un visor online.  De un modo u otro, podremos ver que hay una tabla con algunos datos interesantes: Nombre de Cliente, <strong>Nombre de Usuario</strong>, <strong>Contraseña</strong>, Numero de tarjeta de credito y CVC (<em>No os emocioneis, los numeros de tarjeta no son validos</em>).  Verificaremos si con estos datos podemos acceder via <code>SSH</code>.</p>
-<div align="center"><table class="table table-striped table-bordered">
+<p class="has-line-data" data-line-start="51" data-line-end="52"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-6.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="53" data-line-end="54">Obtenemos un fichero excel que podemos visualizar, bien sea con algun editor que tengas en tu maquina (<em>como <code>LibreOffice</code></em>) o utilizar un visor online.  De un modo u otro, podremos ver que hay una tabla con algunos datos interesantes: Nombre de Cliente, <strong>Nombre de Usuario</strong>, <strong>Contraseña</strong>, Numero de tarjeta de credito y CVC (<em>No os emocioneis, los numeros de tarjeta no son validos</em>).  Verificaremos si con estos datos podemos acceder via <code>SSH</code>.</p>
+<table class="table table-striped table-bordered">
 <thead>
 <tr>
 <th>Customer Name</th>
@@ -67,23 +67,64 @@ Obtenemos un fichero excel que podemos visualizar, bien sea con algun editor que
 <td>Par. A. Doxx</td>
 <td>paradox</td>
 <td>ShibesAreGreat123</td>
-<td>4111111145551142</td>
+<td>4111 1111 4555 1142</td>
 <td>432</td>
 </tr>
 <tr>
 <td>0day Montgomery</td>
 <td>0day</td>
 <td>OllieIsTheBestDog</td>
-<td>5555341244441115</td>
+<td>5555 3412 4444 1115</td>
 <td>642</td>
 </tr>
 <tr>
 <td>Muir Land</td>
 <td>muirlandoracle</td>
 <td>A11D0gsAreAw3s0me</td>
-<td>5103221911199245</td>
+<td>5103 2219 1119 9245</td>
 <td>737</td>
 </tr>
 </tbody>
-</table></div>
+</table>
+<h3 class="code-line" data-line-start=61 data-line-end=62 ><a id="Login_Attempts_61"></a>Login Attempts</h3>
+<p class="has-line-data" data-line-start="63" data-line-end="64">Ya que tenemos algunos usuarios y contraños, probaremos el acceso a traves de <code>SSH</code> ; en este caso he comenzado con el primer usuario, que para mi tiene mas sentido de que exista un usuario con ese nombre.</p>
+<p class="has-line-data" data-line-start="65" data-line-end="66"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-7.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="67" data-line-end="68">No obtenemos acceso, y segun el mensaje todo indica que el acceso a traves de <code>SSH</code> con <strong>usuario</strong> y <strong>contraseña</strong> no esta habilitado y se requiere un par de claves.</p>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Hemos intentado con los otros usuarios, y tampoco obtenemos acceso.</p>
+<p class="has-line-data" data-line-start="71" data-line-end="72">Vimos que el <em>puerto 21 (ftp)</em> tambien estaba abierto, voy a intentar el acceso a traves de este puerto <code>FTP</code>, pero nos encontramos con que no hay acceso con usuario <strong>anonimo</strong>, de nuevo, intentaremos el acceso acceso con los datos que hemos obtenido del fichero excel, veremos si hay suerte.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="73" data-line-end="74"><em>En muchas ocasiones encontramos que se reutilizan usuarios y contraseñas para varios servicios.</em></p>
+</blockquote>
+<p class="has-line-data" data-line-start="75" data-line-end="76">Podemos encontrar que obtenemos acceso con el usuario paradox, y la ubicacion donde nos situa es donde podemos encontrar los archivos que componen el sitio web. He tratado de moverme hacia una ubicacion diferente y al parecer este usuario en <code>FTP</code> esta enjaulado.</p>
+<p class="has-line-data" data-line-start="77" data-line-end="78"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-8.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=78 data-line-end=79 ><a id="Acceso_a_la_maquina_remota_78"></a>Acceso a la maquina remota</h3>
+<p class="has-line-data" data-line-start="80" data-line-end="81">Sin embargo, el hecho de que no podamos movernos no quiere decir que no podamos hacer nada, mas aun que estamos ubicados en la carpeta donde estan los ficheros del sitio web, podemos comenzar nuestras acciones de acceso y <em>escalado de privilegios</em>.</p>
+<p class="has-line-data" data-line-start="82" data-line-end="83">Podemos en esta ocasion, de forma realmente sencilla, subir ficheros y ejecutarlos desde el sitio web, asi que intentare subir un archivo <code>PHP</code> que contiene una <strong><em>shell reversa</em></strong> y acceder al servidor.</p>
+<p class="has-line-data" data-line-start="84" data-line-end="85"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-9.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="86" data-line-end="87">Como vemos, al listar los ficheros del servidor podemos ver el fichero <em>PHP</em> que hemos subido con la <strong><em>shell reversa</em></strong>.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="88" data-line-end="89">Recuerda que en el fichero PHP donde tenemos la shell reversa debemos modificarlo con la IP de nuestra maquina local y el puerto local donde escuchara, de esta forma se podra establecer la comunicacion.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="90" data-line-end="91">En nuestra maquina local, ejecutamos <code>netcat</code> para que escuche en el puerto que hemos configurado en el fichero <code>PHP</code> y ejecutamos desde la web el fichero para activar la <strong><em>shell reversa</em></strong>.</p>
+<p class="has-line-data" data-line-start="92" data-line-end="93"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-10.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="94" data-line-end="95"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-11.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="96" data-line-end="97">Tenemos de esta forma establecida la comunicacion a traves de <code>netcat</code> y tenemos una <strong><em>shell</em></strong> en el servidor remoto; pero es una shell un poco limitada, asi que ejecutaremos algunos comandos para poder tener mayores funcionalidades.</p>
+<p class="has-line-data" data-line-start="98" data-line-end="99"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-12.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="100" data-line-end="101">Estos comando nos permiten tener autocompletado, buscar a traves del uso de las flechas del teclado y algunas opciones mas dentro de la <em>shell</em>.</p>
+<p class="has-line-data" data-line-start="102" data-line-end="103">Verificamos con qué usuario nos “loguea” en esta shell (<em>lo mas comun es <strong>www</strong> o <strong>apache</strong></em>)</p>
+<p class="has-line-data" data-line-start="104" data-line-end="105"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-13.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=105 data-line-end=106 ><a id="Flag_de_Web_105"></a>Flag de Web</h3>
+<p class="has-line-data" data-line-start="107" data-line-end="108">La primera flag que nos piden que debemos buscar esta relacionada con este mismo usuario, asi que buscaremos donde puede estar la flag.</p>
+<p class="has-line-data" data-line-start="109" data-line-end="111"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-14.png" alt="OverPass3 - WriteUp"><br>
+A traves de ensayo/error hemos encontrado un fichero denominado web.flag, que suponemos que es nuestra primera flag.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="112" data-line-end="113">En estos casos, es ir probando opciones:</p>
+<ul>
+<li class="has-line-data" data-line-start="113" data-line-end="114">Buscar por el nombre apache</li>
+<li class="has-line-data" data-line-start="114" data-line-end="115">Buscar por la palabra flag como nombre</li>
+<li class="has-line-data" data-line-start="115" data-line-end="116">Buscar por la palabra flag como extension</li>
+<li class="has-line-data" data-line-start="116" data-line-end="117">Etc</li>
+</ul>
+</blockquote>
+<p class="has-line-data" data-line-start="118" data-line-end="119"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-14.png" alt="OverPass3 - WriteUp"></p>
 
