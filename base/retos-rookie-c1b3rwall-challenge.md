@@ -81,10 +81,7 @@ Dentro de la descripción nos entregan un fichero de audio ([Aquí](https://ch4m
 
 Verificamos que el fichero si sea lo que nos dicen que es. (un archivo de audio)
 
-```console
-kali@kali:~/C1b3rChallenge$ file signal_from_outer_space.wav 
-signal_from_outer_space.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 8 bit, mono 11050 Hz
-```
+![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-consola-1.png)
 
 Corresponde con lo que nos indican que debe ser.  Procedemos de esta forma a abrirlo con cualquier reproductor.
 
@@ -113,20 +110,12 @@ Nos entregan un fichero gif:
 
 Como siempre, lo primero es verificar que la imagen es realmente lo que dice que es:
 
-```console
-kali@kali:~/C1b3rChallenge$ file what_the_gif.gif 
-what_the_gif.gif: GIF image data, version 89a, 480 x 480
-```
+![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-consola-2.png)
+
 Observamos que efectivamente es un fichero gif.  Procedemos a verificar los strings que pueda traer.
 
-```console
-kali@kali:~/C1b3rChallenge$ strings -n 20 what_the_gif.gif 
-5358%!86;95698>:<D@<<A*$A0-A68A=?B*,B>CD4.D:6EBDEITFDHFFMFN]N2/N:6NGHNJNO=9PPYQC>QNSTXcU]lWVZX<:XC>XQUXcuYG9YLKZHG[L@]WY^\b`EB`LC`dqaQDaQQc]ceKGeQHfWPfZXfcfgVDhlwhp
-n``nmtpNKpXHpXPq@MqZVsaHtgct
-ur}vaPvcVvjnvqww`_wpqwy
-n0th1ng h3r3, try harder
-c4ts_is_com1ng_3nd3r____vipyne
-```
+![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-consola-3.png)
+
 Observamos que hay una cadena de texto que resalta, no es algo que este comúnmente en ficheros de todo estilo: ***c4ts_is_com1ng_3nd3r***
 
 Obtenemos nuestra flag solicitada.
