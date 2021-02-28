@@ -1,0 +1,95 @@
+---
+layout: post
+title: "C1b3rwall Challenge: Retos Rookie"
+subtitle: "#C1b3rwall Academy"
+date: 2021-02-28 21:01:00 +0100
+background: '/img/posts/06.jpg'
+---
+
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="C1b3rwall_Challenge_Retos_Rookie_0"></a>C1b3rwall Challenge: Retos Rookie</h1>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-1.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="4" data-line-end="5">En este post quiero traer los retos que la plataforma C1b3rwall Challenge, de la mano de Hacroks nos presenta.  En esta oportunidad desarrollare los correspondientes al nivel Básico o Rookie.</p>
+<p class="has-line-data" data-line-start="6" data-line-end="7">Si quieres participar tienes información [ <a href="https://c1b3rwall.hackrocks.com/">Aquí</a> ]</p>
+<hr>
+<h2 class="code-line" data-line-start=10 data-line-end=11 ><a id="RETO_1__Mensaje_Interceptado_10"></a><strong>RETO 1 - Mensaje Interceptado</strong></h2>
+<p class="has-line-data" data-line-start="12" data-line-end="13">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="14" data-line-end="16"><strong><em>OBJETIVO</em></strong>:<br>
+Acaba de recibir un mensaje que ha sido interceptado por una organización extranjera. Sin embargo resulta incomprensible. ¿Podrá averiguar su contenido?</p>
+<p class="has-line-data" data-line-start="17" data-line-end="18">Su investigación comienza con un breve mensaje que ha sido interceptado sin tener más conocimiento sobre el mismo. Parece totalmente incomprensible, pero confiamos en usted para encontrarle un sentido.</p>
+<p class="has-line-data" data-line-start="19" data-line-end="20"><strong>QV9mMXJzdF9zdDNw</strong></p>
+</blockquote>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Vemos claramente que el mensaje esta encriptado; por esta razón lo pasaremos por una herramienta que nos identifique que tipo de cifrado tiene y que nos entregue el string en claro.</p>
+<p class="has-line-data" data-line-start="23" data-line-end="24">Para esta operación, podemos utilizar la herramienta online <a href="https://gchq.github.io/CyberChef">Cyberchef</a>.</p>
+<p class="has-line-data" data-line-start="25" data-line-end="27"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-2.png" alt="Retos C1b3rwall Challenge"><br>
+Y así, obtenemos la solución al primer reto.</p>
+<hr>
+<h2 class="code-line" data-line-start=29 data-line-end=30 ><a id="RETO_2__Status_Report_29"></a><strong>RETO 2 - Status Report</strong></h2>
+<p class="has-line-data" data-line-start="31" data-line-end="32">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="33" data-line-end="35"><strong><em>OBJETIVO</em></strong>:<br>
+Un agente necesita recibir un mensaje. ¿Podrá enviárselo?</p>
+<p class="has-line-data" data-line-start="36" data-line-end="37">Un agente se encuentra en una misión encubierta. Tenemos un canal de comunicación seguro; sin embargo, este agente tiene una costumbre adquirida por su formación en el MD5 y requiere un formato adicional de mensaje. ¿Podrá enviarle el siguiente mensaje de forma que él lo entienda?.</p>
+<p class="has-line-data" data-line-start="38" data-line-end="39"><strong><strong>reporte status</strong></strong></p>
+</blockquote>
+<p class="has-line-data" data-line-start="40" data-line-end="41">El reto nos indica que el agente se comunica a través de mensajes en formato MD5, es por esto, que debemos cifrar el mensaje como nos indican.</p>
+<p class="has-line-data" data-line-start="42" data-line-end="43">De nuevo, para resolver este reto podemos hacer uso de CyberChef.</p>
+<p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-3.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="46" data-line-end="47">Obtenemos la solución solicitada.</p>
+<hr>
+<h2 class="code-line" data-line-start=49 data-line-end=50 ><a id="RETO_3__Indescifrable_49"></a><strong>RETO 3 - ¿Indescifrable?</strong></h2>
+<p class="has-line-data" data-line-start="51" data-line-end="52">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="53" data-line-end="55"><strong><em>OBJETIVO</em></strong>:<br>
+Extraño archivo de texto el que hemos encontrado. ¿Qué será ese texto incompresible?</p>
+<p class="has-line-data" data-line-start="56" data-line-end="57">Durante la monitorización que tiene asignada como agente, intercepta un texto que se está volviendo viral. Sin embargo, parece que el mismo no tiene sentido alguno. Su misión será averiguar su sentido antes de que sea demasiado tarde.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="58" data-line-end="59">Dentro de la descripción tenemos un fichero txt (<a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/indescifrable.txt">Aquí</a>), a simple vista es indescifrable, no sabemos que contiene, ni a que pertenece; así que seguimos utilizando la herramienta de CyberChef y veremos que nos arroja.  Cuando no sabemos en qué cifrado esta el texto que nos han entregado, y la herramienta identifica de que se trata, nos saldrá una “varita” que al darle clic descifra lo que estamos introduciendo.</p>
+<p class="has-line-data" data-line-start="60" data-line-end="61"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-4.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="62" data-line-end="63">Obtenemos una imagen donde nos entrega la flag que debemos introducir.</p>
+<hr>
+<h2 class="code-line" data-line-start=65 data-line-end=66 ><a id="RETO_4__No_estamos_solos_65"></a><strong>RETO 4 - No estamos solos</strong></h2>
+<p class="has-line-data" data-line-start="67" data-line-end="68">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="69" data-line-end="71"><strong><em>OBJETIVO</em></strong>:<br>
+Acabamos de interceptar una extraña señal procedente del espacio</p>
+<p class="has-line-data" data-line-start="72" data-line-end="73">Como agente asiste a una reunión de urgencia a la que asisten todas las agencias de inteligencia de la Unión Europea. En ella se le facilita un archivo de audio, el cual contiene una señal que ha sido interceptada por la estación espacial internacional. ¿Qué misterio oculta?</p>
+<p class="has-line-data" data-line-start="74" data-line-end="75">(Ten en cuenta que el token diferencia entre mayúsculas y minúsculas. Buscamos el mensaje entero en minúsculas)</p>
+</blockquote>
+<p class="has-line-data" data-line-start="76" data-line-end="77">Dentro de la descripción nos entregan un fichero de audio (<a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/audio-cat.wav">Aquí</a>).</p>
+<p class="has-line-data" data-line-start="78" data-line-end="79"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-5.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="80" data-line-end="81">Verificamos que el fichero si sea lo que nos dicen que es. (un archivo de audio)</p>
+<pre><code class="has-line-data" data-line-start="83" data-line-end="86" class="language-console">kali@kali:~/C1b3rChallenge$ file signal_from_outer_space.wav 
+signal_from_outer_space.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 8 bit, mono 11050 Hz
+</code></pre>
+<p class="has-line-data" data-line-start="87" data-line-end="88">Corresponde con lo que nos indican que debe ser.  Procedemos de esta forma a abrirlo con cualquier reproductor.</p>
+<p class="has-line-data" data-line-start="89" data-line-end="90">Al escucharlo, podemos identificar que es un código morse, así que si tenemos experiencia en código morse, podemos traducirlo; o utilizar una herramienta que nos traduzca los pulsos.</p>
+<p class="has-line-data" data-line-start="91" data-line-end="92">Utilizare para esto una pagina web denominada &quot;<a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html">Morse Code Adaptive Audio Decoder</a>&quot;, subimos el audio allí y la herramienta nos lo pone en texto claro.</p>
+<p class="has-line-data" data-line-start="93" data-line-end="95"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-6.png" alt="Retos C1b3rwall Challenge"><br>
+Nos han dicho en la descripción, que la respuesta debe ser en minúsculas, así que obtenemos: <strong><em>miau miau cat invasion</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=98 data-line-end=99 ><a id="RETO_5__No_estamos_solos_98"></a><strong>RETO 5 - No estamos solos</strong></h2>
+<p class="has-line-data" data-line-start="100" data-line-end="101">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="102" data-line-end="104"><strong><em>OBJETIVO</em></strong>:<br>
+Una imagen viral sin sentido ¿o quizás sí?</p>
+<p class="has-line-data" data-line-start="105" data-line-end="106">Han transcurrido tan sólo unas horas desde que se ha interpretado el mensaje de audio captado por la estación espacial internacional y ahora parece que se ha vuelto viral una extraña imagen. Parece no tener sentido pero debemos sacar toda la información posible de la misma.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="107" data-line-end="108">Nos entregan un fichero gif:</p>
+<p class="has-line-data" data-line-start="109" data-line-end="111"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/cat.gif" alt="Retos C1b3rwall Challenge"><br>
+Como siempre, lo primero es verificar que la imagen es realmente lo que dice que es:</p>
+<pre><code class="has-line-data" data-line-start="113" data-line-end="116" class="language-console">kali@kali:~/C1b3rChallenge$ file what_the_gif.gif 
+what_the_gif.gif: GIF image data, version 89a, 480 x 480
+</code></pre>
+<p class="has-line-data" data-line-start="116" data-line-end="117">Observamos que efectivamente es un fichero gif.  Procedemos a verificar los strings que pueda traer.</p>
+<pre><code class="has-line-data" data-line-start="119" data-line-end="126" class="language-console">kali@kali:~/C1b3rChallenge$ strings -n 20 what_the_gif.gif 
+5358%!86;95698&gt;:&lt;D@&lt;&lt;A*$A0-A68A=?B*,B&gt;CD4.D:6EBDEITFDHFFMFN]N2/N:6NGHNJNO=9PPYQC&gt;QNSTXcU]lWVZX&lt;:XC&gt;XQUXcuYG9YLKZHG[L@]WY^\b`EB`LC`dqaQDaQQc]ceKGeQHfWPfZXfcfgVDhlwhp
+n``nmtpNKpXHpXPq@MqZVsaHtgct
+ur}vaPvcVvjnvqww`_wpqwy
+n0th1ng h3r3, try harder
+c4ts_is_com1ng_3nd3r____vipyne
+</code></pre>
+<p class="has-line-data" data-line-start="126" data-line-end="127">Observamos que hay una cadena de texto que resalta, no es algo que este comúnmente en ficheros de todo estilo: <strong><em>c4ts_is_com1ng_3nd3r</em></strong></p>
+<p class="has-line-data" data-line-start="128" data-line-end="129">Obtenemos nuestra flag solicitada.</p>
+<h1 class="code-line" data-line-start=130 data-line-end=131 ><a id="Fin_130"></a>Fin</h1>
+<p class="has-line-data" data-line-start="131" data-line-end="132">Cualquier errata o duda podéis contactar en el grupo de ayuda de esta plataforma. (<a href="https://t.me/C1b3rWallAcademy">Aquí</a>)</p>
