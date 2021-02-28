@@ -24,6 +24,7 @@ Vemos claramente que el mensaje esta encriptado; por esta razón lo pasaremos po
 Para esta operación, podemos utilizar la herramienta online [Cyberchef](https://gchq.github.io/CyberChef).
 
 ![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-2.png)
+
 Y así, obtenemos la solución al primer reto.
 
 ---
@@ -92,6 +93,7 @@ Al escucharlo, podemos identificar que es un código morse, así que si tenemos 
 Utilizare para esto una pagina web denominada "[Morse Code Adaptive Audio Decoder](https://morsecode.world/international/decoder/audio-decoder-adaptive.html)", subimos el audio allí y la herramienta nos lo pone en texto claro.
 
 ![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-6.png)
+
 Nos han dicho en la descripción, que la respuesta debe ser en minúsculas, así que obtenemos: ***miau miau cat invasion***
 
 ---
@@ -108,6 +110,7 @@ Nos entregan la descripción del reto:
 Nos entregan un fichero gif:
 
 ![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/cat.gif)
+
 Como siempre, lo primero es verificar que la imagen es realmente lo que dice que es:
 
 ```console
