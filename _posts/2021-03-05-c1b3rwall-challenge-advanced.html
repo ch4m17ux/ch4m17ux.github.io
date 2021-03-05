@@ -1,0 +1,47 @@
+---
+layout: post
+title: "C1b3rwall Challenge: Retos Advanced"
+subtitle: "#C1b3rwall Academy"
+date: 2021-03-05 12:39:00 +0100
+background: '/img/posts/06.jpg'
+---
+
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="C1b3rwall_Challenge_Retos_Advanced_0"></a>C1b3rwall Challenge: Retos Advanced</h1>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-rookie/rookie-1.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="4" data-line-end="5">En este post quiero traer los retos que la plataforma C1b3rwall Advanced, de la mano de Hacroks nos presenta.  Como he tratado en la entrada anterior, en esta oportunidad desarrollare los correspondientes al nivel Avanzado o Advanced.</p>
+<p class="has-line-data" data-line-start="6" data-line-end="7">Si quieres participar tienes información [ <a href="https://c1b3rwall.hackrocks.com/">Aquí</a> ]</p>
+<hr>
+<h2 class="code-line" data-line-start=10 data-line-end=11 ><a id="RETO_1__No_tan_rpido_10"></a><strong>RETO 1 - No tan rápido</strong></h2>
+<p class="has-line-data" data-line-start="12" data-line-end="13">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="14" data-line-end="16"><strong><em>OBJETIVO</em></strong>:<br>
+Durante una investigación a una importante banda internacional de ladrones de vehículos de lujo, hemos interceptado un correo electrónico que contenía un archivo con extensión .pcap.</p>
+<p class="has-line-data" data-line-start="17" data-line-end="18">El agente que interceptó el mensaje no conoce esta extensión, así que ha solicitado nuestra ayuda para comprobar si existe alguna pista que lleve a la detención de la cúpula de la banda. Además, ha compartido con nosotros el contenido del mensaje:</p>
+<p class="has-line-data" data-line-start="19" data-line-end="20"><em>Wiesz, co robić. Wszystkie informacje znajdują się w linku.</em></p>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Para resolver este reto, deberás proporcionar cualquier información que lleve a nuestros agentes hacia la siguiente pista. Si por ejemplo encuentras un enlace externo, el token será la URL <strong>completa</strong>.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="23" data-line-end="25">Nos entregan un fichero con extensión <code>.pcap</code> como indica la descripción. [Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/net.pcap">AQUI]<br>
+</a></p>
+<p class="has-line-data" data-line-start="26" data-line-end="27">Una de las cosas que hago siempre, es verificar que lo que nos entregan si es lo que dicen que es; en este caso un fichero probablemente de captura de red.</p>
+<pre><code class="has-line-data" data-line-start="29" data-line-end="32" class="language-console">kali@kali:~/C1b3rChallenge$ file net.pcap 
+net.pcap: Zip archive data, at least v1.0 to extract
+</code></pre>
+<p class="has-line-data" data-line-start="33" data-line-end="34">Como observamos, el fichero no es precisamente una captura de trafico de red, sino que es un fichero <code>ZIP</code>.  Así que procedemos a descomprimirlo.</p>
+<pre><code class="has-line-data" data-line-start="36" data-line-end="40" class="language-console">ch4m0@ch4m0:~/Descargas/C1b3rChallenge$ unzip net.pcap
+Archive:  net.pcap
+  inflating: trace/tlhahisoleseding  
+</code></pre>
+<p class="has-line-data" data-line-start="41" data-line-end="42">Obtenemos una carpeta con un binario que podríamos ejecutar. Al hacerlo vemos que hay una cadena de texto que se repite.</p>
+<p class="has-line-data" data-line-start="43" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-1.png" alt="Retos C1b3rwall Challenge"><br>
+Por lo que lo anterior podemos sacar la cadena de texto:</p>
+<pre><code class="has-line-data" data-line-start="47" data-line-end="49" class="language-console">uggcf://jjj.qebcobk.pbz/f/qtdipont5zsxygp/p1o3epunyyratr.mvc?qy=1|Wejdź na naszą uzgodnioną witrynę
+</code></pre>
+<p class="has-line-data" data-line-start="50" data-line-end="51">Que si la ponemos en CyberChef y jugamos haber que tipo de cifrado tiene, encontramos:</p>
+<pre><code class="has-line-data" data-line-start="53" data-line-end="55" class="language-console">https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1|Jrwqź an anfmą hmtbqavbaą jvgelaę
+</code></pre>
+<p class="has-line-data" data-line-start="56" data-line-end="57">Y según la descripción tenemos:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="58" data-line-end="59">Si por ejemplo encuentras un enlace externo, el token será la URL <strong>completa</strong>.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="60" data-line-end="62">Deducimos que la flag es:<br>
+<strong><a href="https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1">https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1</a></strong></p>
