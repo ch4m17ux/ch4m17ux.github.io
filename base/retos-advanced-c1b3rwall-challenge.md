@@ -60,3 +60,25 @@ Y según la descripción tenemos:
 
 Deducimos que la flag es:
 **https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1**
+
+---
+## **RETO 2 - La carta a los Ladrones Magos**
+
+Nos entregan la descripción del reto:
+
+> ***OBJETIVO***:
+> En nuestra investigación a la banda de ladrones de vehículos hemos encontrado un fichero PDF. A primera vista parece documentación oficial aprobada por el Gobierno de España, pero no tiene ningún sentido que una banda como esta quisiera guardar tan celosamente este documento.
+>
+>Tenemos la esperanza de encontrar información acerca de sus próximos objetivos. Quizá una lista de vehículos que robar o, al menos, el nombre real del archivo que la contiene.
+>
+>La solución a este reto será el nombre de dicho archivo.
+
+Nos entregan un fichero como indica la descripción. [Lo puedes descargar [AQUI\]
+](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/dotyczysamochodow.pdf)
+
+Al parecer es un fichero `PDF`, asi que vamos a ver si se esconde algo dentro o podemos sacar algo que pueda estar oculto.
+
+Lo primero que podemos hacer es buscar dentro de los strings del fichero, puede que haya alguna cadena de texto interesante.
+
+![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-2.png)
+Observamos que hay una cadena de texto al final que parece ser un `Base64`, asi que vamos a verificar que nos arroja.
