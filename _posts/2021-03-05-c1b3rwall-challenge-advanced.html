@@ -27,7 +27,7 @@ Durante una investigación a una importante banda internacional de ladrones de v
 net.pcap: Zip archive data, at least v1.0 to extract
 </code></pre>
 <p class="has-line-data" data-line-start="33" data-line-end="34">Como observamos, el fichero no es precisamente una captura de trafico de red, sino que es un fichero <code>ZIP</code>.  Así que procedemos a descomprimirlo.</p>
-<pre><code class="has-line-data" data-line-start="36" data-line-end="40" class="language-console">ch4m0@ch4m0:~/Descargas/C1b3rChallenge$ unzip net.pcap
+<pre><code class="has-line-data" data-line-start="36" data-line-end="40" class="language-console">kali@kali:~/C1b3rChallenge$ unzip net.pcap
 Archive:  net.pcap
   inflating: trace/tlhahisoleseding  
 </code></pre>
@@ -57,11 +57,11 @@ En nuestra investigación a la banda de ladrones de vehículos hemos encontrado 
 <p class="has-line-data" data-line-start="76" data-line-end="77">La solución a este reto será el nombre de dicho archivo.</p>
 </blockquote>
 <p class="has-line-data" data-line-start="78" data-line-end="79">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/dotyczysamochodow.pdf">AQUI</a>.</p>
-<p class="has-line-data" data-line-start="80" data-line-end="81">Si lo abrimos vemos que efectivamente es un PDF, así que vamos a analizarlo,y podríamos empezar por ver sus “strings”:</p>
+<p class="has-line-data" data-line-start="80" data-line-end="81">Si lo abrimos vemos que efectivamente es un PDF, así que vamos a analizarlo,y podríamos empezar por ver sus &quot;<code>strings</code>&quot;:</p>
 <p class="has-line-data" data-line-start="82" data-line-end="83"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-2.png" alt="Retos C1b3rwall Challenge"></p>
-<p class="has-line-data" data-line-start="84" data-line-end="85">Nos llama la atención esa cadena de texto que vemos al final, que al parecer esta cifrado en Base64, así que lo llevaremos a CyberChef y vemos que nos arroja.</p>
+<p class="has-line-data" data-line-start="84" data-line-end="85">Nos llama la atención esa cadena de texto que vemos al final, que al parecer esta cifrado en <code>Base64</code>, así que lo llevaremos a CyberChef y vemos que nos arroja.</p>
 <p class="has-line-data" data-line-start="86" data-line-end="87"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-3.png" alt="Retos C1b3rwall Challenge"></p>
-<p class="has-line-data" data-line-start="88" data-line-end="89">Esta cifrado en base64 y nos arroja un listado de vehículos, al final vemos lo que presumimos que sera el nombre del fichero que nos solicitan: <strong>LI5T4_V3HICUL05</strong></p>
+<p class="has-line-data" data-line-start="88" data-line-end="89">Esta cifrado en <code>base64</code> y nos arroja un listado de vehículos, al final vemos lo que presumimos que sera el nombre del fichero que nos solicitan: <strong><em>LI5T4_V3HICUL05</em></strong></p>
 <hr>
 <h2 class="code-line" data-line-start=91 data-line-end=92 ><a id="RETO_3__Cunto_cuesta_este_coche_91"></a><strong>RETO 3 - ¿Cuánto cuesta este coche?</strong></h2>
 <p class="has-line-data" data-line-start="93" data-line-end="94">Nos entregan la descripción del reto:</p>
@@ -71,4 +71,95 @@ Tras meses de conversaciones interceptadas, hemos conseguido detener a un client
 <p class="has-line-data" data-line-start="98" data-line-end="99">Gracias a que los ladrones nunca han visto a nuestro detenido, hemos decidido aprovechar para enviar un agente en su lugar a llevar a cabo la compra para así poder detenerlos. El problema es que el comprador se niega a cooperar más, y nos falta un dato de vital importancia para que nuestro agente no levante sospechas: el precio del coche que se va a comprar.</p>
 <p class="has-line-data" data-line-start="100" data-line-end="101">Analizando el disco duro del detenido, hemos encontrado una imagen sospechosa y creemos que el precio puede estar ahí.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="102" data-line-end="103">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-4.jpg">AQUI</a>.</p>
+<p class="has-line-data" data-line-start="102" data-line-end="103">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/ldrns.jpg">AQUI</a>.</p>
+<p class="has-line-data" data-line-start="104" data-line-end="105">Procedemos a revisar que el fichero entregado si sea una imagen:</p>
+<pre><code class="has-line-data" data-line-start="107" data-line-end="111" class="language-console">kali@kali:~/C1b3rChallenge$ file ldrns.jpg 
+ldrns.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1,
+segment length 16, baseline, precision 8, 225x225, components 3
+</code></pre>
+<p class="has-line-data" data-line-start="112" data-line-end="113">En principio es un fichero de imagen, asi que vamos a ver si dentro de los <code>strings</code> encontramos algo:</p>
+<pre><code class="has-line-data" data-line-start="115" data-line-end="123" class="language-console">kali@kali:~/C1berChallenge$ strings -n 8 ldrns.jpg 
+!1!%)+...
+383-7(-.+
+++++++++++++++++++++++++++++++++++++++++++++++++++
+vnL6#b`s)
+ %`I [p~
+{199395pula}
+</code></pre>
+<p class="has-line-data" data-line-start="124" data-line-end="125">Podemos encontrar que hay una cadena de texto que llama la atención, no es algo que se encuentre en los <code>strings</code> de un fichero: así que podemos pensar que la flag solicitada es:  <strong><em>199395pula</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=127 data-line-end=128 ><a id="RETO_4__Te_quiero_a_ti_127"></a><strong>RETO 4 - Te quiero a ti</strong></h2>
+<p class="has-line-data" data-line-start="129" data-line-end="130">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="131" data-line-end="133"><strong><em>OBJETIVO</em></strong>:<br>
+Un agente infiltrado en la banda de ladrones de coches de lujo ha oído hablar de un nuevo golpe, pero no ha conseguido identificar ni la marca ni el modelo del vehículo objetivo. Por suerte, lo que sí ha conseguido ha sido acceso al móvil de uno de los ladrones, de donde ha podido descargar un archivo comprimido en el que cree que se encuentra la información que buscamos.</p>
+<p class="has-line-data" data-line-start="134" data-line-end="135">En su informe, el agente detalla que no ha sido capaz de descomprimir este archivo, motivo por el que ha solicitado nuestra ayuda.</p>
+<p class="has-line-data" data-line-start="136" data-line-end="137">La solución a este reto es el número de serie del vehículo que pretenden robar los criminales. (<em>Ten en cuenta que no podemos poner un número de serie real, por lo que cuando encuentres el token quizá no tenga el mismo formato</em>)</p>
+</blockquote>
+<p class="has-line-data" data-line-start="138" data-line-end="139">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/jestesmy_legionem.tar.xz">AQUI</a>.</p>
+<p class="has-line-data" data-line-start="140" data-line-end="141">Todo parece indicar que es un fichero <code>tar.gz</code> aunque con la extensión mal escrita, así que como hemos hecho antes, verificamos si efectivamente tenemos un fichero de compresión.</p>
+<pre><code class="has-line-data" data-line-start="143" data-line-end="146" class="language-console">kali@kali:~/C1berChallenge$ file jestesmy_legionem.tar.xz 
+jestesmy_legionem.tar.xz: JPEG image data
+</code></pre>
+<p class="has-line-data" data-line-start="147" data-line-end="148">Para sorpresa, podemos ver que no es un fichero de compresión, es un fichero de imagen.  Así que, podríamos abrirlo con un visor de imágenes o cambiar la extensión y posteriormente abrirlo.  Como lo realicemos, podemos ver que la imagen se visualiza así:</p>
+<p class="has-line-data" data-line-start="149" data-line-end="150"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-4.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="151" data-line-end="152">La imagen esta corrupta, podríamos tratar de restaurarla, a mi me ha funcionado abrir una imagen <code>JPG</code> que no este corrupta y verificar la cabecera para que con un editor <code>HEX</code> poder cambiar esos valores y tratar de visualizarla. (<em>Como os he dicho, hay múltiples formas de solucionar este reto</em>)</p>
+<p class="has-line-data" data-line-start="153" data-line-end="154">Abrimos una pagina que nos permita ver y editar los valores Hexadecimal: <a href="http://hexed.it/">hexed.it/</a></p>
+<p class="has-line-data" data-line-start="155" data-line-end="156">Cargamos la imagen y editamos los valores como se muestra:</p>
+<p class="has-line-data" data-line-start="157" data-line-end="158"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-5.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="159" data-line-end="160">Cómo sabemos cuales deberíamos poner? como he indicado antes, si abrimos otra imagen <code>JPG</code> que tengamos podemos ver que son similares a las que hemos puesto.</p>
+<p class="has-line-data" data-line-start="161" data-line-end="162">Al hacerlo ya podemos ver la imagen:</p>
+<p class="has-line-data" data-line-start="163" data-line-end="164"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/jestesmy_legionem-Recover-.jpg" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="165" data-line-end="166">En la parte inferior izquierda, hay una cadena de texto que nos llama la atención.  Probamos para verificar si es la flag que nos piden y obtenemos que es valida: <strong><em>PLNDC10010</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=168 data-line-end=169 ><a id="RETO_5__El_jefe_final_168"></a><strong>RETO 5 - El jefe final</strong></h2>
+<p class="has-line-data" data-line-start="170" data-line-end="171">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="172" data-line-end="174"><strong><em>OBJETIVO</em></strong>:<br>
+Tras meses de jugar al ratón y al gato, por fin hemos logrado desmantelar a gran parte de la banda de ladrones de vehículos de lujo más internacional a la que nos hemos enfrentado. Hemos frustrado muchos de sus intentos de venta he incluso hemos podido anticiparnos para evitar múltiples robos gracias a la lista de vehículos que encontramos gracias a ti.</p>
+<p class="has-line-data" data-line-start="175" data-line-end="176">Esto nos ha colocado en una posición única para acabar con ellos, pero los líderes han adoptado un perfil bajo y no logramos encontrarlos. No podemos permitir que se reagrupen.</p>
+<p class="has-line-data" data-line-start="177" data-line-end="178">En una de las últimas operaciones llevadas a cabo contra la banda conseguimos evitar que destruyeran todos sus discos duros. En uno de ellos encontramos un ejecutable extraño y un fichero jpeg que parece una imagen en blanco. Sabemos que están relacionados de alguna manera porque se encontraban almacenados juntos dentro de una carpeta oculta, pero obviamente no hemos ejecutado el fichero.</p>
+<p class="has-line-data" data-line-start="179" data-line-end="180">Estamos casi seguros de que el plan de huida de la banda se encuentra gracias a estos dos archivos, así que necesitamos que nos digas las coordenadas exactas del escondite de sus líderes.</p>
+<p class="has-line-data" data-line-start="181" data-line-end="182">(<em>El formato del token serán dichas coordenadas separadas por una coma y sin espacios. Por ejemplo: 40.4167,-3.70325</em>)</p>
+</blockquote>
+<p class="has-line-data" data-line-start="183" data-line-end="184">Nos entregan dos ficheros, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/jestesmy_legionem.tar.jpg">AQUI</a> y <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/ZentimoSettings.bin">AQUI</a>.</p>
+<p class="has-line-data" data-line-start="185" data-line-end="186">Como en el reto anterior, nos entregan un fichero que parece ser un <code>tar.gz</code> o un <code>JPG</code> (parece que no se han decidido) y nos entregan lo que parecería un binario de Linux.</p>
+<p class="has-line-data" data-line-start="187" data-line-end="188">Vemos si los ficheros son los que aparentan ser:</p>
+<pre><code class="has-line-data" data-line-start="190" data-line-end="195" class="language-console">kali@kali:~/C1berChallenge$ file jestesmy_legionem.tar.jpg 
+jestesmy_legionem.tar.jpg: JPEG image data
+ch4m0@ch4m0:~/C1berChallenge$ file ZentimoSettings.bin 
+ZentimoSettings.bin: Zip archive data, at least v5.1 to extract
+</code></pre>
+<p class="has-line-data" data-line-start="196" data-line-end="197">Vemos que uno de los ficheros es un <code>JPG</code> y el otro es un archivo <code>ZIP</code>.</p>
+<p class="has-line-data" data-line-start="198" data-line-end="199">Cuando tratamos de descomprimir el fichero <code>ZIP</code>, nos solicita una contraseña: según la descripción del reto, parece que podríamos sacar del fichero <code>JPG</code>, de alguna manera, la contraseña solicitada.  Así que vamos a intentarlo.</p>
+<p class="has-line-data" data-line-start="200" data-line-end="201">Verificamos si dentro de los <code>strings</code> del fichero <code>JPG</code> podemos ver algo interesante.</p>
+<pre><code class="has-line-data" data-line-start="203" data-line-end="212" class="language-console">kali@kali:~/C1berChallenge$ strings -n 10 jestesmy_legionem.tar.jpg 
+psswdxterm.
+%&amp;'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
+&amp;'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
+Y[&lt;Ti WVnwt
+fwFFTs,L+A/
+MgST\w?B?a
+/:6Y-:#/zl
+</code></pre>
+<p class="has-line-data" data-line-start="213" data-line-end="214">Vemos con total claridad una cadena de texto interesante: <strong><em>passwdxterm</em></strong></p>
+<p class="has-line-data" data-line-start="215" data-line-end="216">Probamos con esta contraseña al descomprimir el otro fichero y no nos la acepta, así que hacemos un poco de “Try Harder” e intentamos solo con la cadena: <strong>xterm</strong></p>
+<p class="has-line-data" data-line-start="217" data-line-end="218">Con esta si que nos permite descomprimir, observamos que es un fichero <code>DOCX</code>, así que verificamos si efectivamente es lo que aparenta ser.</p>
+<pre><code class="has-line-data" data-line-start="220" data-line-end="224" class="language-console">kali@kali:~/C1berChallenge$ file wordlist.docx 
+wordlist.docx: RIFF (little-endian) data, WAVE audio, Microsoft PCM,
+16 bit, mono 44100 Hz
+</code></pre>
+<p class="has-line-data" data-line-start="225" data-line-end="226">Para nuestra sorpresa, es un fichero de audio <code>WAV</code>.  Tendremos que analizarlo para tratar de saber que puede esconder.</p>
+<p class="has-line-data" data-line-start="227" data-line-end="228">Si lo abrimos con <code>Sonic Visualiser</code>, podremos escucharlo y ver si observamos algo que no debe estar allí.</p>
+<p class="has-line-data" data-line-start="229" data-line-end="230"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-6.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="231" data-line-end="232">No veo nada extraño, aunque parece que el audio es código morse, antes de ir por ese camino, quiero ver si el espectrograma esconde algo, así que selecciono el menú &quot;<code>Layer</code>&quot; y posteriormente &quot;<code>Add Spectogram</code>&quot;</p>
+<p class="has-line-data" data-line-start="233" data-line-end="234"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-7.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="235" data-line-end="236">Han escondido algunas letras en el espectrograma, seguiré por este camino, vemos que las letras significan números escritos en francés, lo primero que haré es sacar estos nombres y traducirlo.</p>
+<p class="has-line-data" data-line-start="237" data-line-end="239">Texto:<br>
+<em>cinq quatre . cinq neuf trois zero cinq deux virgule un huit . huit un zero trois neuf six</em></p>
+<p class="has-line-data" data-line-start="240" data-line-end="242">Traducido:<br>
+<em>cinco cuatro . cinco nueve tres cero cinco dos coma uno ocho . ocho uno cero tres nueve seis (54.593052,18.810396)</em></p>
+<p class="has-line-data" data-line-start="243" data-line-end="244">Probamos con el texto integro en Francés o Español y no lo valida: por lo que lo introducimos en números y tenemos nuestra flag: <strong><em>54.593052,18.810396</em></strong></p>
+<hr>
+<h1 class="code-line" data-line-start=246 data-line-end=247 ><a id="Fin_246"></a>Fin</h1>
+<p class="has-line-data" data-line-start="248" data-line-end="249">Cualquier errata o duda podéis contactar en el grupo de ayuda de esta plataforma. (<a href="https://t.me/C1b3rWallAcademy">Aquí</a>)</p>
