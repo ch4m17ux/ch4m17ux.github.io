@@ -34,14 +34,41 @@ Archive:  net.pcap
 <p class="has-line-data" data-line-start="41" data-line-end="42">Obtenemos una carpeta con un binario que podríamos ejecutar. Al hacerlo vemos que hay una cadena de texto que se repite.</p>
 <p class="has-line-data" data-line-start="43" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-1.png" alt="Retos C1b3rwall Challenge"><br>
 Por lo que lo anterior podemos sacar la cadena de texto:</p>
-<pre><code class="has-line-data" data-line-start="47" data-line-end="49" class="language-console">uggcf://jjj.qebcobk.pbz/f/qtdipont5zsxygp/p1o3epunyyratr.mvc?qy=1|Wejdź na naszą uzgodnioną witrynę
+<pre><code class="has-line-data" data-line-start="47" data-line-end="50" class="language-console">uggcf://jjj.qebcobk.pbz/f/qtdipont5zsxygp/p1o3epunyyratr.mvc?qy=1|Wejdź na
+naszą uzgodnioną witrynę
 </code></pre>
-<p class="has-line-data" data-line-start="50" data-line-end="51">Que si la ponemos en CyberChef y jugamos haber que tipo de cifrado tiene, encontramos:</p>
-<pre><code class="has-line-data" data-line-start="53" data-line-end="55" class="language-console">https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1|Jrwqź an anfmą hmtbqavbaą jvgelaę
+<p class="has-line-data" data-line-start="51" data-line-end="52">Que si la ponemos en CyberChef y jugamos haber que tipo de cifrado tiene, encontramos:</p>
+<pre><code class="has-line-data" data-line-start="54" data-line-end="57" class="language-console">https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1|Jrwqź an
+anfmą hmtbqavbaą jvgelaę
 </code></pre>
-<p class="has-line-data" data-line-start="56" data-line-end="57">Y según la descripción tenemos:</p>
+<p class="has-line-data" data-line-start="58" data-line-end="59">Y según la descripción tenemos:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="58" data-line-end="59">Si por ejemplo encuentras un enlace externo, el token será la URL <strong>completa</strong>.</p>
+<p class="has-line-data" data-line-start="60" data-line-end="61">Si por ejemplo encuentras un enlace externo, el token será la URL <strong>completa</strong>.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="60" data-line-end="62">Deducimos que la flag es:<br>
+<p class="has-line-data" data-line-start="62" data-line-end="64">Deducimos que la flag es:<br>
 <strong><a href="https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1">https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1</a></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=67 data-line-end=68 ><a id="RETO_2__La_carta_a_los_Ladrones_Magos_67"></a><strong>RETO 2 - La carta a los Ladrones Magos</strong></h2>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="71" data-line-end="73"><strong><em>OBJETIVO</em></strong>:<br>
+En nuestra investigación a la banda de ladrones de vehículos hemos encontrado un fichero PDF. A primera vista parece documentación oficial aprobada por el Gobierno de España, pero no tiene ningún sentido que una banda como esta quisiera guardar tan celosamente este documento.</p>
+<p class="has-line-data" data-line-start="74" data-line-end="75">Tenemos la esperanza de encontrar información acerca de sus próximos objetivos. Quizá una lista de vehículos que robar o, al menos, el nombre real del archivo que la contiene.</p>
+<p class="has-line-data" data-line-start="76" data-line-end="77">La solución a este reto será el nombre de dicho archivo.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="78" data-line-end="79">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/dotyczysamochodow.pdf">AQUI</a>.</p>
+<p class="has-line-data" data-line-start="80" data-line-end="81">Si lo abrimos vemos que efectivamente es un PDF, así que vamos a analizarlo,y podríamos empezar por ver sus “strings”:</p>
+<p class="has-line-data" data-line-start="82" data-line-end="83"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-2.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="84" data-line-end="85">Nos llama la atención esa cadena de texto que vemos al final, que al parecer esta cifrado en Base64, así que lo llevaremos a CyberChef y vemos que nos arroja.</p>
+<p class="has-line-data" data-line-start="86" data-line-end="87"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-3.png" alt="Retos C1b3rwall Challenge"></p>
+<p class="has-line-data" data-line-start="88" data-line-end="89">Esta cifrado en base64 y nos arroja un listado de vehículos, al final vemos lo que presumimos que sera el nombre del fichero que nos solicitan: <strong>LI5T4_V3HICUL05</strong></p>
+<hr>
+<h2 class="code-line" data-line-start=91 data-line-end=92 ><a id="RETO_3__Cunto_cuesta_este_coche_91"></a><strong>RETO 3 - ¿Cuánto cuesta este coche?</strong></h2>
+<p class="has-line-data" data-line-start="93" data-line-end="94">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="95" data-line-end="97"><strong><em>OBJETIVO</em></strong>:<br>
+Tras meses de conversaciones interceptadas, hemos conseguido detener a un cliente de la banda de ladrones de coches de lujo. Tenemos pruebas más que suficientes para mantenerlo detenido y hemos conseguido que nos diga el lugar y la hora en las que tendrá lugar la próxima compra.</p>
+<p class="has-line-data" data-line-start="98" data-line-end="99">Gracias a que los ladrones nunca han visto a nuestro detenido, hemos decidido aprovechar para enviar un agente en su lugar a llevar a cabo la compra para así poder detenerlos. El problema es que el comprador se niega a cooperar más, y nos falta un dato de vital importancia para que nuestro agente no levante sospechas: el precio del coche que se va a comprar.</p>
+<p class="has-line-data" data-line-start="100" data-line-end="101">Analizando el disco duro del detenido, hemos encontrado una imagen sospechosa y creemos que el precio puede estar ahí.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="102" data-line-end="103">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-4.jpg">AQUI</a>.</p>

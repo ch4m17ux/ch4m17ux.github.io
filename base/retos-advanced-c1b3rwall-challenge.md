@@ -45,13 +45,15 @@ Obtenemos una carpeta con un binario que podríamos ejecutar. Al hacerlo vemos q
 Por lo que lo anterior podemos sacar la cadena de texto:
 
 ```console
-uggcf://jjj.qebcobk.pbz/f/qtdipont5zsxygp/p1o3epunyyratr.mvc?qy=1|Wejdź na naszą uzgodnioną witrynę
+uggcf://jjj.qebcobk.pbz/f/qtdipont5zsxygp/p1o3epunyyratr.mvc?qy=1|Wejdź na
+naszą uzgodnioną witrynę
 ```
 
 Que si la ponemos en CyberChef y jugamos haber que tipo de cifrado tiene, encontramos:
 
 ```console
-https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1|Jrwqź an anfmą hmtbqavbaą jvgelaę
+https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1|Jrwqź an
+anfmą hmtbqavbaą jvgelaę
 ```
 
 Y según la descripción tenemos:
@@ -62,6 +64,7 @@ Deducimos que la flag es:
 **https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1**
 
 ---
+
 ## **RETO 2 - La carta a los Ladrones Magos**
 
 Nos entregan la descripción del reto:
@@ -73,12 +76,28 @@ Nos entregan la descripción del reto:
 >
 >La solución a este reto será el nombre de dicho archivo.
 
-Nos entregan un fichero como indica la descripción. [Lo puedes descargar [AQUI\]
-](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/dotyczysamochodow.pdf)
+Nos entregan un fichero, que podéis descargar de [AQUI](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/dotyczysamochodow.pdf).
 
-Al parecer es un fichero `PDF`, asi que vamos a ver si se esconde algo dentro o podemos sacar algo que pueda estar oculto.
-
-Lo primero que podemos hacer es buscar dentro de los strings del fichero, puede que haya alguna cadena de texto interesante.
+Si lo abrimos vemos que efectivamente es un PDF, así que vamos a analizarlo,y podríamos empezar por ver sus "strings":
 
 ![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-2.png)
-Observamos que hay una cadena de texto al final que parece ser un `Base64`, asi que vamos a verificar que nos arroja.
+
+Nos llama la atención esa cadena de texto que vemos al final, que al parecer esta cifrado en Base64, así que lo llevaremos a CyberChef y vemos que nos arroja.
+
+![Retos C1b3rwall Challenge](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-3.png)
+
+Esta cifrado en base64 y nos arroja un listado de vehículos, al final vemos lo que presumimos que sera el nombre del fichero que nos solicitan: **LI5T4_V3HICUL05**
+
+---
+## **RETO 3 - ¿Cuánto cuesta este coche?**
+
+Nos entregan la descripción del reto:
+
+> ***OBJETIVO***:
+> Tras meses de conversaciones interceptadas, hemos conseguido detener a un cliente de la banda de ladrones de coches de lujo. Tenemos pruebas más que suficientes para mantenerlo detenido y hemos conseguido que nos diga el lugar y la hora en las que tendrá lugar la próxima compra.
+>
+>Gracias a que los ladrones nunca han visto a nuestro detenido, hemos decidido aprovechar para enviar un agente en su lugar a llevar a cabo la compra para así poder detenerlos. El problema es que el comprador se niega a cooperar más, y nos falta un dato de vital importancia para que nuestro agente no levante sospechas: el precio del coche que se va a comprar.
+>
+>Analizando el disco duro del detenido, hemos encontrado una imagen sospechosa y creemos que el precio puede estar ahí.
+
+Nos entregan un fichero, que podéis descargar de [AQUI](https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-4.jpg).s
