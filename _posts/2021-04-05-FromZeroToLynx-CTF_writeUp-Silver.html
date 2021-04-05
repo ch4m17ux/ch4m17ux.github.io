@@ -1,0 +1,53 @@
+---
+layout: post
+title: "#FromZeroToLynx - Silver"
+subtitle: "#CTF writeUp"
+date: 2021-04-06 17:54:00 +0100
+background: '/img/posts/06.jpg'
+---
+
+<h1 class="code-line" data-line-start=1 data-line-end=2 ><a id="FromZeroToLynx__CTF_writeUp__Silver_1"></a>#FromZeroToLynx - CTF writeUp - Silver</h1>
+<p class="has-line-data" data-line-start="3" data-line-end="4"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/banner.png" alt="CTF #FromZeroToLynx"></p>
+<p class="has-line-data" data-line-start="5" data-line-end="6">En los este (y los siguientes) post quiero traer los retos que se estan desarrollando en el CTF desarollado por <a href="https://www.zerolynx.com/es/home">ZeroLynx</a>, donde se nos presentan retos enmarcados en el evento de ESL España CS:Go.</p>
+<p class="has-line-data" data-line-start="7" data-line-end="8">En esta entrada abordaré los retos del nivel basico o Silver.</p>
+<p class="has-line-data" data-line-start="9" data-line-end="10">Si quieres participar tienes información [ <a href="https://www.fromzerotolynx.gg/">Aquí</a> ]</p>
+<hr>
+<blockquote>
+<h3 class="code-line" data-line-start=12 data-line-end=13 ><a id="Disclaimer_12"></a>Disclaimer:</h3>
+<p class="has-line-data" data-line-start="13" data-line-end="15">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.<br>
+Espero que os guste y aprendamos juntos. #HackThePlanet</p>
+</blockquote>
+<hr>
+<h2 class="code-line" data-line-start=18 data-line-end=19 ><a id="Farm_18"></a><strong>Farm</strong></h2>
+<p class="has-line-data" data-line-start="20" data-line-end="21">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="22" data-line-end="24"><strong><em>OBJETIVO</em></strong>:<br>
+La noche se te fue de las manos y te has quedado encerrado… ¡en una granja de pollos!</p>
+<p class="has-line-data" data-line-start="25" data-line-end="26">¿Encontrarás la flag de salida?</p>
+</blockquote>
+<p class="has-line-data" data-line-start="28" data-line-end="29">Nos entregan un fichero con extensión <code>.bsp</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/granja.bsp">AQUI</a>)</p>
+<p class="has-line-data" data-line-start="30" data-line-end="31">Lo primero que hago siempre, es verificar que el fichero entregado sea lo que presuntamente nos dicen que es, asi que lo verificamos a traves del comando <code>file</code>:</p>
+<pre><code class="has-line-data" data-line-start="33" data-line-end="36" class="language-console">kali@kali:~/ZeroToLynx$ file granja.bsp
+granja.bsp: data
+</code></pre>
+<p class="has-line-data" data-line-start="37" data-line-end="38">Vemos que es un fichero con informacion de datos, asi que procedemos a verificar si encontramos algo entre sus <code>strings</code>. (<em>Aqui yo he ido aumentado el numero de caracteres que quiero que busque, debido a que me salia mucha información</em>)</p>
+<pre><code class="has-line-data" data-line-start="40" data-line-end="46" class="language-console">kali@kali:~/ZeroToLynx$ strings -n 45 granja.bsp
+&quot;axis&quot; &quot;512 -226.05 -27.8, 502.89 -223.53 -27.8&quot;
+&quot;message&quot; &quot;ESL{MuyBienMatasteAlPolloCorrecto}&quot;
+materials/maps/granja/cubemapdefault.hdr.vtfVTF
+materials/maps/granja/cubemapdefault.hdr.vtfPK
+</code></pre>
+<p class="has-line-data" data-line-start="46" data-line-end="47">Hemos encontrado la flag que nos han solicitado: <strong>ESL{MuyBienMatasteAlPolloCorrecto}</strong></p>
+<p class="has-line-data" data-line-start="48" data-line-end="49"><em>Otra opcion podria ser haber copiado el mapa en Counter Strike: Global Offensive y cargarlo para matar a los pollos, y de entrada jugar un rato.</em></p>
+<hr>
+<h2 class="code-line" data-line-start=52 data-line-end=53 ><a id="Pretorianos_52"></a><strong>Pretorianos</strong></h2>
+<p class="has-line-data" data-line-start="54" data-line-end="55">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="56" data-line-end="58"><strong><em>OBJETIVO</em></strong>:<br>
+¿Txh kdb pdv ohjhqgdulr txh od jxdugld suhwruldqd gh Mxolr Fhvdu?</p>
+<p class="has-line-data" data-line-start="59" data-line-end="60">Y nos entregan una imagen:</p>
+<p class="has-line-data" data-line-start="61" data-line-end="62"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/pretorianos.png" alt="CTF #FromZeroToLynx"></p>
+</blockquote>
+<p class="has-line-data" data-line-start="63" data-line-end="64">Tenemos que identificar que dice el mensaje que para estar codificado de alguna forma, asi que lo pasare por CyberChef y trataremos de obtener el mensaje.</p>
+<p class="has-line-data" data-line-start="65" data-line-end="66"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/pretorianos_2.png" alt="CTF #FromZeroToLynx"></p>
+<p class="has-line-data" data-line-start="67" data-line-end="68">Vemos que se descifra con Rot23 o lo que es lo mismo con cifrado Cesar.</p>
