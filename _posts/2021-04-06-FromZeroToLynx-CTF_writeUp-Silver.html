@@ -116,3 +116,27 @@ Quedan 07 segundos. Introduce el código para desactivar la bomba:
 Felicidades, la flag es ESL{S13mPr3_H4y_Qu3_Pl4nT4R_3n_lUg4R_S3gUr0}
 </code></pre>
 <p class="has-line-data" data-line-start="153" data-line-end="154">Obtenemos la flag que nos han solicitado: <strong><code>ESL{S13mPr3_H4y_Qu3_Pl4nT4R_3n_lUg4R_S3gUr0}</code></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=157 data-line-end=158 ><a id="Shoot_to_kill_157"></a><strong>Shoot to kill!</strong></h2>
+<p class="has-line-data" data-line-start="159" data-line-end="160">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="161" data-line-end="163"><strong><em>OBJETIVO</em></strong>:<br>
+Hemos recibido un modelo 3D de una AK, pero creemos que hay algo oculto…</p>
+</blockquote>
+<p class="has-line-data" data-line-start="164" data-line-end="165"><strong><em>Este reto es de #Stego.</em></strong></p>
+<p class="has-line-data" data-line-start="166" data-line-end="167">En este reto nos adjuntan un fichero con extension <code>.fbx</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/AK.FBX">AQUI</a>)</p>
+<p class="has-line-data" data-line-start="168" data-line-end="169">Como siempre hago, vamos a ver que tipo de fichero es:</p>
+<pre><code class="has-line-data" data-line-start="171" data-line-end="174" class="language-console">kali@kali:~/ZeroToLynx$ file AK.FBX
+AK.FBX: data
+</code></pre>
+<p class="has-line-data" data-line-start="175" data-line-end="176">Parece que es un fichero de <code>datos</code> o <code>ascii</code>, verificando en internet que tipo de extension es esta podemos ver que se trata de un fichero de 3D y la primera referencia nos indica que se puede visualizar con <code>Autodesk</code>.</p>
+<div align="center"><p class="has-line-data" data-line-start="177" data-line-end="178"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/shoot-to-kill.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="179" data-line-end="180">Sin embargo, no he logrado visualizar nada en la imagen, asi que tratare de ver si tiene algo entre sus <code>strings</code>.</p>
+<p class="has-line-data" data-line-start="181" data-line-end="182">No he visualizado nada que pueda indicar algo acerca de la flag.  Por esta razón, he buscado en internet con que software puedo visualizar la imagen y ver sus componentes; y he encontrado que podemos editarlo en Blender, lo he instalado y he abierto el fichero alli.</p>
+<div align="center"><p class="has-line-data" data-line-start="183" data-line-end="184"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/shoot-to-kill_2.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="185" data-line-end="186">Buscando y buceando en todas las opciones de Blender, he encontrado que hay una seccion de texturas o lo que es lo mismo, lo que se visualizara cuando lo veamos como la imagen anterior.</p>
+<div align="center"><p class="has-line-data" data-line-start="187" data-line-end="188"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/shoot-to-kill_3.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="189" data-line-end="190">Y finalmente, cuando me fijo en las texturas, visualizo que hay una marca que parece ser la flag.</p>
+<div align="center"><p class="has-line-data" data-line-start="191" data-line-end="192"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/shoot-to-kill_4.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="193" data-line-end="195">Asi que la flag solicitada es:<br>
+<strong><code>ESL{BANG!}</code></strong></p>
