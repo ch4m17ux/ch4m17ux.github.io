@@ -188,3 +188,32 @@ GOTO loop
 </code></pre>
 <p class="has-line-data" data-line-start="67" data-line-end="69">Encontramos la flag que estabamos buscando:<br>
 <strong>ESL{TH1S_1S_TH3_FLAG_MY_FR13ND}</strong></p>
+<hr>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="Pi_Pi_Piiii_1"></a><strong>Pi Pi Piiii</strong></h2>
+<p class="has-line-data" data-line-start="3" data-line-end="4">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="5" data-line-end="7"><strong><em>OBJETIVO</em></strong>:<br>
+En esta imagen se oculta algo que Vail conocía muy bien</p>
+</blockquote>
+<p class="has-line-data" data-line-start="8" data-line-end="9"><strong><em>Este reto es de #Stego.</em></strong></p>
+<div align="center"><p class="has-line-data" data-line-start="10" data-line-end="11">En este reto nos adjuntan un fichero con extension <code>.jpg</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cables.jpg">AQUI</a>)</p></div>
+<p class="has-line-data" data-line-start="12" data-line-end="13">Como siempre hago, vamos a ver que el fichero es lo que nos indican que debe ser:</p>
+<pre><code class="has-line-data" data-line-start="15" data-line-end="18" class="language-console">kali@kali:~/ZeroToLynx$ file cables.jpg
+cables.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 1280x720, components 3
+</code></pre>
+<p class="has-line-data" data-line-start="19" data-line-end="20">Vemos que es una imagen JPG, asi que vamos a verificar si dentro de los strings podemos ver algo:</p>
+<pre><code class="has-line-data" data-line-start="22" data-line-end="31" class="language-console">kali@kali:~/ZeroToLynx$ strings -n 10 cables.jpg
+1r&amp;IO!9I2       7
+AsUp{(4.X9
+G'nM*fKo&gt;o
+-6v     -PJ{$&gt;
+KR[*BSzU%%Y
+x:`p;L-a~7
+. ... .-.. { ...-- ... - ----- ..--.- ...-- ...-..- -....- ..- -. ....- -...- ..-. .. ....- --. ..--.- ...- ....- .---- .. -.. ....- }
+</code></pre>
+<p class="has-line-data" data-line-start="32" data-line-end="33">Los strings nos arroja que hay algo interesante, y por la pista del titulo del reto, suponems que es un codigo morse.</p>
+<p class="has-line-data" data-line-start="34" data-line-end="35">Lo copiamos y a traves de un decodificador de morse, tratamos de obtener la informacion:</p>
+<div align="center"><p class="has-line-data" data-line-start="36" data-line-end="37"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/pi.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="38" data-line-end="39">De forma muy sencilla obtenemos la flag que nos solicitan:</p>
+<p class="has-line-data" data-line-start="40" data-line-end="41"><strong>ESL{3ST0_3$-UN4=FI4G_V41ID4}</strong></p>
+
