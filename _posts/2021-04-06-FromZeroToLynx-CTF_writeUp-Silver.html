@@ -217,3 +217,26 @@ x:`p;L-a~7
 <p class="has-line-data" data-line-start="38" data-line-end="39">De forma muy sencilla obtenemos la flag que nos solicitan:</p>
 <p class="has-line-data" data-line-start="40" data-line-end="41"><strong>ESL{3ST0_3$-UN4=FI4G_V41ID4}</strong></p>
 
+<hr>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="Wallhacks_1"></a><strong>Wallhacks</strong></h2>
+<p class="has-line-data" data-line-start="3" data-line-end="4">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="5" data-line-end="7"><strong><em>OBJETIVO</em></strong>:<br>
+Hemos jugado con un chetoso que usa wallhacks. ¿Lo encontraremos?</p>
+<p class="has-line-data" data-line-start="8" data-line-end="9"><code>76561199151583346</code></p>
+<p class="has-line-data" data-line-start="10" data-line-end="11">Go go go!</p>
+</blockquote>
+<p class="has-line-data" data-line-start="12" data-line-end="13"><strong><em>Este reto es de #OSINT.</em></strong></p>
+<p class="has-line-data" data-line-start="14" data-line-end="15">En este reto nos dan un numero, que debemos buscar o intentar descifrar a qué corresponde.</p>
+<p class="has-line-data" data-line-start="16" data-line-end="17">He supuesto, que como hablan de un “Chetoso” (usuario), entonces corresponderia a su nombre o codigo de usuario.  Asi que hago una busqueda para ver cuales son los foros mas activos de Counter Strike (recordad que el CTF esta enmarcado en un evento de este juego):</p>
+<div align="center"><p class="has-line-data" data-line-start="18" data-line-end="19"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="20" data-line-end="21">En este caso, podemos decantarnos por el foro oficial de CS:GO, que se encuentra en SteamCommunity.</p>
+<div align="center"><p class="has-line-data" data-line-start="22" data-line-end="23"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_2.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="24" data-line-end="25">Revisamos como se esta codificando a los usuarios alli, y vemos si por alli encontramos el usuario que estamos buscando.</p>
+<div align="center"><p class="has-line-data" data-line-start="26" data-line-end="27"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_3.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="28" data-line-end="29">Encontramos que los usuarios (algunos) se codifican con un numero largo, por lo que podriamos suponer que este numero correspondera al usuario que nos estan solicitando. Probamos y veremos si lo conseguimos:</p>
+<div align="center"><p class="has-line-data" data-line-start="30" data-line-end="31"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_4.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="32" data-line-end="33">Vemos un usuario, que tiene relacion con el evento que se esta desarrollando, vamos a investigar si encontramos algo en la descripcion de perfil:</p>
+<div align="center"><p class="has-line-data" data-line-start="34" data-line-end="35"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_5.png" alt="CTF #FromZeroToLynx"></p></div>
+<p class="has-line-data" data-line-start="36" data-line-end="38">Encontramos la flag que nos estan solicitando:<br>
+<strong>ESL{¡ElOSINTSeTeDaMuyBien!}</strong></p>

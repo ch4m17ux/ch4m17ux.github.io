@@ -291,3 +291,42 @@ Lo copiamos y a traves de un decodificador de morse, tratamos de obtener la info
 De forma muy sencilla obtenemos la flag que nos solicitan:
 
 **ESL{3ST0_3$-UN4=FI4G_V41ID4}**
+
+---
+## **Wallhacks**
+
+Nos entregan la descripción del reto:
+
+> ***OBJETIVO***:
+> Hemos jugado con un chetoso que usa wallhacks. ¿Lo encontraremos?
+>
+>`76561199151583346`
+>
+>Go go go!
+
+***Este reto es de #OSINT.***
+
+En este reto nos dan un numero, que debemos buscar o intentar descifrar a qué corresponde.
+
+He supuesto, que como hablan de un "Chetoso" (usuario), entonces corresponderia a su nombre o codigo de usuario.  Asi que hago una busqueda para ver cuales son los foros mas activos de Counter Strike (recordad que el CTF esta enmarcado en un evento de este juego):
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks.png)
+
+En este caso, podemos decantarnos por el foro oficial de CS:GO, que se encuentra en SteamCommunity.
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_2.png)
+
+Revisamos como se esta codificando a los usuarios alli, y vemos si por alli encontramos el usuario que estamos buscando.
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_3.png)
+
+Encontramos que los usuarios (algunos) se codifican con un numero largo, por lo que podriamos suponer que este numero correspondera al usuario que nos estan solicitando. Probamos y veremos si lo conseguimos:
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_4.png)
+
+Vemos un usuario, que tiene relacion con el evento que se esta desarrollando, vamos a investigar si encontramos algo en la descripcion de perfil:
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_5.png)
+
+Encontramos la flag que nos estan solicitando:
+**ESL{¡ElOSINTSeTeDaMuyBien!}**
