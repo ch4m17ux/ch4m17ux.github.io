@@ -438,3 +438,32 @@ Por lo tanto, encontramos la flag que nos estan solicitando:
 **ESL{Bu3n_s1t10_p4rA_P1ant4R}**
 
 >Esta no es la unica solucion, y puede que haya otros caminos mas faciles, pero es el que me ha servidor a mi.
+
+
+---
+## **Victory's sound**
+
+Nos entregan la descripción del reto:
+
+> ***OBJETIVO***:
+> Nos hemos colado en el Discord del contrincante y hemos grabado sus planes, aunque con algunas interferencias de extraña procedencia que no logramos descifrar. ¿Puedes ayudarnos?
+
+***Este reto es de #Stego.***
+
+Nos entregan un fichero con extension `mp3` (Lo puedes descargar [AQUI](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/victory.mp3))
+
+Como has podido ver en mi blog, siempre verifico que lo que nos entregan corresponde con lo que presuntamente nos dicen que debe ser.
+
+```console
+kali@kali:~/ZeroToLynx$ file victory.mp3
+victory.mp3: Audio file with ID3 version 2.3.0, contains:MPEG ADTS, layer III, v2,  64 kbps, 22.05 kHz, JntStereo
+```
+Observamos que es un fichero mp3 como nos han indicado.
+
+Procedemos a abrirlo y ver que podemos visualizar o escuchar. Escuchamos una musica, pero de un instante a otro hay una presunta interferencia. He decidido abrirlo en un decodificar de audio morse, para ver si me arroja algun mensaje. He usado [esta](https://morsecode.world/international/decoder/audio-decoder-adaptive.html) pagina.
+
+Y vemos que en el espectograma arroja unos caracteres, que si nos fijamos es la flag buscada.
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/victory.png)
+Por lo tanto, encontramos la flag que nos estan solicitando:
+**ESL{H4CK_TH3_B0MB}**
