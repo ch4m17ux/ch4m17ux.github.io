@@ -164,4 +164,40 @@ wordlist.docx: RIFF (little-endian) data, WAVE audio, Microsoft PCM,
 <hr>
 <h1 class="code-line" data-line-start=246 data-line-end=247 ><a id="Fin_246"></a>Fin</h1>
 <p class="has-line-data" data-line-start="248" data-line-end="249">Cualquier errata o duda podéis contactar en el grupo de ayuda de esta plataforma. (<a href="https://t.me/C1b3rWallAcademy">Aquí</a>)</p>
+
+
+
+<hr>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="Muerte_en_el_jardn_1"></a><strong>Muerte en el jardín</strong></h2>
+<p class="has-line-data" data-line-start="3" data-line-end="4">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="5" data-line-end="7"><strong><em>OBJETIVO</em></strong>:<br>
+Ayer morí 64 veces en Cobblestone. Odio ese mapa.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="8" data-line-end="9"><strong><em>Este reto es de #Crypto.</em></strong></p>
+<p class="has-line-data" data-line-start="10" data-line-end="11">Nos entregan un fichero sin extensión (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/de_cobblestone">AQUI</a>)</p>
+<p class="has-line-data" data-line-start="12" data-line-end="13">No sabemos que tipo de fichero nos han entregado, por esta razon, podemos proceder a verificar de que tipo estamos tratando:</p>
+<pre><code class="has-line-data" data-line-start="15" data-line-end="20" class="language-console">kali@kali:~/ZeroToLynx$ file de_cobblestone
+de_cobblestone: ASCII text
+kali@kali:~/ZeroToLynx$ cat de_cobblestone
+TGEgZmxhZyBlcyBFU0x7YmFzZTY0KGNvYmJsZXN0b25lKX0K
+</code></pre>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Nos encontramos frente a un fichero que contiene una cadena de texto.  La podemos copiar en cyberchef para que nos diga si esta cifrado y en que cifrado nos lo entregan.</p>
+<div align="center"><p class="has-line-data" data-line-start="23" data-line-end="26"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cobblestone.png" alt="CTF #FromZeroToLynx"><br></div>
+La cadena de texto nos indica que la flag buscada es como se indica alli:<br>
+<strong>ESL{base64(cobblestone)}</strong></p>
+<p class="has-line-data" data-line-start="27" data-line-end="28">Aunque no todo es tan sencillo, ya que esta realmente no es la flag buscada; y leyendo la descripcion podemos inferir que debemos ejecutar lo que nos pone alli, sacar el <code>Base64</code> de la palabra <em>cobblestone</em>.</p>
+<p class="has-line-data" data-line-start="29" data-line-end="30">Lo hacemos a traves de cyberchef:</p>
+<div align="center"><p class="has-line-data" data-line-start="31" data-line-end="33"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cobblestone_2.png" alt="CTF #FromZeroToLynx"><br></div>
+Pero al introducirlo como flag, nos pone que es incorrecto.  Asi que, no debemos confirnarnos de las paginas web, lo hare a traves de la consola.</p>
+<pre><code class="has-line-data" data-line-start="35" data-line-end="38" class="language-console">kali@kali:~/ZeroToLynx$ echo &quot;cobblestone&quot; | base64
+Y29iYmxlc3RvbmUK
+</code></pre>
+<p class="has-line-data" data-line-start="39" data-line-end="40">Lo intento con este que me arroja la consola y si que me la acepta.</p>
+<p class="has-line-data" data-line-start="41" data-line-end="43">Por lo tanto, encontramos la flag que nos estan solicitando:<br>
+<strong>ESL{Y29iYmxlc3RvbmUK}</strong></p>
+
+
+
+
 </div>

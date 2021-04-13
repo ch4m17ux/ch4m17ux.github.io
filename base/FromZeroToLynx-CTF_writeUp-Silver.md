@@ -330,3 +330,47 @@ Vemos un usuario, que tiene relacion con el evento que se esta desarrollando, va
 
 Encontramos la flag que nos estan solicitando:
 **ESL{¡ElOSINTSeTeDaMuyBien!}**
+
+---
+## **Muerte en el jardín**
+
+Nos entregan la descripción del reto:
+
+> ***OBJETIVO***:
+> Ayer morí 64 veces en Cobblestone. Odio ese mapa.
+
+***Este reto es de #Crypto.***
+
+Nos entregan un fichero sin extensión (Lo puedes descargar [AQUI](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/de_cobblestone))
+
+No sabemos que tipo de fichero nos han entregado, por esta razon, podemos proceder a verificar de que tipo estamos tratando:
+
+```console
+kali@kali:~/ZeroToLynx$ file de_cobblestone
+de_cobblestone: ASCII text
+kali@kali:~/ZeroToLynx$ cat de_cobblestone
+TGEgZmxhZyBlcyBFU0x7YmFzZTY0KGNvYmJsZXN0b25lKX0K
+```
+
+Nos encontramos frente a un fichero que contiene una cadena de texto.  La podemos copiar en cyberchef para que nos diga si esta cifrado y en que cifrado nos lo entregan.
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cobblestone.png)
+La cadena de texto nos indica que la flag buscada es como se indica alli:
+**ESL{base64(cobblestone)}**
+
+Aunque no todo es tan sencillo, ya que esta realmente no es la flag buscada; y leyendo la descripcion podemos inferir que debemos ejecutar lo que nos pone alli, sacar el `Base64` de la palabra *cobblestone*.
+
+Lo hacemos a traves de cyberchef:
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cobblestone_2.png)
+Pero al introducirlo como flag, nos pone que es incorrecto.  Asi que, no debemos confirnarnos de las paginas web, lo hare a traves de la consola.
+
+```console
+kali@kali:~/ZeroToLynx$ echo "cobblestone" | base64
+Y29iYmxlc3RvbmUK
+```
+
+Lo intento con este que me arroja la consola y si que me la acepta.
+
+Por lo tanto, encontramos la flag que nos estan solicitando:
+**ESL{Y29iYmxlc3RvbmUK}**
