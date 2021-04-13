@@ -374,3 +374,67 @@ Lo intento con este que me arroja la consola y si que me la acepta.
 
 Por lo tanto, encontramos la flag que nos estan solicitando:
 **ESL{Y29iYmxlc3RvbmUK}**
+
+
+---
+## **Rush B!**
+
+Nos entregan la descripción del reto:
+
+> ***OBJETIVO***:
+> Hay un Comando en busca de una bomba, ¿Darás con ella sin perderte?
+
+***Este reto es de #ComandoLinux.***
+
+Nos entregan un fichero comprimido con extension `tar.gz` (Lo puedes descargar [AQUI](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/Rush.tar.gz))
+
+Verificamos si efectivamente es un tar.gz y de serlo, procedemos a descomprimirlo:
+
+```console
+kali@kali:~/ZeroToLynx$ file Rush.tar.gz
+Rush.tar.gz: gzip compressed data, was "Rush.tar", last modified: Wed Mar 31 09:00:21 2021, 
+max speed, from FAT filesystem (MS-DOS, OS/2, NT), original size modulo 2^32 1106863616
+```
+Podemos observar que el tamaño del fichero original es: `original size modulo 2^32 1106863616`
+
+Lo que significa que si lo tratamos de descomprimir se hara muy grande y puede que nos "cuelgue" el sistema operativo.  Incluso, tratando de hacerlo por linea de comandos, nos da errores:
+
+```console
+kali@kali:~/ZeroToLynx$ tar xzvf Rush.tar.gz
+tar: a: Cannot mkdir: Permission denied
+tar: a/a/a/a/a/a/a/a/a/a/a/b/a/c: Cannot mkdir: No such file or directory
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/
+tar: a: Cannot mkdir: Permission denied
+tar: a/a/a/a/a/a/a/a/a/a/a/b/a/c/a: Cannot mkdir: No such file or directory
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/
+tar: a: Cannot mkdir: Permission denied
+```
+
+Lo que trata es de crear miles de subcarpetas, alcanzando el limite que podria llegar a manejar.  Esto es llamado "[Bomba Zip](https://es.wikipedia.org/wiki/Bomba_zip)"
+
+>La **bomba zip,** también conocida como **zip de la muerte**, es un archivo malicioso diseñado para bloquear o inutilizar un programa o sistema que lo está leyendo. Este tipo de archivo malicioso explota el algoritmo de compresión de [ZIP](https://es.wikipedia.org/wiki/Formato_de_compresi%C3%B3n_ZIP "Formato de compresión ZIP") para guardar grandes cantidades de datos.
+
+Debemos cambiar nuestro enfoque, nos piden que busquemos una bomba, suponemos que dentro de todos esos subdirectorios y lo que pueda crear hay un flag, por lo que debemos recurrir a un comando.  He tratado de utilizar `zgrep`, pero no me ha dado solucion, asi que recurro a `python` y encuentro un codigo que hace esto mismo usando el modulo `tarfile`.
+
+![CTF #FromZeroToLynx](https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/rushb.png)
+
+Usamos este script, sabiendo cual es el formato de la flag y obtenemos:
+
+```console
+kali@kali:~/ZeroToLynx$ python3 buscar_tar.py "ESL" Rush.tar.gz
+Cadena encontrada en los siguientes ficheros
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+```
+
+Sabemos donde esta el fichero que contiene la flag, asi que podemos descomprimir este unico fichero y leerlo:
+
+```console
+kali@kali:~/ZeroToLynx$ sudo tar xzf Rush.tar.gz a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+kali@kali:~/ZeroToLynx$ cat a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+ESL{Bu3n_s1t10_p4rA_P1ant4R}
+```
+
+Por lo tanto, encontramos la flag que nos estan solicitando:
+**ESL{Bu3n_s1t10_p4rA_P1ant4R}**
+
+>Esta no es la unica solucion, y puede que haya otros caminos mas faciles, pero es el que me ha servidor a mi.

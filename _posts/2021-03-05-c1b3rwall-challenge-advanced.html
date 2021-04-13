@@ -165,8 +165,6 @@ wordlist.docx: RIFF (little-endian) data, WAVE audio, Microsoft PCM,
 <h1 class="code-line" data-line-start=246 data-line-end=247 ><a id="Fin_246"></a>Fin</h1>
 <p class="has-line-data" data-line-start="248" data-line-end="249">Cualquier errata o duda podéis contactar en el grupo de ayuda de esta plataforma. (<a href="https://t.me/C1b3rWallAcademy">Aquí</a>)</p>
 
-
-
 <hr>
 <h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="Muerte_en_el_jardn_1"></a><strong>Muerte en el jardín</strong></h2>
 <p class="has-line-data" data-line-start="3" data-line-end="4">Nos entregan la descripción del reto:</p>
@@ -198,6 +196,51 @@ Y29iYmxlc3RvbmUK
 <strong>ESL{Y29iYmxlc3RvbmUK}</strong></p>
 
 
-
+<hr>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="Rush_B_1"></a><strong>Rush B!</strong></h2>
+<p class="has-line-data" data-line-start="3" data-line-end="4">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="5" data-line-end="7"><strong><em>OBJETIVO</em></strong>:<br>
+Hay un Comando en busca de una bomba, ¿Darás con ella sin perderte?</p>
+</blockquote>
+<p class="has-line-data" data-line-start="8" data-line-end="9"><strong><em>Este reto es de #ComandoLinux.</em></strong></p>
+<p class="has-line-data" data-line-start="10" data-line-end="11">Nos entregan un fichero comprimido con extension <code>tar.gz</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/Rush.tar.gz">AQUI</a>)</p>
+<p class="has-line-data" data-line-start="12" data-line-end="13">Verificamos si efectivamente es un tar.gz y de serlo, procedemos a descomprimirlo:</p>
+<pre><code class="has-line-data" data-line-start="15" data-line-end="19" class="language-console">kali@kali:~/ZeroToLynx$ file Rush.tar.gz
+Rush.tar.gz: gzip compressed data, was &quot;Rush.tar&quot;, last modified: Wed Mar 31 09:00:21 2021, 
+max speed, from FAT filesystem (MS-DOS, OS/2, NT), original size modulo 2^32 1106863616
+</code></pre>
+<p class="has-line-data" data-line-start="19" data-line-end="20">Podemos observar que el tamaño del fichero original es: <code>original size modulo 2^32 1106863616</code></p>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Lo que significa que si lo tratamos de descomprimir se hara muy grande y puede que nos “cuelgue” el sistema operativo.  Incluso, tratando de hacerlo por linea de comandos, nos da errores:</p>
+<pre><code class="has-line-data" data-line-start="24" data-line-end="33" class="language-console">kali@kali:~/ZeroToLynx$ tar xzvf Rush.tar.gz
+tar: a: Cannot mkdir: Permission denied
+tar: a/a/a/a/a/a/a/a/a/a/a/b/a/c: Cannot mkdir: No such file or directory
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/
+tar: a: Cannot mkdir: Permission denied
+tar: a/a/a/a/a/a/a/a/a/a/a/b/a/c/a: Cannot mkdir: No such file or directory
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/
+tar: a: Cannot mkdir: Permission denied
+</code></pre>
+<p class="has-line-data" data-line-start="34" data-line-end="35">Lo que trata es de crear miles de subcarpetas, alcanzando el limite que podria llegar a manejar.  Esto es llamado &quot;<a href="https://es.wikipedia.org/wiki/Bomba_zip">Bomba Zip</a>&quot;</p>
+<blockquote>
+<p class="has-line-data" data-line-start="36" data-line-end="37">La <strong>bomba zip,</strong> también conocida como <strong>zip de la muerte</strong>, es un archivo malicioso diseñado para bloquear o inutilizar un programa o sistema que lo está leyendo. Este tipo de archivo malicioso explota el algoritmo de compresión de <a href="https://es.wikipedia.org/wiki/Formato_de_compresi%C3%B3n_ZIP" title="Formato de compresión ZIP">ZIP</a> para guardar grandes cantidades de datos.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="38" data-line-end="39">Debemos cambiar nuestro enfoque, nos piden que busquemos una bomba, suponemos que dentro de todos esos subdirectorios y lo que pueda crear hay un flag, por lo que debemos recurrir a un comando.  He tratado de utilizar <code>zgrep</code>, pero no me ha dado solucion, asi que recurro a <code>python</code> y encuentro un codigo que hace esto mismo usando el modulo <code>tarfile</code>.</p>
+<p class="has-line-data" data-line-start="40" data-line-end="41"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/rushb.png" alt="CTF #FromZeroToLynx"></p>
+<div align="center"><p class="has-line-data" data-line-start="42" data-line-end="43">Usamos este script, sabiendo cual es el formato de la flag y obtenemos:</p></div>
+<pre><code class="has-line-data" data-line-start="45" data-line-end="49" class="language-console">kali@kali:~/ZeroToLynx$ python3 buscar_tar.py &quot;ESL&quot; Rush.tar.gz
+Cadena encontrada en los siguientes ficheros
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+</code></pre>
+<p class="has-line-data" data-line-start="50" data-line-end="51">Sabemos donde esta el fichero que contiene la flag, asi que podemos descomprimir este unico fichero y leerlo:</p>
+<pre><code class="has-line-data" data-line-start="53" data-line-end="57" class="language-console">kali@kali:~/ZeroToLynx$ sudo tar xzf Rush.tar.gz a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+kali@kali:~/ZeroToLynx$ cat a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+ESL{Bu3n_s1t10_p4rA_P1ant4R}
+</code></pre>
+<p class="has-line-data" data-line-start="58" data-line-end="60">Por lo tanto, encontramos la flag que nos estan solicitando:<br>
+<strong>ESL{Bu3n_s1t10_p4rA_P1ant4R}</strong></p>
+<blockquote>
+<p class="has-line-data" data-line-start="61" data-line-end="62">Esta no es la unica solucion, y puede que haya otros caminos mas faciles, pero es el que me ha servidor a mi.</p>
+</blockquote>
 
 </div>
