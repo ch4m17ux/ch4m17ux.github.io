@@ -74,15 +74,8 @@ Nos estan proporcionando un mensaje que esta codificado, nos hacen alusion a Jul
 
 O por consola tambien podriamos realizarlo:
 
-```bash
-ch4m0@DESKTOP-DORD02K:~/ch4m17ux.github.io$ echo 'Yn fvthvragr vasbeznpvba rf pbasvqrapvny. Gr nlhqnen n cebfrthve ra yn vairfgvtnpvba. Ab gr pbasvrf, ab gbqnf ynf vasbeznpvbarf qr ynf dhr qvfcbarzbf fba gna snpvyrf pbzb rfgn ebgnpvba qr pnenpgrerf. Sveznqb: ha nzvtb.
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto2.png)
 
-synt{rfgnzbf_rzcrmnaqb_n_pbabpre_nytb_qr_uvfgbevn}' | tr 'A-Za-z' 'N-ZA-Mn-za-m'
-
-La siguiente informacion es confidencial. Te ayudara a proseguir en la investigacion. No te confies, no todas las informaciones de las que disponemos son tan faciles como esta rotacion de caracteres. Firmado: un amigo.
-
-flag{estamos_empezando_a_conocer_algo_de_historia}
-```
 Facilmente podemos encontrar la flag solicitada:
 **flag{estamos_empezando_a_conocer_algo_de_historia}**
 
@@ -173,7 +166,13 @@ Nos entregan la descripción del reto:
 >
 >Hemos recibido este mensaje junto a unas instrucciones para su manejo. Parece un completo enigma.
 >
->59556843656d517a545764684d3035355a4735425a317074526e526a626d646e57544a61633249794e476461534842785a55644e5a316b7a566a42615630316e596c684f4d5751795a32646156315a6f5a4668765a325674536e4e684d6e4e6e576d3543626d4e595157645a57454a74576a4a6e5a32517962486c684d30316e596c6857613246755a32645a5748426f597a4e725a316c59516d356957456c6e59556477626c6c745557646c57484278595663775a324e496144466b6257396e5a56646f64574a745a326469563342785930646a5a32466e5054303d
+>59556843656d517a545764684d3035355a4735425a317074526e526a626d646e57544a
+>61633249794e476461534842785a55644e5a316b7a566a42615630316e596c684f4d57
+>51795a32646156315a6f5a4668765a325674536e4e684d6e4e6e576d3543626d4e59515
+>7645a57454a74576a4a6e5a32517962486c684d30316e596c6857613246755a32645a57
+>48426f597a4e725a316c59516d356957456c6e59556477626c6c745557646c574842785
+>95663775a324e496144466b6257396e5a56646f64574a745a326469563342785930646a
+>5a32466e5054303d
 >
 >Modelo: M3
 >Reflector: ????
@@ -193,6 +192,7 @@ Vemos que debemos utilizar una web que nos permita decodificar la maquina enigma
 *hpsws ksrvp famrx cflon dzjxc cutec msuwh eeauz zblkk fpgqp apfgh wirks mudjx azasy apgmr hjgbd yzjim pxuvj yhnnh mjjpg j*
 
 ![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto4.png)
+
 Obtenemos el mensaje:  
 
 *PONGA ATENC IONSI FRACA SAMOS ENEST AMISI ONNOS VEREM OSABO CADOS APERD ERLOT ODOAN OTEES TABAN DERAE NIGMA MTRES UKWBV I*

@@ -57,38 +57,31 @@ queres, saber, noticia, sobre, conocer, misterio, quien, hizo</p>
 </blockquote>
 <p class="has-line-data" data-line-start="72" data-line-end="73">Nos estan proporcionando un mensaje que esta codificado, nos hacen alusion a Julio Cesar, asi que lo primero que pensamos es en cifrado Cesar (Rot13).  Por lo que procedemos a decodificarlo con cualquier web que nos permite hacerlo y obtenemos.</p>
 <p class="has-line-data" data-line-start="74" data-line-end="75">O por consola tambien podriamos realizarlo:</p>
-<pre><code class="has-line-data" data-line-start="77" data-line-end="85" class="language-bash">ch4m0@DESKTOP-DORD02K:~/ch4m17ux.github.io$ <span class="hljs-built_in">echo</span> <span class="hljs-string">'Yn fvthvragr vasbeznpvba rf pbasvqrapvny. Gr nlhqnen n cebfrthve ra yn vairfgvtnpvba. Ab gr pbasvrf, ab gbqnf ynf vasbeznpvbarf qr ynf dhr qvfcbarzbf fba gna snpvyrf pbzb rfgn ebgnpvba qr pnenpgrerf. Sveznqb: ha nzvtb.
-
-synt{rfgnzbf_rzcrmnaqb_n_pbabpre_nytb_qr_uvfgbevn}'</span> | tr <span class="hljs-string">'A-Za-z'</span> <span class="hljs-string">'N-ZA-Mn-za-m'</span>
-
-La siguiente informacion es confidencial. Te ayudara a proseguir en la investigacion. No te confies, no todas las informaciones de las que disponemos son tan faciles como esta rotacion de caracteres. Firmado: un amigo.
-
-flag{estamos_empezando_a_conocer_algo_de_historia}
-</code></pre>
-<p class="has-line-data" data-line-start="85" data-line-end="87">Facilmente podemos encontrar la flag solicitada:<br>
+<p class="has-line-data" data-line-start="76" data-line-end="77"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="78" data-line-end="80">Facilmente podemos encontrar la flag solicitada:<br>
 <strong>flag{estamos_empezando_a_conocer_algo_de_historia}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=90 data-line-end=91 ><a id="Reto_3_90"></a><strong>Reto 3</strong></h2>
-<p class="has-line-data" data-line-start="92" data-line-end="93">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=83 data-line-end=84 ><a id="Reto_3_83"></a><strong>Reto 3</strong></h2>
+<p class="has-line-data" data-line-start="85" data-line-end="86">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="94" data-line-end="95"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="96" data-line-end="97">Al darle la vuelta a la hoja, veis que también tiene otro texto escrito en esa parte, aunque tampoco lo entendéis. Se adjunta también un fichero con extensión pyc. ¿Nos servirá de ayuda?</p>
-<p class="has-line-data" data-line-start="98" data-line-end="99">¿Podrás proporcionarnos la otra información que está en la otra cara de la hoja?</p>
-<p class="has-line-data" data-line-start="100" data-line-end="101"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="102" data-line-end="103">Ax8VCB4HEAAGDDMEBRERPhENAh8DLQQcEQERMAgaBjERAhwEGgADHA==</p>
-<p class="has-line-data" data-line-start="104" data-line-end="106"><strong>Datos extra:</strong><br>
+<p class="has-line-data" data-line-start="87" data-line-end="88"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="89" data-line-end="90">Al darle la vuelta a la hoja, veis que también tiene otro texto escrito en esa parte, aunque tampoco lo entendéis. Se adjunta también un fichero con extensión pyc. ¿Nos servirá de ayuda?</p>
+<p class="has-line-data" data-line-start="91" data-line-end="92">¿Podrás proporcionarnos la otra información que está en la otra cara de la hoja?</p>
+<p class="has-line-data" data-line-start="93" data-line-end="94"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="95" data-line-end="96">Ax8VCB4HEAAGDDMEBRERPhENAh8DLQQcEQERMAgaBjERAhwEGgADHA==</p>
+<p class="has-line-data" data-line-start="97" data-line-end="99"><strong>Datos extra:</strong><br>
 <em>Os proporcionamos alguna indicación para empezar a resolver el reto: uncompyle6 es una herramienta que descompila el byte-code de Python. Devuelve el fichero original, que necesitarás para resolver la prueba</em>.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="107" data-line-end="108">Seguimos las instrucciones y nos instalamos uncompyle6, usando la versión para python 2.7: <a href="https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf">https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf</a></p>
-<p class="has-line-data" data-line-start="109" data-line-end="110">El paso mas importante es:</p>
-<pre><code class="has-line-data" data-line-start="112" data-line-end="115"># sudo pip install uncompyle6-3.7.4-py2-none-any.whl
+<p class="has-line-data" data-line-start="100" data-line-end="101">Seguimos las instrucciones y nos instalamos uncompyle6, usando la versión para python 2.7: <a href="https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf">https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf</a></p>
+<p class="has-line-data" data-line-start="102" data-line-end="103">El paso mas importante es:</p>
+<pre><code class="has-line-data" data-line-start="105" data-line-end="108"># sudo pip install uncompyle6-3.7.4-py2-none-any.whl
 # uncompyle6 --version
 </code></pre>
-<p class="has-line-data" data-line-start="115" data-line-end="116">Esta herramienta nos decompila el el fichero python que esta en el zip (contraseña del zip: <em>reto03_afe0cb6c1bdfbc79e900a427244961cb24ee8141</em>)</p>
-<p class="has-line-data" data-line-start="117" data-line-end="118">En mi caso lo he volcado a otro fichero, de otro modo lo pone en la salida de la consola:</p>
-<p class="has-line-data" data-line-start="119" data-line-end="121"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto3.jpg" alt="Academia Hacker"><br>
+<p class="has-line-data" data-line-start="108" data-line-end="109">Esta herramienta nos decompila el el fichero python que esta en el zip (contraseña del zip: <em>reto03_afe0cb6c1bdfbc79e900a427244961cb24ee8141</em>)</p>
+<p class="has-line-data" data-line-start="110" data-line-end="111">En mi caso lo he volcado a otro fichero, de otro modo lo pone en la salida de la consola:</p>
+<p class="has-line-data" data-line-start="112" data-line-end="114"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto3.jpg" alt="Academia Hacker"><br>
 Verificamos el codigo que nos ha decompilado y vemos como realiza la codificacion del mensaje, vemos que tenemos dos opciones: cifrado y descifrado.</p>
-<pre><code class="has-line-data" data-line-start="123" data-line-end="139">import binascii, itertools, base64, sys
+<pre><code class="has-line-data" data-line-start="116" data-line-end="132">import binascii, itertools, base64, sys
     def xor_crypt_string(data, key='estoesunaclaveparacifrar', encode=False, decode=False):
         from itertools import izip, cycle
         import base64
@@ -104,8 +97,8 @@ Verificamos el codigo que nos ha decompilado y vemos como realiza la codificacio
     print 'Descifrado'
     print xor_crypt_string(xor_crypt_string(secret_data, encode=True), decode=True)
 </code></pre>
-<p class="has-line-data" data-line-start="140" data-line-end="141">Lo modificamos para que nos arroje la salida que queremos (que seria decodificar el mensaje) y podemos tener el siguiente codigo:</p>
-<pre><code class="has-line-data" data-line-start="143" data-line-end="157">import binascii, itertools, base64, sys
+<p class="has-line-data" data-line-start="133" data-line-end="134">Lo modificamos para que nos arroje la salida que queremos (que seria decodificar el mensaje) y podemos tener el siguiente codigo:</p>
+<pre><code class="has-line-data" data-line-start="136" data-line-end="150">import binascii, itertools, base64, sys
     def xor_crypt_string(data, key='estoesunaclaveparacifrar', encode=False, decode=False):
         from itertools import izip, cycle
         import base64
@@ -119,19 +112,25 @@ Verificamos el codigo que nos ha decompilado y vemos como realiza la codificacio
     claro = xor_crypt_string(secret_data,decode=True)
     print (claro)
 </code></pre>
-<p class="has-line-data" data-line-start="157" data-line-end="159">Al ejecutarlo, nos arroja la flag que estamos buscando:<br>
+<p class="has-line-data" data-line-start="150" data-line-end="152">Al ejecutarlo, nos arroja la flag que estamos buscando:<br>
 <strong>flag{tengo_esta_clave_entre_mis_papeles}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=162 data-line-end=163 ><a id="Reto_4_162"></a><strong>Reto 4</strong></h2>
-<p class="has-line-data" data-line-start="164" data-line-end="165">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=155 data-line-end=156 ><a id="Reto_4_155"></a><strong>Reto 4</strong></h2>
+<p class="has-line-data" data-line-start="157" data-line-end="158">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="166" data-line-end="167"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="168" data-line-end="170">Con la información que habéis obtenido, intentáis utilizar las credenciales para poder acceder al ordenador del periodico y al entrar os descargáis un archivo.<br>
+<p class="has-line-data" data-line-start="159" data-line-end="160"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="161" data-line-end="163">Con la información que habéis obtenido, intentáis utilizar las credenciales para poder acceder al ordenador del periodico y al entrar os descargáis un archivo.<br>
 El fichero original ha cifrado alguna información secreta que debes obtener para que la investigación no se atasque. Esto es lo que sabemos que ha devuelto la salida del fichero que has obtenido al entrar en la web del periódico.</p>
-<p class="has-line-data" data-line-start="171" data-line-end="172"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="173" data-line-end="174">Hemos recibido este mensaje junto a unas instrucciones para su manejo. Parece un completo enigma.</p>
-<p class="has-line-data" data-line-start="175" data-line-end="176">59556843656d517a545764684d3035355a4735425a317074526e526a626d646e57544a61633249794e476461534842785a55644e5a316b7a566a42615630316e596c684f4d5751795a32646156315a6f5a4668765a325674536e4e684d6e4e6e576d3543626d4e595157645a57454a74576a4a6e5a32517962486c684d30316e596c6857613246755a32645a5748426f597a4e725a316c59516d356957456c6e59556477626c6c745557646c57484278595663775a324e496144466b6257396e5a56646f64574a745a326469563342785930646a5a32466e5054303d</p>
-<p class="has-line-data" data-line-start="177" data-line-end="189">Modelo: M3<br>
+<p class="has-line-data" data-line-start="164" data-line-end="165"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="166" data-line-end="167">Hemos recibido este mensaje junto a unas instrucciones para su manejo. Parece un completo enigma.</p>
+<p class="has-line-data" data-line-start="168" data-line-end="175">59556843656d517a545764684d3035355a4735425a317074526e526a626d646e57544a<br>
+61633249794e476461534842785a55644e5a316b7a566a42615630316e596c684f4d57<br>
+51795a32646156315a6f5a4668765a325674536e4e684d6e4e6e576d3543626d4e59515<br>
+7645a57454a74576a4a6e5a32517962486c684d30316e596c6857613246755a32645a57<br>
+48426f597a4e725a316c59516d356957456c6e59556477626c6c745557646c574842785<br>
+95663775a324e496144466b6257396e5a56646f64574a745a326469563342785930646a<br>
+5a32466e5054303d</p>
+<p class="has-line-data" data-line-start="176" data-line-end="188">Modelo: M3<br>
 Reflector: ???<br>
 ROT1.: 1<br>
 ROT2.: 2<br>
@@ -144,10 +143,10 @@ ANILLO2: B<br>
 ANILLO3: C<br>
 PLUGBOARD: bq cr di ej kw mt os px uz gh</p>
 </blockquote>
-<p class="has-line-data" data-line-start="190" data-line-end="191">Vemos que debemos utilizar una web que nos permita decodificar la maquina enigma.  Al tratar de hacerlo directamente, nos arroja un mensaje muy extraño, asi que analizamos y encontramos que si decodificamos el texto en <code>HEX</code> y 2 veces <code>BASE64</code> (<em>hecho desde linux para evitar historias raras de los conversores online</em>) sale esto:</p>
-<p class="has-line-data" data-line-start="192" data-line-end="193"><em>hpsws ksrvp famrx cflon dzjxc cutec msuwh eeauz zblkk fpgqp apfgh wirks mudjx azasy apgmr hjgbd yzjim pxuvj yhnnh mjjpg j</em></p>
-<p class="has-line-data" data-line-start="194" data-line-end="196"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto4.png" alt="Academia Hacker"><br>
-Obtenemos el mensaje:</p>
+<p class="has-line-data" data-line-start="189" data-line-end="190">Vemos que debemos utilizar una web que nos permita decodificar la maquina enigma.  Al tratar de hacerlo directamente, nos arroja un mensaje muy extraño, asi que analizamos y encontramos que si decodificamos el texto en <code>HEX</code> y 2 veces <code>BASE64</code> (<em>hecho desde linux para evitar historias raras de los conversores online</em>) sale esto:</p>
+<p class="has-line-data" data-line-start="191" data-line-end="192"><em>hpsws ksrvp famrx cflon dzjxc cutec msuwh eeauz zblkk fpgqp apfgh wirks mudjx azasy apgmr hjgbd yzjim pxuvj yhnnh mjjpg j</em></p>
+<p class="has-line-data" data-line-start="193" data-line-end="194"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto4.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="195" data-line-end="196">Obtenemos el mensaje:</p>
 <p class="has-line-data" data-line-start="197" data-line-end="198"><em>PONGA ATENC IONSI FRACA SAMOS ENEST AMISI ONNOS VEREM OSABO CADOS APERD ERLOT ODOAN OTEES TABAN DERAE NIGMA MTRES UKWBV I</em></p>
 <p class="has-line-data" data-line-start="199" data-line-end="200">Si lo organizamos, que sea mas legible:</p>
 <p class="has-line-data" data-line-start="201" data-line-end="202"><em>PONGA ATENCION SI FRACASAMOS EN ESTA MISION NOS VEREMOS ABOCADOS A PERDERLO TODO ANOTE ESTA BANDERA ENIGMAMTRES UKWBV I</em></p>
