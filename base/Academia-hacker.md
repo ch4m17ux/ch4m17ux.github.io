@@ -232,3 +232,265 @@ Y podemos obtener (tomando solo los valores hexadecimales) el siguiente mensaje:
 
 Conseguimos la flag:
 **flag{dns_spy_exfiltration}**
+
+---
+
+## **Reto 6**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> Parece que alguien desde una cuenta anónima está intentado ayudar en la investigación y os ha enviado otro fichero pcap. Lo ha capturado desde alguna clase de informática que se dio en el instituto.
+>
+>Hay varias tramas que se corresponden a una subida FTP. Nos piden encontrar el contenido de lo que se ha descargado para proseguir en la investigación. Se trata de un fichero que se han descargado.
+>
+>**Datos proporcionados:**
+>
+>Fichero pcap descargable.
+
+Abrimos el pcap entregado que tenemos en Wireshark y observamos las tramas. Encontramos que se ha hecho una descarga de dos ficheros, por un lado tenemos un zip denominado: flag.zip y por otro lado un txt denominado: passwords.txt
+
+Vamos filtrando el trafico por tramas y vemos que en el stream 2, tenemos:
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-1.png)
+
+Podemos ver que hay una traza que tiene un tamaño mas grande que los demas, asi que tratamos de sacar ese fichero que ha sido descargado (en este caso del ftp). seleccionamos dicha trama y nos selecciona la parte que nos interesa, que en este caso es el fichero requerido.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-2.png)
+Dandole clic derecho podemos exportar los bytes del fichero como un paquete.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-3.png)
+
+Le ponemos un nombre y tenemos el fichero de la flag comprimido: flag.zip
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-4.png)
+
+Al intentar descomprimirlo, nos solicita una contraseña.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-6.png)
+
+Por esta razon, debemos buscar el listado de passwords, que habiamos visto que se habia descargado tambien. Por lo que seguimos filtrando las tramas y encontramos la traza que nos interesa.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-6.png)
+
+Y realizamos la misma operacion que hemos realizado con la anterior traza, para obtener un fichero de claves: passwords.txt
+
+Utilizamos este fichero para trata de crackear a traves de jonhTheRipper la contraseña.
+
+```code
+──(kali㉿kali)-[~/Descargas/incibe/reto06]
+└─$ zip2john flag.zip > secret.hash
+ver 1.0 efh 5455 efh 7875 flag.zip/flag.txt PKZIP Encr: 2b chk, TS_chk, cmplen=52, decmplen=40, crc=BF705D76
+
+┌──(kali㉿kali)-[~/Descargas/incibe/reto06]
+└─$ cat secret.hash
+flag.zip/flag.txt:$pkzip2$1*2*2*0*34*28*bf705d76*0*42*0*34*bf70*81e2*5a85ba04cd58d275ddd202b91c0907b475dd8630
+a025cc6e7e83d84ef15497534610b5cb941a0cfa8322467e565e33e0faaf21de*$/pkzip2$:flag.txt:flag.zip::flag.zip
+
+┌──(kali㉿kali)-[~/Descargas/incibe/reto06]
+└─$ sudo john hash_6 -w=passwords.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+karina (flag.zip/flag.txt)
+1g 0:00:00:00 DONE (2021-05-10 15:37) 12.50g/s 2912p/s 2912c/s 2912C/s danielle..january
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+```
+  
+Obtenemos la contraseña para descomprimir el fichero comprimido flag.zip, y dentro tenemos un txt con la flag solicitada.
+
+Conseguimos la flag:
+**flag{ftp_stream_pcap_with_credentials!}**
+
+---
+
+## **Reto 7**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> En el escritorio del usuario de uno de los ordenadores localizáis una aplicación. Os aseguráis de que no sea maliciosa y ejecutáis el fichero exe. Parece contener dos entradas de texto.
+>
+>Hay dos flags en esta prueba, recupera la flag1 del fichero exe.
+>
+>**Datos proporcionados:**
+>
+>Fichero ejecutable.
+
+Debugueando con IDA PRO (lo que ha realizado BitOverRun), podemos ver que se esperan dos entradas (Este reto es la primera parte y continua en el reto8).
+
+En este reto se nos pide la Flag1. En el codigo vemos que tenemos un string:
+
+```code
+AAICBBIOCQASCAUOAg4PAgQFCAUO
+```
+  
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-1.png)
+
+Que analizando mejor el codigo encontramos:
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-2.png)
+
+
+Se nos indica que esta codificado con XOR y un Base64. Aun mas, vemos que el XoR lo realiza con la key 41
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-3.png)
+
+Nos queda unicamente decodificarlo con los datos que hemos obtenido.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-4.png)
+
+
+Obtenemos la flag:
+**flag{ACCESOHASIDOCONCEDIDO}**
+
+---
+
+## **Reto 8**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> En el escritorio del usuario de uno de los ordenadores localizáis una aplicación. Os aseguráis de que no sea maliciosa y ejecutáis el fichero exe. Parece contener dos entradas de texto.
+>
+>Hay dos flags en esta prueba, recupera la flag2 del fichero exe.
+>
+>**Datos proporcionados:**
+>
+>Fichero ejecutable.
+
+Este reto es la secuela del anterior Reto. Siguiendo con el analisis del mismo, encontramos que hay una segunda flag, mas corta, pero que vemos claramente.
+
+```code
+PBZCYRGNQB
+```
+  
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-1.png)
+
+Revisando las funciones, encontramos que ha sido codificada en Rot13
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-2.png)
+
+Por lo que solo nos queda, realizar el proceso inverso.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-3.png)
+
+Obtenemos la flag:
+**flag{COMPLETADO}**
+
+---
+
+## **Reto 9**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> Revisando la información en Documents, encontráis un mensaje muy extraño. ¿Podrías ayudar a resolverlo?
+>
+>Se repiten con frecuencia algunos pares de caracteres. Parece hexadecimal.
+>
+>**Datos proporcionados:**
+>
+>2d 2e 2e 20 2e 2e 20 2e 2e 2e 20 2d 2e 2d 2e 20 2d 2d 2d 20 2e 2e 2e 2d 20 2e 20 2e 2d 2e 20 2e 2e 2d 2d 2e 2d
+>
+>20 2e 2e 2e 2e 20 2e 20 2d 2e 2e 2d 20 2e 2e 2d 2d 2e 2d 20 2d 2d 20 2d 2d 2d 20 2e 2d 2e 20 2e 2e 2e 20 2e 20
+>
+>2e 2e 2d 2d 2e 2d 20 2d 2e 2d 2e 20 2d 2d 2d 20 2d 2e 2e 20 2e
+
+Tenemos una serie de caracteres que estan en algun tipo de codificacion, asi que utilizamos CyberChef y, tratamos de determinar que tipo de cifrado tiene y si podemos decodificarlo.
+
+Determinado que esta en Hexadecimal, y finalmente en codigo Morse.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto9.png)
+
+Obtenemos nuestra flag:
+**flag{DISCOVER_HEX_MORSE_CODE}**
+
+---
+
+## **Reto 10**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> La profesora de música ha recibido un mensaje en su correo con un fichero donde aparecen algunas passwords cifradas.
+>
+>Te pide descifrarlas. La solución son todas las contraseñas concatenadas con '_'.
+>
+>Pregunta:
+>¿Eres capaz de encontrar todas las contraseñas?
+>
+>flag{password1_password2_password3_password4}
+>
+>**Datos proporcionados:**
+>
+>fichero txt.
+
+Se nos ha entregado un fichero con algunos Hashes.
+ 
+```code
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+└─$ cat shadow.txt
+$6$yMJT8Nf23i7Z1WkF$ChxmECeWSs3W8Or1Ogf4eapPz5FNcBM4SBvZG.21fI0wpNUmR1yCmK71r7sYFMXCL3deD5BWDD/6A4WU66cjv0
+$6$xonBhxE19HmG8.DR$LdediY0FTHMUPyeQAiEFVgUR6rKVrOGcCECCn.EQupIwH2EyZqib3gc5kJfuwp/ppLJY41Ap5KEUf7RCk3T4O0
+$6$ooyV5Z5dEaDfyPom$VnKneoTa7s7DJRFFarye2sjZiwWbrr1jQ28lzw36OGaAChy1K14GY6BEFTABLGjZ8Xs4iSmbaZdfDXYFi9ED71
+$6$a5m5M9J/FEJGzyrd$shv36BNOS58W8VQBbjLKESl/3QjJxomkBb84j9Mw2g04JW3TIVGstOmJQFT5wdpl1soe9XjI3YjDNNH6uXv7s1
+```
+  
+Segun nos indicas, debemos crackear las constraseñas que tenemos en este fichero. lo primero que debemos hacer es identificar que tipo de cifrado tienen.
+
+```code
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+└─$ hashid shadow.txt
+--File 'shadow.txt'--
+Analyzing '$6$yMJT8Nf23i7Z1WkF$ChxmECeWSs3W8Or1Ogf4eapPz5FNcBM4SBvZG.21fI0wpNUmR1yCmK71r7sYFMXCL3deD5BWDD/6A4WU66cjv0'
+[+] SHA-512 Crypt
+Analyzing '$6$xonBhxE19HmG8.DR$LdediY0FTHMUPyeQAiEFVgUR6rKVrOGcCECCn.EQupIwH2EyZqib3gc5kJfuwp/ppLJY41Ap5KEUf7RCk3T4O0'
+[+] SHA-512 Crypt
+Analyzing '$6$ooyV5Z5dEaDfyPom$VnKneoTa7s7DJRFFarye2sjZiwWbrr1jQ28lzw36OGaAChy1K14GY6BEFTABLGjZ8Xs4iSmbaZdfDXYFi9ED71'
+[+] SHA-512 Crypt
+Analyzing '$6$a5m5M9J/FEJGzyrd$shv36BNOS58W8VQBbjLKESl/3QjJxomkBb84j9Mw2g04JW3TIVGstOmJQFT5wdpl1soe9XjI3YjDNNH6uXv7s1'
+[+] SHA-512 Crypt
+--End of file 'shadow.txt'--
+```
+  
+Tenemos que estan en SHA-512, asi que procedemos a crackearlo con hashcat.
+
+```code
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+└─$ hashcat -a 0 -m 1800 shadow.txt /usr/share/wordlists/rockyou.txt -o cracked.txt
+hashcat (v6.1.1) starting...
+
+OpenCL API (OpenCL 1.2 pocl 1.6, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+=============================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i5-4210U CPU @ 1.70GHz, 2813/2877 MB (1024 MB allocatable), 4MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+INFO: All hashes found in potfile! Use --show to display them.
+
+Started: Mon May 10 16:41:21 2021
+Stopped: Mon May 10 16:41:22 2021
+```
+
+Nos arroja las contraseñas crackeadas.
+
+```code
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+└─$ cat cracked.txt
+$6$xonBhxE19HmG8.DR$LdediY0FTHMUPyeQAiEFVgUR6rKVrOGcCECCn.EQupIwH2EyZqib3gc5kJfuwp/ppLJY41Ap5KEUf7RCk3T4O0:dragon
+$6$yMJT8Nf23i7Z1WkF$ChxmECeWSs3W8Or1Ogf4eapPz5FNcBM4SBvZG.21fI0wpNUmR1yCmK71r7sYFMXCL3deD5BWDD/6A4WU66cjv0:whatever
+$6$ooyV5Z5dEaDfyPom$VnKneoTa7s7DJRFFarye2sjZiwWbrr1jQ28lzw36OGaAChy1K14GY6BEFTABLGjZ8Xs4iSmbaZdfDXYFi9ED71:princesa
+$6$a5m5M9J/FEJGzyrd$shv36BNOS58W8VQBbjLKESl/3QjJxomkBb84j9Mw2g04JW3TIVGstOmJQFT5wdpl1soe9XjI3YjDNNH6uXv7s1:administrator
+```
+  
+Asi que la flag seria:
+**flag{dragon_whatever_princesa_administrator}**
