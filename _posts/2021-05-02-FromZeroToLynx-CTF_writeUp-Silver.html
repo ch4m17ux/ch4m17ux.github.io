@@ -241,4 +241,734 @@ Hemos jugado con un chetoso que usa wallhacks. ¿Lo encontraremos?</p>
 <div align="center"><p class="has-line-data" data-line-start="34" data-line-end="35"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/wallhacks_5.png" alt="CTF #FromZeroToLynx"></p></div>
 <p class="has-line-data" data-line-start="36" data-line-end="38">Encontramos la flag que nos estan solicitando:<br>
 <strong>ESL{¡ElOSINTSeTeDaMuyBien!}</strong></p>
+<hr>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="Muerte_en_el_jardn_1"></a><strong>Muerte en el jardín</strong></h2>
+<p class="has-line-data" data-line-start="3" data-line-end="4">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="5" data-line-end="7"><strong><em>OBJETIVO</em></strong>:<br>
+Ayer morí 64 veces en Cobblestone. Odio ese mapa.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="8" data-line-end="9"><strong><em>Este reto es de #Crypto.</em></strong></p>
+<p class="has-line-data" data-line-start="10" data-line-end="11">Nos entregan un fichero sin extensión (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/de_cobblestone">AQUI</a>)</p>
+<p class="has-line-data" data-line-start="12" data-line-end="13">No sabemos que tipo de fichero nos han entregado, por esta razon, podemos proceder a verificar de que tipo estamos tratando:</p>
+<pre><code class="has-line-data" data-line-start="15" data-line-end="20" class="language-console">kali@kali:~/ZeroToLynx$ file de_cobblestone
+de_cobblestone: ASCII text
+kali@kali:~/ZeroToLynx$ cat de_cobblestone
+TGEgZmxhZyBlcyBFU0x7YmFzZTY0KGNvYmJsZXN0b25lKX0K
+</code></pre>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Nos encontramos frente a un fichero que contiene una cadena de texto.  La podemos copiar en cyberchef para que nos diga si esta cifrado y en que cifrado nos lo entregan.</p>
+<p class="has-line-data" data-line-start="23" data-line-end="26"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cobblestone.png" alt="CTF #FromZeroToLynx"><br>
+La cadena de texto nos indica que la flag buscada es como se indica alli:<br>
+<strong>ESL{base64(cobblestone)}</strong></p>
+<p class="has-line-data" data-line-start="27" data-line-end="28">Aunque no todo es tan sencillo, ya que esta realmente no es la flag buscada; y leyendo la descripcion podemos inferir que debemos ejecutar lo que nos pone alli, sacar el <code>Base64</code> de la palabra <em>cobblestone</em>.</p>
+<p class="has-line-data" data-line-start="29" data-line-end="30">Lo hacemos a traves de cyberchef:</p>
+<p class="has-line-data" data-line-start="31" data-line-end="33"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cobblestone_2.png" alt="CTF #FromZeroToLynx"><br>
+Pero al introducirlo como flag, nos pone que es incorrecto.  Asi que, no debemos confirnarnos de las paginas web, lo hare a traves de la consola.</p>
+<pre><code class="has-line-data" data-line-start="35" data-line-end="38" class="language-console">kali@kali:~/ZeroToLynx$ echo &quot;cobblestone&quot; | base64
+Y29iYmxlc3RvbmUK
+</code></pre>
+<p class="has-line-data" data-line-start="39" data-line-end="40">Lo intento con este que me arroja la consola y si que me la acepta.</p>
+<p class="has-line-data" data-line-start="41" data-line-end="43">Por lo tanto, encontramos la flag que nos estan solicitando:<br>
+<strong>ESL{Y29iYmxlc3RvbmUK}</strong></p>
+<hr>
+<h2 class="code-line" data-line-start=46 data-line-end=47 ><a id="Rush_B_46"></a><strong>Rush B!</strong></h2>
+<p class="has-line-data" data-line-start="48" data-line-end="49">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="50" data-line-end="52"><strong><em>OBJETIVO</em></strong>:<br>
+Hay un Comando en busca de una bomba, ¿Darás con ella sin perderte?</p>
+</blockquote>
+<p class="has-line-data" data-line-start="53" data-line-end="54"><strong><em>Este reto es de #ComandoLinux.</em></strong></p>
+<p class="has-line-data" data-line-start="55" data-line-end="56">Nos entregan un fichero comprimido con extension <code>tar.gz</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/Rush.tar.gz">AQUI</a>)</p>
+<p class="has-line-data" data-line-start="57" data-line-end="58">Verificamos si efectivamente es un tar.gz y de serlo, procedemos a descomprimirlo:</p>
+<pre><code class="has-line-data" data-line-start="60" data-line-end="64" class="language-console">kali@kali:~/ZeroToLynx$ file Rush.tar.gz
+Rush.tar.gz: gzip compressed data, was &quot;Rush.tar&quot;, last modified: Wed Mar 31 09:00:21 2021,
+max speed, from FAT filesystem (MS-DOS, OS/2, NT), original size modulo 2^32 1106863616
+</code></pre>
+<p class="has-line-data" data-line-start="64" data-line-end="65">Podemos observar que el tamaño del fichero original es: <code>original size modulo 2^32 1106863616</code></p>
+<p class="has-line-data" data-line-start="66" data-line-end="67">Lo que significa que si lo tratamos de descomprimir se hara muy grande y puede que nos “cuelgue” el sistema operativo.  Incluso, tratando de hacerlo por linea de comandos, nos da errores:</p>
+<pre><code class="has-line-data" data-line-start="69" data-line-end="78" class="language-console">kali@kali:~/ZeroToLynx$ tar xzvf Rush.tar.gz
+tar: a: Cannot mkdir: Permission denied
+tar: a/a/a/a/a/a/a/a/a/a/a/b/a/c: Cannot mkdir: No such file or directory
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/
+tar: a: Cannot mkdir: Permission denied
+tar: a/a/a/a/a/a/a/a/a/a/a/b/a/c/a: Cannot mkdir: No such file or directory
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/
+tar: a: Cannot mkdir: Permission denied
+</code></pre>
+<p class="has-line-data" data-line-start="79" data-line-end="80">Lo que trata es de crear miles de subcarpetas, alcanzando el limite que podria llegar a manejar.  Esto es llamado &quot;<a href="https://es.wikipedia.org/wiki/Bomba_zip">Bomba Zip</a>&quot;</p>
+<blockquote>
+<p class="has-line-data" data-line-start="81" data-line-end="82">La <strong>bomba zip,</strong> también conocida como <strong>zip de la muerte</strong>, es un archivo malicioso diseñado para bloquear o inutilizar un programa o sistema que lo está leyendo. Este tipo de archivo malicioso explota el algoritmo de compresión de <a href="https://es.wikipedia.org/wiki/Formato_de_compresi%C3%B3n_ZIP" title="Formato de compresión ZIP">ZIP</a> para guardar grandes cantidades de datos.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="83" data-line-end="84">Debemos cambiar nuestro enfoque, nos piden que busquemos una bomba, suponemos que dentro de todos esos subdirectorios y lo que pueda crear hay un flag, por lo que debemos recurrir a un comando.  He tratado de utilizar <code>zgrep</code>, pero no me ha dado solucion, asi que recurro a <code>python</code> y encuentro un codigo que hace esto mismo usando el modulo <code>tarfile</code>.</p>
+<p class="has-line-data" data-line-start="85" data-line-end="86"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/rushb.png" alt="CTF #FromZeroToLynx"></p>
+<p class="has-line-data" data-line-start="87" data-line-end="88">Usamos este script, sabiendo cual es el formato de la flag y obtenemos:</p>
+<pre><code class="has-line-data" data-line-start="90" data-line-end="94" class="language-console">kali@kali:~/ZeroToLynx$ python3 buscar_tar.py &quot;ESL&quot; Rush.tar.gz
+Cadena encontrada en los siguientes ficheros
+a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+</code></pre>
+<p class="has-line-data" data-line-start="95" data-line-end="96">Sabemos donde esta el fichero que contiene la flag, asi que podemos descomprimir este unico fichero y leerlo:</p>
+<pre><code class="has-line-data" data-line-start="98" data-line-end="102" class="language-console">kali@kali:~/ZeroToLynx$ sudo tar xzf Rush.tar.gz a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+kali@kali:~/ZeroToLynx$ cat a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+ESL{Bu3n_s1t10_p4rA_P1ant4R}
+</code></pre>
+<p class="has-line-data" data-line-start="103" data-line-end="105">Por lo tanto, encontramos la flag que nos estan solicitando:<br>
+<strong>ESL{Bu3n_s1t10_p4rA_P1ant4R}</strong></p>
+<blockquote>
+<p class="has-line-data" data-line-start="106" data-line-end="107">Esta no es la unica solucion, y puede que haya otros caminos mas faciles, pero es el que me ha servidor a mi.</p>
+</blockquote>
+<hr>
+<h2 class="code-line" data-line-start=110 data-line-end=111 ><a id="Victorys_sound_110"></a><strong>Victory’s sound</strong></h2>
+<p class="has-line-data" data-line-start="112" data-line-end="113">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="114" data-line-end="116"><strong><em>OBJETIVO</em></strong>:<br>
+Nos hemos colado en el Discord del contrincante y hemos grabado sus planes, aunque con algunas interferencias de extraña procedencia que no logramos descifrar. ¿Puedes ayudarnos?</p>
+</blockquote>
+<p class="has-line-data" data-line-start="117" data-line-end="118"><strong><em>Este reto es de #Stego.</em></strong></p>
+<p class="has-line-data" data-line-start="119" data-line-end="120">Nos entregan un fichero con extension <code>mp3</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/victory.mp3">AQUI</a>)</p>
+<p class="has-line-data" data-line-start="121" data-line-end="122">Como has podido ver en mi blog, siempre verifico que lo que nos entregan corresponde con lo que presuntamente nos dicen que debe ser.</p>
+<pre><code class="has-line-data" data-line-start="124" data-line-end="127" class="language-console">kali@kali:~/ZeroToLynx$ file victory.mp3
+victory.mp3: Audio file with ID3 version 2.3.0, contains:MPEG ADTS, layer III, v2,  64 kbps, 22.05 kHz, JntStereo
+</code></pre>
+<p class="has-line-data" data-line-start="127" data-line-end="128">Observamos que es un fichero mp3 como nos han indicado.</p>
+<p class="has-line-data" data-line-start="129" data-line-end="130">Procedemos a abrirlo y ver que podemos visualizar o escuchar. Escuchamos una musica, pero de un instante a otro hay una presunta interferencia. He decidido abrirlo en un decodificar de audio morse, para ver si me arroja algun mensaje. He usado <a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html">esta</a> pagina.</p>
+<p class="has-line-data" data-line-start="131" data-line-end="132">Y vemos que en el espectograma arroja unos caracteres, que si nos fijamos es la flag buscada.</p>
+<p class="has-line-data" data-line-start="133" data-line-end="136"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/victory.png" alt="CTF #FromZeroToLynx"><br>
+Por lo tanto, encontramos la flag que nos estan solicitando:<br>
+<strong>ESL{H4CK_TH3_B0MB}</strong></p>
+<hr>
+<h2 class="code-line" data-line-start=138 data-line-end=139 ><a id="Secretos_no_tan_secretos_138"></a><strong>Secretos no tan secretos</strong></h2>
+<p class="has-line-data" data-line-start="140" data-line-end="141">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="142" data-line-end="144"><strong><em>OBJETIVO</em></strong>:<br>
+Hemos encontrado dos documentos con información confidencial que contiene la localización de la bomba.</p>
+<p class="has-line-data" data-line-start="145" data-line-end="146">¿Podrás descifrarla?</p>
+</blockquote>
+<p class="has-line-data" data-line-start="148" data-line-end="151">Nos entregan dos ficheros: confidential y secret. Los puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/confidential">AQUI</a> y <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/secret">AQUI</a><br>
+Confidential: es un fichero cifrado.<br>
+Secret: es un fichero que contiene una llave RSA privada rota.</p>
+<p class="has-line-data" data-line-start="152" data-line-end="153">Verificamos los ficheros y vemos que la llave RSA privada que nos entregan esta rota, hay secciones que no tenemos y debemos por ende tratar de reconstruirla.</p>
+<pre><code class="has-line-data" data-line-start="155" data-line-end="197" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ cat secret
+-----BEGIN RSA PRIVATE KEY-----
+MIIG4wIBAAKCAYEAnq48eqHsUugZkz4rFqROVvPa9fvxqoJx6b81MuigBe9ANavd
+YYNCrN8zryxHBo+l2Z0EkA11p1mF/swa0SFUfYnUsuZpfqjDvELrsWf+jmtxRrk4
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[----------REDACTED--------]AoHBANAiZPCv9AHjyhOJOBJBu1Ul1B0PPaBk
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-------------REDACTED---------]nQKBwQDDLFM+elj7PMd3hCd1Mv61OppQ
+Fr9UNQ94zQ8XBba008u7UDrS2VaVxrT3jpCPTQvklqnZqN4aJnBII6Seb/2Io99M
+7TA/ByqgxSnRst+M1F+xR68ghHOr6GKPO6oxc2abYZkIKd9LoERZjgXId9P+Y0GN
+QHkUMhWFTOUh05hJLA+quaKxP+cylQMVFgLxWMql2wJ5aiR9MIkqovpugMBdKNiq
+SoZclykLs2ZD1WtrC5zSN26ZDmm9yxMs3xi5ip8CgcBgt3rcdYcX0bg3d848fZsF
+qDx2/HwQqmS5m25ufy31PJshUIyvw2u9NBVnnItVGSrdB1MvMDJFoSVpJVGx/6A2
+eMsXp3UWIZwxc2yWYc/VHb0ACmuuF3VRR4cj4o6ZeEn+n6yRSIWry05bRTi7OdZg
+J0412cx0EwA2qqc95HuHqLBOQ+Hd+UExj9q7MQKGJHa3iGdaxiHVMKeThD55qiiX
+QeRick+jH6EKfU/dYg5/fqgug4C1TDlZovZY3R5n2+kCgcBShmiAb302ZkG1QHTq
+snBOswPSv3uRIIp1OseZpXnWxgNMJaVpyCo7VHTqhCaN4TcZJbeV6DhZeE1bw250
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------]
+-----END RSA PRIVATE KEY-----
+</code></pre>
+<p class="has-line-data" data-line-start="198" data-line-end="199">Lo arreglamos y quitamos las secciones que no tenemos para tratar de pasar de Base64 a Hexadecimal, para analizarlo y obtenemos:</p>
+<h4 class="code-line" data-line-start=200 data-line-end=201 ><a id="PEM_que_nos_dan_200"></a>PEM que nos dan</h4>
+<pre><code class="has-line-data" data-line-start="202" data-line-end="218" class="language-code">-----BEGIN RSA PRIVATE KEY-----
+MIIG4wIBAAKCAYEAnq48eqHsUugZkz4rFqROVvPa9fvxqoJx6b81MuigBe9ANavd
+YYNCrN8zryxHBo+l2Z0EkA11p1mF/swa0SFUfYnUsuZpfqjDvELrsWf+jmtxRrk4
+AoHBANAiZPCv9AHjyhOJOBJBu1Ul1B0PPaBk
+nQKBwQDDLFM+elj7PMd3hCd1Mv61OppQ
+Fr9UNQ94zQ8XBba008u7UDrS2VaVxrT3jpCPTQvklqnZqN4aJnBII6Seb/2Io99M
+7TA/ByqgxSnRst+M1F+xR68ghHOr6GKPO6oxc2abYZkIKd9LoERZjgXId9P+Y0GN
+QHkUMhWFTOUh05hJLA+quaKxP+cylQMVFgLxWMql2wJ5aiR9MIkqovpugMBdKNiq
+SoZclykLs2ZD1WtrC5zSN26ZDmm9yxMs3xi5ip8CgcBgt3rcdYcX0bg3d848fZsF
+qDx2/HwQqmS5m25ufy31PJshUIyvw2u9NBVnnItVGSrdB1MvMDJFoSVpJVGx/6A2
+eMsXp3UWIZwxc2yWYc/VHb0ACmuuF3VRR4cj4o6ZeEn+n6yRSIWry05bRTi7OdZg
+J0412cx0EwA2qqc95HuHqLBOQ+Hd+UExj9q7MQKGJHa3iGdaxiHVMKeThD55qiiX
+QeRick+jH6EKfU/dYg5/fqgug4C1TDlZovZY3R5n2+kCgcBShmiAb302ZkG1QHTq
+snBOswPSv3uRIIp1OseZpXnWxgNMJaVpyCo7VHTqhCaN4TcZJbeV6DhZeE1bw250
+-----END RSA PRIVATE KEY-----
+</code></pre>
+<h4 class="code-line" data-line-start=218 data-line-end=219 ><a id="Codigo_hexadecimal_218"></a>Codigo hexadecimal</h4>
+<p class="has-line-data" data-line-start="220" data-line-end="241">308206e302010002820181009eae3c7aa1ec52e819933e2b16a44e56<br>
+f3daf5fbf1aa8271e9bf3532e8a005ef4035abdd618342acdf33af2c470<br>
+68fa5d99d04900d75a75985fecc1ad121547d89d4b2e6697ea8c3bc42<br>
+ebb167fe8e6b7146b938<strong>0281c100</strong>d02264f0aff401e3ca1389381241b<br>
+b5525d41d0f3da0649d<strong>0281c100</strong>c32c533e7a58fb3cc77784277532fe<br>
+b53a9a5016bf54350f78cd0f1705b6b4d3cbbb503ad2d95695c6b4f78<br>
+e908f4d0be496a9d9a8de1a26704823a49e6ffd88a3df4ced303f072aa<br>
+0c529d1b2df8cd45fb147af208473abe8628f3baa3173669b61990829<br>
+df4ba044598e05c877d3fe63418d4079143215854ce521d398492c0f<br>
+aab9a2b13fe7329503151602f158caa5db02796a247d30892aa2fa6e8<br>
+0c05d28d8aa4a865c97290bb36643d56b6b0b9cd2376e990e69bdcb1<br>
+32cdf18b98a9f<strong>0281c060</strong>b77adc758717d1b83777ce3c7d9b05a83c76<br>
+fc7c10aa64b99b6e6e7f2df53c9b21508cafc36bbd3415679c8b55192a<br>
+dd07532f303245a125692551b1ffa03678cb17a77516219c31736c96<br>
+61cfd51dbd000a6bae177551478723e28e997849fe9fac914885abcb4<br>
+e5b4538bb39d660274e35d9cc74130036aaa73de47b87a8b04e43e1d<br>
+df941318fdabb3102862476b788675ac621d530a793843e79aa28974<br>
+1e462724fa31fa10a7d4fdd620e7f7ea82e8380b54c3959a2f658dd1e6<br>
+7dbe9<strong>0281c052</strong>8668806f7d366641b54074eab2704eb303d2bf7b912<br>
+08a753ac799a579d6c6034c25a569c82a3b5474ea84268de1371925b<br>
+795e83859784d5bc36e74</p>
+<p class="has-line-data" data-line-start="242" data-line-end="243">La llave privada esta codificada en PEM (Privacy-Enhanced Mail) y los parametros que podemos encontrar en orden son: <strong>n, e, d, p, q, dmod(p−1), dmod(q−1) and q−1modp.</strong></p>
+<p class="has-line-data" data-line-start="244" data-line-end="245">(<a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/secretos-1.png">https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/secretos-1.png</a>)</p>
+<p class="has-line-data" data-line-start="246" data-line-end="247">Por lo que debemos buscar estos valores en lo que tenemos, y tratar de identificar cual de estos valores tenemos, para que a partir de estos podamos reconstruir la llave privada.</p>
+<p class="has-line-data" data-line-start="248" data-line-end="249">Teniendo en cuenta el encabezado ASN.1 para los valores entero es 02 82 01 01, que se descompone de la siguiente manera:</p>
+<ul>
+<li class="has-line-data" data-line-start="250" data-line-end="251"><strong>02</strong> para el tipo de datos, aquí Integer.</li>
+<li class="has-line-data" data-line-start="251" data-line-end="252"><strong>82</strong>, lo que significa que la longitud del valor entero se codificará en los 2 bytes siguientes.</li>
+<li class="has-line-data" data-line-start="252" data-line-end="254"><strong>0101</strong>, la longitud real, cuyo valor entero es 257, lo que significa que el valor entero se codificará en los siguientes 257 bytes. Recuperar los siguientes 257 bytes en Big Endian y tomar sus valores enteros produce los valores rsa que estamos buscando.</li>
+</ul>
+<p class="has-line-data" data-line-start="254" data-line-end="255">Si buscamos en el hexadecimal que tenemos podemos ubicar los distintos valores que nos han dado:</p>
+<p class="has-line-data" data-line-start="256" data-line-end="264"><strong>d</strong><br>
+308206e302010002820181009eae3c7aa1ec52e819933e2b16a44e56<br>
+f3daf5fbf1aa8271e9bf3532e8a005ef4035abdd618342acdf33af2c470<br>
+68fa5d99d04900d75a75985fecc1ad121547d89d4b2e6697ea8c3bc4<br>
+2ebb167fe8e6b7146b9384440c00931034440c00931034440c00931<br>
+034440c00931034440c00931034440c00931034440c00931034440<br>
+c00931034440c00931034440c00931034440c00931034440c00931<br>
+034440c00931034440c00931034440c0093103</p>
+<p class="has-line-data" data-line-start="265" data-line-end="267"><strong>0281c1 p</strong> 00d02264f0aff401e3ca1389381241bb5525d41d0f3da<br>
+0644440c00931034440c00931034440c00931034440c00931039d</p>
+<p class="has-line-data" data-line-start="268" data-line-end="275"><strong>0281c1  q (base 64)</strong> 00c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1<br>
+705b6b4d3cbbb503ad2d95695c6b4f78e908f4d0be496a9d9a8de1a2<br>
+6704823a49e6ffd88a3df4ced303f072aa0c529d1b2df8cd45fb147af2<br>
+08473abe8628f3baa3173669b61990829df4ba044598e05c877d3fe6<br>
+3418d4079143215854ce521d398492c0faab9a2b13fe73295031516<br>
+02f158caa5db02796a247d30892aa2fa6e80c05d28d8aa4a865c9729<br>
+0bb36643d56b6b0b9cd2376e990e69bdcb132cdf18b98a9f</p>
+<p class="has-line-data" data-line-start="276" data-line-end="283"><strong>0281c0 dmod(p-1)</strong> 60b77adc758717d1b83777ce3c7d9b05a83c76fc7c10aa64b99b6e6e<br>
+7f2df53c9b21508cafc36bbd3415679c8b55192add07532f303245a1<br>
+25692551b1ffa03678cb17a77516219c31736c9661cfd51dbd000a6<br>
+bae177551478723e28e997849fe9fac914885abcb4e5b4538bb39d6<br>
+60274e35d9cc74130036aaa73de47b87a8b04e43e1ddf941318fdab<br>
+b3102862476b788675ac621d530a793843e79aa289741e462724fa<br>
+31fa10a7d4fdd620e7f7ea82e8380b54c3959a2f658dd1e67dbe9</p>
+<p class="has-line-data" data-line-start="284" data-line-end="289"><strong>0281c0 dmod(q-1)</strong><br>
+528668806f7d366641b54074eab2704eb303d2bf7b91208a753ac7<br>
+99a579d6c6034c25a569c82a3b5474ea84268de1371925b795e83<br>
+859784d5bc36e744440c00931034440c00931034440c00931034<br>
+440c00931034440c00931034440c00931034440c0093103</p>
+<p class="has-line-data" data-line-start="290" data-line-end="291">Tenemos los valores completos de q y dmod(p-1).  Tomando un script que hemos conseguido para poder calcular p y N:</p>
+<pre><code class="has-line-data" data-line-start="293" data-line-end="325" class="language-code">##Python3
+#import gmpy
+from sympy import isprime
+
+e = 65537
+q = 0x00c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1
+705b6b4d3cbbb503ad2d95695c6b4f78e908f4d0be496a9d9a8de1a26704823
+a49e6ffd88a3df4ced303f072aa0c529d1b2df8cd45fb147af208473abe8628
+f3baa3173669b61990829df4ba044598e05c877d3fe63418d4079143215854c
+e521d398492c0faab9a2b13fe7329503151602f158caa5db02796a247d30892
+aa2fa6e80c05d28d8aa4a865c97290bb36643d56b6b0b9cd2376e990e69bdcb
+132cdf18b98a9f
+dp = 0x60b77adc758717d1b83777ce3c7d9b05a83c76fc7c10aa64b99b6e6e
+7f2df53c9b21508cafc36bbd3415679c8b55192add07532f303245a12569255
+1b1ffa03678cb17a77516219c31736c9661cfd51dbd000a6bae177551478723
+e28e997849fe9fac914885abcb4e5b4538bb39d660274e35d9cc74130036aaa
+73de47b87a8b04e43e1ddf941318fdabb3102862476b788675ac621d530a793
+843e79aa289741e462724fa31fa10a7d4fdd620e7f7ea82e8380b54c3959a2f
+658dd1e67dbe9
+
+for kp in range(3, e):
+    p_mul = dp * e - 1
+#    print(p_mul)
+    if p_mul % kp == 0:
+        p = (p_mul // kp) + 1
+        #print(p)
+        if isprime(p):
+            print(&quot;Possible p: {p}&quot;,p)
+
+N = p*q
+print(&quot;Valor de N: &quot;,N)
+</code></pre>
+<p class="has-line-data" data-line-start="326" data-line-end="327">Obtenemos los valores buscados:</p>
+<pre><code class="has-line-data" data-line-start="329" data-line-end="356" class="language-code">
+┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ python3 ./valor-n-p.py                                                  2 ⨯
+Possible p: {p} 195964381578986226110833125117530514759298142493
+7067449078522285594265904984207481421078656448527888795205931747
+5195663008364018849372466071481741734035866773849096466701355618
+4590216656265587045951673586345884770571606579112278451950854832
+5100203974972887206141652901059600819709195960157904901441145036
+2504717985750356152683210542891831838859210286503107843668747046
+2533988621202078983708788663481756417308702973620949447515128954
+0864482712680217349281213963677
+Valor de N:  180053090851894882732301169407688044244269066553850
+6234099314469966058984294950625268808164132978996913571156672450
+9354683909356194690555324288939766620853767325406439981124632300
+2008358212752379191612652136029991294853595946965196859741693482
+0844541290694937870456685613207109977124274791033934230885433366
+7384370652352070526243748928994309627278413639278957898138253231
+9578187104555913345998601137067929714713611164857078126384737972
+8420156134487666987288893076405559256754948991010321131279294460
+5540853177448150240294730287403030444639234606195492628873103241
+8768422026294831853457742842942759603226816221575074755602497845
+7605359841835918660749706837262991741437911176732730471182369717
+6959129699258609116759701620500559738374393878152272283480587083
+4118052431182458331750288353891570639295134432531692099111431060
+3841685337972341155977070405578742478929353656298266043957770721
+188343146984504242621578759640441761491089
+</code></pre>
+<p class="has-line-data" data-line-start="357" data-line-end="358">Estos valores estan en decimal, asi que el valor de Q debemos obtenerlo en decimal para poder utilizar el script <a href="https://github.com/ius/rsatool">rsatool.py</a> que nos reconstruye la llave privada que estamos buscando.</p>
+<p class="has-line-data" data-line-start="359" data-line-end="360">Para poder encontrar el valor de Q, utilizamos una web que hace calculos de numeros grandes. Denominada <img src="https://www.mobilefish.com/services/big_number/big_number.php" alt="MobielFish">, asi que tratamos de calcularlo y obtenemos el numero.</p>
+<p class="has-line-data" data-line-start="361" data-line-end="370"><strong>Q</strong> (decimal)<br>
+18376103800202275865357228549606411279158033976955282966053946531<br>
+65922753390937424680934606761000858840983344383776780002913018800<br>
+46124738297582288816281929253207328909858761430428397769220588616<br>
+91984073474531512332135168017871662286990517772251224132943733742<br>
+03401221716769706888739026994068967129949520741516120851758575959<br>
+74115869106450628140832286141623304564440090382235522452492733616<br>
+12532101822354359126371878569868307202194938398601705140954807080<br>
+74670751</p>
+<p class="has-line-data" data-line-start="371" data-line-end="372">Con este numero Q y el valor de P que hemos obtenido, podemos reconstruir nuestra llave, haciendo uso del script <a href="http://rsatool.py">rsatool.py</a> que hemos mencionado mas arriba. (Recordar que estos numeros son primos)</p>
+<pre><code class="has-line-data" data-line-start="374" data-line-end="475" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ python3 rsatool.py -f PEM -p 1959643815789862261108331251175305147
+59298142493706744907852228559426590498420748142107865644852788879520593
+17475195663008364018849372466071481741734035866773849096466701355618459
+02166562655870459516735863458847705716065791122784519508548325100203974
+97288720614165290105960081970919596015790490144114503625047179857503561
+52683210542891831838859210286503107843668747046253398862120207898370878
+86634817564173087029736209494475151289540864482712680217349281213963677
+-q 18376103800202275865357228549606411279158033976955282966053946531659
+22753390937424680934606761000858840983344383776780002913018800461247
+38297582288816281929253207328909858761430428397769220588616919840734
+74531512332135168017871662286990517772251224132943733742034012217167
+69706888739026994068967129949520741516120851758575959741158691064506
+28140832286141623304564440090382235522452492733616125321018223543591
+2637187856986830720219493839860170514095480708074670751 -o clave.pem
+Using (p, q) to initialise RSA instance
+
+n =
+9eae3c7aa1ec52e819933e2b16a44e56f3daf5fbf1aa8271e9bf3532e8a005ef4035
+abdd618342acdf33af2c47068fa5d99d04900d75a75985fecc1ad121547d89d4b2e
+6697ea8c3bc42ebb167fe8e6b7146b938305e6264f1062d2437fbbac595369b0640
+860f7df6e22b24534da385376fe8dccdc4245aec487211dd2af7cc8083b06873105
+b1dfa4d27b5b11ae858bff4f66db4b888115e13883d9ab878e1e44aa40a6855c707
+ced52bf87644bb1168164b03d8fb8475c40014676611d88f22c423939483e77c47c
+a046671885b5562bc0490c2f6b6765c65403532f151c6d2780c737251f519943b5b
+84bf4c476f6debae59c95fb6718ad88c605d8fccf2577ceed8e6df1bbd1d37b1e70b
+13e06198067beaeac87b437697a116c18723d004e4d24ae2da069fb619cf85547581
+9ed710f8184c48b71d4188c80d9fff997f844c830be9c429cf16577d6e451f974ff34
+2258156c3959c8d94008421548e8a5d74d659d4d8ba6ba6096c099a62454830fadfa6
+aa3fb95c9c9bbc6ebf844683
+
+e = 65537 (0x10001)
+
+d =
+162a9ad23aba6b9e76ac25fc18ee9ceef2a3bcc7142c508a9f2f91bbe9d928db122a2d
+3700bf385a33d7e1799af664acb36886d1a4bfb1c004c2e23a40ca9a25eb5226279fc
+70cc6430f4a237f368528a72b4d06776347f577e1f7fe5e3fb10896de88eb67aa1291
+f322070acd04447a8093068189d1038f1c00c6c68e11c989eccdf89faeab333f4dcee7
+642f38660ab7cdfd7ab7cb2b5ed9b87ac8b84b5abf9b877dc0e270511c5b1d5646202
+75bc683b6d185d912d19f2de120f88cbea374aafca922dedf8aff82c6eaf5314fcab152
+c20a0be55b3833d0ffd21cc87f1ad169f0ad349867535702adb38821fa91d29f5c97e
+033beedfc9288673a0190a8e40d247d8bcc9e1d9e6b6e2473d7964996ea41415ae2d
+c7ad793b9770f62e8401f4d182ccb90dddd57f9c262bf2a0da9e46892002c532cf5d9
+ba8994a9bcbf79fa212edaf094bb00cf5fcd99734b20ab1b883b9bd9cc2c0f6318896a
+f9d1344e85794934934230458a58b50c421eb2a365404c14422a0b5c34400109e209dc
+28d9
+
+p =
+d02264f0aff401e3ca1389381241bb5525d41d0f3da06483e8aa79f8e29965fce042008
+e084e5fde5fc0363813a6878a3b5d98752d15fd2bafdbc697e045041a5ebbbab0106373
+4477e6d517f1a934c96dae637578b0162190789b285a7bd462717f24e931e821183e9
+8c93e1763fef0d52a5c18f7ff0dce261ee221158c6674a49dde57cf22e0dedf33a7ef7003
+496485367aa7bb3e376682bbc1f229aa830be839779312fe3a820b2ee0213cb53fbeb2
+d328bac1d1c145b915f8ddfb91dd9d
+
+q =
+c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1705b6b4d3cbbb503
+ad2d95695c6b4f78e908f4d0be496a9d9a8de1a26704823a49e6ffd88a3df4ced303f072
+aa0c529d1b2df8cd45fb147af208473abe8628f3baa3173669b61990829df4ba044598e
+05c877d3fe63418d4079143215854ce521d398492c0faab9a2b13fe7329503151602f1
+58caa5db02796a247d30892aa2fa6e80c05d28d8aa4a865c97290bb36643d56b6b0b9c
+d2376e990e69bdcb132cdf18b98a9f
+
+Saving PEM as clave.pem
+
+┌──(ch4m0㉿kali)-[~/Descargas/CTF-Zerotolynx/rsa-challenge]
+└─$ cat clave.pem
+-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----
+</code></pre>
+<p class="has-line-data" data-line-start="476" data-line-end="477">Con esta llave privada RSA podemos descrifrar el mensaje que nos han entregado, haciendo uso de openssl.</p>
+<pre><code class="has-line-data" data-line-start="479" data-line-end="487" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ openssl rsautl -decrypt -inkey clave.pem -in confidential -out flag.txt
+
+┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ cat flag.txt
+La bomba está en B! GOGOGOGOGOGO
+ESL{L0s_S3cR3t0s_d3b3n_P3rM4n3c3r_S13mPr3_0cUlT0$}
+</code></pre>
+<p class="has-line-data" data-line-start="488" data-line-end="490">Y asi obtenemos nuestra flag:<br>
+<strong>ESL{L0s_S3cR3t0s_d3b3n_P3rM4n3c3r_S13mPr3_0cUlT0$}</strong></p>
+<hr>
+<h2 class="code-line" data-line-start=493 data-line-end=494 ><a id="Secretos_no_tan_secretos_493"></a><strong>Secretos no tan secretos</strong></h2>
+<p class="has-line-data" data-line-start="495" data-line-end="496">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="497" data-line-end="499"><strong><em>OBJETIVO</em></strong>:<br>
+Hemos encontrado dos documentos con información confidencial que contiene la localización de la bomba.</p>
+<p class="has-line-data" data-line-start="500" data-line-end="501">¿Podrás descifrarla?</p>
+</blockquote>
+<p class="has-line-data" data-line-start="503" data-line-end="506">Nos entregan dos ficheros: confidential y secret. Los puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/confidential">AQUI</a> y <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/secret">AQUI</a><br>
+Confidential: es un fichero cifrado.<br>
+Secret: es un fichero que contiene una llave RSA privada rota.</p>
+<p class="has-line-data" data-line-start="507" data-line-end="508">Verificamos los ficheros y vemos que la llave RSA privada que nos entregan esta rota, hay secciones que no tenemos y debemos por ende tratar de reconstruirla.</p>
+<pre><code class="has-line-data" data-line-start="510" data-line-end="552" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ cat secret
+-----BEGIN RSA PRIVATE KEY-----
+MIIG4wIBAAKCAYEAnq48eqHsUugZkz4rFqROVvPa9fvxqoJx6b81MuigBe9ANavd
+YYNCrN8zryxHBo+l2Z0EkA11p1mF/swa0SFUfYnUsuZpfqjDvELrsWf+jmtxRrk4
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[----------REDACTED--------]AoHBANAiZPCv9AHjyhOJOBJBu1Ul1B0PPaBk
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-------------REDACTED---------]nQKBwQDDLFM+elj7PMd3hCd1Mv61OppQ
+Fr9UNQ94zQ8XBba008u7UDrS2VaVxrT3jpCPTQvklqnZqN4aJnBII6Seb/2Io99M
+7TA/ByqgxSnRst+M1F+xR68ghHOr6GKPO6oxc2abYZkIKd9LoERZjgXId9P+Y0GN
+QHkUMhWFTOUh05hJLA+quaKxP+cylQMVFgLxWMql2wJ5aiR9MIkqovpugMBdKNiq
+SoZclykLs2ZD1WtrC5zSN26ZDmm9yxMs3xi5ip8CgcBgt3rcdYcX0bg3d848fZsF
+qDx2/HwQqmS5m25ufy31PJshUIyvw2u9NBVnnItVGSrdB1MvMDJFoSVpJVGx/6A2
+eMsXp3UWIZwxc2yWYc/VHb0ACmuuF3VRR4cj4o6ZeEn+n6yRSIWry05bRTi7OdZg
+J0412cx0EwA2qqc95HuHqLBOQ+Hd+UExj9q7MQKGJHa3iGdaxiHVMKeThD55qiiX
+QeRick+jH6EKfU/dYg5/fqgug4C1TDlZovZY3R5n2+kCgcBShmiAb302ZkG1QHTq
+snBOswPSv3uRIIp1OseZpXnWxgNMJaVpyCo7VHTqhCaN4TcZJbeV6DhZeE1bw250
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------------------]
+[-----------------------REDACTED-------------------]
+-----END RSA PRIVATE KEY-----
+</code></pre>
+<p class="has-line-data" data-line-start="553" data-line-end="554">Lo arreglamos y quitamos las secciones que no tenemos para tratar de pasar de Base64 a Hexadecimal, para analizarlo y obtenemos:</p>
+<h4 class="code-line" data-line-start=555 data-line-end=556 ><a id="PEM_que_nos_dan_555"></a>PEM que nos dan</h4>
+<pre><code class="has-line-data" data-line-start="557" data-line-end="573" class="language-code">-----BEGIN RSA PRIVATE KEY-----
+MIIG4wIBAAKCAYEAnq48eqHsUugZkz4rFqROVvPa9fvxqoJx6b81MuigBe9ANavd
+YYNCrN8zryxHBo+l2Z0EkA11p1mF/swa0SFUfYnUsuZpfqjDvELrsWf+jmtxRrk4
+AoHBANAiZPCv9AHjyhOJOBJBu1Ul1B0PPaBk
+nQKBwQDDLFM+elj7PMd3hCd1Mv61OppQ
+Fr9UNQ94zQ8XBba008u7UDrS2VaVxrT3jpCPTQvklqnZqN4aJnBII6Seb/2Io99M
+7TA/ByqgxSnRst+M1F+xR68ghHOr6GKPO6oxc2abYZkIKd9LoERZjgXId9P+Y0GN
+QHkUMhWFTOUh05hJLA+quaKxP+cylQMVFgLxWMql2wJ5aiR9MIkqovpugMBdKNiq
+SoZclykLs2ZD1WtrC5zSN26ZDmm9yxMs3xi5ip8CgcBgt3rcdYcX0bg3d848fZsF
+qDx2/HwQqmS5m25ufy31PJshUIyvw2u9NBVnnItVGSrdB1MvMDJFoSVpJVGx/6A2
+eMsXp3UWIZwxc2yWYc/VHb0ACmuuF3VRR4cj4o6ZeEn+n6yRSIWry05bRTi7OdZg
+J0412cx0EwA2qqc95HuHqLBOQ+Hd+UExj9q7MQKGJHa3iGdaxiHVMKeThD55qiiX
+QeRick+jH6EKfU/dYg5/fqgug4C1TDlZovZY3R5n2+kCgcBShmiAb302ZkG1QHTq
+snBOswPSv3uRIIp1OseZpXnWxgNMJaVpyCo7VHTqhCaN4TcZJbeV6DhZeE1bw250
+-----END RSA PRIVATE KEY-----
+</code></pre>
+<h4 class="code-line" data-line-start=573 data-line-end=574 ><a id="Codigo_hexadecimal_573"></a>Codigo hexadecimal</h4>
+<p class="has-line-data" data-line-start="575" data-line-end="596">308206e302010002820181009eae3c7aa1ec52e819933e2b16a44e56<br>
+f3daf5fbf1aa8271e9bf3532e8a005ef4035abdd618342acdf33af2c470<br>
+68fa5d99d04900d75a75985fecc1ad121547d89d4b2e6697ea8c3bc42<br>
+ebb167fe8e6b7146b938<strong>0281c100</strong>d02264f0aff401e3ca1389381241b<br>
+b5525d41d0f3da0649d<strong>0281c100</strong>c32c533e7a58fb3cc77784277532fe<br>
+b53a9a5016bf54350f78cd0f1705b6b4d3cbbb503ad2d95695c6b4f78<br>
+e908f4d0be496a9d9a8de1a26704823a49e6ffd88a3df4ced303f072aa<br>
+0c529d1b2df8cd45fb147af208473abe8628f3baa3173669b61990829<br>
+df4ba044598e05c877d3fe63418d4079143215854ce521d398492c0f<br>
+aab9a2b13fe7329503151602f158caa5db02796a247d30892aa2fa6e8<br>
+0c05d28d8aa4a865c97290bb36643d56b6b0b9cd2376e990e69bdcb1<br>
+32cdf18b98a9f<strong>0281c060</strong>b77adc758717d1b83777ce3c7d9b05a83c76<br>
+fc7c10aa64b99b6e6e7f2df53c9b21508cafc36bbd3415679c8b55192a<br>
+dd07532f303245a125692551b1ffa03678cb17a77516219c31736c96<br>
+61cfd51dbd000a6bae177551478723e28e997849fe9fac914885abcb4<br>
+e5b4538bb39d660274e35d9cc74130036aaa73de47b87a8b04e43e1d<br>
+df941318fdabb3102862476b788675ac621d530a793843e79aa28974<br>
+1e462724fa31fa10a7d4fdd620e7f7ea82e8380b54c3959a2f658dd1e6<br>
+7dbe9<strong>0281c052</strong>8668806f7d366641b54074eab2704eb303d2bf7b912<br>
+08a753ac799a579d6c6034c25a569c82a3b5474ea84268de1371925b<br>
+795e83859784d5bc36e74</p>
+<p class="has-line-data" data-line-start="597" data-line-end="598">La llave privada esta codificada en PEM (Privacy-Enhanced Mail) y los parametros que podemos encontrar en orden son: <strong>n, e, d, p, q, dmod(p−1), dmod(q−1) and q−1modp.</strong></p>
+<p class="has-line-data" data-line-start="599" data-line-end="600">(<a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/secretos-1.png">https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/secretos-1.png</a>)</p>
+<p class="has-line-data" data-line-start="601" data-line-end="602">Por lo que debemos buscar estos valores en lo que tenemos, y tratar de identificar cual de estos valores tenemos, para que a partir de estos podamos reconstruir la llave privada.</p>
+<p class="has-line-data" data-line-start="603" data-line-end="604">Teniendo en cuenta el encabezado ASN.1 para los valores entero es 02 82 01 01, que se descompone de la siguiente manera:</p>
+<ul>
+<li class="has-line-data" data-line-start="605" data-line-end="606"><strong>02</strong> para el tipo de datos, aquí Integer.</li>
+<li class="has-line-data" data-line-start="606" data-line-end="607"><strong>82</strong>, lo que significa que la longitud del valor entero se codificará en los 2 bytes siguientes.</li>
+<li class="has-line-data" data-line-start="607" data-line-end="609"><strong>0101</strong>, la longitud real, cuyo valor entero es 257, lo que significa que el valor entero se codificará en los siguientes 257 bytes. Recuperar los siguientes 257 bytes en Big Endian y tomar sus valores enteros produce los valores rsa que estamos buscando.</li>
+</ul>
+<p class="has-line-data" data-line-start="609" data-line-end="610">Si buscamos en el hexadecimal que tenemos podemos ubicar los distintos valores que nos han dado:</p>
+<p class="has-line-data" data-line-start="611" data-line-end="619"><strong>d</strong><br>
+308206e302010002820181009eae3c7aa1ec52e819933e2b16a44e56<br>
+f3daf5fbf1aa8271e9bf3532e8a005ef4035abdd618342acdf33af2c470<br>
+68fa5d99d04900d75a75985fecc1ad121547d89d4b2e6697ea8c3bc4<br>
+2ebb167fe8e6b7146b9384440c00931034440c00931034440c00931<br>
+034440c00931034440c00931034440c00931034440c00931034440<br>
+c00931034440c00931034440c00931034440c00931034440c00931<br>
+034440c00931034440c00931034440c0093103</p>
+<p class="has-line-data" data-line-start="620" data-line-end="622"><strong>0281c1 p</strong> 00d02264f0aff401e3ca1389381241bb5525d41d0f3da<br>
+0644440c00931034440c00931034440c00931034440c00931039d</p>
+<p class="has-line-data" data-line-start="623" data-line-end="630"><strong>0281c1  q (base 64)</strong> 00c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1<br>
+705b6b4d3cbbb503ad2d95695c6b4f78e908f4d0be496a9d9a8de1a2<br>
+6704823a49e6ffd88a3df4ced303f072aa0c529d1b2df8cd45fb147af2<br>
+08473abe8628f3baa3173669b61990829df4ba044598e05c877d3fe6<br>
+3418d4079143215854ce521d398492c0faab9a2b13fe73295031516<br>
+02f158caa5db02796a247d30892aa2fa6e80c05d28d8aa4a865c9729<br>
+0bb36643d56b6b0b9cd2376e990e69bdcb132cdf18b98a9f</p>
+<p class="has-line-data" data-line-start="631" data-line-end="638"><strong>0281c0 dmod(p-1)</strong> 60b77adc758717d1b83777ce3c7d9b05a83c76fc7c10aa64b99b6e6e<br>
+7f2df53c9b21508cafc36bbd3415679c8b55192add07532f303245a1<br>
+25692551b1ffa03678cb17a77516219c31736c9661cfd51dbd000a6<br>
+bae177551478723e28e997849fe9fac914885abcb4e5b4538bb39d6<br>
+60274e35d9cc74130036aaa73de47b87a8b04e43e1ddf941318fdab<br>
+b3102862476b788675ac621d530a793843e79aa289741e462724fa<br>
+31fa10a7d4fdd620e7f7ea82e8380b54c3959a2f658dd1e67dbe9</p>
+<p class="has-line-data" data-line-start="639" data-line-end="644"><strong>0281c0 dmod(q-1)</strong><br>
+528668806f7d366641b54074eab2704eb303d2bf7b91208a753ac7<br>
+99a579d6c6034c25a569c82a3b5474ea84268de1371925b795e83<br>
+859784d5bc36e744440c00931034440c00931034440c00931034<br>
+440c00931034440c00931034440c00931034440c0093103</p>
+<p class="has-line-data" data-line-start="645" data-line-end="646">Tenemos los valores completos de q y dmod(p-1).  Tomando un script que hemos conseguido para poder calcular p y N:</p>
+<pre><code class="has-line-data" data-line-start="648" data-line-end="680" class="language-code">##Python3
+#import gmpy
+from sympy import isprime
+
+e = 65537
+q = 0x00c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1
+705b6b4d3cbbb503ad2d95695c6b4f78e908f4d0be496a9d9a8de1a26704823
+a49e6ffd88a3df4ced303f072aa0c529d1b2df8cd45fb147af208473abe8628
+f3baa3173669b61990829df4ba044598e05c877d3fe63418d4079143215854c
+e521d398492c0faab9a2b13fe7329503151602f158caa5db02796a247d30892
+aa2fa6e80c05d28d8aa4a865c97290bb36643d56b6b0b9cd2376e990e69bdcb
+132cdf18b98a9f
+dp = 0x60b77adc758717d1b83777ce3c7d9b05a83c76fc7c10aa64b99b6e6e
+7f2df53c9b21508cafc36bbd3415679c8b55192add07532f303245a12569255
+1b1ffa03678cb17a77516219c31736c9661cfd51dbd000a6bae177551478723
+e28e997849fe9fac914885abcb4e5b4538bb39d660274e35d9cc74130036aaa
+73de47b87a8b04e43e1ddf941318fdabb3102862476b788675ac621d530a793
+843e79aa289741e462724fa31fa10a7d4fdd620e7f7ea82e8380b54c3959a2f
+658dd1e67dbe9
+
+for kp in range(3, e):
+    p_mul = dp * e - 1
+#    print(p_mul)
+    if p_mul % kp == 0:
+        p = (p_mul // kp) + 1
+        #print(p)
+        if isprime(p):
+            print(&quot;Possible p: {p}&quot;,p)
+
+N = p*q
+print(&quot;Valor de N: &quot;,N)
+</code></pre>
+<p class="has-line-data" data-line-start="681" data-line-end="682">Obtenemos los valores buscados:</p>
+<pre><code class="has-line-data" data-line-start="684" data-line-end="711" class="language-code">
+┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ python3 ./valor-n-p.py                                                  2 ⨯
+Possible p: {p} 195964381578986226110833125117530514759298142493
+7067449078522285594265904984207481421078656448527888795205931747
+5195663008364018849372466071481741734035866773849096466701355618
+4590216656265587045951673586345884770571606579112278451950854832
+5100203974972887206141652901059600819709195960157904901441145036
+2504717985750356152683210542891831838859210286503107843668747046
+2533988621202078983708788663481756417308702973620949447515128954
+0864482712680217349281213963677
+Valor de N:  180053090851894882732301169407688044244269066553850
+6234099314469966058984294950625268808164132978996913571156672450
+9354683909356194690555324288939766620853767325406439981124632300
+2008358212752379191612652136029991294853595946965196859741693482
+0844541290694937870456685613207109977124274791033934230885433366
+7384370652352070526243748928994309627278413639278957898138253231
+9578187104555913345998601137067929714713611164857078126384737972
+8420156134487666987288893076405559256754948991010321131279294460
+5540853177448150240294730287403030444639234606195492628873103241
+8768422026294831853457742842942759603226816221575074755602497845
+7605359841835918660749706837262991741437911176732730471182369717
+6959129699258609116759701620500559738374393878152272283480587083
+4118052431182458331750288353891570639295134432531692099111431060
+3841685337972341155977070405578742478929353656298266043957770721
+188343146984504242621578759640441761491089
+</code></pre>
+<p class="has-line-data" data-line-start="712" data-line-end="713">Estos valores estan en decimal, asi que el valor de Q debemos obtenerlo en decimal para poder utilizar el script <a href="https://github.com/ius/rsatool">rsatool.py</a> que nos reconstruye la llave privada que estamos buscando.</p>
+<p class="has-line-data" data-line-start="714" data-line-end="715">Para poder encontrar el valor de Q, utilizamos una web que hace calculos de numeros grandes. Denominada <img src="https://www.mobilefish.com/services/big_number/big_number.php" alt="MobielFish">, asi que tratamos de calcularlo y obtenemos el numero.</p>
+<p class="has-line-data" data-line-start="716" data-line-end="725"><strong>Q</strong> (decimal)<br>
+18376103800202275865357228549606411279158033976955282966053946531<br>
+65922753390937424680934606761000858840983344383776780002913018800<br>
+46124738297582288816281929253207328909858761430428397769220588616<br>
+91984073474531512332135168017871662286990517772251224132943733742<br>
+03401221716769706888739026994068967129949520741516120851758575959<br>
+74115869106450628140832286141623304564440090382235522452492733616<br>
+12532101822354359126371878569868307202194938398601705140954807080<br>
+74670751</p>
+<p class="has-line-data" data-line-start="726" data-line-end="727">Con este numero Q y el valor de P que hemos obtenido, podemos reconstruir nuestra llave, haciendo uso del script <a href="http://rsatool.py">rsatool.py</a> que hemos mencionado mas arriba. (Recordar que estos numeros son primos)</p>
+<pre><code class="has-line-data" data-line-start="729" data-line-end="830" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ python3 rsatool.py -f PEM -p 1959643815789862261108331251175305147
+59298142493706744907852228559426590498420748142107865644852788879520593
+17475195663008364018849372466071481741734035866773849096466701355618459
+02166562655870459516735863458847705716065791122784519508548325100203974
+97288720614165290105960081970919596015790490144114503625047179857503561
+52683210542891831838859210286503107843668747046253398862120207898370878
+86634817564173087029736209494475151289540864482712680217349281213963677
+-q 18376103800202275865357228549606411279158033976955282966053946531659
+22753390937424680934606761000858840983344383776780002913018800461247
+38297582288816281929253207328909858761430428397769220588616919840734
+74531512332135168017871662286990517772251224132943733742034012217167
+69706888739026994068967129949520741516120851758575959741158691064506
+28140832286141623304564440090382235522452492733616125321018223543591
+2637187856986830720219493839860170514095480708074670751 -o clave.pem
+Using (p, q) to initialise RSA instance
+
+n =
+9eae3c7aa1ec52e819933e2b16a44e56f3daf5fbf1aa8271e9bf3532e8a005ef4035
+abdd618342acdf33af2c47068fa5d99d04900d75a75985fecc1ad121547d89d4b2e
+6697ea8c3bc42ebb167fe8e6b7146b938305e6264f1062d2437fbbac595369b0640
+860f7df6e22b24534da385376fe8dccdc4245aec487211dd2af7cc8083b06873105
+b1dfa4d27b5b11ae858bff4f66db4b888115e13883d9ab878e1e44aa40a6855c707
+ced52bf87644bb1168164b03d8fb8475c40014676611d88f22c423939483e77c47c
+a046671885b5562bc0490c2f6b6765c65403532f151c6d2780c737251f519943b5b
+84bf4c476f6debae59c95fb6718ad88c605d8fccf2577ceed8e6df1bbd1d37b1e70b
+13e06198067beaeac87b437697a116c18723d004e4d24ae2da069fb619cf85547581
+9ed710f8184c48b71d4188c80d9fff997f844c830be9c429cf16577d6e451f974ff34
+2258156c3959c8d94008421548e8a5d74d659d4d8ba6ba6096c099a62454830fadfa6
+aa3fb95c9c9bbc6ebf844683
+
+e = 65537 (0x10001)
+
+d =
+162a9ad23aba6b9e76ac25fc18ee9ceef2a3bcc7142c508a9f2f91bbe9d928db122a2d
+3700bf385a33d7e1799af664acb36886d1a4bfb1c004c2e23a40ca9a25eb5226279fc
+70cc6430f4a237f368528a72b4d06776347f577e1f7fe5e3fb10896de88eb67aa1291
+f322070acd04447a8093068189d1038f1c00c6c68e11c989eccdf89faeab333f4dcee7
+642f38660ab7cdfd7ab7cb2b5ed9b87ac8b84b5abf9b877dc0e270511c5b1d5646202
+75bc683b6d185d912d19f2de120f88cbea374aafca922dedf8aff82c6eaf5314fcab152
+c20a0be55b3833d0ffd21cc87f1ad169f0ad349867535702adb38821fa91d29f5c97e
+033beedfc9288673a0190a8e40d247d8bcc9e1d9e6b6e2473d7964996ea41415ae2d
+c7ad793b9770f62e8401f4d182ccb90dddd57f9c262bf2a0da9e46892002c532cf5d9
+ba8994a9bcbf79fa212edaf094bb00cf5fcd99734b20ab1b883b9bd9cc2c0f6318896a
+f9d1344e85794934934230458a58b50c421eb2a365404c14422a0b5c34400109e209dc
+28d9
+
+p =
+d02264f0aff401e3ca1389381241bb5525d41d0f3da06483e8aa79f8e29965fce042008
+e084e5fde5fc0363813a6878a3b5d98752d15fd2bafdbc697e045041a5ebbbab0106373
+4477e6d517f1a934c96dae637578b0162190789b285a7bd462717f24e931e821183e9
+8c93e1763fef0d52a5c18f7ff0dce261ee221158c6674a49dde57cf22e0dedf33a7ef7003
+496485367aa7bb3e376682bbc1f229aa830be839779312fe3a820b2ee0213cb53fbeb2
+d328bac1d1c145b915f8ddfb91dd9d
+
+q =
+c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1705b6b4d3cbbb503
+ad2d95695c6b4f78e908f4d0be496a9d9a8de1a26704823a49e6ffd88a3df4ced303f072
+aa0c529d1b2df8cd45fb147af208473abe8628f3baa3173669b61990829df4ba044598e
+05c877d3fe63418d4079143215854ce521d398492c0faab9a2b13fe7329503151602f1
+58caa5db02796a247d30892aa2fa6e80c05d28d8aa4a865c97290bb36643d56b6b0b9c
+d2376e990e69bdcb132cdf18b98a9f
+
+Saving PEM as clave.pem
+
+┌──(ch4m0㉿kali)-[~/Descargas/CTF-Zerotolynx/rsa-challenge]
+└─$ cat clave.pem
+-----BEGIN RSA PRIVATE KEY-----
+MIIG4wIBAAKCAYEAnq48eqHsUugZkz4rFqROVvPa9fvxqoJx6b81MuigBe9ANavdYYNCrN8zryxH
+Bo+l2Z0EkA11p1mF/swa0SFUfYnUsuZpfqjDvELrsWf+jmtxRrk4MF5iZPEGLSQ3+7rFlTabBkCG
+D3324iskU02jhTdv6NzNxCRa7EhyEd0q98yAg7BocxBbHfpNJ7WxGuhYv/T2bbS4iBFeE4g9mrh4
+4eRKpApoVccHztUr+HZEuxFoFksD2PuEdcQAFGdmEdiPIsQjk5SD53xHygRmcYhbVWK8BJDC9rZ2
+XGVANTLxUcbSeAxzclH1GZQ7W4S/TEdvbeuuWclftnGK2IxgXY/M8ld87tjm3xu9HTex5wsT4GGY
+Bnvq6sh7Q3aXoRbBhyPQBOTSSuLaBp+2Gc+FVHWBntcQ+BhMSLcdQYjIDZ//mX+ETIML6cQpzxZX
+fW5FH5dP80IlgVbDlZyNlACEIVSOil101lnU2LprpglsCZpiRUgw+t+mqj+5XJybvG6/hEaDAgMB
+AAECggGAFiqa0jq6a552rCX8GO6c7vKjvMcULFCKny+Ru+nZKNsSKi03AL84WjPX4Xma9mSss2iG
+0aS/scAEwuI6QMqaJetSJiefxwzGQw9KI382hSinK00Gd2NH9Xfh9/5eP7EIlt6I62eqEpHzIgcK
+zQREeoCTBoGJ0QOPHADGxo4RyYnszfifrqszP03O52QvOGYKt839erfLK17ZuHrIuEtav5uHfcDi
+cFEcWx1WRiAnW8aDttGF2RLRny3hIPiMvqN0qvypIt7fiv+Cxur1MU/KsVLCCgvlWzgz0P/SHMh/
+GtFp8K00mGdTVwKts4gh+pHSn1yX4DO+7fySiGc6AZCo5A0kfYvMnh2ea24kc9eWSZbqQUFa4tx6
+15O5dw9i6EAfTRgsy5Dd3Vf5wmK/Kg2p5GiSACxTLPXZuomUqby/efohLtrwlLsAz1/NmXNLIKsb
+iDub2cwsD2MYiWr50TROhXlJNJNCMEWKWLUMQh6yo2VATBRCKgtcNEABCeIJ3CjZAoHBANAiZPCv
+9AHjyhOJOBJBu1Ul1B0PPaBkg+iqefjimWX84EIAjghOX95fwDY4E6aHijtdmHUtFf0rr9vGl+BF
+BBpeu7qwEGNzRHfm1RfxqTTJba5jdXiwFiGQeJsoWnvUYnF/JOkx6CEYPpjJPhdj/vDVKlwY9/8N
+ziYe4iEVjGZ0pJ3eV88i4N7fM6fvcANJZIU2eqe7PjdmgrvB8imqgwvoOXeTEv46ggsu4CE8tT++
+stMousHRwUW5Ffjd+5HdnQKBwQDDLFM+elj7PMd3hCd1Mv61OppQFr9UNQ94zQ8XBba008u7UDrS
+2VaVxrT3jpCPTQvklqnZqN4aJnBII6Seb/2Io99M7TA/ByqgxSnRst+M1F+xR68ghHOr6GKPO6ox
+c2abYZkIKd9LoERZjgXId9P+Y0GNQHkUMhWFTOUh05hJLA+quaKxP+cylQMVFgLxWMql2wJ5aiR9
+MIkqovpugMBdKNiqSoZclykLs2ZD1WtrC5zSN26ZDmm9yxMs3xi5ip8CgcBgt3rcdYcX0bg3d848
+fZsFqDx2/HwQqmS5m25ufy31PJshUIyvw2u9NBVnnItVGSrdB1MvMDJFoSVpJVGx/6A2eMsXp3UW
+IZwxc2yWYc/VHb0ACmuuF3VRR4cj4o6ZeEn+n6yRSIWry05bRTi7OdZgJ0412cx0EwA2qqc95HuH
+qLBOQ+Hd+UExj9q7MQKGJHa3iGdaxiHVMKeThD55qiiXQeRick+jH6EKfU/dYg5/fqgug4C1TDlZ
+ovZY3R5n2+kCgcBShmiAb302ZkG1QHTqsnBOswPSv3uRIIp1OseZpXnWxgNMJaVpyCo7VHTqhCaN
+4TcZJbeV6DhZeE1bw25068eZQilGPrh6vg4BQrznBSpPQvFfZX8gUcETPESIaeMR28jUBJWPhRz8
+vjyIXWwGktxZoSBzmIJZzr+YyKXOAslOj0nkl2+6YNniYm2WOeNup2uwa4WFTyM0qBQnqhgYJ2qv
+OXk7sB1WAziA0Q95uUEdVyCtJnEmWJjPfpGSFJdAxOMCgcEAw/xX03pppXfUAQol/ipl8Xw4iBJ6
+JAnIoqggS1iXviPUG86MTwv/ezawBCUlHwgh51SW4vy/+7lAs4TzEEF2IMSxSV2VVLzuk6m7ppUY
+rzlXAMWUMhjd6fAG/Q0gJSLc41JQ6P/ZSW51qjtpvUh5tbO4sLSy7Jxhh/WK71DGWSQnfDfLh4Q1
+puSp2L+rSNMrU9ZKFIK9rzYYn72ZwA0yuzhbFLcZBDMzHabcPh8gM5XLQMEA2LE9zPSpqYxMxe55
+-----END RSA PRIVATE KEY-----
+</code></pre>
+<p class="has-line-data" data-line-start="831" data-line-end="832">Con esta llave privada RSA podemos descrifrar el mensaje que nos han entregado, haciendo uso de openssl.</p>
+<pre><code class="has-line-data" data-line-start="834" data-line-end="842" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ openssl rsautl -decrypt -inkey clave.pem -in confidential -out flag.txt
+
+┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+└─$ cat flag.txt
+La bomba está en B! GOGOGOGOGOGO
+ESL{L0s_S3cR3t0s_d3b3n_P3rM4n3c3r_S13mPr3_0cUlT0$}
+</code></pre>
+<p class="has-line-data" data-line-start="843" data-line-end="845">Y asi obtenemos nuestra flag:<br>
+<strong>ESL{L0s_S3cR3t0s_d3b3n_P3rM4n3c3r_S13mPr3_0cUlT0$}</strong></p>
 </div>
