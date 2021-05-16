@@ -765,29 +765,32 @@ f3daf5fbf1aa8271e9bf3532e8a005ef4035abdd618342acdf33af2c470<br>
 034440c00931034440c00931034440c00931034440c00931034440<br>
 c00931034440c00931034440c00931034440c00931034440c00931<br>
 034440c00931034440c00931034440c0093103</p>
-<p class="has-line-data" data-line-start="620" data-line-end="622"><strong>0281c1 p</strong> 00d02264f0aff401e3ca1389381241bb5525d41d0f3da<br>
+<p class="has-line-data" data-line-start="620" data-line-end="623"><strong>0281c1 p</strong><br>
+00d02264f0aff401e3ca1389381241bb5525d41d0f3da<br>
 0644440c00931034440c00931034440c00931034440c00931039d</p>
-<p class="has-line-data" data-line-start="623" data-line-end="630"><strong>0281c1  q (base 64)</strong> 00c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1<br>
+<p class="has-line-data" data-line-start="624" data-line-end="632"><strong>0281c1  q (base 64)</strong><br>
+00c32c533e7a58fb3cc77784277532feb53a9a5016bf54350f78cd0f1<br>
 705b6b4d3cbbb503ad2d95695c6b4f78e908f4d0be496a9d9a8de1a2<br>
 6704823a49e6ffd88a3df4ced303f072aa0c529d1b2df8cd45fb147af2<br>
 08473abe8628f3baa3173669b61990829df4ba044598e05c877d3fe6<br>
 3418d4079143215854ce521d398492c0faab9a2b13fe73295031516<br>
 02f158caa5db02796a247d30892aa2fa6e80c05d28d8aa4a865c9729<br>
 0bb36643d56b6b0b9cd2376e990e69bdcb132cdf18b98a9f</p>
-<p class="has-line-data" data-line-start="631" data-line-end="638"><strong>0281c0 dmod(p-1)</strong> 60b77adc758717d1b83777ce3c7d9b05a83c76fc7c10aa64b99b6e6e<br>
+<p class="has-line-data" data-line-start="633" data-line-end="641"><strong>0281c0 dmod(p-1)</strong><br>
+60b77adc758717d1b83777ce3c7d9b05a83c76fc7c10aa64b99b6e6e<br>
 7f2df53c9b21508cafc36bbd3415679c8b55192add07532f303245a1<br>
 25692551b1ffa03678cb17a77516219c31736c9661cfd51dbd000a6<br>
 bae177551478723e28e997849fe9fac914885abcb4e5b4538bb39d6<br>
 60274e35d9cc74130036aaa73de47b87a8b04e43e1ddf941318fdab<br>
 b3102862476b788675ac621d530a793843e79aa289741e462724fa<br>
 31fa10a7d4fdd620e7f7ea82e8380b54c3959a2f658dd1e67dbe9</p>
-<p class="has-line-data" data-line-start="639" data-line-end="644"><strong>0281c0 dmod(q-1)</strong><br>
+<p class="has-line-data" data-line-start="642" data-line-end="647"><strong>0281c0 dmod(q-1)</strong><br>
 528668806f7d366641b54074eab2704eb303d2bf7b91208a753ac7<br>
 99a579d6c6034c25a569c82a3b5474ea84268de1371925b795e83<br>
 859784d5bc36e744440c00931034440c00931034440c00931034<br>
 440c00931034440c00931034440c00931034440c0093103</p>
-<p class="has-line-data" data-line-start="645" data-line-end="646">Tenemos los valores completos de q y dmod(p-1).  Tomando un script que hemos conseguido para poder calcular p y N:</p>
-<pre><code class="has-line-data" data-line-start="648" data-line-end="680" class="language-code">##Python3
+<p class="has-line-data" data-line-start="648" data-line-end="649">Tenemos los valores completos de q y dmod(p-1).  Tomando un script que hemos conseguido para poder calcular p y N:</p>
+<pre><code class="has-line-data" data-line-start="651" data-line-end="683" class="language-code">##Python3
 #import gmpy
 from sympy import isprime
 
@@ -819,8 +822,8 @@ for kp in range(3, e):
 N = p*q
 print(&quot;Valor de N: &quot;,N)
 </code></pre>
-<p class="has-line-data" data-line-start="681" data-line-end="682">Obtenemos los valores buscados:</p>
-<pre><code class="has-line-data" data-line-start="684" data-line-end="711" class="language-code">
+<p class="has-line-data" data-line-start="684" data-line-end="685">Obtenemos los valores buscados:</p>
+<pre><code class="has-line-data" data-line-start="687" data-line-end="714" class="language-code">
 ┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
 └─$ python3 ./valor-n-p.py                                                  2 ⨯
 Possible p: {p} 195964381578986226110833125117530514759298142493
@@ -847,9 +850,9 @@ Valor de N:  180053090851894882732301169407688044244269066553850
 3841685337972341155977070405578742478929353656298266043957770721
 188343146984504242621578759640441761491089
 </code></pre>
-<p class="has-line-data" data-line-start="712" data-line-end="713">Estos valores estan en decimal, asi que el valor de Q debemos obtenerlo en decimal para poder utilizar el script <a href="https://github.com/ius/rsatool">rsatool.py</a> que nos reconstruye la llave privada que estamos buscando.</p>
-<p class="has-line-data" data-line-start="714" data-line-end="715">Para poder encontrar el valor de Q, utilizamos una web que hace calculos de numeros grandes. Denominada <img src="https://www.mobilefish.com/services/big_number/big_number.php" alt="MobielFish">, asi que tratamos de calcularlo y obtenemos el numero.</p>
-<p class="has-line-data" data-line-start="716" data-line-end="725"><strong>Q</strong> (decimal)<br>
+<p class="has-line-data" data-line-start="715" data-line-end="716">Estos valores estan en decimal, asi que el valor de Q debemos obtenerlo en decimal para poder utilizar el script <a href="https://github.com/ius/rsatool">rsatool.py</a> que nos reconstruye la llave privada que estamos buscando.</p>
+<p class="has-line-data" data-line-start="717" data-line-end="718">Para poder encontrar el valor de Q, utilizamos una web que hace calculos de numeros grandes. Denominada <img src="https://www.mobilefish.com/services/big_number/big_number.php" alt="MobielFish">, asi que tratamos de calcularlo y obtenemos el numero.</p>
+<p class="has-line-data" data-line-start="719" data-line-end="728"><strong>Q</strong> (decimal)<br>
 18376103800202275865357228549606411279158033976955282966053946531<br>
 65922753390937424680934606761000858840983344383776780002913018800<br>
 46124738297582288816281929253207328909858761430428397769220588616<br>
@@ -858,8 +861,8 @@ Valor de N:  180053090851894882732301169407688044244269066553850
 74115869106450628140832286141623304564440090382235522452492733616<br>
 12532101822354359126371878569868307202194938398601705140954807080<br>
 74670751</p>
-<p class="has-line-data" data-line-start="726" data-line-end="727">Con este numero Q y el valor de P que hemos obtenido, podemos reconstruir nuestra llave, haciendo uso del script <a href="http://rsatool.py">rsatool.py</a> que hemos mencionado mas arriba. (Recordar que estos numeros son primos)</p>
-<pre><code class="has-line-data" data-line-start="729" data-line-end="830" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+<p class="has-line-data" data-line-start="729" data-line-end="730">Con este numero Q y el valor de P que hemos obtenido, podemos reconstruir nuestra llave, haciendo uso del script <a href="http://rsatool.py">rsatool.py</a> que hemos mencionado mas arriba. (Recordar que estos numeros son primos)</p>
+<pre><code class="has-line-data" data-line-start="732" data-line-end="833" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
 └─$ python3 rsatool.py -f PEM -p 1959643815789862261108331251175305147
 59298142493706744907852228559426590498420748142107865644852788879520593
 17475195663008364018849372466071481741734035866773849096466701355618459
@@ -960,8 +963,8 @@ rzlXAMWUMhjd6fAG/Q0gJSLc41JQ6P/ZSW51qjtpvUh5tbO4sLSy7Jxhh/WK71DGWSQnfDfLh4Q1
 puSp2L+rSNMrU9ZKFIK9rzYYn72ZwA0yuzhbFLcZBDMzHabcPh8gM5XLQMEA2LE9zPSpqYxMxe55
 -----END RSA PRIVATE KEY-----
 </code></pre>
-<p class="has-line-data" data-line-start="831" data-line-end="832">Con esta llave privada RSA podemos descrifrar el mensaje que nos han entregado, haciendo uso de openssl.</p>
-<pre><code class="has-line-data" data-line-start="834" data-line-end="842" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+<p class="has-line-data" data-line-start="834" data-line-end="835">Con esta llave privada RSA podemos descrifrar el mensaje que nos han entregado, haciendo uso de openssl.</p>
+<pre><code class="has-line-data" data-line-start="837" data-line-end="845" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
 └─$ openssl rsautl -decrypt -inkey clave.pem -in confidential -out flag.txt
 
 ┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
@@ -969,6 +972,6 @@ puSp2L+rSNMrU9ZKFIK9rzYYn72ZwA0yuzhbFLcZBDMzHabcPh8gM5XLQMEA2LE9zPSpqYxMxe55
 La bomba está en B! GOGOGOGOGOGO
 ESL{L0s_S3cR3t0s_d3b3n_P3rM4n3c3r_S13mPr3_0cUlT0$}
 </code></pre>
-<p class="has-line-data" data-line-start="843" data-line-end="845">Y asi obtenemos nuestra flag:<br>
+<p class="has-line-data" data-line-start="846" data-line-end="848">Y asi obtenemos nuestra flag:<br>
 <strong>ESL{L0s_S3cR3t0s_d3b3n_P3rM4n3c3r_S13mPr3_0cUlT0$}</strong></p>
 </div>
