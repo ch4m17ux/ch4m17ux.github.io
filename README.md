@@ -1,5 +1,5 @@
-# Blog Ch4m0
+# Memoirs Jekyll Theme
 
-Repositorio donde se aloja el blog.
+[Live Demo](https://wowthemesnet.github.io/jekyll-theme-memoirs/) | [Docs & Download](https://bootstrapstarter.com/jekyll-theme-memoirs/) |  [Buy me a coffee](https://www.wowthemes.net/donate/)
 
-Gracias.
+![memoirs](https://bootstrapstarter.com/assets/img/themes/memoirs-jekyll.jpg)
