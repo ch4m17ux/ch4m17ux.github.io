@@ -147,7 +147,7 @@ Hacemos algunos ajustes reemplazando el nombre de algunas variables para visuali
   
 Llama la atencion la parte del codigo que pone:
 
-```html
+```bash
 password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
 ```
   
