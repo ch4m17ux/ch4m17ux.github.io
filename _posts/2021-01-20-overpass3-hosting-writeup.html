@@ -1,0 +1,194 @@
+---
+layout: post
+title: "OverPass3 - Hosting"
+subtitle: "# Writeup - TryHackMe"
+date: 2021-01-20 20:34:00 +0100
+background: '/img/posts/06.jpg'
+---
+
+<div align="justify">
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="OverPass3__Hosting_Writeup__TryHackMe_0"></a>OverPass3 - Hosting (Writeup - TryHackMe)</h1>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/overpass3/tryhackme-overpass3.jpg" alt="Reto Overpass3 - TryHackMe"></p>
+<p class="has-line-data" data-line-start="4" data-line-end="5">Tenemos una maquina denominada <a href="https://tryhackme.com/room/overpass3hosting">OverPass3 - Hosting</a>, un reto de nivel medio.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="6" data-line-end="7"><em>En esta maquina se nos indica que debemos lanzar la maquina y esperar a que inicie, tardara cerca de 5 minutos, de otro modo no podremos acceder a la misma.  Se ha establecido que la maquina tenga un nivel intermedio de expertiz, y esta bien denominada, ya que hay que trabajar un poco para poder escalar privilegios, las vulnerabilidades para poder hacerlo solo podran ser explotadas casi al final del desarrollo de la misma</em>.</p>
+</blockquote>
+<h2 class="code-line" data-line-start=8 data-line-end=9 ><a id="Recoleccion_de_informacin_8"></a>Recoleccion de información</h2>
+<p class="has-line-data" data-line-start="10" data-line-end="11">Como generalmente creo que se debería comenzar, es realizando un un escaneo de puertos; así podremos saber que puertos abiertos tiene la maquina y poder tener un panorama general de los pasos a realizar.</p>
+<h3 class="code-line" data-line-start=12 data-line-end=13 ><a id="NMAP_12"></a>NMAP</h3>
+<p class="has-line-data" data-line-start="14" data-line-end="15"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-1.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="16" data-line-end="17">Podemos ver que tenemos 3 puertos abiertos:</p>
+<blockquote>
+<ul>
+<li class="has-line-data" data-line-start="17" data-line-end="18">21</li>
+<li class="has-line-data" data-line-start="18" data-line-end="19">22</li>
+<li class="has-line-data" data-line-start="19" data-line-end="20">80</li>
+</ul>
+</blockquote>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Así que vamos a seguir recolectando información. Ya que tenemos un sitio web, verificamos si podemos ver algo dentro del sitio, dentro del código fuente y demás.  Lo mas interesante de reseñar es que tenemos algunos nombres que nos podrían ayudar a tratar de probar accesos a través de SSH o algún administrador del sitio que pueda tener, así que tomamos nota:</p>
+<blockquote>
+<ul>
+<li class="has-line-data" data-line-start="23" data-line-end="24">Paradox</li>
+<li class="has-line-data" data-line-start="24" data-line-end="25">Elf</li>
+<li class="has-line-data" data-line-start="25" data-line-end="26">MuirlandOracle</li>
+<li class="has-line-data" data-line-start="26" data-line-end="27">NinjaJc01</li>
+</ul>
+</blockquote>
+<p class="has-line-data" data-line-start="28" data-line-end="29">Vamos a ejecutar un escaneo de directorios sobre el sitio web, verificamos si encuentra alguna zona de administración o similar.</p>
+<h3 class="code-line" data-line-start=30 data-line-end=31 ><a id="Gobuster_30"></a>Gobuster</h3>
+<p class="has-line-data" data-line-start="32" data-line-end="33"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-2.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="34" data-line-end="35">Observamos que nos ha encontrado un directorio interesante (<code>/backups</code>), ya que no es común que se tenga en un sitio web.  Al verificar este directorio encontramos que tiene un fichero <code>ZIP</code>, que nos lo descargaremos y verificaremos que contiene.</p>
+<p class="has-line-data" data-line-start="36" data-line-end="37"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-3.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=38 data-line-end=39 ><a id="UnzipDecrypt_38"></a>Unzip&amp;Decrypt</h3>
+<p class="has-line-data" data-line-start="40" data-line-end="41">Una vez que lo hemos descargado encontramos que hay dos ficheros:</p>
+<blockquote>
+<ul>
+<li class="has-line-data" data-line-start="42" data-line-end="43">Un fichero excel encriptado con <code>GPG</code></li>
+<li class="has-line-data" data-line-start="43" data-line-end="44">Una llave que suponemos que seria la que nos permita descencriptar el fichero.</li>
+</ul>
+</blockquote>
+<p class="has-line-data" data-line-start="46" data-line-end="47"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-4.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="48" data-line-end="49">Lo que debemos hacer primero es importar esta llave que hemos obtenido (y que seguro nos vendrá muy bien)</p>
+<p class="has-line-data" data-line-start="50" data-line-end="51"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-5.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="52" data-line-end="53">Posteriormente desencriptamos el fichero excel encriptado.</p>
+<p class="has-line-data" data-line-start="54" data-line-end="55"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-6.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="56" data-line-end="57">Obtenemos un fichero excel que podemos visualizar, bien sea con algún editor que tengas en tu maquina (<em>como <code>LibreOffice</code></em>) o utilizar un visor online.  De un modo u otro, podremos ver que hay una tabla con algunos datos interesantes: Nombre de Cliente, <strong>Nombre de Usuario</strong>, <strong>Contraseña</strong>, Numero de tarjeta de crédito y CVC (<em>No os emocionéis, los números de tarjeta no son validos</em>).  Verificaremos si con estos datos podemos acceder via <code>SSH</code>.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Customer Name</th>
+<th>Username</th>
+<th>Password</th>
+<th>Credit card number</th>
+<th>CVC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Par. A. Doxx</td>
+<td>paradox</td>
+<td>SxxxxxAxxGxxxx123</td>
+<td>4111 1111 4555 1142</td>
+<td>432</td>
+</tr>
+<tr>
+<td>0day Montgomery</td>
+<td>0day</td>
+<td>OxxxxIxTxxBxxxDxx</td>
+<td>5555 3412 4444 1115</td>
+<td>642</td>
+</tr>
+<tr>
+<td>Muir Land</td>
+<td>muirlandoracle</td>
+<td>Axx1D0xxAxxAw3x0xx</td>
+<td>5103 2219 1119 9245</td>
+<td>737</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line" data-line-start=64 data-line-end=65 ><a id="Login_Attempts_64"></a>Login Attempts</h3>
+<p class="has-line-data" data-line-start="66" data-line-end="67">Ya que tenemos algunos usuarios y contraseñas, probaremos el acceso a través de <code>SSH</code> ; en este caso he comenzado con el primer usuario, que para mi tiene mas sentido de que exista un usuario con ese nombre.</p>
+<p class="has-line-data" data-line-start="68" data-line-end="69"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-7.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="70" data-line-end="71">No obtenemos acceso, y según el mensaje todo indica que el acceso a través de <code>SSH</code> con <strong>usuario</strong> y <strong>contraseña</strong> no esta habilitado y se requiere un par de claves.</p>
+<p class="has-line-data" data-line-start="72" data-line-end="73">Hemos intentado con los otros usuarios, y tampoco obtenemos acceso.</p>
+<p class="has-line-data" data-line-start="74" data-line-end="75">Vimos que el <em>puerto 21 (ftp)</em> también estaba abierto, voy a intentar el acceso a través de este puerto <code>FTP</code>, pero nos encontramos con que no hay acceso con usuario <strong>anónimo</strong>, de nuevo, intentaremos el acceso acceso con los datos que hemos obtenido del fichero excel, veremos si hay suerte.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="76" data-line-end="77"><em>En muchas ocasiones encontramos que se reutilizan usuarios y contraseñas para varios servicios.</em></p>
+</blockquote>
+<p class="has-line-data" data-line-start="78" data-line-end="79">Podemos encontrar que obtenemos acceso con el usuario paradox, y la ubicación donde nos sitúa es donde podemos encontrar los archivos que componen el sitio web. He tratado de moverme hacia una ubicación diferente y al parecer este usuario en <code>FTP</code> esta enjaulado.</p>
+<p class="has-line-data" data-line-start="80" data-line-end="81"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-8.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=81 data-line-end=82 ><a id="Acceso_a_la_maquina_remota_81"></a>Acceso a la maquina remota</h3>
+<p class="has-line-data" data-line-start="83" data-line-end="84">Sin embargo, el hecho de que no podamos movernos no quiere decir que no podamos hacer nada, mas aun que estamos ubicados en la carpeta donde están los ficheros del sitio web, podemos comenzar nuestras acciones de acceso y <em>escalado de privilegios</em>.</p>
+<p class="has-line-data" data-line-start="85" data-line-end="86">Podemos en esta ocasión, de forma realmente sencilla, subir ficheros y ejecutarlos desde el sitio web, así que intentare subir un archivo <code>PHP</code> que contiene una <strong><em>shell reversa</em></strong> y acceder al servidor.</p>
+<p class="has-line-data" data-line-start="87" data-line-end="88"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-9.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="89" data-line-end="90">Como vemos, al listar los ficheros del servidor podemos ver el fichero <em>PHP</em> que hemos subido con la <strong><em>shell reversa</em></strong>.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="91" data-line-end="92">Recuerda que en el fichero PHP donde tenemos la shell reversa debemos modificarlo con la IP de nuestra maquina local y el puerto local donde escuchara, de esta forma se podrá establecer la comunicación.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="93" data-line-end="94">En nuestra maquina local, ejecutamos <code>netcat</code> para que escuche en el puerto que hemos configurado en el fichero <code>PHP</code> y ejecutamos desde la web el fichero para activar la <strong><em>shell reversa</em></strong>.</p>
+<p class="has-line-data" data-line-start="95" data-line-end="96"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-10.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="97" data-line-end="98"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-11.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="99" data-line-end="100">Tenemos de esta forma establecida la comunicación a través de <code>netcat</code> y tenemos una <strong><em>shell</em></strong> en el servidor remoto; pero es una shell un poco limitada, así que ejecutaremos algunos comandos para poder tener mayores funcionalidades.</p>
+<p class="has-line-data" data-line-start="101" data-line-end="102"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-12.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="103" data-line-end="104">Estos comando nos permiten tener autocompletado, buscar a través del uso de las flechas del teclado y algunas opciones mas dentro de la <em>shell</em>.</p>
+<p class="has-line-data" data-line-start="105" data-line-end="106">Verificamos con qué usuario nos “loguea” en esta shell (<em>lo mas común es <strong>www</strong> o <strong>apache</strong></em>)</p>
+<p class="has-line-data" data-line-start="107" data-line-end="108"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-13.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=108 data-line-end=109 ><a id="Flag_de_Web_108"></a>Flag de Web</h3>
+<p class="has-line-data" data-line-start="110" data-line-end="111">La primera flag que nos piden que debemos buscar esta relacionada con este mismo usuario, así que buscaremos donde puede estar la flag.</p>
+<p class="has-line-data" data-line-start="112" data-line-end="113"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-14.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="114" data-line-end="115">A través de ensayo/error hemos encontrado un fichero denominado web.flag, que suponemos que es nuestra primera flag.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="116" data-line-end="117">En estos casos, es ir probando opciones:</p>
+<ul>
+<li class="has-line-data" data-line-start="117" data-line-end="118">Buscar por el nombre apache</li>
+<li class="has-line-data" data-line-start="118" data-line-end="119">Buscar por la palabra flag como nombre</li>
+<li class="has-line-data" data-line-start="119" data-line-end="120">Buscar por la palabra flag como extensión</li>
+<li class="has-line-data" data-line-start="120" data-line-end="121">Etc</li>
+</ul>
+</blockquote>
+<p class="has-line-data" data-line-start="122" data-line-end="123"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-15.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=123 data-line-end=124 ><a id="Flag_de_Usuario_123"></a>Flag de Usuario</h3>
+<p class="has-line-data" data-line-start="125" data-line-end="126">La siguiente pista que nos dan, es que la <strong><em>flag de usuario</em></strong> se encuentra bajo el usuario <code>&quot;james&quot;</code>, cuando revisamos qué usuarios tienen un <code>home</code> creado encontramos dos: <strong><em>Paradox y James</em></strong>.</p>
+<p class="has-line-data" data-line-start="127" data-line-end="128"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-16.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="129" data-line-end="130">Pero al intentar acceder a la carpeta de usuarios nos pone que no tenemos permisos.</p>
+<p class="has-line-data" data-line-start="131" data-line-end="132"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-17.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="133" data-line-end="134">Vamos a reutilizar accesos, no tenemos de forma sencilla o clara un posible acceso como <code>James</code>; podríamos realizar una análisis de fuerza bruta a través de <code>Hydra</code> pero hemos visto con el usuario <code>Paradox</code> que el acceso a través de <code>SSH</code> se realiza con alguna clave privada, así que esta no es una buena opción.  Dicho lo anterior reutilizaremos el acceso de <code>Paradox</code> que teníamos para el acceso a <code>FTP</code>, veremos si podemos cambiar de usuario, desde <code>Apache</code> hacia <code>Paradox</code>.</p>
+<p class="has-line-data" data-line-start="135" data-line-end="136"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-18.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="137" data-line-end="138">Vemos que podemos acceder con este usuario, verificamos si podemos tener acceso como <code>sudo</code> o <code>superuser</code>.</p>
+<p class="has-line-data" data-line-start="139" data-line-end="140"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-19.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="141" data-line-end="142">Este usuario es un usuario normal, es decir no tiene permisos especiales, no esta dentro del grupo <em><code>sudoers</code></em>, que permita ejecutar acciones como usuario <code>root</code>, y que quizá podamos vulnerar.</p>
+<p class="has-line-data" data-line-start="143" data-line-end="144">Verificamos si podemos acceder a la carpeta home de <strong><code>James</code></strong>, que es el usuario que nos interesa y donde esta la flag.</p>
+<p class="has-line-data" data-line-start="145" data-line-end="146"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-20.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=146 data-line-end=147 ><a id="Escalado_de_privilegios_146"></a>Escalado de privilegios</h3>
+<p class="has-line-data" data-line-start="148" data-line-end="149">No me gusta utilizar herramientas automatizadas, que en muchas ocasiones nos puede ayudar pero que nos da mucha información, sin embargo, para esta maquina utilizare <strong><code>Linpeas</code></strong>, que nos hará una búsqueda total de vulnerabilidades, y veremos si encuentra algo interesante.</p>
+<p class="has-line-data" data-line-start="150" data-line-end="151">Lo primero, debemos descargar el bash de <code>Linpeas</code> desde su repositorio oficial, en nuestra maquina local.</p>
+<p class="has-line-data" data-line-start="152" data-line-end="153"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-21.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="154" data-line-end="155">De nuevo, accedemos por <code>FTP</code> con el acceso que ya tenemos y subiremos el <code>bash</code> de <strong>Linpeas</strong> para poder ejecutarlo en la maquina remota.</p>
+<p class="has-line-data" data-line-start="156" data-line-end="157"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-22.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="158" data-line-end="159">Sabemos que el <code>FTP</code> nos deja ubicado en la carpeta del sitio web, así que nos posicionaremos en esta carpeta, le damos permisos de ejecución al <code>bash</code> y verificamos que información nos va arrojando.</p>
+<p class="has-line-data" data-line-start="160" data-line-end="161"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-23.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="162" data-line-end="163">Dentro de toda la información que nos arroja, que es bastante extenso, podemos ver que ha encontrado una vulnerabilidad en el montaje de un recurso <strong><code>NTFS</code></strong></p>
+<p class="has-line-data" data-line-start="164" data-line-end="165"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-24.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="166" data-line-end="167">Buscando en algunos recursos de internet, que nos indique cómo realizar este montaje encontramos que se puede realizar con una redirección de puertos, así que, como he mencionado en un <a href="https://ch4m17ux.github.io/2020/12/22/unbaked-pie-tryhackme-writeup.html">post anterior</a>, utilizare <code>Chisel</code>.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="168" data-line-end="169">Puedes encontrar mas información en: <a href="https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html">https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html</a></p>
+</blockquote>
+<p class="has-line-data" data-line-start="170" data-line-end="171">Lo que tenemos que hacer es ir al github oficial y descargar el ejecutable que necesitamos. Para que funcione la redirección de puertos y poder montar el recurso, requerimos que <code>Chisel</code> este tanto en nuestra <strong><em>maquina local</em></strong> (server) como en la <strong><em>maquina remota</em></strong> (client), para poder copiar el binario en la maquina remota reutilizare el acceso FTP que ya tenemos.</p>
+<p class="has-line-data" data-line-start="172" data-line-end="173"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-25.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="174" data-line-end="175">Le damos permisos de ejecución al binario de <code>Chisel</code>, tanto en nuestra maquina local, como en la maquina remota.  Y una vez que se tiene permisos de ejecución lo iniciamos, en nuestra maquina local como servidor y en la maquina remota como cliente.</p>
+<p class="has-line-data" data-line-start="176" data-line-end="177"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-26.png" alt="OverPass3 - WriteUp"></p>
+<blockquote>
+<h3 class="code-line" data-line-start=177 data-line-end=178 ><a id="Como_informacin_de_aprendizaje_177"></a>Como información de aprendizaje</h3>
+<p class="has-line-data" data-line-start="178" data-line-end="180">$ chisel server --p 8000 --reverse<br>
+En el lado del servidor (<strong><code>maquina local</code></strong>), el puerto <em>8000</em> es elegido aleatoriamente por nosotros para escuchar.</p>
+<p class="has-line-data" data-line-start="181" data-line-end="184">$ ./chisel client 10.x.x.x:8000 R:2021:127.0.0.1:2021<br>
+<em>R:2021</em> significa que cuando la conexión es establecida en el puerto <em>8000</em> con tu servidor en la IP <em>10.x.x.x</em>, el servidor (<strong><code>maquina local</code></strong>), también abre el puerto <em>2021</em>.<br>
+Luego cuando un paquete va hacia el puerto <em>2021</em> en tu lado, es redirigido al túnel en el puerto <em>8000</em> y enviado afuera a <em>127.0.0.1:2021</em> en la victima (<strong><code>maquina remota</code></strong>)</p>
+<p class="has-line-data" data-line-start="185" data-line-end="186">Espero que hayas seguido el tema. (<em>y que haya podido ser claro</em>)</p>
+</blockquote>
+<p class="has-line-data" data-line-start="187" data-line-end="188">Una vez que tenemos conexión a través de <code>Chisel</code>, vamos a tratar de montar el recurso <code>NFS</code> en nuestra maquina local.  Tal como hemos visto anteriormente al verificar <strong><em>/etc/exports</em></strong>, podemos ver la configuración para el <em>NFS</em>.  Cuando obtenemos <strong><em>fsid=0</em></strong> significa que la ubicación <strong><em>/home/james</em></strong> como recurso raíz, sea igual a <strong><em>/</em></strong> .</p>
+<p class="has-line-data" data-line-start="189" data-line-end="190">En nuestra maquina local creamos una carpeta, donde montaremos el recurso <em>NFS</em> y ejecutamos el comando de montaje.</p>
+<p class="has-line-data" data-line-start="191" data-line-end="192"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-27.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="193" data-line-end="194">Allí encontramos y obtenemos la flag de usuario.</p>
+<p class="has-line-data" data-line-start="195" data-line-end="196"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-28.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=196 data-line-end=197 ><a id="Flag_de_Root_196"></a>Flag de Root</h3>
+<p class="has-line-data" data-line-start="198" data-line-end="199">Finalmente, nos hace falta realizar el ultimo escalado de privilegios y poder acceder al usuario <code>root</code>.  Podemos comenzar por obtener una <code>shell</code> como <strong>James</strong> y desde allí escalar hacia el usuario <code>root</code>.   Para esta finalidad, trataremos de obtener la llave privada SSH del usuario James, que parece tener mayores y mejores privilegios sobre la maquina.</p>
+<p class="has-line-data" data-line-start="200" data-line-end="201"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-29.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="202" data-line-end="203">Vamos a copiar el fichero <strong><code>id_rsa</code></strong> a nuestra maquina local, le asignaremos los permisos adecuados y accederemos como el usuario <strong>James</strong>.</p>
+<p class="has-line-data" data-line-start="204" data-line-end="205"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-30.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="206" data-line-end="207">Anteriormente habíamos visto que la vulnerabilidad era que que el recurso <code>NFS</code> lo podemos montar como root en nuestra maquina local y desde allí manipular todos los permisos.</p>
+<p class="has-line-data" data-line-start="208" data-line-end="209">Vamos a seguir aprovechando esta vulnerabilidad y vamos a copiar un binario <code>bash</code> en el recurso <code>NFS</code> y cambiarle los permisos desde nuestra maquina local; de esta forma esperamos obtener una shell como root.</p>
+<p class="has-line-data" data-line-start="210" data-line-end="211"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-31.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="212" data-line-end="213">Ya hemos modificado los permisos, estableciendo un <code>SUID</code> y un permiso total; también hemos modificado el propietario para que sea <code>root</code>.  Lo podemos ver en nuestra maquina local y en la maquina remota.</p>
+<p class="has-line-data" data-line-start="214" data-line-end="215"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-32.png" alt="OverPass3 - WriteUp"></p>
+<p class="has-line-data" data-line-start="216" data-line-end="217">Ejecutamos el binario bash que hemos modificado con estos permisos y obtenemos nuestra <code>shell</code> como <strong><em><code>root</code></em></strong></p>
+<p class="has-line-data" data-line-start="218" data-line-end="219"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-33.png" alt="OverPass3 - WriteUp"></p>
+<h3 class="code-line" data-line-start=220 data-line-end=221 ><a id="Flag_de_root_220"></a>Flag de root</h3>
+<p class="has-line-data" data-line-start="222" data-line-end="223">Ya que estamos como <code>root</code>, procedemos a sacar la ultima flag, que suponemos esta dentro de la carpeta <strong><code>/root</code></strong></p>
+<p class="has-line-data" data-line-start="224" data-line-end="225"><img src="https://ch4m17ux.github.io/img/posts/overpass3/overpass3-34.png" alt="OverPass3 - WriteUp"></p>
+<h2 class="code-line" data-line-start=225 data-line-end=226 ><a id="Conclusiones_225"></a>Conclusiones</h2>
+<p class="has-line-data" data-line-start="227" data-line-end="228">Esta maquina, como hemos indicado al comienzo es una maquina de nivel medio, hay que comenzar a tener cierta expertiz y ciertos conocimientos para poder explotarla, hemos encontrado un camino que parecía sencillo, pero hemos podido comprobar que hay que realizar algo de <strong><code>&quot;try Harder&quot;</code></strong> para lograr escalar privilegios y alcanzar las flag propuestas.</p>
+<p class="has-line-data" data-line-start="229" data-line-end="230">Esperamos que esta guía haya sido clara y cualquier errata, duda o sugerencia, podéis hacérnosla llegar por cualquiera de los medios aquí dispuestos.</p>
+<h1 class="code-line" data-line-start=231 data-line-end=232 ><a id="Fin_231"></a>Fin</h1>
+</div>
