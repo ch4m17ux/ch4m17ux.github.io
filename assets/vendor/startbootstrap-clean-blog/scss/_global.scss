@@ -75,3 +75,12 @@ img::-moz-selection {
   color: $white;
   background: transparent;
 }
+
+.language-python .nf{
+    background-color:red;
+    color:green;
+}
+.language-python .p{
+    background-color:blue;
+    color:white;
+}
