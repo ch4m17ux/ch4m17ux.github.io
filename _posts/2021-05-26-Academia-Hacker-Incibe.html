@@ -2,329 +2,331 @@
 layout: post
 title: "Academia Hacker - WriteUp - Semana 3 y 4"
 subtitle: "#CTF writeUp"
-date: 2021-05-26 17:54:00 +0100
+date: 2021-05-06 17:54:00 +0100
 background: '/img/posts/06.jpg'
 ---
 
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+
 <div align="justify">
-        <h1 id="academia-hacker-incibe-writeup-3-y-4-semana">Academia Hacker Incibe - #writeUp - 3 y 4 semana</h1>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/academia-hacker-incibe.jpg" alt="Academia Hacker" /></p>
-<p>Durante el mes de Mayo y Junio de 2021, estaremos participando en Academia Hacker.  Una iniciativa de <a href="https://www.incibe.es/">Incibe</a> para formar y encontrar las capacidades en Ciberseguridad.</p>
-<p>El registro esta cerrado, debido a que se ha tenido una convocatoria de 400 equipos con un minimo de 4 participantes y un maximo de 8.</p>
-<hr />
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Academia_Hacker_Incibe__writeUp__3_y_4_semana_0"></a>Academia Hacker Incibe - #writeUp - 3 y 4 semana</h1>
+<p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/academia-hacker-incibe.jpg" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="4" data-line-end="5">Durante el mes de Mayo y Junio de 2021, estaremos participando en Academia Hacker.  Una iniciativa de <a href="https://www.incibe.es/">Incibe</a> para formar y encontrar las capacidades en Ciberseguridad.</p>
+<p class="has-line-data" data-line-start="6" data-line-end="7">El registro esta cerrado, debido a que se ha tenido una convocatoria de 400 equipos con un minimo de 4 participantes y un maximo de 8.</p>
+<hr>
 <blockquote>
-<h3 id="disclaimer">Disclaimer:</h3>
-<p>Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.
+<h3 class="code-line" data-line-start=9 data-line-end=10 ><a id="Disclaimer_9"></a>Disclaimer:</h3>
+<p class="has-line-data" data-line-start="10" data-line-end="12">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.<br>
 Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 </blockquote>
-<hr />
-<h2 id="reto-11"><strong>Reto 11</strong></h2>
-<p>Nos entregan la descripción del reto:</p>
+<hr>
+<h2 class="code-line" data-line-start=15 data-line-end=16 ><a id="Reto_11_15"></a><strong>Reto 11</strong></h2>
+<p class="has-line-data" data-line-start="17" data-line-end="18">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p><em><strong>DESCRIPCION</strong></em>:</p>
-<p>Después de conseguir sacar la contraseña del usuario bill, la profesora os felicita y os reenvía otro mensaje de antiguos alumnos que actualmente trabajan en el mundo de la ciberseguridad.</p>
-<p>Está segura de que todo el COLEGIO está muy contento con el trabajo de estos exalumnos.</p>
-<p>Pregunta:
+<p class="has-line-data" data-line-start="19" data-line-end="20"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Después de conseguir sacar la contraseña del usuario bill, la profesora os felicita y os reenvía otro mensaje de antiguos alumnos que actualmente trabajan en el mundo de la ciberseguridad.</p>
+<p class="has-line-data" data-line-start="23" data-line-end="24">Está segura de que todo el COLEGIO está muy contento con el trabajo de estos exalumnos.</p>
+<p class="has-line-data" data-line-start="25" data-line-end="27">Pregunta:<br>
 ¿Qué mensaje enviaron estos antiguos alumnos?</p>
-<p><strong>Datos proporcionados:</strong></p>
-<p>Fichero imagen.</p>
+<p class="has-line-data" data-line-start="28" data-line-end="29"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="30" data-line-end="31">Fichero imagen.</p>
 </blockquote>
-<p>Se nos entrega una imagen con unos cuadrados y unos puntos, debemos tratar de descifrar lo que alli se muestra. Investigando encontramos que es un cifrado RosiCrucian.</p>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11.png" alt="Academia Hacker" /></p>
-<p>Podemos hacer uso del sitio web: <a href="http://www.dcode.fr">www.dcode.fr</a> y desde alli decodificar el mensaje. Al hacerlo obtenemos las letras:</p>
-<p>NOQPGOSUZZWKFONIXRUACUGLPALOP</p>
-<p>Un mensaje sin sentido, pero al ver la nota que nos han dejado, observamos que hay una palabra que resalta: <strong>COLEGIO</strong></p>
-<p>Asi que debemos usar esa palabra de alguna forma para poder descifrar el mensaje. Haciendo un poco de Brainstorming, encontramos que si utilizamos vigenere lo tenemos en claro.</p>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11-1.png" alt="Academia Hacker" /></p>
-<p LOSEXALUMNOSOSSALUDAN>Y obtenemos la flag que nos estan pidiendo:
-<em><strong>flag</strong></em></p>
-<hr />
-<h2 id="reto-12"><strong>Reto 12</strong></h2>
-<p>Nos entregan la descripción del reto:</p>
+<p class="has-line-data" data-line-start="32" data-line-end="33">Se nos entrega una imagen con unos cuadrados y unos puntos, debemos tratar de descifrar lo que alli se muestra. Investigando encontramos que es un cifrado RosiCrucian.</p>
+<p class="has-line-data" data-line-start="34" data-line-end="35"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="36" data-line-end="37">Podemos hacer uso del sitio web: <a href="http://www.dcode.fr">www.dcode.fr</a> y desde alli decodificar el mensaje. Al hacerlo obtenemos las letras:</p>
+<p class="has-line-data" data-line-start="38" data-line-end="39">NOQPGOSUZZWKFONIXRUACUGLPALOP</p>
+<p class="has-line-data" data-line-start="40" data-line-end="41">Un mensaje sin sentido, pero al ver la nota que nos han dejado, observamos que hay una palabra que resalta: <strong>COLEGIO</strong></p>
+<p class="has-line-data" data-line-start="42" data-line-end="43">Asi que debemos usar esa palabra de alguna forma para poder descifrar el mensaje. Haciendo un poco de Brainstorming, encontramos que si utilizamos vigenere lo tenemos en claro.</p>
+<p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="46" data-line-end="48">Y obtenemos la flag que nos estan pidiendo:<br>
+<strong><em>flag{LOSEXALUMNOSOSSALUDAN}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=51 data-line-end=52 ><a id="Reto_12_51"></a><strong>Reto 12</strong></h2>
+<p class="has-line-data" data-line-start="53" data-line-end="54">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p><em><strong>DESCRIPCION</strong></em>:</p>
-<p>Te ha llegado un correo con el asunto &quot;Codificación de mensajes en ficheros de audio&quot;. Te aseguran que en el fichero adjunto hay un mensaje. Al abrirlo hay un sonido muy extraño y te pitan los oídos.</p>
-<p>Estimado Alumno:</p>
-<p>El arte de esconder mensajes en múltiples formatos de fichero no es nuevo. La información está ahí, aunque no se vea ni se escuche. Para poder ganarte el primer premio de nuestro concurso anual, necesitamos conocer la flag. Como premio, recibirás algunos puntos.</p>
-<p>Pregunta:
+<p class="has-line-data" data-line-start="55" data-line-end="56"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="57" data-line-end="58">Te ha llegado un correo con el asunto “Codificación de mensajes en ficheros de audio”. Te aseguran que en el fichero adjunto hay un mensaje. Al abrirlo hay un sonido muy extraño y te pitan los oídos.</p>
+<p class="has-line-data" data-line-start="59" data-line-end="60">Estimado Alumno:</p>
+<p class="has-line-data" data-line-start="61" data-line-end="62">El arte de esconder mensajes en múltiples formatos de fichero no es nuevo. La información está ahí, aunque no se vea ni se escuche. Para poder ganarte el primer premio de nuestro concurso anual, necesitamos conocer la flag. Como premio, recibirás algunos puntos.</p>
+<p class="has-line-data" data-line-start="63" data-line-end="65">Pregunta:<br>
 ¿Serás capaz de decodificar la señal de audio?</p>
-<p><strong>Datos proporcionados:</strong></p>
-<p>Fichero de audio.</p>
+<p class="has-line-data" data-line-start="66" data-line-end="67"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="68" data-line-end="69">Fichero de audio.</p>
 </blockquote>
-<p>Se nos entrega un fichero de audio, que al revisarlo nos parece que son tonos DTMF. Este reto tiene varias posibilidades de resolucion, asi que aqui encontramos una de las tantas. (este write-up esta basado en: <a href="http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong">http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong</a> y <a href="https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void">https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void)</a>)</p>
-<p>Primero debemos instalar el paquete de Linux que nos permita Demodular la señal, este paquete segun la guia se denomina 'multimon-ng'.</p>
-<pre><code class="language-console"># sudo apt-get install libpulse-dev multimon-ng
+<p class="has-line-data" data-line-start="70" data-line-end="71">Se nos entrega un fichero de audio, que al revisarlo nos parece que son tonos DTMF. Este reto tiene varias posibilidades de resolucion, asi que aqui encontramos una de las tantas. (este write-up esta basado en: <a href="http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong">http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong</a> y <a href="https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void">https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void)</a>)</p>
+<p class="has-line-data" data-line-start="72" data-line-end="73">Primero debemos instalar el paquete de Linux que nos permita Demodular la señal, este paquete segun la guia se denomina ‘multimon-ng’.</p>
+<pre><code class="has-line-data" data-line-start="75" data-line-end="77" class="language-console"># sudo apt-get install libpulse-dev multimon-ng
 </code></pre>
-<p>Una vez que tenemos el paquete y las dependencias instaladas, procedemos a demodular la señal.</p>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto12.png" alt="Academia Hacker" /></p>
-<p intercepted_communication>Obtenemos la flag:
-<em><strong>flag</strong></em></p>
-<hr />
-<h2 id="reto-13"><strong>Reto 13</strong></h2>
-<p>Nos entregan la descripción del reto:</p>
+<p class="has-line-data" data-line-start="78" data-line-end="79">Una vez que tenemos el paquete y las dependencias instaladas, procedemos a demodular la señal.</p>
+<p class="has-line-data" data-line-start="80" data-line-end="81"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto12.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="82" data-line-end="84">Obtenemos la flag:<br>
+<strong><em>flag{intercepted_communication}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=87 data-line-end=88 ><a id="Reto_13_87"></a><strong>Reto 13</strong></h2>
+<p class="has-line-data" data-line-start="89" data-line-end="90">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p><em><strong>DESCRIPCION</strong></em>:</p>
-<p>En una de las clases de informática a las que asistes te asignan la tarea de mirar el código de un fichero html que formará parte del aplicativo que están desarrollando otros compañeros. Revísalo y confirma las dudas que tiene el profesor.</p>
-<p>¿Cuál es la contraseña de acceso? El código parece ofuscado.</p>
-<p><strong>Datos proporcionados:</strong></p>
-<p>Fichero html</p>
+<p class="has-line-data" data-line-start="91" data-line-end="92"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="93" data-line-end="94">En una de las clases de informática a las que asistes te asignan la tarea de mirar el código de un fichero html que formará parte del aplicativo que están desarrollando otros compañeros. Revísalo y confirma las dudas que tiene el profesor.</p>
+<p class="has-line-data" data-line-start="95" data-line-end="96">¿Cuál es la contraseña de acceso? El código parece ofuscado.</p>
+<p class="has-line-data" data-line-start="97" data-line-end="98"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="99" data-line-end="100">Fichero html</p>
 </blockquote>
-<p>Nos entregan un fichero HTML que al ejecutarlo, nos solicita una contraseña. Colocamos cualquier calor y nos devuelve un mensaje de error.</p>
-<p>Al analizar el codigo vemos que hay un JavaScript ofuscado, tratamos de desofuscarlo para ver mas claro, nos encontramos con que los nombre de las variables y los valores se han sustituido por codigo hexadecimal.</p>
-<p>Hacemos algunos ajustes reemplazando el nombre de algunas variables para visualizarlo mejor y podriamos obtener el codigo siguiente:</p>
-<pre><code class="language-html">&lt;script
-  src=&quot;https://code.jquery.com/jquery-2.2.4.min.js&quot;
-  integrity=&quot;sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=&quot;
-  crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+<p class="has-line-data" data-line-start="101" data-line-end="102">Nos entregan un fichero HTML que al ejecutarlo, nos solicita una contraseña. Colocamos cualquier calor y nos devuelve un mensaje de error.</p>
+<p class="has-line-data" data-line-start="103" data-line-end="104">Al analizar el codigo vemos que hay un JavaScript ofuscado, tratamos de desofuscarlo para ver mas claro, nos encontramos con que los nombre de las variables y los valores se han sustituido por codigo hexadecimal.</p>
+<p class="has-line-data" data-line-start="105" data-line-end="106">Hacemos algunos ajustes reemplazando el nombre de algunas variables para visualizarlo mejor y podriamos obtener el codigo siguiente:</p>
+<pre><code class="has-line-data" data-line-start="108" data-line-end="146" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>
+  <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://code.jquery.com/jquery-2.2.4.min.js"</span>
+  <span class="hljs-attribute">integrity</span>=<span class="hljs-value">"sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="</span>
+  <span class="hljs-attribute">crossorigin</span>=<span class="hljs-value">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
   
-  &lt;script&gt;
-  var Cadena=['Incorrect\x20password','OK\x20,\x20flag{password}','1414812FnzZML','2ZuZoOq','720827WQlMog','password','granted1337','25459OvNsVk','1359268dQuzsW','647302iqoESf','getElementById','1407845XbPGsA','access','1163212MgQrRV','value','5eMgJYX'];
-  var Valor_1=function(Valor_4,Valor_5){
-    Valor_4=Valor_4-0x14a;
-    var Valor_6=Cadena[Valor_4];
-    return Valor_6;};
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">var</span> Cadena=[<span class="hljs-string">'Incorrect\x20password'</span>,<span class="hljs-string">'OK\x20,\x20flag{password}'</span>,<span class="hljs-string">'1414812FnzZML'</span>,<span class="hljs-string">'2ZuZoOq'</span>,<span class="hljs-string">'720827WQlMog'</span>,<span class="hljs-string">'password'</span>,<span class="hljs-string">'granted1337'</span>,<span class="hljs-string">'25459OvNsVk'</span>,<span class="hljs-string">'1359268dQuzsW'</span>,<span class="hljs-string">'647302iqoESf'</span>,<span class="hljs-string">'getElementById'</span>,<span class="hljs-string">'1407845XbPGsA'</span>,<span class="hljs-string">'access'</span>,<span class="hljs-string">'1163212MgQrRV'</span>,<span class="hljs-string">'value'</span>,<span class="hljs-string">'5eMgJYX'</span>];
+  <span class="hljs-keyword">var</span> Valor_1=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">Valor_4,Valor_5</span>)</span>{
+    Valor_4=Valor_4-<span class="hljs-number">0x14a</span>;
+    <span class="hljs-keyword">var</span> Valor_6=Cadena[Valor_4];
+    <span class="hljs-keyword">return</span> Valor_6;};
     
-    alert(Valor_2(0x14b)+Valor_3)
+    alert(Valor_2(<span class="hljs-number">0x14b</span>)+Valor_3)
 
-    (function(_0x1d7e2f,_0x1e9b0f){
-        var Valor_8=Valor_1;
-        while(!![]){
-            try{
-                var Valor_7=parseInt(Valor_8(0x14e))*parseInt(Valor_8(0x156))+-parseInt(Valor_8(0x153))+-parseInt(Valor_8(0x14c))+-parseInt(Valor_8(0x151))+parseInt(Valor_8(0x152))*parseInt(Valor_8(0x158))+parseInt(Valor_8(0x157))+parseInt(Valor_8(0x14a));
-                if(Valor_7===_0x1e9b0f)break;
-                else _0x1d7e2f['push'](
-                    _0x1d7e2f['shift']());
+    (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_0x1d7e2f,_0x1e9b0f</span>)</span>{
+        <span class="hljs-keyword">var</span> Valor_8=Valor_1;
+        <span class="hljs-keyword">while</span>(!![]){
+            <span class="hljs-keyword">try</span>{
+                <span class="hljs-keyword">var</span> Valor_7=<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x14e</span>))*<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x156</span>))+-<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x153</span>))+-<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x14c</span>))+-<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x151</span>))+<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x152</span>))*<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x158</span>))+<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x157</span>))+<span class="hljs-built_in">parseInt</span>(Valor_8(<span class="hljs-number">0x14a</span>));
+                <span class="hljs-keyword">if</span>(Valor_7===_0x1e9b0f)<span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">else</span> _0x1d7e2f[<span class="hljs-string">'push'</span>](
+                    _0x1d7e2f[<span class="hljs-string">'shift'</span>]());
                 }
-                catch(_0x192125){
-                    _0x1d7e2f['push'](_0x1d7e2f['shift']());}}}(Cadena,0xd9531));
-                    function verify(){
-                        var Valor_2=Valor_1;
-                        password=document[Valor_2(0x159)](Valor_2(0x154))[Valor_2(0x14d)];
-                        var Valor_3=Valor_2(0x155);
-        password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
-    &lt;/script&gt;
-  &lt;form&gt;
-    &lt;label&gt;Clave&lt;/label&gt;
-    &lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot; placeholder=&quot;Clave&quot; class=&quot;form-control&quot; /&gt;
-    &lt;input type=&quot;submit&quot; value=&quot;Login&quot; class=&quot;form-control btn btn-success formulario&quot; onclick=&quot;javascript:verify();&quot;/&gt;
-&lt;/form&gt;
-		&lt;div id=&quot;tagreply&quot;&gt;&lt;/div&gt;
+                <span class="hljs-keyword">catch</span>(_0x192125){
+                    _0x1d7e2f[<span class="hljs-string">'push'</span>](_0x1d7e2f[<span class="hljs-string">'shift'</span>]());}}}(Cadena,<span class="hljs-number">0xd9531</span>));
+                    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">verify</span>(<span class="hljs-params"></span>)</span>{
+                        <span class="hljs-keyword">var</span> Valor_2=Valor_1;
+                        password=<span class="hljs-built_in">document</span>[Valor_2(<span class="hljs-number">0x159</span>)](Valor_2(<span class="hljs-number">0x154</span>))[Valor_2(<span class="hljs-number">0x14d</span>)];
+                        <span class="hljs-keyword">var</span> Valor_3=Valor_2(<span class="hljs-number">0x155</span>);
+        password==Valor_2(<span class="hljs-number">0x14b</span>)+Valor_3?alert(Valor_2(<span class="hljs-number">0x150</span>)):alert(Valor_2(<span class="hljs-number">0x14f</span>));}
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>Clave<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"Clave"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Login"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control btn btn-success formulario"</span> <span class="hljs-attribute">onclick</span>=<span class="hljs-value">"javascript:verify();"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"tagreply"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
-<p>Llama la atencion la parte del codigo que pone:</p>
-<pre><code class="language-html">password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
+<p class="has-line-data" data-line-start="147" data-line-end="148">Llama la atencion la parte del codigo que pone:</p>
+<pre><code class="has-line-data" data-line-start="150" data-line-end="152" class="language-html">password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
 </code></pre>
-<p>Lo que indica en esa instruccion es que si el valor de la variable &quot;password&quot; es igual al valor de la variable &quot;<strong>Valor_2(0x14b)+Valor_3</strong>&quot; entonces muestra una ventana emergente, y en caso de que no sean iguales muestra otra ventana emergente.</p>
-<p>Suponemos en este punto que es aqui donde compara que el valor que nosotros ponemos en el campo de Login sea el correcto. Pero el asunto es ¿Cómo saca ese valor?</p>
-<p>Lo que se le ocurrio a DanyData es hacer un print, tambien lo podemos hacer con un alert para que salte el valor que espera justo encima de la linea donde compara y obtendriamos lo que debemos introducir. Seria algo como esto:</p>
-<pre><code class="language-html">alert(Valor_2(0x14b)+Valor_3);
+<p class="has-line-data" data-line-start="153" data-line-end="154">Lo que indica en esa instruccion es que si el valor de la variable “password” es igual al valor de la variable &quot;<strong>Valor_2(0x14b)+Valor_3</strong>&quot; entonces muestra una ventana emergente, y en caso de que no sean iguales muestra otra ventana emergente.</p>
+<p class="has-line-data" data-line-start="155" data-line-end="156">Suponemos en este punto que es aqui donde compara que el valor que nosotros ponemos en el campo de Login sea el correcto. Pero el asunto es ¿Cómo saca ese valor?</p>
+<p class="has-line-data" data-line-start="157" data-line-end="158">Lo que se le ocurrio a DanyData es hacer un print, tambien lo podemos hacer con un alert para que salte el valor que espera justo encima de la linea donde compara y obtendriamos lo que debemos introducir. Seria algo como esto:</p>
+<pre><code class="has-line-data" data-line-start="160" data-line-end="163" class="language-html">alert(Valor_2(0x14b)+Valor_3);
 password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 </code></pre>
-<p password>Guardamos estos cambios y lo ejecutamos de nuevo, damos clic en el login y nos muestra la ventana emergente que hemos querido poner, donde se muestra el valor que espera: &quot;accessgranted1337&quot;. Si digitamos esto en el campo login, y volvemos a validar nos muestra otra ventana que pone: &quot;<strong>OK, flag</strong>&quot;</p>
-<p accessgranted1337>Lo que nos indica que nuestra flag es justamente el password que hemos puesto:
-<em><strong>flag</strong></em></p>
-<hr />
-<h2 id="reto-14"><strong>Reto 14</strong></h2>
-<p>Nos entregan la descripción del reto:</p>
+<p class="has-line-data" data-line-start="164" data-line-end="165">Guardamos estos cambios y lo ejecutamos de nuevo, damos clic en el login y nos muestra la ventana emergente que hemos querido poner, donde se muestra el valor que espera: “accessgranted1337”. Si digitamos esto en el campo login, y volvemos a validar nos muestra otra ventana que pone: &quot;<strong>OK, flag{password}</strong>&quot;</p>
+<p class="has-line-data" data-line-start="166" data-line-end="168">Lo que nos indica que nuestra flag es justamente el password que hemos puesto:<br>
+<strong><em>flag{accessgranted1337}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=171 data-line-end=172 ><a id="Reto_14_171"></a><strong>Reto 14</strong></h2>
+<p class="has-line-data" data-line-start="173" data-line-end="174">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p><em><strong>DESCRIPCION</strong></em>:</p>
-<p>En el laboratorio de ciencia la profesora de matemáticas ha incluido las ecuaciones lineales como tema para el examen. Pero esta vez vuestra nota se deducirá destripando un programa que ella misma ha compilado. Si lo resuelves obtendrás el 10 de la nota.</p>
-<p>¿Cuál es la solución a tantas ecuaciones lineales?</p>
-<p><strong>Datos proporcionados:</strong></p>
-<p>Fichero binario</p>
+<p class="has-line-data" data-line-start="175" data-line-end="176"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="177" data-line-end="178">En el laboratorio de ciencia la profesora de matemáticas ha incluido las ecuaciones lineales como tema para el examen. Pero esta vez vuestra nota se deducirá destripando un programa que ella misma ha compilado. Si lo resuelves obtendrás el 10 de la nota.</p>
+<p class="has-line-data" data-line-start="179" data-line-end="180">¿Cuál es la solución a tantas ecuaciones lineales?</p>
+<p class="has-line-data" data-line-start="181" data-line-end="182"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="183" data-line-end="184">Fichero binario</p>
 </blockquote>
 <ol>
-<li>Arrancamos IDA Pro para ver como funciona el binario y empezar a investigar:</li>
+<li class="has-line-data" data-line-start="185" data-line-end="187">Arrancamos IDA Pro para ver como funciona el binario y empezar a investigar:</li>
 </ol>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14.png" alt="Academia Hacker" /></p>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-1.png" alt="Academia Hacker" /></p>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-2.png" alt="Academia Hacker" /></p>
-<p>En la función de inicio vemos que el serial tiene 21 caracteres.</p>
-<p>Cada una de estas funciones tiene su código:
+<p class="has-line-data" data-line-start="187" data-line-end="188"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="189" data-line-end="190"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="191" data-line-end="192"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="193" data-line-end="194">En la función de inicio vemos que el serial tiene 21 caracteres.</p>
+<p class="has-line-data" data-line-start="195" data-line-end="197">Cada una de estas funciones tiene su código:<br>
 (En IDA con F5 vemos el codigo en formato mas legible. (OJO solo se ve cuando no esta prótegido el codigo)</p>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-3.png" alt="Academia Hacker" /></p>
+<p class="has-line-data" data-line-start="198" data-line-end="199"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-3.png" alt="Academia Hacker"></p>
 <ol start="2">
-<li>Recopilamos todas las ecuaciones que vemos dentro de cada una de las comprobaciones:</li>
+<li class="has-line-data" data-line-start="200" data-line-end="202">Recopilamos todas las ecuaciones que vemos dentro de cada una de las comprobaciones:</li>
 </ol>
-<pre><code class="language-bash">11189 = (a1[11] * a1[9] - a1[8]);
-13471 = (a1[15] * a1[4] - a1[13]);
-11161 = (a1[10] * a1[13] + a1[19] - a1[5]);
--12533 = (a1[4] - a1[2] * a1[10] + a1[6]);
-1560780= (a1[4] * a1[15] * a1[6]);
--13113 = (a1[10] - a1[11] * a1[7]);
--70061566 = (*a1 - a1[1] * a1[20] * a1[7] * a1[6]);
-66767976 = (a1[11] * a1[19] * a1[9] * a1[15]);
--10897 = (a1[3] + a1[17] - *a1 * a1[16]);
-10996 = (a1[16] * a1[12] + a1[20] - a1[12])
-13338 = (a1[7] * a1[11] + a1[12]);
-97 = (a1 - a1[15] + a1[14]);
-119 = (a1[12] + a1[4] - a1[3]);
-5763 = (a1[19] + a1[19] * a1[3]);
-11665 = (a1[18] + a1[2] * a1[5]);
-5203 = (a1[20] * a1[1] - a1[17]);
-113 = (a1[5] + a1[3] - a1[18] - a1[18]);
-5751 = (a1[5] - a1[18] + a1[18] * a1[12]);
-11701 = (a1[1] * a1[4] - a1[15]);
-625517 = (a1[3] * a1[17] * a1[12] - a1[2]);
-283 = (a1[2] + a1[20] + a1[7]);
+<pre><code class="has-line-data" data-line-start="203" data-line-end="225" class="language-bash"><span class="hljs-number">11189</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">9</span>] - a1[<span class="hljs-number">8</span>]);
+<span class="hljs-number">13471</span> = (a1[<span class="hljs-number">15</span>] * a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">13</span>]);
+<span class="hljs-number">11161</span> = (a1[<span class="hljs-number">10</span>] * a1[<span class="hljs-number">13</span>] + a1[<span class="hljs-number">19</span>] - a1[<span class="hljs-number">5</span>]);
+-<span class="hljs-number">12533</span> = (a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">2</span>] * a1[<span class="hljs-number">10</span>] + a1[<span class="hljs-number">6</span>]);
+<span class="hljs-number">1560780</span>= (a1[<span class="hljs-number">4</span>] * a1[<span class="hljs-number">15</span>] * a1[<span class="hljs-number">6</span>]);
+-<span class="hljs-number">13113</span> = (a1[<span class="hljs-number">10</span>] - a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">7</span>]);
+-<span class="hljs-number">70061566</span> = (*a1 - a1[<span class="hljs-number">1</span>] * a1[<span class="hljs-number">20</span>] * a1[<span class="hljs-number">7</span>] * a1[<span class="hljs-number">6</span>]);
+<span class="hljs-number">66767976</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">19</span>] * a1[<span class="hljs-number">9</span>] * a1[<span class="hljs-number">15</span>]);
+-<span class="hljs-number">10897</span> = (a1[<span class="hljs-number">3</span>] + a1[<span class="hljs-number">17</span>] - *a1 * a1[<span class="hljs-number">16</span>]);
+<span class="hljs-number">10996</span> = (a1[<span class="hljs-number">16</span>] * a1[<span class="hljs-number">12</span>] + a1[<span class="hljs-number">20</span>] - a1[<span class="hljs-number">12</span>])
+<span class="hljs-number">13338</span> = (a1[<span class="hljs-number">7</span>] * a1[<span class="hljs-number">11</span>] + a1[<span class="hljs-number">12</span>]);
+<span class="hljs-number">97</span> = (a1 - a1[<span class="hljs-number">15</span>] + a1[<span class="hljs-number">14</span>]);
+<span class="hljs-number">119</span> = (a1[<span class="hljs-number">12</span>] + a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">3</span>]);
+<span class="hljs-number">5763</span> = (a1[<span class="hljs-number">19</span>] + a1[<span class="hljs-number">19</span>] * a1[<span class="hljs-number">3</span>]);
+<span class="hljs-number">11665</span> = (a1[<span class="hljs-number">18</span>] + a1[<span class="hljs-number">2</span>] * a1[<span class="hljs-number">5</span>]);
+<span class="hljs-number">5203</span> = (a1[<span class="hljs-number">20</span>] * a1[<span class="hljs-number">1</span>] - a1[<span class="hljs-number">17</span>]);
+<span class="hljs-number">113</span> = (a1[<span class="hljs-number">5</span>] + a1[<span class="hljs-number">3</span>] - a1[<span class="hljs-number">18</span>] - a1[<span class="hljs-number">18</span>]);
+<span class="hljs-number">5751</span> = (a1[<span class="hljs-number">5</span>] - a1[<span class="hljs-number">18</span>] + a1[<span class="hljs-number">18</span>] * a1[<span class="hljs-number">12</span>]);
+<span class="hljs-number">11701</span> = (a1[<span class="hljs-number">1</span>] * a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">15</span>]);
+<span class="hljs-number">625517</span> = (a1[<span class="hljs-number">3</span>] * a1[<span class="hljs-number">17</span>] * a1[<span class="hljs-number">12</span>] - a1[<span class="hljs-number">2</span>]);
+<span class="hljs-number">283</span> = (a1[<span class="hljs-number">2</span>] + a1[<span class="hljs-number">20</span>] + a1[<span class="hljs-number">7</span>]);
 </code></pre>
 <ol start="3">
-<li>No se aprecia posibilidad alguna de realizar una comparacion entre ecuaciones para usar un sistema, asi que contruimos un pequeño script que ayude a validar posibles datos y a partir de ahí usar aproximaciones.</li>
+<li class="has-line-data" data-line-start="226" data-line-end="228">No se aprecia posibilidad alguna de realizar una comparacion entre ecuaciones para usar un sistema, asi que contruimos un pequeño script que ayude a validar posibles datos y a partir de ahí usar aproximaciones.</li>
 </ol>
-<pre><code class="language-bash">#!/bin/bash
-valorfinal=13113
-for ((v1 = 48; v1 &lt;= 123; v1++)); do
-    for ((v2 = 48; v2 &lt;= 123; v2++)); do 
-        for ((v3 = 48; v3 &lt;= 123; v3++)); do
-            let ecuacion=$((v1-(v2*v3)))
-            # echo $total
-            if [ $ecuacion = $valorfinal ]; then
+<pre><code class="has-line-data" data-line-start="229" data-line-end="247" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
+valorfinal=<span class="hljs-number">13113</span>
+<span class="hljs-keyword">for</span> ((v1 = <span class="hljs-number">48</span>; v1 &lt;= <span class="hljs-number">123</span>; v1++)); <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">for</span> ((v2 = <span class="hljs-number">48</span>; v2 &lt;= <span class="hljs-number">123</span>; v2++)); <span class="hljs-keyword">do</span> 
+        <span class="hljs-keyword">for</span> ((v3 = <span class="hljs-number">48</span>; v3 &lt;= <span class="hljs-number">123</span>; v3++)); <span class="hljs-keyword">do</span>
+            <span class="hljs-built_in">let</span> ecuacion=$((v1-(v2*v3)))
+            <span class="hljs-comment"># echo $total</span>
+            <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$ecuacion</span> = <span class="hljs-variable">$valorfinal</span> ]; <span class="hljs-keyword">then</span>
 
-                echo &quot;$v1&quot;
-                echo &quot;$v2&quot;
-                echo &quot;$v3&quot;
+                <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$v1</span>"</span>
+                <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$v2</span>"</span>
+                <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$v3</span>"</span>
 
-            fi
-        done
-    done
-done
+            <span class="hljs-keyword">fi</span>
+        <span class="hljs-keyword">done</span>
+    <span class="hljs-keyword">done</span>
+<span class="hljs-keyword">done</span>
 </code></pre>
-<p>De este script debemos cambiar el valorfinal y ecuacion cada vez que queramos probar una de las ecuaciones anteriores.</p>
-<p>Con esto que ganamos:</p>
-<p>El script nos extrae por pantalla los posibles valores que pueden coger las variables. En cada caso nos aparecen más de una posibilidad. Las debemos anotar (Recomiendo EXCEL) para un uso posterior en otras ecuaciones. De esta forma iremos conociendo los valores reales de cada variable (Recordamos que són 20).</p>
-<p>Ejemplo:</p>
-<p>El script, hace referencia a la ecuación: 13113 = (a1[10] - a1[11] * a1[7]);</p>
-<p>Este script nos dará por pantalla valores de 3 en 3 correspondientes a las variables num10, num11 y num7.</p>
-<p>Hay que tener suerte de escoger la ecuación que mejor se adapte y menos valores de salida te dé, de esa forma se podrán reutilizar las variables que ya hemos encontrado y después reutilizarlas.</p>
+<p class="has-line-data" data-line-start="248" data-line-end="249">De este script debemos cambiar el valorfinal y ecuacion cada vez que queramos probar una de las ecuaciones anteriores.</p>
+<p class="has-line-data" data-line-start="250" data-line-end="251">Con esto que ganamos:</p>
+<p class="has-line-data" data-line-start="252" data-line-end="253">El script nos extrae por pantalla los posibles valores que pueden coger las variables. En cada caso nos aparecen más de una posibilidad. Las debemos anotar (Recomiendo EXCEL) para un uso posterior en otras ecuaciones. De esta forma iremos conociendo los valores reales de cada variable (Recordamos que són 20).</p>
+<p class="has-line-data" data-line-start="254" data-line-end="255">Ejemplo:</p>
+<p class="has-line-data" data-line-start="256" data-line-end="257">El script, hace referencia a la ecuación: 13113 = (a1[10] - a1[11] * a1[7]);</p>
+<p class="has-line-data" data-line-start="258" data-line-end="259">Este script nos dará por pantalla valores de 3 en 3 correspondientes a las variables num10, num11 y num7.</p>
+<p class="has-line-data" data-line-start="260" data-line-end="261">Hay que tener suerte de escoger la ecuación que mejor se adapte y menos valores de salida te dé, de esa forma se podrán reutilizar las variables que ya hemos encontrado y después reutilizarlas.</p>
 <ol start="4">
-<li>Uso de terceros programas para ir anotando los valores de las variables e ir rellenando las variables que necesitamos….</li>
+<li class="has-line-data" data-line-start="262" data-line-end="264">Uso de terceros programas para ir anotando los valores de las variables e ir rellenando las variables que necesitamos….</li>
 </ol>
-<p>(NI QUE DECIR TIENE QUE LO MEJOR ES ACABAR EL SCRIPT COMO DIOS MANDA Y QUE LO HAGA TODO EL SCRIPT – Opcion A Mejorar)</p>
-<p>Yo lo anoté poco a poco y fui rellenando valores de variables probando con el script primario que hice.</p>
-<pre><code class="language-bash">Ejemplos:
+<p class="has-line-data" data-line-start="264" data-line-end="265">(NI QUE DECIR TIENE QUE LO MEJOR ES ACABAR EL SCRIPT COMO DIOS MANDA Y QUE LO HAGA TODO EL SCRIPT – Opcion A Mejorar)</p>
+<p class="has-line-data" data-line-start="266" data-line-end="267">Yo lo anoté poco a poco y fui rellenando valores de variables probando con el script primario que hice.</p>
+<pre><code class="has-line-data" data-line-start="269" data-line-end="298" class="language-bash">Ejemplos:
 
-              51      116
-66767976 = (a1[11] * a1[19] * a1[9] * a1[15]);
+              <span class="hljs-number">51</span>      <span class="hljs-number">116</span>
+<span class="hljs-number">66767976</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">19</span>] * a1[<span class="hljs-number">9</span>] * a1[<span class="hljs-number">15</span>]);
 
-            101            112
-113 = (a1[5] + a1[3] - a1[18] - a1[18]);
+            <span class="hljs-number">101</span>            <span class="hljs-number">112</span>
+<span class="hljs-number">113</span> = (a1[<span class="hljs-number">5</span>] + a1[<span class="hljs-number">3</span>] - a1[<span class="hljs-number">18</span>] - a1[<span class="hljs-number">18</span>]);
 
-           109       101       51
-11161 = (a1[10] * a1[13] + a1[19] - a1[5]);
+           <span class="hljs-number">109</span>       <span class="hljs-number">101</span>       <span class="hljs-number">51</span>
+<span class="hljs-number">11161</span> = (a1[<span class="hljs-number">10</span>] * a1[<span class="hljs-number">13</span>] + a1[<span class="hljs-number">19</span>] - a1[<span class="hljs-number">5</span>]);
 
-          117        115     109    115
-12533 = (a1[4] - a1[2] * a1[10] + a1[6]);
+          <span class="hljs-number">117</span>        <span class="hljs-number">115</span>     <span class="hljs-number">109</span>    <span class="hljs-number">115</span>
+<span class="hljs-number">12533</span> = (a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">2</span>] * a1[<span class="hljs-number">10</span>] + a1[<span class="hljs-number">6</span>]);
 
-          114      116
-97 = (a1 - a1[15] + a1[14]);
+          <span class="hljs-number">114</span>      <span class="hljs-number">116</span>
+<span class="hljs-number">97</span> = (a1 - a1[<span class="hljs-number">15</span>] + a1[<span class="hljs-number">14</span>]);
 
-             112       49       97
-10897 = (a1[3] + a1[17] - *a1 * a1[16]);
+             <span class="hljs-number">112</span>       <span class="hljs-number">49</span>       <span class="hljs-number">97</span>
+<span class="hljs-number">10897</span> = (a1[<span class="hljs-number">3</span>] + a1[<span class="hljs-number">17</span>] - *a1 * a1[<span class="hljs-number">16</span>]);
 
-              97      114      52     114
-10996 = (a1[16] * a1[12] + a1[20] - a1[12]);
+              <span class="hljs-number">97</span>      <span class="hljs-number">114</span>      <span class="hljs-number">52</span>     <span class="hljs-number">114</span>
+<span class="hljs-number">10996</span> = (a1[<span class="hljs-number">16</span>] * a1[<span class="hljs-number">12</span>] + a1[<span class="hljs-number">20</span>] - a1[<span class="hljs-number">12</span>]);
 
-            106        114
-13338 = (a1[7] * a1[11] + a1[12]);
+            <span class="hljs-number">106</span>        <span class="hljs-number">114</span>
+<span class="hljs-number">13338</span> = (a1[<span class="hljs-number">7</span>] * a1[<span class="hljs-number">11</span>] + a1[<span class="hljs-number">12</span>]);
 
-           52       101     49
-5203 = (a1[20] * a1[1] - a1[17]);
+           <span class="hljs-number">52</span>       <span class="hljs-number">101</span>     <span class="hljs-number">49</span>
+<span class="hljs-number">5203</span> = (a1[<span class="hljs-number">20</span>] * a1[<span class="hljs-number">1</span>] - a1[<span class="hljs-number">17</span>]);
 </code></pre>
 <ol start="5">
-<li>Una vez que tenemos varios de esos valores de valirables vamos rellenando el valor final del serial.</li>
+<li class="has-line-data" data-line-start="299" data-line-end="301">Una vez que tenemos varios de esos valores de valirables vamos rellenando el valor final del serial.</li>
 </ol>
-<p><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-4.png" alt="Academia Hacker" /></p>
-<p>Y pasarlos a formato ASCII sabiendo el char() correspondiente.</p>
-<p>a1 = 114 r
-[1] = 101 e
-[2] = 115 s
-[3] = 112 p
-[4] = 117 u
-[5] = 101 e
-[6] = 115 s
-[7] =
-[8] =
-[9] =
-[10] = 111 o
-[11] =
-[12] = 114 r
-[13] = 101 e
-[14] = 99 c
-[15] = 116 t
-[16] = 97 a
-[17] = 49 1
-[18] = 50 2
-[19] = 51 3
+<p class="has-line-data" data-line-start="301" data-line-end="302"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-4.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="303" data-line-end="304">Y pasarlos a formato ASCII sabiendo el char() correspondiente.</p>
+<p class="has-line-data" data-line-start="305" data-line-end="326">a1 = 114 r<br>
+[1] = 101 e<br>
+[2] = 115 s<br>
+[3] = 112 p<br>
+[4] = 117 u<br>
+[5] = 101 e<br>
+[6] = 115 s<br>
+[7] =<br>
+[8] =<br>
+[9] =<br>
+[10] = 111 o<br>
+[11] =<br>
+[12] = 114 r<br>
+[13] = 101 e<br>
+[14] = 99 c<br>
+[15] = 116 t<br>
+[16] = 97 a<br>
+[17] = 49 1<br>
+[18] = 50 2<br>
+[19] = 51 3<br>
 [20] = 52 4</p>
-<p respuestacorrecta1234>No espero a tenerlos todos, pero pruebo con un poco de guessing:
-<em><strong>flag</strong></em></p>
-<h2 id="solucion-2">Solucion 2</h2>
-<p>Se ha entregado un script con el cual sacar la solucion de forma inmediata.</p>
-<pre><code class="language-python">#!/usr/bin/env python3
-from z3 import *
-import binascii
-import sys
+<p class="has-line-data" data-line-start="327" data-line-end="329">No espero a tenerlos todos, pero pruebo con un poco de guessing:<br>
+<strong><em>flag{respuestacorrecta1234}</em></strong></p>
+<h2 class="code-line" data-line-start=331 data-line-end=332 ><a id="Solucion_2_331"></a>Solucion 2</h2>
+<p class="has-line-data" data-line-start="333" data-line-end="334">Se ha entregado un script con el cual sacar la solucion de forma inmediata.</p>
+<pre><code class="has-line-data" data-line-start="336" data-line-end="382" class="language-python"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<span class="hljs-keyword">from</span> z3 <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">import</span> binascii
+<span class="hljs-keyword">import</span> sys
 
 clave = []
 s = Solver()
-for i in range(21):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">21</span>):
     clave.append(Int(str(i)))
-    s.add(Or(And(clave[i] &gt;= 48, clave[i] &lt;= 57), And(
-        clave[i] &gt;= 65, clave[i] &lt;= 90), And(clave[i] &gt;= 97, clave[i] &lt;= 125)))
+    s.add(Or(And(clave[i] &gt;= <span class="hljs-number">48</span>, clave[i] &lt;= <span class="hljs-number">57</span>), And(
+        clave[i] &gt;= <span class="hljs-number">65</span>, clave[i] &lt;= <span class="hljs-number">90</span>), And(clave[i] &gt;= <span class="hljs-number">97</span>, clave[i] &lt;= <span class="hljs-number">125</span>)))
 
-s.add(clave[11] * clave[9] - clave[8] == 11189)
-s.add(clave[15] * clave[4] - clave[13] == 13471)
-s.add(clave[10] * clave[13] + clave[19] - clave[5] == 11161)
-s.add(clave[4] - clave[2] * clave[10] + clave[6] == -12533)
-s.add(clave[4] * clave[15] * clave[6] == 1560780)
-s.add(clave[10] - clave[11] * clave[7] == -13113)
-s.add(clave[0] - clave[1] * clave[20] * clave[7] * clave[6] == -70061566)
-s.add(clave[11] * clave[19] * clave[9] * clave[15] == 66767976)
-s.add(clave[3] + clave[17] - clave[0] * clave[16] == -10897)
-s.add(clave[16] * clave[12] + clave[20] - clave[12] == 10996)
-s.add(clave[7] * clave[11] + clave[12] == 13338)
-s.add(clave[0] - clave[15] + clave[14] == 97)
-s.add(clave[12] + clave[4] - clave[3] == 119)
-s.add(clave[19] + clave[19] * clave[3] == 5763)
-s.add(clave[18] + clave[2] * clave[5] == 11665)
-s.add(clave[20] * clave[1] - clave[17] == 5203)
-s.add(clave[5] + clave[3] - clave[18] - clave[18] == 113)
-s.add(clave[5] - clave[18] + clave[18] * clave[12] == 5751)
-s.add(clave[1] * clave[4] - clave[15] == 11701)
-s.add(clave[3] * clave[17] * clave[12] - clave[2] == 625517)
-s.add(clave[2] + clave[20] + clave[7] == 283)
+s.add(clave[<span class="hljs-number">11</span>] * clave[<span class="hljs-number">9</span>] - clave[<span class="hljs-number">8</span>] == <span class="hljs-number">11189</span>)
+s.add(clave[<span class="hljs-number">15</span>] * clave[<span class="hljs-number">4</span>] - clave[<span class="hljs-number">13</span>] == <span class="hljs-number">13471</span>)
+s.add(clave[<span class="hljs-number">10</span>] * clave[<span class="hljs-number">13</span>] + clave[<span class="hljs-number">19</span>] - clave[<span class="hljs-number">5</span>] == <span class="hljs-number">11161</span>)
+s.add(clave[<span class="hljs-number">4</span>] - clave[<span class="hljs-number">2</span>] * clave[<span class="hljs-number">10</span>] + clave[<span class="hljs-number">6</span>] == -<span class="hljs-number">12533</span>)
+s.add(clave[<span class="hljs-number">4</span>] * clave[<span class="hljs-number">15</span>] * clave[<span class="hljs-number">6</span>] == <span class="hljs-number">1560780</span>)
+s.add(clave[<span class="hljs-number">10</span>] - clave[<span class="hljs-number">11</span>] * clave[<span class="hljs-number">7</span>] == -<span class="hljs-number">13113</span>)
+s.add(clave[<span class="hljs-number">0</span>] - clave[<span class="hljs-number">1</span>] * clave[<span class="hljs-number">20</span>] * clave[<span class="hljs-number">7</span>] * clave[<span class="hljs-number">6</span>] == -<span class="hljs-number">70061566</span>)
+s.add(clave[<span class="hljs-number">11</span>] * clave[<span class="hljs-number">19</span>] * clave[<span class="hljs-number">9</span>] * clave[<span class="hljs-number">15</span>] == <span class="hljs-number">66767976</span>)
+s.add(clave[<span class="hljs-number">3</span>] + clave[<span class="hljs-number">17</span>] - clave[<span class="hljs-number">0</span>] * clave[<span class="hljs-number">16</span>] == -<span class="hljs-number">10897</span>)
+s.add(clave[<span class="hljs-number">16</span>] * clave[<span class="hljs-number">12</span>] + clave[<span class="hljs-number">20</span>] - clave[<span class="hljs-number">12</span>] == <span class="hljs-number">10996</span>)
+s.add(clave[<span class="hljs-number">7</span>] * clave[<span class="hljs-number">11</span>] + clave[<span class="hljs-number">12</span>] == <span class="hljs-number">13338</span>)
+s.add(clave[<span class="hljs-number">0</span>] - clave[<span class="hljs-number">15</span>] + clave[<span class="hljs-number">14</span>] == <span class="hljs-number">97</span>)
+s.add(clave[<span class="hljs-number">12</span>] + clave[<span class="hljs-number">4</span>] - clave[<span class="hljs-number">3</span>] == <span class="hljs-number">119</span>)
+s.add(clave[<span class="hljs-number">19</span>] + clave[<span class="hljs-number">19</span>] * clave[<span class="hljs-number">3</span>] == <span class="hljs-number">5763</span>)
+s.add(clave[<span class="hljs-number">18</span>] + clave[<span class="hljs-number">2</span>] * clave[<span class="hljs-number">5</span>] == <span class="hljs-number">11665</span>)
+s.add(clave[<span class="hljs-number">20</span>] * clave[<span class="hljs-number">1</span>] - clave[<span class="hljs-number">17</span>] == <span class="hljs-number">5203</span>)
+s.add(clave[<span class="hljs-number">5</span>] + clave[<span class="hljs-number">3</span>] - clave[<span class="hljs-number">18</span>] - clave[<span class="hljs-number">18</span>] == <span class="hljs-number">113</span>)
+s.add(clave[<span class="hljs-number">5</span>] - clave[<span class="hljs-number">18</span>] + clave[<span class="hljs-number">18</span>] * clave[<span class="hljs-number">12</span>] == <span class="hljs-number">5751</span>)
+s.add(clave[<span class="hljs-number">1</span>] * clave[<span class="hljs-number">4</span>] - clave[<span class="hljs-number">15</span>] == <span class="hljs-number">11701</span>)
+s.add(clave[<span class="hljs-number">3</span>] * clave[<span class="hljs-number">17</span>] * clave[<span class="hljs-number">12</span>] - clave[<span class="hljs-number">2</span>] == <span class="hljs-number">625517</span>)
+s.add(clave[<span class="hljs-number">2</span>] + clave[<span class="hljs-number">20</span>] + clave[<span class="hljs-number">7</span>] == <span class="hljs-number">283</span>)
 
 s.check()
 m = s.model()
 
-sys.stdout.write(&quot;solucion: &quot;)
+sys.stdout.write(<span class="hljs-string">"solucion: "</span>)
 
-total = ([m[n].as_long() for n in clave])
+total = ([m[n].as_long() <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> clave])
 
-for d in range(21):
+<span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> range(<span class="hljs-number">21</span>):
     sys.stdout.write(chr(int(str(total[d]))))
-sys.stdout.write('\n')
+sys.stdout.write(<span class="hljs-string">'\n'</span>)
 sys.stdout.flush()
 </code></pre>
-<p respuestacorrecta1234>Obtenemos la flag:
-<em><strong>flag</strong></em></p>
-<hr />
-<h2 id="reto-15"><strong>Reto 15</strong></h2>
-<p>Nos entregan la descripción del reto:</p>
+<p class="has-line-data" data-line-start="383" data-line-end="385">Obtenemos la flag:<br>
+<strong><em>flag{respuestacorrecta1234}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=388 data-line-end=389 ><a id="Reto_15_388"></a><strong>Reto 15</strong></h2>
+<p class="has-line-data" data-line-start="390" data-line-end="391">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p><em><strong>DESCRIPCION</strong></em>:</p>
-<p>Una de las salidas que realizáis en el instituto es fuera de la gran ciudad, al campo. En esas salidas pernoctáis en un albergue y si el tiempo acompaña, soléis escuchar al anciano del lugar rememorar algunas historias del pueblo.</p>
-<p>El anciano saca una radio y reproduce en una cinta magnética de audio unos sonidos que según dice él, los grabó años atrás. Esto empieza a parecerse a &quot;Stranger Things(tm)&quot;!</p>
-<p>¿Podrías desvelar al anciano el mensaje que esconde la cinta?</p>
-<p><strong>Datos proporcionados:</strong></p>
-<p>Fichero wav</p>
+<p class="has-line-data" data-line-start="392" data-line-end="393"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="394" data-line-end="395">Una de las salidas que realizáis en el instituto es fuera de la gran ciudad, al campo. En esas salidas pernoctáis en un albergue y si el tiempo acompaña, soléis escuchar al anciano del lugar rememorar algunas historias del pueblo.</p>
+<p class="has-line-data" data-line-start="396" data-line-end="397">El anciano saca una radio y reproduce en una cinta magnética de audio unos sonidos que según dice él, los grabó años atrás. Esto empieza a parecerse a “Stranger Things™”!</p>
+<p class="has-line-data" data-line-start="398" data-line-end="399">¿Podrías desvelar al anciano el mensaje que esconde la cinta?</p>
+<p class="has-line-data" data-line-start="400" data-line-end="401"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="402" data-line-end="403">Fichero wav</p>
 </blockquote>
-<p>Se nos entrega un audio que debemos analizar. Por lo que hacemos una verificacion con <em>file</em> y <em>exiftool</em></p>
-<p>Hemos seguido la guia que se especifica en:</p>
-<p><a href="https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804">https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804</a> y <a href="https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system">https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system</a></p>
-<p>Obtenemos la flag:
-<em><strong>flag{4458256}</strong></em></p>
-<hr />
-<p>###CONTINUARA CON LOS RETOS DE LA SEMANA 4</p>
-
-           
+<p class="has-line-data" data-line-start="404" data-line-end="405">Se nos entrega un audio que debemos analizar. Por lo que hacemos una verificacion con <em>file</em> y <em>exiftool</em></p>
+<p class="has-line-data" data-line-start="406" data-line-end="407">Hemos seguido la guia que se especifica en:</p>
+<p class="has-line-data" data-line-start="408" data-line-end="409"><a href="https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804">https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804</a> y <a href="https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system">https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system</a></p>
+<p class="has-line-data" data-line-start="410" data-line-end="412">Obtenemos la flag:<br>
+<strong><em>flag{4458256}</em></strong></p>
+<hr>
+<p class="has-line-data" data-line-start="414" data-line-end="415">###CONTINUARA CON LOS RETOS DE LA SEMANA 4</p>
 </div>
