@@ -29,11 +29,11 @@ La noche se te fue de las manos y te has quedado encerrado… ¡en una granja de
 <p class="has-line-data" data-line-start="28" data-line-end="29"><strong><em>Este reto es de #Reversing.</em></strong></p>
 <p class="has-line-data" data-line-start="30" data-line-end="31">Nos entregan un fichero con extensión <code>.bsp</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/granja.bsp">AQUI</a>)</p>
 <p class="has-line-data" data-line-start="32" data-line-end="33">Lo primero que hago siempre, es verificar que el fichero entregado sea lo que presuntamente nos dicen que es, asi que lo verificamos a traves del comando <code>file</code>:</p>
-<pre><code class="has-line-data" data-line-start="35" data-line-end="38" class="language-console">kali@kali:~/ZeroToLynx$ file granja.bsp
+<pre><code class="language-console hljs" data-line-start="35" data-line-end="38" class="language-console">kali@kali:~/ZeroToLynx$ file granja.bsp
 granja.bsp: data
 </code></pre>
 <p class="has-line-data" data-line-start="39" data-line-end="40">Vemos que es un fichero con informacion de datos, asi que procedemos a verificar si encontramos algo entre sus <code>strings</code>. (<em>Aqui yo he ido aumentado el numero de caracteres que quiero que busque, debido a que me salia mucha información</em>)</p>
-<pre><code class="has-line-data" data-line-start="42" data-line-end="48" class="language-console">kali@kali:~/ZeroToLynx$ strings -n 45 granja.bsp
+<pre><code class="language-console hljs" data-line-start="42" data-line-end="48" class="language-console">kali@kali:~/ZeroToLynx$ strings -n 45 granja.bsp
 &quot;axis&quot; &quot;512 -226.05 -27.8, 502.89 -223.53 -27.8&quot;
 &quot;message&quot; &quot;ESL{MuyBienMatasteAlPolloCorrecto}&quot;
 materials/maps/granja/cubemapdefault.hdr.vtfVTF
@@ -69,7 +69,7 @@ materials/maps/granja/cubemapdefault.hdr.vtfPK
 <p class="has-line-data" data-line-start="92" data-line-end="93"><strong><em>Este reto es de #Reversing.</em></strong></p>
 <p class="has-line-data" data-line-start="94" data-line-end="95">En este reto nos adjuntan un fichero binario con extension <code>.bin</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/bomb.bin">AQUI</a>)</p>
 <p class="has-line-data" data-line-start="96" data-line-end="97">Como siempre hago, vamos a ver que efectivamente sea un binario:</p>
-<pre><code class="has-line-data" data-line-start="99" data-line-end="102" class="language-console">kali@kali:~/ZeroToLynx$ file bomb.bin
+<pre><code class="language-console hljs" data-line-start="99" data-line-end="102" class="language-console">kali@kali:~/ZeroToLynx$ file bomb.bin
 bomb.bin: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=6fa25e40bff22bdfd718b2d1fdbdc7c3dc2b1553, for GNU/Linux 3.2.0, stripped
 </code></pre>
 <p class="has-line-data" data-line-start="103" data-line-end="104">En principio es un binario ELF, asi que lo podriamos ejecutar haber que nos muestra.</p>
@@ -77,7 +77,7 @@ bomb.bin: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically li
 <p class="has-line-data" data-line-start="107" data-line-end="108"><strong><em>spoiler</em></strong>: he tratado de resolverlo a traves de <code>Radare2</code> pero no lo veia muy claro, asi que he utilizado la alternativa de <code>OSINT</code> y buscar si, ya que esta ambientado en <em>Counter Strike:Global Offensive</em>, encuentro el codigo que solicitan, a traves de una busqueda en internet.</p>
 <div align="center"><p class="has-line-data" data-line-start="109" data-line-end="111"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/bomb_bin_2.png" alt="CTF #FromZeroToLynx"><br></div>
 Observamos que la bomba que siempre plantan tiene el codigo: <code>7355608</code>.  Asi que lo probaremos para ver que sucede.</p>
-<pre><code class="has-line-data" data-line-start="113" data-line-end="152" class="language-console">kali@kali:~/ZeroToLynx$ ./bomb.bin
+<pre><code class="language-console hljs" data-line-start="113" data-line-end="152" class="language-console">kali@kali:~/ZeroToLynx$ ./bomb.bin
 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 XXXXXXXXXXXXXXXXXXXXXXXXXXddKXXXXXk0XXXXXXXXXXXXXXXXXXXXXX
@@ -127,7 +127,7 @@ Hemos recibido un modelo 3D de una AK, pero creemos que hay algo oculto…</p>
 <p class="has-line-data" data-line-start="164" data-line-end="165"><strong><em>Este reto es de #Stego.</em></strong></p>
 <p class="has-line-data" data-line-start="166" data-line-end="167">En este reto nos adjuntan un fichero con extension <code>.fbx</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/AK.FBX">AQUI</a>)</p>
 <p class="has-line-data" data-line-start="168" data-line-end="169">Como siempre hago, vamos a ver que tipo de fichero es:</p>
-<pre><code class="has-line-data" data-line-start="171" data-line-end="174" class="language-console">kali@kali:~/ZeroToLynx$ file AK.FBX
+<pre><code class="language-console hljs" data-line-start="171" data-line-end="174" class="language-console">kali@kali:~/ZeroToLynx$ file AK.FBX
 AK.FBX: data
 </code></pre>
 <p class="has-line-data" data-line-start="175" data-line-end="176">Parece que es un fichero de <code>datos</code> o <code>ascii</code>, verificando en internet que tipo de extension es esta podemos ver que se trata de un fichero de 3D y la primera referencia nos indica que se puede visualizar con <code>Autodesk</code>.</p>
@@ -152,7 +152,7 @@ Hemos conseguido pinchar las comunicaciones de un ordenador de la base ct. Se pi
 <p class="has-line-data" data-line-start="10" data-line-end="11"><strong><em>Este reto es de #Forense.</em></strong></p>
 <p class="has-line-data" data-line-start="12" data-line-end="13">En este reto nos adjuntan un fichero con extension <code>.pcap</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/tcpdump.pcap">AQUI</a>)</p>
 <p class="has-line-data" data-line-start="14" data-line-end="15">Como siempre hago, vamos a ver que el fichero es lo que nos indican que debe ser:</p>
-<pre><code class="has-line-data" data-line-start="17" data-line-end="20" class="language-console">kali@kali:~/ZeroToLynx$ file tcpdump.pcap
+<pre><code class="language-console hljs" data-line-start="17" data-line-end="20" class="language-console">kali@kali:~/ZeroToLynx$ file tcpdump.pcap
 tcpdump.pcap: pcap capture file, microsecond ts (little-endian) - version 2.4 (Linux cooked v1, capture length 262144)
 </code></pre>
 <p class="has-line-data" data-line-start="21" data-line-end="22">En principio, el fichero si corresponde con una captura de red.  Por lo que lo abrimos en WireShark.</p>
@@ -163,11 +163,11 @@ Generalmente lo que hago antes estos retos es verificar si dentro de la comunica
 <div align="center"><p class="has-line-data" data-line-start="30" data-line-end="31"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/canal-seguro_3.png" alt="CTF #FromZeroToLynx"></p></div>
 <p class="has-line-data" data-line-start="32" data-line-end="33">Encontramos que justo tenemos un fichero <em><code>flag.zip</code></em> que ha sido transmitido.  Procedemos a descargarlo para poder revisarlo.</p>
 <p class="has-line-data" data-line-start="34" data-line-end="35">Verificamos si realmente es un fichero ZIP:</p>
-<pre><code class="has-line-data" data-line-start="37" data-line-end="40" class="language-console">kali@kali:~/ZeroToLynx$ file flag.zip
+<pre><code class="language-console hljs" data-line-start="37" data-line-end="40" class="language-console">kali@kali:~/ZeroToLynx$ file flag.zip
 flag.zip: Zip archive data, at least v2.0 to extract
 </code></pre>
 <p class="has-line-data" data-line-start="40" data-line-end="41">Tenemos que es un fichero comprimido, tratamos de descomprimirlo para acceder a su contenido:</p>
-<pre><code class="has-line-data" data-line-start="43" data-line-end="50" class="language-console">kali@kali:~/ZeroToLynx$ unzip flag.zip
+<pre><code class="language-console hljs" data-line-start="43" data-line-end="50" class="language-console">kali@kali:~/ZeroToLynx$ unzip flag.zip
 Archive:  flag.zip
    creating: flag/
    creating: flag/.code/
@@ -175,7 +175,7 @@ Archive:  flag.zip
   inflating: flag/flag.bat.lnk
 </code></pre>
 <p class="has-line-data" data-line-start="51" data-line-end="52">Nos crea una carpeta <em><code>/flag</code></em> con algunos ficheros, que si los visualizamos en Windows estaran ocultos.  Me interesa el fichero <strong><em><code>.core.bat</code></em></strong>, vamos a ver que contiene:</p>
-<pre><code class="has-line-data" data-line-start="54" data-line-end="66" class="language-console">kali@kali:~/ZeroToLynx$ cat flag/.code/.core.bat
+<pre><code class="language-console hljs" data-line-start="54" data-line-end="66" class="language-console">kali@kali:~/ZeroToLynx$ cat flag/.code/.core.bat
 @echo off
 :loop
 SET /p pass=&quot;Introduzca la pass: &quot;
@@ -199,11 +199,11 @@ En esta imagen se oculta algo que Vail conocía muy bien</p>
 <p class="has-line-data" data-line-start="8" data-line-end="9"><strong><em>Este reto es de #Stego.</em></strong></p>
 <div align="center"><p class="has-line-data" data-line-start="10" data-line-end="11">En este reto nos adjuntan un fichero con extension <code>.jpg</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cables.jpg">AQUI</a>)</p></div>
 <p class="has-line-data" data-line-start="12" data-line-end="13">Como siempre hago, vamos a ver que el fichero es lo que nos indican que debe ser:</p>
-<pre><code class="has-line-data" data-line-start="15" data-line-end="18" class="language-console">kali@kali:~/ZeroToLynx$ file cables.jpg
+<pre><code class="language-console hljs" data-line-start="15" data-line-end="18" class="language-console">kali@kali:~/ZeroToLynx$ file cables.jpg
 cables.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 1280x720, components 3
 </code></pre>
 <p class="has-line-data" data-line-start="19" data-line-end="20">Vemos que es una imagen JPG, asi que vamos a verificar si dentro de los strings podemos ver algo:</p>
-<pre><code class="has-line-data" data-line-start="22" data-line-end="31" class="language-console">kali@kali:~/ZeroToLynx$ strings -n 10 cables.jpg
+<pre><code class="language-console hljs" data-line-start="22" data-line-end="31" class="language-console">kali@kali:~/ZeroToLynx$ strings -n 10 cables.jpg
 1r&amp;IO!9I2       7
 AsUp{(4.X9
 G'nM*fKo&gt;o
@@ -251,7 +251,7 @@ Ayer morí 64 veces en Cobblestone. Odio ese mapa.</p>
 <p class="has-line-data" data-line-start="8" data-line-end="9"><strong><em>Este reto es de #Crypto.</em></strong></p>
 <p class="has-line-data" data-line-start="10" data-line-end="11">Nos entregan un fichero sin extensión (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/de_cobblestone">AQUI</a>)</p>
 <p class="has-line-data" data-line-start="12" data-line-end="13">No sabemos que tipo de fichero nos han entregado, por esta razon, podemos proceder a verificar de que tipo estamos tratando:</p>
-<pre><code class="has-line-data" data-line-start="15" data-line-end="20" class="language-console">kali@kali:~/ZeroToLynx$ file de_cobblestone
+<pre><code class="language-console hljs" data-line-start="15" data-line-end="20" class="language-console">kali@kali:~/ZeroToLynx$ file de_cobblestone
 de_cobblestone: ASCII text
 kali@kali:~/ZeroToLynx$ cat de_cobblestone
 TGEgZmxhZyBlcyBFU0x7YmFzZTY0KGNvYmJsZXN0b25lKX0K
@@ -264,7 +264,7 @@ La cadena de texto nos indica que la flag buscada es como se indica alli:<br>
 <p class="has-line-data" data-line-start="29" data-line-end="30">Lo hacemos a traves de cyberchef:</p>
 <p class="has-line-data" data-line-start="31" data-line-end="33"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/cobblestone_2.png" alt="CTF #FromZeroToLynx"><br>
 Pero al introducirlo como flag, nos pone que es incorrecto.  Asi que, no debemos confirnarnos de las paginas web, lo hare a traves de la consola.</p>
-<pre><code class="has-line-data" data-line-start="35" data-line-end="38" class="language-console">kali@kali:~/ZeroToLynx$ echo &quot;cobblestone&quot; | base64
+<pre><code class="language-console hljs" data-line-start="35" data-line-end="38" class="language-console">kali@kali:~/ZeroToLynx$ echo &quot;cobblestone&quot; | base64
 Y29iYmxlc3RvbmUK
 </code></pre>
 <p class="has-line-data" data-line-start="39" data-line-end="40">Lo intento con este que me arroja la consola y si que me la acepta.</p>
@@ -280,13 +280,13 @@ Hay un Comando en busca de una bomba, ¿Darás con ella sin perderte?</p>
 <p class="has-line-data" data-line-start="53" data-line-end="54"><strong><em>Este reto es de #ComandoLinux.</em></strong></p>
 <p class="has-line-data" data-line-start="55" data-line-end="56">Nos entregan un fichero comprimido con extension <code>tar.gz</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/Rush.tar.gz">AQUI</a>)</p>
 <p class="has-line-data" data-line-start="57" data-line-end="58">Verificamos si efectivamente es un tar.gz y de serlo, procedemos a descomprimirlo:</p>
-<pre><code class="has-line-data" data-line-start="60" data-line-end="64" class="language-console">kali@kali:~/ZeroToLynx$ file Rush.tar.gz
+<pre><code class="language-console hljs" data-line-start="60" data-line-end="64" class="language-console">kali@kali:~/ZeroToLynx$ file Rush.tar.gz
 Rush.tar.gz: gzip compressed data, was &quot;Rush.tar&quot;, last modified: Wed Mar 31 09:00:21 2021,
 max speed, from FAT filesystem (MS-DOS, OS/2, NT), original size modulo 2^32 1106863616
 </code></pre>
 <p class="has-line-data" data-line-start="64" data-line-end="65">Podemos observar que el tamaño del fichero original es: <code>original size modulo 2^32 1106863616</code></p>
 <p class="has-line-data" data-line-start="66" data-line-end="67">Lo que significa que si lo tratamos de descomprimir se hara muy grande y puede que nos “cuelgue” el sistema operativo.  Incluso, tratando de hacerlo por linea de comandos, nos da errores:</p>
-<pre><code class="has-line-data" data-line-start="69" data-line-end="78" class="language-console">kali@kali:~/ZeroToLynx$ tar xzvf Rush.tar.gz
+<pre><code class="language-console hljs" data-line-start="69" data-line-end="78" class="language-console">kali@kali:~/ZeroToLynx$ tar xzvf Rush.tar.gz
 tar: a: Cannot mkdir: Permission denied
 tar: a/a/a/a/a/a/a/a/a/a/a/b/a/c: Cannot mkdir: No such file or directory
 a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/
@@ -302,12 +302,12 @@ tar: a: Cannot mkdir: Permission denied
 <p class="has-line-data" data-line-start="83" data-line-end="84">Debemos cambiar nuestro enfoque, nos piden que busquemos una bomba, suponemos que dentro de todos esos subdirectorios y lo que pueda crear hay un flag, por lo que debemos recurrir a un comando.  He tratado de utilizar <code>zgrep</code>, pero no me ha dado solucion, asi que recurro a <code>python</code> y encuentro un codigo que hace esto mismo usando el modulo <code>tarfile</code>.</p>
 <p class="has-line-data" data-line-start="85" data-line-end="86"><img src="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/rushb.png" alt="CTF #FromZeroToLynx"></p>
 <p class="has-line-data" data-line-start="87" data-line-end="88">Usamos este script, sabiendo cual es el formato de la flag y obtenemos:</p>
-<pre><code class="has-line-data" data-line-start="90" data-line-end="94" class="language-console">kali@kali:~/ZeroToLynx$ python3 buscar_tar.py &quot;ESL&quot; Rush.tar.gz
+<pre><code class="language-console hljs" data-line-start="90" data-line-end="94" class="language-console">kali@kali:~/ZeroToLynx$ python3 buscar_tar.py &quot;ESL&quot; Rush.tar.gz
 Cadena encontrada en los siguientes ficheros
 a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
 </code></pre>
 <p class="has-line-data" data-line-start="95" data-line-end="96">Sabemos donde esta el fichero que contiene la flag, asi que podemos descomprimir este unico fichero y leerlo:</p>
-<pre><code class="has-line-data" data-line-start="98" data-line-end="102" class="language-console">kali@kali:~/ZeroToLynx$ sudo tar xzf Rush.tar.gz a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
+<pre><code class="language-console hljs" data-line-start="98" data-line-end="102" class="language-console">kali@kali:~/ZeroToLynx$ sudo tar xzf Rush.tar.gz a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
 kali@kali:~/ZeroToLynx$ cat a/a/a/a/a/a/a/a/a/a/a/b/a/c/a/a/a/b/d/a/a/b/c/d/c/c/d/b/b/c/b/d/b/d/c/c/b/b/c/d/c/d/a/b/b/Bombsite
 ESL{Bu3n_s1t10_p4rA_P1ant4R}
 </code></pre>
@@ -326,7 +326,7 @@ Nos hemos colado en el Discord del contrincante y hemos grabado sus planes, aunq
 <p class="has-line-data" data-line-start="117" data-line-end="118"><strong><em>Este reto es de #Stego.</em></strong></p>
 <p class="has-line-data" data-line-start="119" data-line-end="120">Nos entregan un fichero con extension <code>mp3</code> (Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/ctf-zerotolynx/victory.mp3">AQUI</a>)</p>
 <p class="has-line-data" data-line-start="121" data-line-end="122">Como has podido ver en mi blog, siempre verifico que lo que nos entregan corresponde con lo que presuntamente nos dicen que debe ser.</p>
-<pre><code class="has-line-data" data-line-start="124" data-line-end="127" class="language-console">kali@kali:~/ZeroToLynx$ file victory.mp3
+<pre><code class="language-console hljs" data-line-start="124" data-line-end="127" class="language-console">kali@kali:~/ZeroToLynx$ file victory.mp3
 victory.mp3: Audio file with ID3 version 2.3.0, contains:MPEG ADTS, layer III, v2,  64 kbps, 22.05 kHz, JntStereo
 </code></pre>
 <p class="has-line-data" data-line-start="127" data-line-end="128">Observamos que es un fichero mp3 como nos han indicado.</p>
@@ -347,7 +347,7 @@ Hemos encontrado dos documentos con información confidencial que contiene la lo
 Confidential: es un fichero cifrado.<br>
 Secret: es un fichero que contiene una llave RSA privada rota.</p>
 <p class="has-line-data" data-line-start="152" data-line-end="153">Verificamos los ficheros y vemos que la llave RSA privada que nos entregan esta rota, hay secciones que no tenemos y debemos por ende tratar de reconstruirla.</p>
-<pre><code class="has-line-data" data-line-start="155" data-line-end="197" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+<pre><code class="language-console hljs" data-line-start="155" data-line-end="197" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
 └─$ cat secret
 -----BEGIN RSA PRIVATE KEY-----
 MIIG4wIBAAKCAYEAnq48eqHsUugZkz4rFqROVvPa9fvxqoJx6b81MuigBe9ANavd
@@ -391,7 +391,7 @@ snBOswPSv3uRIIp1OseZpXnWxgNMJaVpyCo7VHTqhCaN4TcZJbeV6DhZeE1bw250
 </code></pre>
 <p class="has-line-data" data-line-start="198" data-line-end="199">Lo arreglamos y quitamos las secciones que no tenemos para tratar de pasar de Base64 a Hexadecimal, para analizarlo y obtenemos:</p>
 <h4 class="code-line" data-line-start=200 data-line-end=201 ><a id="PEM_que_nos_dan_200"></a>PEM que nos dan</h4>
-<pre><code class="has-line-data" data-line-start="202" data-line-end="218" class="language-code">-----BEGIN RSA PRIVATE KEY-----
+<pre><code class="language-console hljs" data-line-start="202" data-line-end="218" class="language-code">-----BEGIN RSA PRIVATE KEY-----
 MIIG4wIBAAKCAYEAnq48eqHsUugZkz4rFqROVvPa9fvxqoJx6b81MuigBe9ANavd
 YYNCrN8zryxHBo+l2Z0EkA11p1mF/swa0SFUfYnUsuZpfqjDvELrsWf+jmtxRrk4
 AoHBANAiZPCv9AHjyhOJOBJBu1Ul1B0PPaBk
@@ -469,7 +469,7 @@ b3102862476b788675ac621d530a793843e79aa289741e462724fa<br>
 859784d5bc36e744440c00931034440c00931034440c00931034<br>
 440c00931034440c00931034440c00931034440c0093103</p>
 <p class="has-line-data" data-line-start="290" data-line-end="291">Tenemos los valores completos de q y dmod(p-1).  Tomando un script que hemos conseguido para poder calcular p y N:</p>
-<pre><code class="has-line-data" data-line-start="293" data-line-end="325" class="language-code">##Python3
+<pre><code class="language-python hljs" data-line-start="293" data-line-end="325" class="language-code">##Python3
 #import gmpy
 from sympy import isprime
 
@@ -502,7 +502,7 @@ N = p*q
 print(&quot;Valor de N: &quot;,N)
 </code></pre>
 <p class="has-line-data" data-line-start="326" data-line-end="327">Obtenemos los valores buscados:</p>
-<pre><code class="has-line-data" data-line-start="329" data-line-end="356" class="language-code">
+<pre><code class="language-console hljs" data-line-start="329" data-line-end="356" class="language-code">
 ┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
 └─$ python3 ./valor-n-p.py                                                  2 ⨯
 Possible p: {p} 195964381578986226110833125117530514759298142493
@@ -541,7 +541,7 @@ Valor de N:  180053090851894882732301169407688044244269066553850
 12532101822354359126371878569868307202194938398601705140954807080<br>
 74670751</p>
 <p class="has-line-data" data-line-start="371" data-line-end="372">Con este numero Q y el valor de P que hemos obtenido, podemos reconstruir nuestra llave, haciendo uso del script <a href="http://rsatool.py">rsatool.py</a> que hemos mencionado mas arriba. (Recordar que estos numeros son primos)</p>
-<pre><code class="has-line-data" data-line-start="374" data-line-end="475" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+<pre><code class="language-console hljs" data-line-start="374" data-line-end="475" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
 └─$ python3 rsatool.py -f PEM -p 1959643815789862261108331251175305147
 59298142493706744907852228559426590498420748142107865644852788879520593
 17475195663008364018849372466071481741734035866773849096466701355618459
@@ -643,7 +643,7 @@ puSp2L+rSNMrU9ZKFIK9rzYYn72ZwA0yuzhbFLcZBDMzHabcPh8gM5XLQMEA2LE9zPSpqYxMxe55
 -----END RSA PRIVATE KEY-----
 </code></pre>
 <p class="has-line-data" data-line-start="476" data-line-end="477">Con esta llave privada RSA podemos descrifrar el mensaje que nos han entregado, haciendo uso de openssl.</p>
-<pre><code class="has-line-data" data-line-start="479" data-line-end="487" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
+<pre><code class="language-console hljs" data-line-start="479" data-line-end="487" class="language-code">┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]
 └─$ openssl rsautl -decrypt -inkey clave.pem -in confidential -out flag.txt
 
 ┌──(kali㉿kali)-[~/CTF-Zerotolynx/rsa-challenge]

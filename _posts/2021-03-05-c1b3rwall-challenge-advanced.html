@@ -24,22 +24,22 @@ Durante una investigación a una importante banda internacional de ladrones de v
 <p class="has-line-data" data-line-start="23" data-line-end="25">Nos entregan un fichero con extensión <code>.pcap</code> como indica la descripción. [Lo puedes descargar <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/net.pcap">AQUI]<br>
 </a></p>
 <p class="has-line-data" data-line-start="26" data-line-end="27">Una de las cosas que hago siempre, es verificar que lo que nos entregan si es lo que dicen que es; en este caso un fichero probablemente de captura de red.</p>
-<pre><code class="has-line-data" data-line-start="29" data-line-end="32" class="language-console">kali@kali:~/C1b3rChallenge$ file net.pcap 
+<pre><code class="language-console hljs" data-line-start="29" data-line-end="32" class="language-console">kali@kali:~/C1b3rChallenge$ file net.pcap 
 net.pcap: Zip archive data, at least v1.0 to extract
 </code></pre>
 <p class="has-line-data" data-line-start="33" data-line-end="34">Como observamos, el fichero no es precisamente una captura de trafico de red, sino que es un fichero <code>ZIP</code>.  Así que procedemos a descomprimirlo.</p>
-<pre><code class="has-line-data" data-line-start="36" data-line-end="40" class="language-console">kali@kali:~/C1b3rChallenge$ unzip net.pcap
+<pre><code class="language-console hljs" data-line-start="36" data-line-end="40" class="language-console">kali@kali:~/C1b3rChallenge$ unzip net.pcap
 Archive:  net.pcap
   inflating: trace/tlhahisoleseding  
 </code></pre>
 <p class="has-line-data" data-line-start="41" data-line-end="42">Obtenemos una carpeta con un binario que podríamos ejecutar. Al hacerlo vemos que hay una cadena de texto que se repite.</p>
 <p class="has-line-data" data-line-start="43" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/advanced-1.png" alt="Retos C1b3rwall Challenge"><br>
 Por lo que lo anterior podemos sacar la cadena de texto:</p>
-<pre><code class="has-line-data" data-line-start="47" data-line-end="50" class="language-console">uggcf://jjj.qebcobk.pbz/f/qtdipont5zsxygp/p1o3epunyyratr.mvc?qy=1|Wejdź na
+<pre><code class="language-console hljs" data-line-start="47" data-line-end="50" class="language-console">uggcf://jjj.qebcobk.pbz/f/qtdipont5zsxygp/p1o3epunyyratr.mvc?qy=1|Wejdź na
 naszą uzgodnioną witrynę
 </code></pre>
 <p class="has-line-data" data-line-start="51" data-line-end="52">Que si la ponemos en CyberChef y jugamos haber que tipo de cifrado tiene, encontramos:</p>
-<pre><code class="has-line-data" data-line-start="54" data-line-end="57" class="language-console">https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1|Jrwqź an
+<pre><code class="language-console hljs" data-line-start="54" data-line-end="57" class="language-console">https://www.dropbox.com/s/dgqvcbag5mfkltc/c1b3rchallenge.zip?dl=1|Jrwqź an
 anfmą hmtbqavbaą jvgelaę
 </code></pre>
 <p class="has-line-data" data-line-start="58" data-line-end="59">Y según la descripción tenemos:</p>
@@ -74,12 +74,12 @@ Tras meses de conversaciones interceptadas, hemos conseguido detener a un client
 </blockquote>
 <p class="has-line-data" data-line-start="102" data-line-end="103">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/ldrns.jpg">AQUI</a>.</p>
 <p class="has-line-data" data-line-start="104" data-line-end="105">Procedemos a revisar que el fichero entregado si sea una imagen:</p>
-<pre><code class="has-line-data" data-line-start="107" data-line-end="111" class="language-console">kali@kali:~/C1b3rChallenge$ file ldrns.jpg 
+<pre><code class="language-console hljs" data-line-start="107" data-line-end="111" class="language-console">kali@kali:~/C1b3rChallenge$ file ldrns.jpg 
 ldrns.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1,
 segment length 16, baseline, precision 8, 225x225, components 3
 </code></pre>
 <p class="has-line-data" data-line-start="112" data-line-end="113">En principio es un fichero de imagen, asi que vamos a ver si dentro de los <code>strings</code> encontramos algo:</p>
-<pre><code class="has-line-data" data-line-start="115" data-line-end="123" class="language-console">kali@kali:~/C1berChallenge$ strings -n 8 ldrns.jpg 
+<pre><code class="language-console hljs" data-line-start="115" data-line-end="123" class="language-console">kali@kali:~/C1berChallenge$ strings -n 8 ldrns.jpg 
 !1!%)+...
 383-7(-.+
 ++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -99,7 +99,7 @@ Un agente infiltrado en la banda de ladrones de coches de lujo ha oído hablar d
 </blockquote>
 <p class="has-line-data" data-line-start="138" data-line-end="139">Nos entregan un fichero, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/jestesmy_legionem.tar.xz">AQUI</a>.</p>
 <p class="has-line-data" data-line-start="140" data-line-end="141">Todo parece indicar que es un fichero <code>tar.gz</code> aunque con la extensión mal escrita, así que como hemos hecho antes, verificamos si efectivamente tenemos un fichero de compresión.</p>
-<pre><code class="has-line-data" data-line-start="143" data-line-end="146" class="language-console">kali@kali:~/C1berChallenge$ file jestesmy_legionem.tar.xz 
+<pre><code class="language-console hljs" data-line-start="143" data-line-end="146" class="language-console">kali@kali:~/C1berChallenge$ file jestesmy_legionem.tar.xz 
 jestesmy_legionem.tar.xz: JPEG image data
 </code></pre>
 <p class="has-line-data" data-line-start="147" data-line-end="148">Para sorpresa, podemos ver que no es un fichero de compresión, es un fichero de imagen.  Así que, podríamos abrirlo con un visor de imágenes o cambiar la extensión y posteriormente abrirlo.  Como lo realicemos, podemos ver que la imagen se visualiza así:</p>
@@ -126,7 +126,7 @@ Tras meses de jugar al ratón y al gato, por fin hemos logrado desmantelar a gra
 <p class="has-line-data" data-line-start="183" data-line-end="184">Nos entregan dos ficheros, que podéis descargar de <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/jestesmy_legionem.tar.jpg">AQUI</a> y <a href="https://ch4m17ux.github.io/img/posts/c1berwall-challenge-advanced/ZentimoSettings.bin">AQUI</a>.</p>
 <p class="has-line-data" data-line-start="185" data-line-end="186">Como en el reto anterior, nos entregan un fichero que parece ser un <code>tar.gz</code> o un <code>JPG</code> (parece que no se han decidido) y nos entregan lo que parecería un binario de Linux.</p>
 <p class="has-line-data" data-line-start="187" data-line-end="188">Vemos si los ficheros son los que aparentan ser:</p>
-<pre><code class="has-line-data" data-line-start="190" data-line-end="195" class="language-console">kali@kali:~/C1berChallenge$ file jestesmy_legionem.tar.jpg 
+<pre><code class="language-console hljs" data-line-start="190" data-line-end="195" class="language-console">kali@kali:~/C1berChallenge$ file jestesmy_legionem.tar.jpg 
 jestesmy_legionem.tar.jpg: JPEG image data
 ch4m0@ch4m0:~/C1berChallenge$ file ZentimoSettings.bin 
 ZentimoSettings.bin: Zip archive data, at least v5.1 to extract
@@ -134,7 +134,7 @@ ZentimoSettings.bin: Zip archive data, at least v5.1 to extract
 <p class="has-line-data" data-line-start="196" data-line-end="197">Vemos que uno de los ficheros es un <code>JPG</code> y el otro es un archivo <code>ZIP</code>.</p>
 <p class="has-line-data" data-line-start="198" data-line-end="199">Cuando tratamos de descomprimir el fichero <code>ZIP</code>, nos solicita una contraseña: según la descripción del reto, parece que podríamos sacar del fichero <code>JPG</code>, de alguna manera, la contraseña solicitada.  Así que vamos a intentarlo.</p>
 <p class="has-line-data" data-line-start="200" data-line-end="201">Verificamos si dentro de los <code>strings</code> del fichero <code>JPG</code> podemos ver algo interesante.</p>
-<pre><code class="has-line-data" data-line-start="203" data-line-end="212" class="language-console">kali@kali:~/C1berChallenge$ strings -n 10 jestesmy_legionem.tar.jpg 
+<pre><code class="language-console hljs" data-line-start="203" data-line-end="212" class="language-console">kali@kali:~/C1berChallenge$ strings -n 10 jestesmy_legionem.tar.jpg 
 psswdxterm.
 %&amp;'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
 &amp;'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
@@ -146,7 +146,7 @@ MgST\w?B?a
 <p class="has-line-data" data-line-start="213" data-line-end="214">Vemos con total claridad una cadena de texto interesante: <strong><em>passwdxterm</em></strong></p>
 <p class="has-line-data" data-line-start="215" data-line-end="216">Probamos con esta contraseña al descomprimir el otro fichero y no nos la acepta, así que hacemos un poco de “Try Harder” e intentamos solo con la cadena: <strong>xterm</strong></p>
 <p class="has-line-data" data-line-start="217" data-line-end="218">Con esta si que nos permite descomprimir, observamos que es un fichero <code>DOCX</code>, así que verificamos si efectivamente es lo que aparenta ser.</p>
-<pre><code class="has-line-data" data-line-start="220" data-line-end="224" class="language-console">kali@kali:~/C1berChallenge$ file wordlist.docx 
+<pre><code class="language-console hljs" data-line-start="220" data-line-end="224" class="language-console">kali@kali:~/C1berChallenge$ file wordlist.docx 
 wordlist.docx: RIFF (little-endian) data, WAVE audio, Microsoft PCM,
 16 bit, mono 44100 Hz
 </code></pre>

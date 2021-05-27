@@ -55,7 +55,7 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 </blockquote>
 <p class="has-line-data" data-line-start="70" data-line-end="71">Se nos entrega un fichero de audio, que al revisarlo nos parece que son tonos DTMF. Este reto tiene varias posibilidades de resolucion, asi que aqui encontramos una de las tantas. (este write-up esta basado en: <a href="http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong">http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong</a> y <a href="https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void">https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void)</a>)</p>
 <p class="has-line-data" data-line-start="72" data-line-end="73">Primero debemos instalar el paquete de Linux que nos permita Demodular la señal, este paquete segun la guia se denomina ‘multimon-ng’.</p>
-<pre><code class="has-line-data" data-line-start="75" data-line-end="77" class="language-console"># sudo apt-get install libpulse-dev multimon-ng
+<pre><code class="language-console hljs" data-line-start="75" data-line-end="77" class="language-console"># sudo apt-get install libpulse-dev multimon-ng
 </code></pre>
 <p class="has-line-data" data-line-start="78" data-line-end="79">Una vez que tenemos el paquete y las dependencias instaladas, procedemos a demodular la señal.</p>
 <p class="has-line-data" data-line-start="80" data-line-end="81"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto12.png" alt="Academia Hacker"></p>
@@ -74,7 +74,7 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 <p class="has-line-data" data-line-start="101" data-line-end="102">Nos entregan un fichero HTML que al ejecutarlo, nos solicita una contraseña. Colocamos cualquier calor y nos devuelve un mensaje de error.</p>
 <p class="has-line-data" data-line-start="103" data-line-end="104">Al analizar el codigo vemos que hay un JavaScript ofuscado, tratamos de desofuscarlo para ver mas claro, nos encontramos con que los nombre de las variables y los valores se han sustituido por codigo hexadecimal.</p>
 <p class="has-line-data" data-line-start="105" data-line-end="106">Hacemos algunos ajustes reemplazando el nombre de algunas variables para visualizarlo mejor y podriamos obtener el codigo siguiente:</p>
-<pre><code class="has-line-data" data-line-start="108" data-line-end="146" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>
+<pre><code class="language-html hljs" data-line-start="108" data-line-end="146" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>
   <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://code.jquery.com/jquery-2.2.4.min.js"</span>
   <span class="hljs-attribute">integrity</span>=<span class="hljs-value">"sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="</span>
   <span class="hljs-attribute">crossorigin</span>=<span class="hljs-value">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
@@ -113,12 +113,12 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"tagreply"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 <p class="has-line-data" data-line-start="147" data-line-end="148">Llama la atencion la parte del codigo que pone:</p>
-<pre><code class="has-line-data" data-line-start="150" data-line-end="152" class="language-html">password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
+<pre><code class="language-html hljs" data-line-start="150" data-line-end="152" class="language-html">password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
 </code></pre>
 <p class="has-line-data" data-line-start="153" data-line-end="154">Lo que indica en esa instruccion es que si el valor de la variable “password” es igual al valor de la variable &quot;<strong>Valor_2(0x14b)+Valor_3</strong>&quot; entonces muestra una ventana emergente, y en caso de que no sean iguales muestra otra ventana emergente.</p>
 <p class="has-line-data" data-line-start="155" data-line-end="156">Suponemos en este punto que es aqui donde compara que el valor que nosotros ponemos en el campo de Login sea el correcto. Pero el asunto es ¿Cómo saca ese valor?</p>
 <p class="has-line-data" data-line-start="157" data-line-end="158">Lo que se le ocurrio a DanyData es hacer un print, tambien lo podemos hacer con un alert para que salte el valor que espera justo encima de la linea donde compara y obtendriamos lo que debemos introducir. Seria algo como esto:</p>
-<pre><code class="has-line-data" data-line-start="160" data-line-end="163" class="language-html">alert(Valor_2(0x14b)+Valor_3);
+<pre><code class="language-html hljs" data-line-start="160" data-line-end="163" class="language-html">alert(Valor_2(0x14b)+Valor_3);
 password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 </code></pre>
 <p class="has-line-data" data-line-start="164" data-line-end="165">Guardamos estos cambios y lo ejecutamos de nuevo, damos clic en el login y nos muestra la ventana emergente que hemos querido poner, donde se muestra el valor que espera: “accessgranted1337”. Si digitamos esto en el campo login, y volvemos a validar nos muestra otra ventana que pone: &quot;<strong>OK, flag{password}</strong>&quot;</p>
@@ -147,7 +147,7 @@ password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 <ol start="2">
 <li class="has-line-data" data-line-start="200" data-line-end="202">Recopilamos todas las ecuaciones que vemos dentro de cada una de las comprobaciones:</li>
 </ol>
-<pre><code class="has-line-data" data-line-start="203" data-line-end="225" class="language-bash"><span class="hljs-number">11189</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">9</span>] - a1[<span class="hljs-number">8</span>]);
+<pre><code class="language-console hljs" data-line-start="203" data-line-end="225" class="language-bash"><span class="hljs-number">11189</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">9</span>] - a1[<span class="hljs-number">8</span>]);
 <span class="hljs-number">13471</span> = (a1[<span class="hljs-number">15</span>] * a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">13</span>]);
 <span class="hljs-number">11161</span> = (a1[<span class="hljs-number">10</span>] * a1[<span class="hljs-number">13</span>] + a1[<span class="hljs-number">19</span>] - a1[<span class="hljs-number">5</span>]);
 -<span class="hljs-number">12533</span> = (a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">2</span>] * a1[<span class="hljs-number">10</span>] + a1[<span class="hljs-number">6</span>]);
@@ -172,7 +172,7 @@ password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 <ol start="3">
 <li class="has-line-data" data-line-start="226" data-line-end="228">No se aprecia posibilidad alguna de realizar una comparacion entre ecuaciones para usar un sistema, asi que contruimos un pequeño script que ayude a validar posibles datos y a partir de ahí usar aproximaciones.</li>
 </ol>
-<pre><code class="has-line-data" data-line-start="229" data-line-end="247" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
+<pre><code class="language-console hljs" data-line-start="229" data-line-end="247" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
 valorfinal=<span class="hljs-number">13113</span>
 <span class="hljs-keyword">for</span> ((v1 = <span class="hljs-number">48</span>; v1 &lt;= <span class="hljs-number">123</span>; v1++)); <span class="hljs-keyword">do</span>
     <span class="hljs-keyword">for</span> ((v2 = <span class="hljs-number">48</span>; v2 &lt;= <span class="hljs-number">123</span>; v2++)); <span class="hljs-keyword">do</span> 
@@ -202,7 +202,7 @@ valorfinal=<span class="hljs-number">13113</span>
 </ol>
 <p class="has-line-data" data-line-start="264" data-line-end="265">(NI QUE DECIR TIENE QUE LO MEJOR ES ACABAR EL SCRIPT COMO DIOS MANDA Y QUE LO HAGA TODO EL SCRIPT – Opcion A Mejorar)</p>
 <p class="has-line-data" data-line-start="266" data-line-end="267">Yo lo anoté poco a poco y fui rellenando valores de variables probando con el script primario que hice.</p>
-<pre><code class="has-line-data" data-line-start="269" data-line-end="298" class="language-bash">Ejemplos:
+<pre><code class="language-console hljs" data-line-start="269" data-line-end="298" class="language-bash">Ejemplos:
 
               <span class="hljs-number">51</span>      <span class="hljs-number">116</span>
 <span class="hljs-number">66767976</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">19</span>] * a1[<span class="hljs-number">9</span>] * a1[<span class="hljs-number">15</span>]);
@@ -261,7 +261,7 @@ valorfinal=<span class="hljs-number">13113</span>
 <strong><em>flag{respuestacorrecta1234}</em></strong></p>
 <h2 class="code-line" data-line-start=331 data-line-end=332 ><a id="Solucion_2_331"></a>Solucion 2</h2>
 <p class="has-line-data" data-line-start="333" data-line-end="334">Se ha entregado un script con el cual sacar la solucion de forma inmediata.</p>
-<pre><code class="has-line-data" data-line-start="336" data-line-end="382" class="language-python"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<pre><code class="language-python hljs" data-line-start="336" data-line-end="382" class="language-python"><span class="hljs-comment">#!/usr/bin/env python3</span>
 <span class="hljs-keyword">from</span> z3 <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">import</span> binascii
 <span class="hljs-keyword">import</span> sys
