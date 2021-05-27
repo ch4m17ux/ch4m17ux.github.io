@@ -29,14 +29,14 @@ Nos entregan un fichero con extensión `.bsp` (Lo puedes descargar [AQUI](https:
 
 Lo primero que hago siempre, es verificar que el fichero entregado sea lo que presuntamente nos dicen que es, asi que lo verificamos a traves del comando `file`:
 
-```console
+```bash
 kali@kali:~/ZeroToLynx$ file granja.bsp
 granja.bsp: data
 ```
 
 Vemos que es un fichero con informacion de datos, asi que procedemos a verificar si encontramos algo entre sus `strings`. (*Aqui yo he ido aumentado el numero de caracteres que quiero que busque, debido a que me salia mucha información*)
 
-```console
+```bash
 kali@kali:~/ZeroToLynx$ strings -n 45 granja.bsp
 "axis" "512 -226.05 -27.8, 502.89 -223.53 -27.8"
 "message" "ESL{MuyBienMatasteAlPolloCorrecto}"
@@ -98,6 +98,7 @@ En principio es un binario ELF, asi que lo podriamos ejecutar haber que nos mues
 
 Observamos que la bomba que siempre plantan tiene el codigo: `7355608`. Asi que lo probaremos para ver que sucede.
 
+```bash
     kali@kali:~/ZeroToLynx$ ./bomb.bin
     NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
     NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
@@ -136,7 +137,7 @@ Observamos que la bomba que siempre plantan tiene el codigo: `7355608`. Asi que 
     ¡Bomba desactivada!
 
     Felicidades, la flag es ESL{S13mPr3_H4y_Qu3_Pl4nT4R_3n_lUg4R_S3gUr0}
-
+```
 
 Obtenemos la flag que nos han solicitado: **`ESL{S13mPr3_H4y_Qu3_Pl4nT4R_3n_lUg4R_S3gUr0}`**
 
@@ -198,9 +199,10 @@ En este reto nos adjuntan un fichero con extension `.pcap` (Lo puedes descargar 
 
 Como siempre hago, vamos a ver que el fichero es lo que nos indican que debe ser:
 
+```bash
     kali@kali:~/ZeroToLynx$ file tcpdump.pcap
     tcpdump.pcap: pcap capture file, microsecond ts (little-endian) - version 2.4 (Linux cooked v1, capture length 262144)
-
+```
 
 En principio, el fichero si corresponde con una captura de red. Por lo que lo abrimos en WireShark.
 
