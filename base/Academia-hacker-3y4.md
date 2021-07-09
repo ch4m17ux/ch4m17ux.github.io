@@ -412,4 +412,258 @@ Obtenemos la flag:
 ***flag{4458256}***
 
 ---
-###CONTINUARA CON LOS RETOS DE LA SEMANA 4
+
+## **Reto 16**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+>En próximos días vais a participar en una de las salidas anuales del instituto. Os llega al correo la información de la salida junto a una imagen adjunta. Como sois curiosos, decidís mirar si hay metadatos en la imagen.
+>
+>**Datos proporcionados:**
+>
+>Fichero jpg.
+
+Nos han entregado un fichero jpg, asi que verificamos por ejemplo que sea el tipo de fichero que se supone deberia ser.
+
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto16]
+└─$ file marsperse.jpeg
+marsperse.jpeg: JPEG image data, JFIF standard 1.02, aspect ratio, density 100x100, segment length 16, comment: "perseverance", baseline, precision 8, 1200x675, components 3
+```
+Verificamos si tenemos algo en los metadatos:
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto16]
+└─$ exiftool marsperse.jpeg
+ExifTool Version Number : 12.16
+File Name : marsperse.jpeg
+Directory : .
+File Size : 96 KiB
+File Modification Date/Time : 2021:02:19 12:31:15+01:00
+File Access Date/Time : 2021:05:24 20:36:37+02:00
+File Inode Change Date/Time : 2021:05:24 20:35:15+02:00
+File Permissions : rwxr--r--
+File Type : JPEG
+File Type Extension : jpg
+MIME Type : image/jpeg
+JFIF Version : 1.02
+Resolution Unit : None
+X Resolution : 100
+Y Resolution : 100
+Comment : perseverance
+Image Width : 1200
+Image Height : 675
+Encoding Process : Baseline DCT, Huffman coding
+Bits Per Sample : 8
+Color Components : 3
+Y Cb Cr Sub Sampling : YCbCr4:2:0 (2 2)
+Image Size : 1200x675
+Megapixels : 0.810
+```
+
+Vemos una entrada "Comment" que nos llama la atencion, y que pone: perseverance.
+
+Verificamos si podemos sacar algun dato de la imagen, lo hacemos a traves de **_steghide_** y utilizando la palabra que hemos encontrado en los metadatos.
+
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto16]
+└─$ steghide --info marsperse.jpeg 1 ⨯
+"marsperse.jpeg":
+formato: jpeg
+capacidad: 5,9 KB
+Intenta informarse sobre los datos adjuntos? (s/n) s
+Anotar salvoconducto:
+archivo adjunto "flag.txt":
+tamao: 186,0 Byte
+encriptado: rijndael-128, cbc
+compactado: si
+```
+
+Procedemos a extraerlo y veremos que informacion nos arroja.
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto16]
+└─$ steghide extract -sf marsperse.jpeg
+Anotar salvoconducto:
+anot los datos extrados e/"flag.txt".
+
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto16]
+└─$ cat flag.txt
+Nos acaban de enviar los códigos para preparar la transmision. Cuando vayáis al albergue preguntar por el anciano del pueblo, os quiere decir algo.
+
+flag{code_ready_for_transmission}
+```
+
+Obtenemos la flag solicitada:
+***flag{code_ready_for_transmission}***
+
+---
+
+## **Reto 17**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> Se ha recibido un correo electrónico con un documento de texto adjunto con unos caracteres indescifrables.
+>
+>Pregunta
+>
+>¿Puedes recuperar el mensaje original?
+>
+>**Datos proporcionados:**
+>
+>flag.txt
+
+Nos entregan un fichero flag.txt, que si intentamos verlo, vemos que parece que contiene algunos iconos o imagenes.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-1.png)
+
+En principio no nos da mayor informacion, asi que investigamos y encontramos que hay ejemplos (https://reese.dev/codemash2019-ctf-solutions/), y por ejemplo podemos usar un sitio donde podemos ver el codigo unicode de cada imagen. Donde copiamos los "caracteres" que nos entregan. (https://reese.dev/codemash2019-ctf-solutions/)
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-2.png)
+
+Tomando los valores "CodePoint" y descifrandolo desde hexadecimal, obtenemos la flag.
+
+***flag{una_fuente_puede_ser_un_codificador}***
+
+---
+
+## **Reto 18**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> Se ha implantado en el colegio un sistema para entrar a clase mediante lectura de un código QR.
+>
+>El profesor distribuye varios códigos QR para que los alumnos prueben sus teléfonos
+>
+>Pregunta
+>¿Puedes leer el QR?
+>
+>**Datos proporcionados:**
+>
+>flag.txt
+
+Nos entregan una imagen que es un QR Code:
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-1.png)
+
+Buscamos un sitio web que nos permita subir y leer el QR Code, o con el mismo movil podemos realizarlo. Utilizamos por ejemplo [https://zxing.org/w/decode.jspx](https://zxing.org/w/decode.jspx)
+
+Al subir la imagen nos muestra la informacion que se "esconde" en el QR Code.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-2.png)
+
+Obtenemos una secuencia de caracteres, asi que los copiamos y tratamos de verificar que tipo de cifrado se ha efectuado sobre el mismo.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-3.png)
+
+Al realizar 11 veces que lo decodifique desde Base64, obtenemos la flag.
+
+***flag{QR_puede_usarse_para_esconder_mensajes}***
+
+---
+## **Reto 19**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.
+>
+>Pregunta
+>
+>¿Puedes encontrar la cadena mágica que devuelve la flag?
+>
+>**Datos proporcionados:**
+>
+>flag
+
+Nos entregan un binario, que al ejecutarlo sin parámetros, nos pone que debemos escribir "una cadena mágica"
+
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto19]
+└─$ ./flag
+Introduce la cadena mágica como argumento
+```
+
+Pero si ponemos cualquier cosa, nos pone que esta incorrecto.
+
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto19]
+└─$ ./flag loquesea
+Lo siento, loquesea no es correcto
+```
+
+Así que debemos revisar el binario para tratar de identificar que espera como argumento. Revisando con IDA PRO (que lo podéis descargar [No promocionamos la piratería, pero para temas académicos, podemos pasarlo por alto] desde [https://web.telegram.org/#/im?p=@idapro7)](https://web.telegram.org/#/im?p=@idapro7))
+
+Debugueando, encontramos que espera una cadena:
+**_v7z7vw5rkcrsciwchmjmgmp_**
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-1.png)
+
+Vemos que compara cada carácter introducido y le hace una rotación -4 caracteres. Así que probamos con algunos de los cifrados que conocemos con esta característica: Rot13 (cesar) o Rot47, y tratamos de descifrarlo.
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-2.png)
+
+Aplicando Rot47 y le colocamos -4, encontramos el argumento que espera, para que nos entregue la flag.
+
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto19]
+└─$ ./flag r3v3rs1ng_no_es_dificil
+flag{r3v3rs1ng_no_es_d1f1c1l}
+```
+
+---
+## **Reto 20**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+> En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.
+>
+>Pregunta
+>
+>¿Puedes encontrar la cadena mágica que devuelve la flag?
+>
+>**Datos proporcionados:**
+>
+>flag
+
+Nos entregan un binario, que si lo ejecutamos solo (de nuevo) nos indica que debemos pasar "la cadena magica"
+
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto20]
+└─$ ./flag-1 1 ⚙
+Introduce la cadena mágica como argumento
+```
+
+Asi que nos toca hacer reversing, abriendo el IDA Pro, que os he dejado en la entrada anterior, podemos ver que espera una cadena bastante particular:
+**_i{2ldio348zAm=Qnlfju3jaJ-avDI1!x_a_**
+
+Si embargo, alli no acaba el asunto, tambien verifica que el nombre de tu ordenador coincida con la cadena que se especifica en el binario: **_C0p3rn1c0_**
+
+![Academia Hacker](https://ch4m17ux.github.io/img/posts/academia-hacker/reto20-1.png)
+
+Podemos parchear el binario y cambiar esa cadena de hostname por el nuestro (no he logrado hacerlo en IDA, pero si en OllyDBG) o modificar temporalmente el nombre de tu maquina y lanzar el binario con la cadena que espera, para que nos de la flag que buscamos:
+
+```bash
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto20]
+└─$ sudo hostname C0p3rn1c0                                                 1 ⚙
+                                                                                
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto20]
+└─$ hostname                                                                1 ⚙
+C0p3rn1c0
+                                                                                
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/4 semana/reto20]
+└─$ ./flag-1 'i{2ldio348zAm=Qnlfju3jaJ-avDI1!x_a'                       1 ⨯ 1 ⚙
+Aquí tienes la flag:
+flag{usando_variables_del_sistema}
+```
+
+obtenemos la flag solicitada:
+
+***flag{usando_variables_del_sistema}***

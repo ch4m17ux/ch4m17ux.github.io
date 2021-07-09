@@ -55,7 +55,7 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 </blockquote>
 <p class="has-line-data" data-line-start="70" data-line-end="71">Se nos entrega un fichero de audio, que al revisarlo nos parece que son tonos DTMF. Este reto tiene varias posibilidades de resolucion, asi que aqui encontramos una de las tantas. (este write-up esta basado en: <a href="http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong">http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong</a> y <a href="https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void">https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void)</a>)</p>
 <p class="has-line-data" data-line-start="72" data-line-end="73">Primero debemos instalar el paquete de Linux que nos permita Demodular la señal, este paquete segun la guia se denomina ‘multimon-ng’.</p>
-<pre><code class="language-console hljs" data-line-start="75" data-line-end="77" class="language-console"># sudo apt-get install libpulse-dev multimon-ng
+<pre><code class="has-line-data" data-line-start="75" data-line-end="77" class="language-console"># sudo apt-get install libpulse-dev multimon-ng
 </code></pre>
 <p class="has-line-data" data-line-start="78" data-line-end="79">Una vez que tenemos el paquete y las dependencias instaladas, procedemos a demodular la señal.</p>
 <p class="has-line-data" data-line-start="80" data-line-end="81"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto12.png" alt="Academia Hacker"></p>
@@ -74,7 +74,7 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 <p class="has-line-data" data-line-start="101" data-line-end="102">Nos entregan un fichero HTML que al ejecutarlo, nos solicita una contraseña. Colocamos cualquier calor y nos devuelve un mensaje de error.</p>
 <p class="has-line-data" data-line-start="103" data-line-end="104">Al analizar el codigo vemos que hay un JavaScript ofuscado, tratamos de desofuscarlo para ver mas claro, nos encontramos con que los nombre de las variables y los valores se han sustituido por codigo hexadecimal.</p>
 <p class="has-line-data" data-line-start="105" data-line-end="106">Hacemos algunos ajustes reemplazando el nombre de algunas variables para visualizarlo mejor y podriamos obtener el codigo siguiente:</p>
-<pre><code class="language-html hljs" data-line-start="108" data-line-end="146" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>
+<pre><code class="has-line-data" data-line-start="108" data-line-end="146" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>
   <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://code.jquery.com/jquery-2.2.4.min.js"</span>
   <span class="hljs-attribute">integrity</span>=<span class="hljs-value">"sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="</span>
   <span class="hljs-attribute">crossorigin</span>=<span class="hljs-value">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
@@ -113,12 +113,12 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"tagreply"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
 <p class="has-line-data" data-line-start="147" data-line-end="148">Llama la atencion la parte del codigo que pone:</p>
-<pre><code class="language-html hljs" data-line-start="150" data-line-end="152" class="language-html">password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
+<pre><code class="has-line-data" data-line-start="150" data-line-end="152" class="language-html">password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
 </code></pre>
 <p class="has-line-data" data-line-start="153" data-line-end="154">Lo que indica en esa instruccion es que si el valor de la variable “password” es igual al valor de la variable &quot;<strong>Valor_2(0x14b)+Valor_3</strong>&quot; entonces muestra una ventana emergente, y en caso de que no sean iguales muestra otra ventana emergente.</p>
 <p class="has-line-data" data-line-start="155" data-line-end="156">Suponemos en este punto que es aqui donde compara que el valor que nosotros ponemos en el campo de Login sea el correcto. Pero el asunto es ¿Cómo saca ese valor?</p>
 <p class="has-line-data" data-line-start="157" data-line-end="158">Lo que se le ocurrio a DanyData es hacer un print, tambien lo podemos hacer con un alert para que salte el valor que espera justo encima de la linea donde compara y obtendriamos lo que debemos introducir. Seria algo como esto:</p>
-<pre><code class="language-html hljs" data-line-start="160" data-line-end="163" class="language-html">alert(Valor_2(0x14b)+Valor_3);
+<pre><code class="has-line-data" data-line-start="160" data-line-end="163" class="language-html">alert(Valor_2(0x14b)+Valor_3);
 password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 </code></pre>
 <p class="has-line-data" data-line-start="164" data-line-end="165">Guardamos estos cambios y lo ejecutamos de nuevo, damos clic en el login y nos muestra la ventana emergente que hemos querido poner, donde se muestra el valor que espera: “accessgranted1337”. Si digitamos esto en el campo login, y volvemos a validar nos muestra otra ventana que pone: &quot;<strong>OK, flag{password}</strong>&quot;</p>
@@ -147,7 +147,7 @@ password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 <ol start="2">
 <li class="has-line-data" data-line-start="200" data-line-end="202">Recopilamos todas las ecuaciones que vemos dentro de cada una de las comprobaciones:</li>
 </ol>
-<pre><code class="language-console hljs" data-line-start="203" data-line-end="225" class="language-bash"><span class="hljs-number">11189</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">9</span>] - a1[<span class="hljs-number">8</span>]);
+<pre><code class="has-line-data" data-line-start="203" data-line-end="225" class="language-bash"><span class="hljs-number">11189</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">9</span>] - a1[<span class="hljs-number">8</span>]);
 <span class="hljs-number">13471</span> = (a1[<span class="hljs-number">15</span>] * a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">13</span>]);
 <span class="hljs-number">11161</span> = (a1[<span class="hljs-number">10</span>] * a1[<span class="hljs-number">13</span>] + a1[<span class="hljs-number">19</span>] - a1[<span class="hljs-number">5</span>]);
 -<span class="hljs-number">12533</span> = (a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">2</span>] * a1[<span class="hljs-number">10</span>] + a1[<span class="hljs-number">6</span>]);
@@ -172,7 +172,7 @@ password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 <ol start="3">
 <li class="has-line-data" data-line-start="226" data-line-end="228">No se aprecia posibilidad alguna de realizar una comparacion entre ecuaciones para usar un sistema, asi que contruimos un pequeño script que ayude a validar posibles datos y a partir de ahí usar aproximaciones.</li>
 </ol>
-<pre><code class="language-console hljs" data-line-start="229" data-line-end="247" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
+<pre><code class="has-line-data" data-line-start="229" data-line-end="247" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
 valorfinal=<span class="hljs-number">13113</span>
 <span class="hljs-keyword">for</span> ((v1 = <span class="hljs-number">48</span>; v1 &lt;= <span class="hljs-number">123</span>; v1++)); <span class="hljs-keyword">do</span>
     <span class="hljs-keyword">for</span> ((v2 = <span class="hljs-number">48</span>; v2 &lt;= <span class="hljs-number">123</span>; v2++)); <span class="hljs-keyword">do</span> 
@@ -202,7 +202,7 @@ valorfinal=<span class="hljs-number">13113</span>
 </ol>
 <p class="has-line-data" data-line-start="264" data-line-end="265">(NI QUE DECIR TIENE QUE LO MEJOR ES ACABAR EL SCRIPT COMO DIOS MANDA Y QUE LO HAGA TODO EL SCRIPT – Opcion A Mejorar)</p>
 <p class="has-line-data" data-line-start="266" data-line-end="267">Yo lo anoté poco a poco y fui rellenando valores de variables probando con el script primario que hice.</p>
-<pre><code class="language-console hljs" data-line-start="269" data-line-end="298" class="language-bash">Ejemplos:
+<pre><code class="has-line-data" data-line-start="269" data-line-end="298" class="language-bash">Ejemplos:
 
               <span class="hljs-number">51</span>      <span class="hljs-number">116</span>
 <span class="hljs-number">66767976</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">19</span>] * a1[<span class="hljs-number">9</span>] * a1[<span class="hljs-number">15</span>]);
@@ -261,7 +261,7 @@ valorfinal=<span class="hljs-number">13113</span>
 <strong><em>flag{respuestacorrecta1234}</em></strong></p>
 <h2 class="code-line" data-line-start=331 data-line-end=332 ><a id="Solucion_2_331"></a>Solucion 2</h2>
 <p class="has-line-data" data-line-start="333" data-line-end="334">Se ha entregado un script con el cual sacar la solucion de forma inmediata.</p>
-<pre><code class="language-python hljs" data-line-start="336" data-line-end="382" class="language-python"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<pre><code class="has-line-data" data-line-start="336" data-line-end="382" class="language-python"><span class="hljs-comment">#!/usr/bin/env python3</span>
 <span class="hljs-keyword">from</span> z3 <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">import</span> binascii
 <span class="hljs-keyword">import</span> sys
@@ -326,5 +326,179 @@ sys.stdout.flush()
 <p class="has-line-data" data-line-start="410" data-line-end="412">Obtenemos la flag:<br>
 <strong><em>flag{4458256}</em></strong></p>
 <hr>
-<p class="has-line-data" data-line-start="414" data-line-end="415">###CONTINUARA CON LOS RETOS DE LA SEMANA 4</p>
+<h2 class="code-line" data-line-start=414 data-line-end=415 ><a id="Reto_16_414"></a><strong>Reto 16</strong></h2>
+<p class="has-line-data" data-line-start="416" data-line-end="417">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="418" data-line-end="419"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="420" data-line-end="421">En próximos días vais a participar en una de las salidas anuales del instituto. Os llega al correo la información de la salida junto a una imagen adjunta. Como sois curiosos, decidís mirar si hay metadatos en la imagen.</p>
+<p class="has-line-data" data-line-start="422" data-line-end="423"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="424" data-line-end="425">Fichero jpg.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="426" data-line-end="427">Nos han entregado un fichero jpg, asi que verificamos por ejemplo que sea el tipo de fichero que se supone deberia ser.</p>
+<pre><code class="has-line-data" data-line-start="429" data-line-end="433" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+└─$ file marsperse.jpeg
+marsperse.jpeg: JPEG image data, JFIF standard <span class="hljs-number">1.02</span>, aspect ratio, density <span class="hljs-number">100</span>x100, segment length <span class="hljs-number">16</span>, comment: <span class="hljs-string">"perseverance"</span>, baseline, precision <span class="hljs-number">8</span>, <span class="hljs-number">1200</span>x675, components <span class="hljs-number">3</span>
+</code></pre>
+<p class="has-line-data" data-line-start="433" data-line-end="434">Verificamos si tenemos algo en los metadatos:</p>
+<pre><code class="has-line-data" data-line-start="435" data-line-end="462" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+└─$ exiftool marsperse.jpeg
+ExifTool Version Number : <span class="hljs-number">12.16</span>
+File Name : marsperse.jpeg
+Directory : .
+File Size : <span class="hljs-number">96</span> KiB
+File Modification Date/Time : <span class="hljs-number">2021</span>:<span class="hljs-number">02</span>:<span class="hljs-number">19</span> <span class="hljs-number">12</span>:<span class="hljs-number">31</span>:<span class="hljs-number">15</span>+<span class="hljs-number">01</span>:<span class="hljs-number">00</span>
+File Access Date/Time : <span class="hljs-number">2021</span>:<span class="hljs-number">05</span>:<span class="hljs-number">24</span> <span class="hljs-number">20</span>:<span class="hljs-number">36</span>:<span class="hljs-number">37</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>
+File Inode Change Date/Time : <span class="hljs-number">2021</span>:<span class="hljs-number">05</span>:<span class="hljs-number">24</span> <span class="hljs-number">20</span>:<span class="hljs-number">35</span>:<span class="hljs-number">15</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>
+File Permissions : rwxr--r--
+File Type : JPEG
+File Type Extension : jpg
+MIME Type : image/jpeg
+JFIF Version : <span class="hljs-number">1.02</span>
+Resolution Unit : None
+X Resolution : <span class="hljs-number">100</span>
+Y Resolution : <span class="hljs-number">100</span>
+Comment : perseverance
+Image Width : <span class="hljs-number">1200</span>
+Image Height : <span class="hljs-number">675</span>
+Encoding Process : Baseline DCT, Huffman coding
+Bits Per Sample : <span class="hljs-number">8</span>
+Color Components : <span class="hljs-number">3</span>
+Y Cb Cr Sub Sampling : YCbCr4:<span class="hljs-number">2</span>:<span class="hljs-number">0</span> (<span class="hljs-number">2</span> <span class="hljs-number">2</span>)
+Image Size : <span class="hljs-number">1200</span>x675
+Megapixels : <span class="hljs-number">0.810</span>
+</code></pre>
+<p class="has-line-data" data-line-start="463" data-line-end="464">Vemos una entrada “Comment” que nos llama la atencion, y que pone: perseverance.</p>
+<p class="has-line-data" data-line-start="465" data-line-end="466">Verificamos si podemos sacar algun dato de la imagen, lo hacemos a traves de <strong><em>steghide</em></strong> y utilizando la palabra que hemos encontrado en los metadatos.</p>
+<pre><code class="has-line-data" data-line-start="468" data-line-end="480" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+└─$ steghide --info marsperse.jpeg <span class="hljs-number">1</span> ⨯
+<span class="hljs-string">"marsperse.jpeg"</span>:
+formato: jpeg
+capacidad: <span class="hljs-number">5</span>,<span class="hljs-number">9</span> KB
+Intenta informarse sobre los datos adjuntos? (s/n) s
+Anotar salvoconducto:
+archivo adjunto <span class="hljs-string">"flag.txt"</span>:
+tamao: <span class="hljs-number">186</span>,<span class="hljs-number">0</span> Byte
+encriptado: rijndael-<span class="hljs-number">128</span>, cbc
+compactado: si
+</code></pre>
+<p class="has-line-data" data-line-start="481" data-line-end="482">Procedemos a extraerlo y veremos que informacion nos arroja.</p>
+<pre><code class="has-line-data" data-line-start="483" data-line-end="494" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+└─$ steghide extract -sf marsperse.jpeg
+Anotar salvoconducto:
+anot los datos extrados e/<span class="hljs-string">"flag.txt"</span>.
+
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+└─$ cat flag.txt
+Nos acaban de enviar los códigos para preparar la transmision. Cuando vayáis al albergue preguntar por el anciano del pueblo, os quiere decir algo.
+
+flag{code_ready_<span class="hljs-keyword">for</span>_transmission}
+</code></pre>
+<p class="has-line-data" data-line-start="495" data-line-end="497">Obtenemos la flag solicitada:<br>
+<strong><em>flag{code_ready_for_transmission}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=500 data-line-end=501 ><a id="Reto_17_500"></a><strong>Reto 17</strong></h2>
+<p class="has-line-data" data-line-start="502" data-line-end="503">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="504" data-line-end="505"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="506" data-line-end="507">Se ha recibido un correo electrónico con un documento de texto adjunto con unos caracteres indescifrables.</p>
+<p class="has-line-data" data-line-start="508" data-line-end="509">Pregunta</p>
+<p class="has-line-data" data-line-start="510" data-line-end="511">¿Puedes recuperar el mensaje original?</p>
+<p class="has-line-data" data-line-start="512" data-line-end="513"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="514" data-line-end="515">flag.txt</p>
+</blockquote>
+<p class="has-line-data" data-line-start="516" data-line-end="517">Nos entregan un fichero flag.txt, que si intentamos verlo, vemos que parece que contiene algunos iconos o imagenes.</p>
+<p class="has-line-data" data-line-start="518" data-line-end="519"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="520" data-line-end="521">En principio no nos da mayor informacion, asi que investigamos y encontramos que hay ejemplos (<a href="https://reese.dev/codemash2019-ctf-solutions/">https://reese.dev/codemash2019-ctf-solutions/</a>), y por ejemplo podemos usar un sitio donde podemos ver el codigo unicode de cada imagen. Donde copiamos los “caracteres” que nos entregan. (<a href="https://reese.dev/codemash2019-ctf-solutions/">https://reese.dev/codemash2019-ctf-solutions/</a>)</p>
+<p class="has-line-data" data-line-start="522" data-line-end="523"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="524" data-line-end="526">Tomando los valores “CodePoint” y descifrandolo desde hexadecimal, obtenemos la flag.<br>
+<strong><em>flag{una_fuente_puede_ser_un_codificador}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=529 data-line-end=530 ><a id="Reto_18_529"></a><strong>Reto 18</strong></h2>
+<p class="has-line-data" data-line-start="531" data-line-end="532">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="533" data-line-end="534"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="535" data-line-end="536">Se ha implantado en el colegio un sistema para entrar a clase mediante lectura de un código QR.</p>
+<p class="has-line-data" data-line-start="537" data-line-end="538">El profesor distribuye varios códigos QR para que los alumnos prueben sus teléfonos</p>
+<p class="has-line-data" data-line-start="539" data-line-end="541">Pregunta<br>
+¿Puedes leer el QR?</p>
+<p class="has-line-data" data-line-start="542" data-line-end="543"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="544" data-line-end="545">flag.txt</p>
+</blockquote>
+<p class="has-line-data" data-line-start="546" data-line-end="547">Nos entregan una imagen que es un QR Code:</p>
+<p class="has-line-data" data-line-start="548" data-line-end="549"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="550" data-line-end="551">Buscamos un sitio web que nos permita subir y leer el QR Code, o con el mismo movil podemos realizarlo. Utilizamos por ejemplo <a href="https://zxing.org/w/decode.jspx">https://zxing.org/w/decode.jspx</a></p>
+<p class="has-line-data" data-line-start="552" data-line-end="553">Al subir la imagen nos muestra la informacion que se “esconde” en el QR Code.</p>
+<p class="has-line-data" data-line-start="554" data-line-end="555"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="556" data-line-end="557">Obtenemos una secuencia de caracteres, asi que los copiamos y tratamos de verificar que tipo de cifrado se ha efectuado sobre el mismo.</p>
+<p class="has-line-data" data-line-start="558" data-line-end="559"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-3.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="560" data-line-end="562">Al realizar 11 veces que lo decodifique desde Base64, obtenemos la flag.<br>
+<strong><em>flag{QR_puede_usarse_para_esconder_mensajes}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=564 data-line-end=565 ><a id="Reto_19_564"></a><strong>Reto 19</strong></h2>
+<p class="has-line-data" data-line-start="566" data-line-end="567">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="568" data-line-end="569"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="570" data-line-end="571">En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.</p>
+<p class="has-line-data" data-line-start="572" data-line-end="573">Pregunta</p>
+<p class="has-line-data" data-line-start="574" data-line-end="575">¿Puedes encontrar la cadena mágica que devuelve la flag?</p>
+<p class="has-line-data" data-line-start="576" data-line-end="577"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="578" data-line-end="579">flag</p>
+</blockquote>
+<p class="has-line-data" data-line-start="580" data-line-end="581">Nos entregan un binario, que al ejecutarlo sin parámetros, nos pone que debemos escribir “una cadena mágica”</p>
+<pre><code class="has-line-data" data-line-start="583" data-line-end="587" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
+└─$ ./flag
+Introduce la cadena mágica como argumento
+</code></pre>
+<p class="has-line-data" data-line-start="588" data-line-end="589">Pero si ponemos cualquier cosa, nos pone que esta incorrecto.</p>
+<pre><code class="has-line-data" data-line-start="591" data-line-end="595" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
+└─$ ./flag loquesea
+Lo siento, loquesea no es correcto
+</code></pre>
+<p class="has-line-data" data-line-start="596" data-line-end="597">Así que debemos revisar el binario para tratar de identificar que espera como argumento. Revisando con IDA PRO (que lo podéis descargar [No promocionamos la piratería, pero para temas académicos, podemos pasarlo por alto] desde <a href="https://web.telegram.org/#/im?p=@idapro7">https://web.telegram.org/#/im?p=@idapro7)</a>)</p>
+<p class="has-line-data" data-line-start="598" data-line-end="600">Debugueando, encontramos que espera una cadena:<br>
+<strong><em>v7z7vw5rkcrsciwchmjmgmp</em></strong></p>
+<p class="has-line-data" data-line-start="601" data-line-end="602"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="603" data-line-end="604">Vemos que compara cada carácter introducido y le hace una rotación -4 caracteres. Así que probamos con algunos de los cifrados que conocemos con esta característica: Rot13 (cesar) o Rot47, y tratamos de descifrarlo.</p>
+<p class="has-line-data" data-line-start="605" data-line-end="606"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="607" data-line-end="608">Aplicando Rot47 y le colocamos -4, encontramos el argumento que espera, para que nos entregue la flag.</p>
+<pre><code class="has-line-data" data-line-start="610" data-line-end="614" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
+└─$ ./flag r3v3rs1ng_no_es_dificil
+flag{r3v3rs1ng_no_es_d1f1c1l}
+</code></pre>
+<p class="has-line-data" data-line-start="615" data-line-end="616"><strong><em>flag{r3v3rs1ng_no_es_d1f1c1l}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=618 data-line-end=619 ><a id="Reto_20_618"></a><strong>Reto 20</strong></h2>
+<p class="has-line-data" data-line-start="620" data-line-end="621">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="622" data-line-end="623"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="624" data-line-end="625">En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.</p>
+<p class="has-line-data" data-line-start="626" data-line-end="627">Pregunta</p>
+<p class="has-line-data" data-line-start="628" data-line-end="629">¿Puedes encontrar la cadena mágica que devuelve la flag?</p>
+<p class="has-line-data" data-line-start="630" data-line-end="631"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="632" data-line-end="633">flag</p>
+</blockquote>
+<p class="has-line-data" data-line-start="634" data-line-end="635">Nos entregan un binario, que si lo ejecutamos solo (de nuevo) nos indica que debemos pasar “la cadena magica”</p>
+<pre><code class="has-line-data" data-line-start="637" data-line-end="641" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
+└─$ ./flag-<span class="hljs-number">1</span> <span class="hljs-number">1</span> ⚙
+Introduce la cadena mágica como argumento
+</code></pre>
+<p class="has-line-data" data-line-start="642" data-line-end="644">Asi que nos toca hacer reversing, abriendo el IDA Pro, que os he dejado en la entrada anterior, podemos ver que espera una cadena bastante particular:<br>
+<strong><em>i{2ldio348zAm=Qnlfju3jaJ-avDI1!x_a</em></strong></p>
+<p class="has-line-data" data-line-start="645" data-line-end="646">Si embargo, alli no acaba el asunto, tambien verifica que el nombre de tu ordenador coincida con la cadena que se especifica en el binario: <strong><em>C0p3rn1c0</em></strong></p>
+<p class="has-line-data" data-line-start="647" data-line-end="648"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto20-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="649" data-line-end="650">Podemos parchear el binario y cambiar esa cadena de hostname por el nuestro (no he logrado hacerlo en IDA, pero si en OllyDBG) o modificar temporalmente el nombre de tu maquina y lanzar el binario con la cadena que espera, para que nos de la flag que buscamos:</p>
+<pre><code class="has-line-data" data-line-start="652" data-line-end="664" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
+└─$ sudo hostname C0p3rn1c0                                                 <span class="hljs-number">1</span> ⚙
+                                                                                
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
+└─$ hostname                                                                <span class="hljs-number">1</span> ⚙
+C0p3rn1c0
+                                                                                
+┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
+└─$ ./flag-<span class="hljs-number">1</span> <span class="hljs-string">'i{2ldio348zAm=Qnlfju3jaJ-avDI1!x_a'</span>                       <span class="hljs-number">1</span> ⨯ <span class="hljs-number">1</span> ⚙
+Aquí tienes la flag:
+flag{usando_variables_del_sistema}
+</code></pre>
+<p class="has-line-data" data-line-start="665" data-line-end="667">obtenemos la flag solicitada:<br>
+<strong><em>flag{usando_variables_del_sistema}</em></strong></p>
 </div>
