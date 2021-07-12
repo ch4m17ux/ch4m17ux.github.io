@@ -19,62 +19,63 @@ background: '/img/posts/06.jpg'
 <p class="has-line-data" data-line-start="10" data-line-end="12">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.<br>
 Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 </blockquote>
+<h1 class="code-line" data-line-start=13 data-line-end=14 ><a id="TLDR_13"></a>TL;DR</h1>
 <hr>
-<h2 class="code-line" data-line-start=15 data-line-end=16 ><a id="Reto_11_15"></a><strong>Reto 11</strong></h2>
-<p class="has-line-data" data-line-start="17" data-line-end="18">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=16 data-line-end=17 ><a id="Reto_11_16"></a><strong>Reto 11</strong></h2>
+<p class="has-line-data" data-line-start="18" data-line-end="19">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="19" data-line-end="20"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="21" data-line-end="22">Después de conseguir sacar la contraseña del usuario bill, la profesora os felicita y os reenvía otro mensaje de antiguos alumnos que actualmente trabajan en el mundo de la ciberseguridad.</p>
-<p class="has-line-data" data-line-start="23" data-line-end="24">Está segura de que todo el COLEGIO está muy contento con el trabajo de estos exalumnos.</p>
-<p class="has-line-data" data-line-start="25" data-line-end="27">Pregunta:<br>
+<p class="has-line-data" data-line-start="20" data-line-end="21"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="22" data-line-end="23">Después de conseguir sacar la contraseña del usuario bill, la profesora os felicita y os reenvía otro mensaje de antiguos alumnos que actualmente trabajan en el mundo de la ciberseguridad.</p>
+<p class="has-line-data" data-line-start="24" data-line-end="25">Está segura de que todo el COLEGIO está muy contento con el trabajo de estos exalumnos.</p>
+<p class="has-line-data" data-line-start="26" data-line-end="28">Pregunta:<br>
 ¿Qué mensaje enviaron estos antiguos alumnos?</p>
-<p class="has-line-data" data-line-start="28" data-line-end="29"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="30" data-line-end="31">Fichero imagen.</p>
+<p class="has-line-data" data-line-start="29" data-line-end="30"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="31" data-line-end="32">Fichero imagen.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="32" data-line-end="33">Se nos entrega una imagen con unos cuadrados y unos puntos, debemos tratar de descifrar lo que alli se muestra. Investigando encontramos que es un cifrado RosiCrucian.</p>
-<p class="has-line-data" data-line-start="34" data-line-end="35"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="36" data-line-end="37">Podemos hacer uso del sitio web: <a href="http://www.dcode.fr">www.dcode.fr</a> y desde alli decodificar el mensaje. Al hacerlo obtenemos las letras:</p>
-<p class="has-line-data" data-line-start="38" data-line-end="39">NOQPGOSUZZWKFONIXRUACUGLPALOP</p>
-<p class="has-line-data" data-line-start="40" data-line-end="41">Un mensaje sin sentido, pero al ver la nota que nos han dejado, observamos que hay una palabra que resalta: <strong>COLEGIO</strong></p>
-<p class="has-line-data" data-line-start="42" data-line-end="43">Asi que debemos usar esa palabra de alguna forma para poder descifrar el mensaje. Haciendo un poco de Brainstorming, encontramos que si utilizamos vigenere lo tenemos en claro.</p>
-<p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="46" data-line-end="48">Y obtenemos la flag que nos estan pidiendo:<br>
+<p class="has-line-data" data-line-start="33" data-line-end="34">Se nos entrega una imagen con unos cuadrados y unos puntos, debemos tratar de descifrar lo que alli se muestra. Investigando encontramos que es un cifrado RosiCrucian.</p>
+<p class="has-line-data" data-line-start="35" data-line-end="36"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="37" data-line-end="38">Podemos hacer uso del sitio web: <a href="http://www.dcode.fr">www.dcode.fr</a> y desde alli decodificar el mensaje. Al hacerlo obtenemos las letras:</p>
+<p class="has-line-data" data-line-start="39" data-line-end="40">NOQPGOSUZZWKFONIXRUACUGLPALOP</p>
+<p class="has-line-data" data-line-start="41" data-line-end="42">Un mensaje sin sentido, pero al ver la nota que nos han dejado, observamos que hay una palabra que resalta: <strong>COLEGIO</strong></p>
+<p class="has-line-data" data-line-start="43" data-line-end="44">Asi que debemos usar esa palabra de alguna forma para poder descifrar el mensaje. Haciendo un poco de Brainstorming, encontramos que si utilizamos vigenere lo tenemos en claro.</p>
+<p class="has-line-data" data-line-start="45" data-line-end="46"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto11-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="47" data-line-end="49">Y obtenemos la flag que nos estan pidiendo:<br>
 <strong><em>flag{LOSEXALUMNOSOSSALUDAN}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=51 data-line-end=52 ><a id="Reto_12_51"></a><strong>Reto 12</strong></h2>
-<p class="has-line-data" data-line-start="53" data-line-end="54">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=52 data-line-end=53 ><a id="Reto_12_52"></a><strong>Reto 12</strong></h2>
+<p class="has-line-data" data-line-start="54" data-line-end="55">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="55" data-line-end="56"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="57" data-line-end="58">Te ha llegado un correo con el asunto “Codificación de mensajes en ficheros de audio”. Te aseguran que en el fichero adjunto hay un mensaje. Al abrirlo hay un sonido muy extraño y te pitan los oídos.</p>
-<p class="has-line-data" data-line-start="59" data-line-end="60">Estimado Alumno:</p>
-<p class="has-line-data" data-line-start="61" data-line-end="62">El arte de esconder mensajes en múltiples formatos de fichero no es nuevo. La información está ahí, aunque no se vea ni se escuche. Para poder ganarte el primer premio de nuestro concurso anual, necesitamos conocer la flag. Como premio, recibirás algunos puntos.</p>
-<p class="has-line-data" data-line-start="63" data-line-end="65">Pregunta:<br>
+<p class="has-line-data" data-line-start="56" data-line-end="57"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="58" data-line-end="59">Te ha llegado un correo con el asunto “Codificación de mensajes en ficheros de audio”. Te aseguran que en el fichero adjunto hay un mensaje. Al abrirlo hay un sonido muy extraño y te pitan los oídos.</p>
+<p class="has-line-data" data-line-start="60" data-line-end="61">Estimado Alumno:</p>
+<p class="has-line-data" data-line-start="62" data-line-end="63">El arte de esconder mensajes en múltiples formatos de fichero no es nuevo. La información está ahí, aunque no se vea ni se escuche. Para poder ganarte el primer premio de nuestro concurso anual, necesitamos conocer la flag. Como premio, recibirás algunos puntos.</p>
+<p class="has-line-data" data-line-start="64" data-line-end="66">Pregunta:<br>
 ¿Serás capaz de decodificar la señal de audio?</p>
-<p class="has-line-data" data-line-start="66" data-line-end="67"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="68" data-line-end="69">Fichero de audio.</p>
+<p class="has-line-data" data-line-start="67" data-line-end="68"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Fichero de audio.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="70" data-line-end="71">Se nos entrega un fichero de audio, que al revisarlo nos parece que son tonos DTMF. Este reto tiene varias posibilidades de resolucion, asi que aqui encontramos una de las tantas. (este write-up esta basado en: <a href="http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong">http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong</a> y <a href="https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void">https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void)</a>)</p>
-<p class="has-line-data" data-line-start="72" data-line-end="73">Primero debemos instalar el paquete de Linux que nos permita Demodular la señal, este paquete segun la guia se denomina ‘multimon-ng’.</p>
-<pre><code class="has-line-data" data-line-start="75" data-line-end="77" class="language-console"># sudo apt-get install libpulse-dev multimon-ng
+<p class="has-line-data" data-line-start="71" data-line-end="72">Se nos entrega un fichero de audio, que al revisarlo nos parece que son tonos DTMF. Este reto tiene varias posibilidades de resolucion, asi que aqui encontramos una de las tantas. (este write-up esta basado en: <a href="http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong">http://g4ngli0s.logdown.com/posts/1422073-bsidessfctf-for-latlong</a> y <a href="https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void">https://github.com/bootplug/writeups/blob/master/2020/zh3r0-CTF/writeups.md#void)</a>)</p>
+<p class="has-line-data" data-line-start="73" data-line-end="74">Primero debemos instalar el paquete de Linux que nos permita Demodular la señal, este paquete segun la guia se denomina ‘multimon-ng’.</p>
+<pre><code class="has-line-data" data-line-start="76" data-line-end="78" class="language-console"># sudo apt-get install libpulse-dev multimon-ng
 </code></pre>
-<p class="has-line-data" data-line-start="78" data-line-end="79">Una vez que tenemos el paquete y las dependencias instaladas, procedemos a demodular la señal.</p>
-<p class="has-line-data" data-line-start="80" data-line-end="81"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto12.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="82" data-line-end="84">Obtenemos la flag:<br>
+<p class="has-line-data" data-line-start="79" data-line-end="80">Una vez que tenemos el paquete y las dependencias instaladas, procedemos a demodular la señal.</p>
+<p class="has-line-data" data-line-start="81" data-line-end="82"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto12.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="83" data-line-end="85">Obtenemos la flag:<br>
 <strong><em>flag{intercepted_communication}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=87 data-line-end=88 ><a id="Reto_13_87"></a><strong>Reto 13</strong></h2>
-<p class="has-line-data" data-line-start="89" data-line-end="90">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=88 data-line-end=89 ><a id="Reto_13_88"></a><strong>Reto 13</strong></h2>
+<p class="has-line-data" data-line-start="90" data-line-end="91">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="91" data-line-end="92"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="93" data-line-end="94">En una de las clases de informática a las que asistes te asignan la tarea de mirar el código de un fichero html que formará parte del aplicativo que están desarrollando otros compañeros. Revísalo y confirma las dudas que tiene el profesor.</p>
-<p class="has-line-data" data-line-start="95" data-line-end="96">¿Cuál es la contraseña de acceso? El código parece ofuscado.</p>
-<p class="has-line-data" data-line-start="97" data-line-end="98"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="99" data-line-end="100">Fichero html</p>
+<p class="has-line-data" data-line-start="92" data-line-end="93"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="94" data-line-end="95">En una de las clases de informática a las que asistes te asignan la tarea de mirar el código de un fichero html que formará parte del aplicativo que están desarrollando otros compañeros. Revísalo y confirma las dudas que tiene el profesor.</p>
+<p class="has-line-data" data-line-start="96" data-line-end="97">¿Cuál es la contraseña de acceso? El código parece ofuscado.</p>
+<p class="has-line-data" data-line-start="98" data-line-end="99"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="100" data-line-end="101">Fichero html</p>
 </blockquote>
-<p class="has-line-data" data-line-start="101" data-line-end="102">Nos entregan un fichero HTML que al ejecutarlo, nos solicita una contraseña. Colocamos cualquier calor y nos devuelve un mensaje de error.</p>
-<p class="has-line-data" data-line-start="103" data-line-end="104">Al analizar el codigo vemos que hay un JavaScript ofuscado, tratamos de desofuscarlo para ver mas claro, nos encontramos con que los nombre de las variables y los valores se han sustituido por codigo hexadecimal.</p>
-<p class="has-line-data" data-line-start="105" data-line-end="106">Hacemos algunos ajustes reemplazando el nombre de algunas variables para visualizarlo mejor y podriamos obtener el codigo siguiente:</p>
-<pre><code class="has-line-data" data-line-start="108" data-line-end="146" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>
+<p class="has-line-data" data-line-start="102" data-line-end="103">Nos entregan un fichero HTML que al ejecutarlo, nos solicita una contraseña. Colocamos cualquier calor y nos devuelve un mensaje de error.</p>
+<p class="has-line-data" data-line-start="104" data-line-end="105">Al analizar el codigo vemos que hay un JavaScript ofuscado, tratamos de desofuscarlo para ver mas claro, nos encontramos con que los nombre de las variables y los valores se han sustituido por codigo hexadecimal.</p>
+<p class="has-line-data" data-line-start="106" data-line-end="107">Hacemos algunos ajustes reemplazando el nombre de algunas variables para visualizarlo mejor y podriamos obtener el codigo siguiente:</p>
+<pre><code class="has-line-data" data-line-start="109" data-line-end="147" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>
   <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://code.jquery.com/jquery-2.2.4.min.js"</span>
   <span class="hljs-attribute">integrity</span>=<span class="hljs-value">"sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="</span>
   <span class="hljs-attribute">crossorigin</span>=<span class="hljs-value">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
@@ -112,42 +113,42 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"tagreply"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 </code></pre>
-<p class="has-line-data" data-line-start="147" data-line-end="148">Llama la atencion la parte del codigo que pone:</p>
-<pre><code class="has-line-data" data-line-start="150" data-line-end="152" class="language-html">password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));
+<p class="has-line-data" data-line-start="148" data-line-end="149">Llama la atencion la parte del codigo que pone:</p>
+<pre><code class="has-line-data" data-line-start="151" data-line-end="153" class="language-bash">password==Valor_2(<span class="hljs-number">0</span>x14b)+Valor_3?alert(Valor_2(<span class="hljs-number">0</span>x150)):alert(Valor_2(<span class="hljs-number">0</span>x14f));
 </code></pre>
-<p class="has-line-data" data-line-start="153" data-line-end="154">Lo que indica en esa instruccion es que si el valor de la variable “password” es igual al valor de la variable &quot;<strong>Valor_2(0x14b)+Valor_3</strong>&quot; entonces muestra una ventana emergente, y en caso de que no sean iguales muestra otra ventana emergente.</p>
-<p class="has-line-data" data-line-start="155" data-line-end="156">Suponemos en este punto que es aqui donde compara que el valor que nosotros ponemos en el campo de Login sea el correcto. Pero el asunto es ¿Cómo saca ese valor?</p>
-<p class="has-line-data" data-line-start="157" data-line-end="158">Lo que se le ocurrio a DanyData es hacer un print, tambien lo podemos hacer con un alert para que salte el valor que espera justo encima de la linea donde compara y obtendriamos lo que debemos introducir. Seria algo como esto:</p>
-<pre><code class="has-line-data" data-line-start="160" data-line-end="163" class="language-html">alert(Valor_2(0x14b)+Valor_3);
+<p class="has-line-data" data-line-start="154" data-line-end="155">Lo que indica en esa instruccion es que si el valor de la variable “password” es igual al valor de la variable &quot;<strong>Valor_2(0x14b)+Valor_3</strong>&quot; entonces muestra una ventana emergente, y en caso de que no sean iguales muestra otra ventana emergente.</p>
+<p class="has-line-data" data-line-start="156" data-line-end="157">Suponemos en este punto que es aqui donde compara que el valor que nosotros ponemos en el campo de Login sea el correcto. Pero el asunto es ¿Cómo saca ese valor?</p>
+<p class="has-line-data" data-line-start="158" data-line-end="159">Lo que se le ocurrio a DanyData es hacer un print, tambien lo podemos hacer con un alert para que salte el valor que espera justo encima de la linea donde compara y obtendriamos lo que debemos introducir. Seria algo como esto:</p>
+<pre><code class="has-line-data" data-line-start="161" data-line-end="164" class="language-html">alert(Valor_2(0x14b)+Valor_3);
 password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 </code></pre>
-<p class="has-line-data" data-line-start="164" data-line-end="165">Guardamos estos cambios y lo ejecutamos de nuevo, damos clic en el login y nos muestra la ventana emergente que hemos querido poner, donde se muestra el valor que espera: “accessgranted1337”. Si digitamos esto en el campo login, y volvemos a validar nos muestra otra ventana que pone: &quot;<strong>OK, flag{password}</strong>&quot;</p>
-<p class="has-line-data" data-line-start="166" data-line-end="168">Lo que nos indica que nuestra flag es justamente el password que hemos puesto:<br>
+<p class="has-line-data" data-line-start="165" data-line-end="166">Guardamos estos cambios y lo ejecutamos de nuevo, damos clic en el login y nos muestra la ventana emergente que hemos querido poner, donde se muestra el valor que espera: “accessgranted1337”. Si digitamos esto en el campo login, y volvemos a validar nos muestra otra ventana que pone: &quot;<strong>OK, flag{password}</strong>&quot;</p>
+<p class="has-line-data" data-line-start="167" data-line-end="169">Lo que nos indica que nuestra flag es justamente el password que hemos puesto:<br>
 <strong><em>flag{accessgranted1337}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=171 data-line-end=172 ><a id="Reto_14_171"></a><strong>Reto 14</strong></h2>
-<p class="has-line-data" data-line-start="173" data-line-end="174">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=172 data-line-end=173 ><a id="Reto_14_172"></a><strong>Reto 14</strong></h2>
+<p class="has-line-data" data-line-start="174" data-line-end="175">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="175" data-line-end="176"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="177" data-line-end="178">En el laboratorio de ciencia la profesora de matemáticas ha incluido las ecuaciones lineales como tema para el examen. Pero esta vez vuestra nota se deducirá destripando un programa que ella misma ha compilado. Si lo resuelves obtendrás el 10 de la nota.</p>
-<p class="has-line-data" data-line-start="179" data-line-end="180">¿Cuál es la solución a tantas ecuaciones lineales?</p>
-<p class="has-line-data" data-line-start="181" data-line-end="182"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="183" data-line-end="184">Fichero binario</p>
+<p class="has-line-data" data-line-start="176" data-line-end="177"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="178" data-line-end="179">En el laboratorio de ciencia la profesora de matemáticas ha incluido las ecuaciones lineales como tema para el examen. Pero esta vez vuestra nota se deducirá destripando un programa que ella misma ha compilado. Si lo resuelves obtendrás el 10 de la nota.</p>
+<p class="has-line-data" data-line-start="180" data-line-end="181">¿Cuál es la solución a tantas ecuaciones lineales?</p>
+<p class="has-line-data" data-line-start="182" data-line-end="183"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="184" data-line-end="185">Fichero binario</p>
 </blockquote>
 <ol>
-<li class="has-line-data" data-line-start="185" data-line-end="187">Arrancamos IDA Pro para ver como funciona el binario y empezar a investigar:</li>
+<li class="has-line-data" data-line-start="186" data-line-end="188">Arrancamos IDA Pro para ver como funciona el binario y empezar a investigar:</li>
 </ol>
-<p class="has-line-data" data-line-start="187" data-line-end="188"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="189" data-line-end="190"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="191" data-line-end="192"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="193" data-line-end="194">En la función de inicio vemos que el serial tiene 21 caracteres.</p>
-<p class="has-line-data" data-line-start="195" data-line-end="197">Cada una de estas funciones tiene su código:<br>
+<p class="has-line-data" data-line-start="188" data-line-end="189"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="190" data-line-end="191"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="192" data-line-end="193"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="194" data-line-end="195">En la función de inicio vemos que el serial tiene 21 caracteres.</p>
+<p class="has-line-data" data-line-start="196" data-line-end="198">Cada una de estas funciones tiene su código:<br>
 (En IDA con F5 vemos el codigo en formato mas legible. (OJO solo se ve cuando no esta prótegido el codigo)</p>
-<p class="has-line-data" data-line-start="198" data-line-end="199"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-3.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="199" data-line-end="200"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-3.png" alt="Academia Hacker"></p>
 <ol start="2">
-<li class="has-line-data" data-line-start="200" data-line-end="202">Recopilamos todas las ecuaciones que vemos dentro de cada una de las comprobaciones:</li>
+<li class="has-line-data" data-line-start="201" data-line-end="203">Recopilamos todas las ecuaciones que vemos dentro de cada una de las comprobaciones:</li>
 </ol>
-<pre><code class="has-line-data" data-line-start="203" data-line-end="225" class="language-bash"><span class="hljs-number">11189</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">9</span>] - a1[<span class="hljs-number">8</span>]);
+<pre><code class="has-line-data" data-line-start="204" data-line-end="226" class="language-bash"><span class="hljs-number">11189</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">9</span>] - a1[<span class="hljs-number">8</span>]);
 <span class="hljs-number">13471</span> = (a1[<span class="hljs-number">15</span>] * a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">13</span>]);
 <span class="hljs-number">11161</span> = (a1[<span class="hljs-number">10</span>] * a1[<span class="hljs-number">13</span>] + a1[<span class="hljs-number">19</span>] - a1[<span class="hljs-number">5</span>]);
 -<span class="hljs-number">12533</span> = (a1[<span class="hljs-number">4</span>] - a1[<span class="hljs-number">2</span>] * a1[<span class="hljs-number">10</span>] + a1[<span class="hljs-number">6</span>]);
@@ -170,9 +171,9 @@ password==Valor_2(0x14b)+Valor_3?alert(Valor_2(0x150)):alert(Valor_2(0x14f));}
 <span class="hljs-number">283</span> = (a1[<span class="hljs-number">2</span>] + a1[<span class="hljs-number">20</span>] + a1[<span class="hljs-number">7</span>]);
 </code></pre>
 <ol start="3">
-<li class="has-line-data" data-line-start="226" data-line-end="228">No se aprecia posibilidad alguna de realizar una comparacion entre ecuaciones para usar un sistema, asi que contruimos un pequeño script que ayude a validar posibles datos y a partir de ahí usar aproximaciones.</li>
+<li class="has-line-data" data-line-start="227" data-line-end="229">No se aprecia posibilidad alguna de realizar una comparacion entre ecuaciones para usar un sistema, asi que contruimos un pequeño script que ayude a validar posibles datos y a partir de ahí usar aproximaciones.</li>
 </ol>
-<pre><code class="has-line-data" data-line-start="229" data-line-end="247" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
+<pre><code class="has-line-data" data-line-start="230" data-line-end="248" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
 valorfinal=<span class="hljs-number">13113</span>
 <span class="hljs-keyword">for</span> ((v1 = <span class="hljs-number">48</span>; v1 &lt;= <span class="hljs-number">123</span>; v1++)); <span class="hljs-keyword">do</span>
     <span class="hljs-keyword">for</span> ((v2 = <span class="hljs-number">48</span>; v2 &lt;= <span class="hljs-number">123</span>; v2++)); <span class="hljs-keyword">do</span> 
@@ -190,19 +191,19 @@ valorfinal=<span class="hljs-number">13113</span>
     <span class="hljs-keyword">done</span>
 <span class="hljs-keyword">done</span>
 </code></pre>
-<p class="has-line-data" data-line-start="248" data-line-end="249">De este script debemos cambiar el valorfinal y ecuacion cada vez que queramos probar una de las ecuaciones anteriores.</p>
-<p class="has-line-data" data-line-start="250" data-line-end="251">Con esto que ganamos:</p>
-<p class="has-line-data" data-line-start="252" data-line-end="253">El script nos extrae por pantalla los posibles valores que pueden coger las variables. En cada caso nos aparecen más de una posibilidad. Las debemos anotar (Recomiendo EXCEL) para un uso posterior en otras ecuaciones. De esta forma iremos conociendo los valores reales de cada variable (Recordamos que són 20).</p>
-<p class="has-line-data" data-line-start="254" data-line-end="255">Ejemplo:</p>
-<p class="has-line-data" data-line-start="256" data-line-end="257">El script, hace referencia a la ecuación: 13113 = (a1[10] - a1[11] * a1[7]);</p>
-<p class="has-line-data" data-line-start="258" data-line-end="259">Este script nos dará por pantalla valores de 3 en 3 correspondientes a las variables num10, num11 y num7.</p>
-<p class="has-line-data" data-line-start="260" data-line-end="261">Hay que tener suerte de escoger la ecuación que mejor se adapte y menos valores de salida te dé, de esa forma se podrán reutilizar las variables que ya hemos encontrado y después reutilizarlas.</p>
+<p class="has-line-data" data-line-start="249" data-line-end="250">De este script debemos cambiar el valorfinal y ecuacion cada vez que queramos probar una de las ecuaciones anteriores.</p>
+<p class="has-line-data" data-line-start="251" data-line-end="252">Con esto que ganamos:</p>
+<p class="has-line-data" data-line-start="253" data-line-end="254">El script nos extrae por pantalla los posibles valores que pueden coger las variables. En cada caso nos aparecen más de una posibilidad. Las debemos anotar (Recomiendo EXCEL) para un uso posterior en otras ecuaciones. De esta forma iremos conociendo los valores reales de cada variable (Recordamos que són 20).</p>
+<p class="has-line-data" data-line-start="255" data-line-end="256">Ejemplo:</p>
+<p class="has-line-data" data-line-start="257" data-line-end="258">El script, hace referencia a la ecuación: 13113 = (a1[10] - a1[11] * a1[7]);</p>
+<p class="has-line-data" data-line-start="259" data-line-end="260">Este script nos dará por pantalla valores de 3 en 3 correspondientes a las variables num10, num11 y num7.</p>
+<p class="has-line-data" data-line-start="261" data-line-end="262">Hay que tener suerte de escoger la ecuación que mejor se adapte y menos valores de salida te dé, de esa forma se podrán reutilizar las variables que ya hemos encontrado y después reutilizarlas.</p>
 <ol start="4">
-<li class="has-line-data" data-line-start="262" data-line-end="264">Uso de terceros programas para ir anotando los valores de las variables e ir rellenando las variables que necesitamos….</li>
+<li class="has-line-data" data-line-start="263" data-line-end="265">Uso de terceros programas para ir anotando los valores de las variables e ir rellenando las variables que necesitamos….</li>
 </ol>
-<p class="has-line-data" data-line-start="264" data-line-end="265">(NI QUE DECIR TIENE QUE LO MEJOR ES ACABAR EL SCRIPT COMO DIOS MANDA Y QUE LO HAGA TODO EL SCRIPT – Opcion A Mejorar)</p>
-<p class="has-line-data" data-line-start="266" data-line-end="267">Yo lo anoté poco a poco y fui rellenando valores de variables probando con el script primario que hice.</p>
-<pre><code class="has-line-data" data-line-start="269" data-line-end="298" class="language-bash">Ejemplos:
+<p class="has-line-data" data-line-start="265" data-line-end="266">(NI QUE DECIR TIENE QUE LO MEJOR ES ACABAR EL SCRIPT COMO DIOS MANDA Y QUE LO HAGA TODO EL SCRIPT – Opcion A Mejorar)</p>
+<p class="has-line-data" data-line-start="267" data-line-end="268">Yo lo anoté poco a poco y fui rellenando valores de variables probando con el script primario que hice.</p>
+<pre><code class="has-line-data" data-line-start="270" data-line-end="299" class="language-bash">Ejemplos:
 
               <span class="hljs-number">51</span>      <span class="hljs-number">116</span>
 <span class="hljs-number">66767976</span> = (a1[<span class="hljs-number">11</span>] * a1[<span class="hljs-number">19</span>] * a1[<span class="hljs-number">9</span>] * a1[<span class="hljs-number">15</span>]);
@@ -232,11 +233,11 @@ valorfinal=<span class="hljs-number">13113</span>
 <span class="hljs-number">5203</span> = (a1[<span class="hljs-number">20</span>] * a1[<span class="hljs-number">1</span>] - a1[<span class="hljs-number">17</span>]);
 </code></pre>
 <ol start="5">
-<li class="has-line-data" data-line-start="299" data-line-end="301">Una vez que tenemos varios de esos valores de valirables vamos rellenando el valor final del serial.</li>
+<li class="has-line-data" data-line-start="300" data-line-end="302">Una vez que tenemos varios de esos valores de valirables vamos rellenando el valor final del serial.</li>
 </ol>
-<p class="has-line-data" data-line-start="301" data-line-end="302"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-4.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="303" data-line-end="304">Y pasarlos a formato ASCII sabiendo el char() correspondiente.</p>
-<p class="has-line-data" data-line-start="305" data-line-end="326">a1 = 114 r<br>
+<p class="has-line-data" data-line-start="302" data-line-end="303"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto14-4.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="304" data-line-end="305">Y pasarlos a formato ASCII sabiendo el char() correspondiente.</p>
+<p class="has-line-data" data-line-start="306" data-line-end="327">a1 = 114 r<br>
 [1] = 101 e<br>
 [2] = 115 s<br>
 [3] = 112 p<br>
@@ -257,11 +258,11 @@ valorfinal=<span class="hljs-number">13113</span>
 [18] = 50 2<br>
 [19] = 51 3<br>
 [20] = 52 4</p>
-<p class="has-line-data" data-line-start="327" data-line-end="329">No espero a tenerlos todos, pero pruebo con un poco de guessing:<br>
+<p class="has-line-data" data-line-start="328" data-line-end="330">No espero a tenerlos todos, pero pruebo con un poco de guessing:<br>
 <strong><em>flag{respuestacorrecta1234}</em></strong></p>
-<h2 class="code-line" data-line-start=331 data-line-end=332 ><a id="Solucion_2_331"></a>Solucion 2</h2>
-<p class="has-line-data" data-line-start="333" data-line-end="334">Se ha entregado un script con el cual sacar la solucion de forma inmediata.</p>
-<pre><code class="has-line-data" data-line-start="336" data-line-end="382" class="language-python"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<h2 class="code-line" data-line-start=332 data-line-end=333 ><a id="Solucion_2_332"></a>Solucion 2</h2>
+<p class="has-line-data" data-line-start="334" data-line-end="335">Se ha entregado un script con el cual sacar la solucion de forma inmediata.</p>
+<pre><code class="has-line-data" data-line-start="337" data-line-end="383" class="language-python"><span class="hljs-comment">#!/usr/bin/env python3</span>
 <span class="hljs-keyword">from</span> z3 <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">import</span> binascii
 <span class="hljs-keyword">import</span> sys
@@ -307,40 +308,40 @@ total = ([m[n].as_long() <span class="hljs-keyword">for</span> n <span class="hl
 sys.stdout.write(<span class="hljs-string">'\n'</span>)
 sys.stdout.flush()
 </code></pre>
-<p class="has-line-data" data-line-start="383" data-line-end="385">Obtenemos la flag:<br>
+<p class="has-line-data" data-line-start="384" data-line-end="386">Obtenemos la flag:<br>
 <strong><em>flag{respuestacorrecta1234}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=388 data-line-end=389 ><a id="Reto_15_388"></a><strong>Reto 15</strong></h2>
-<p class="has-line-data" data-line-start="390" data-line-end="391">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=389 data-line-end=390 ><a id="Reto_15_389"></a><strong>Reto 15</strong></h2>
+<p class="has-line-data" data-line-start="391" data-line-end="392">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="392" data-line-end="393"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="394" data-line-end="395">Una de las salidas que realizáis en el instituto es fuera de la gran ciudad, al campo. En esas salidas pernoctáis en un albergue y si el tiempo acompaña, soléis escuchar al anciano del lugar rememorar algunas historias del pueblo.</p>
-<p class="has-line-data" data-line-start="396" data-line-end="397">El anciano saca una radio y reproduce en una cinta magnética de audio unos sonidos que según dice él, los grabó años atrás. Esto empieza a parecerse a “Stranger Things™”!</p>
-<p class="has-line-data" data-line-start="398" data-line-end="399">¿Podrías desvelar al anciano el mensaje que esconde la cinta?</p>
-<p class="has-line-data" data-line-start="400" data-line-end="401"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="402" data-line-end="403">Fichero wav</p>
+<p class="has-line-data" data-line-start="393" data-line-end="394"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="395" data-line-end="396">Una de las salidas que realizáis en el instituto es fuera de la gran ciudad, al campo. En esas salidas pernoctáis en un albergue y si el tiempo acompaña, soléis escuchar al anciano del lugar rememorar algunas historias del pueblo.</p>
+<p class="has-line-data" data-line-start="397" data-line-end="398">El anciano saca una radio y reproduce en una cinta magnética de audio unos sonidos que según dice él, los grabó años atrás. Esto empieza a parecerse a “Stranger Things™”!</p>
+<p class="has-line-data" data-line-start="399" data-line-end="400">¿Podrías desvelar al anciano el mensaje que esconde la cinta?</p>
+<p class="has-line-data" data-line-start="401" data-line-end="402"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="403" data-line-end="404">Fichero wav</p>
 </blockquote>
-<p class="has-line-data" data-line-start="404" data-line-end="405">Se nos entrega un audio que debemos analizar. Por lo que hacemos una verificacion con <em>file</em> y <em>exiftool</em></p>
-<p class="has-line-data" data-line-start="406" data-line-end="407">Hemos seguido la guia que se especifica en:</p>
-<p class="has-line-data" data-line-start="408" data-line-end="409"><a href="https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804">https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804</a> y <a href="https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system">https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system</a></p>
-<p class="has-line-data" data-line-start="410" data-line-end="412">Obtenemos la flag:<br>
+<p class="has-line-data" data-line-start="405" data-line-end="406">Se nos entrega un audio que debemos analizar. Por lo que hacemos una verificacion con <em>file</em> y <em>exiftool</em></p>
+<p class="has-line-data" data-line-start="407" data-line-end="408">Hemos seguido la guia que se especifica en:</p>
+<p class="has-line-data" data-line-start="409" data-line-end="410"><a href="https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804">https://ourcodeworld.co/articulos/leer/956/como-convertir-decodificar-un-archivo-de-audio-de-transmisiones-de-television-de-escaneo-lento-sstv-en-imagenes-usando-qsstv-en-ubuntu-1804</a> y <a href="https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system">https://www.chonky.net/hamradio/decoding-sstv-from-a-file-on-a-linux-system</a></p>
+<p class="has-line-data" data-line-start="411" data-line-end="413">Obtenemos la flag:<br>
 <strong><em>flag{4458256}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=414 data-line-end=415 ><a id="Reto_16_414"></a><strong>Reto 16</strong></h2>
-<p class="has-line-data" data-line-start="416" data-line-end="417">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=416 data-line-end=417 ><a id="Reto_16_416"></a><strong>Reto 16</strong></h2>
+<p class="has-line-data" data-line-start="418" data-line-end="419">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="418" data-line-end="419"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="420" data-line-end="421">En próximos días vais a participar en una de las salidas anuales del instituto. Os llega al correo la información de la salida junto a una imagen adjunta. Como sois curiosos, decidís mirar si hay metadatos en la imagen.</p>
-<p class="has-line-data" data-line-start="422" data-line-end="423"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="424" data-line-end="425">Fichero jpg.</p>
+<p class="has-line-data" data-line-start="420" data-line-end="421"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="422" data-line-end="423">En próximos días vais a participar en una de las salidas anuales del instituto. Os llega al correo la información de la salida junto a una imagen adjunta. Como sois curiosos, decidís mirar si hay metadatos en la imagen.</p>
+<p class="has-line-data" data-line-start="424" data-line-end="425"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="426" data-line-end="427">Fichero jpg.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="426" data-line-end="427">Nos han entregado un fichero jpg, asi que verificamos por ejemplo que sea el tipo de fichero que se supone deberia ser.</p>
-<pre><code class="has-line-data" data-line-start="429" data-line-end="433" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+<p class="has-line-data" data-line-start="428" data-line-end="429">Nos han entregado un fichero jpg, asi que verificamos por ejemplo que sea el tipo de fichero que se supone deberia ser.</p>
+<pre><code class="has-line-data" data-line-start="431" data-line-end="435" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
 └─$ file marsperse.jpeg
 marsperse.jpeg: JPEG image data, JFIF standard <span class="hljs-number">1.02</span>, aspect ratio, density <span class="hljs-number">100</span>x100, segment length <span class="hljs-number">16</span>, comment: <span class="hljs-string">"perseverance"</span>, baseline, precision <span class="hljs-number">8</span>, <span class="hljs-number">1200</span>x675, components <span class="hljs-number">3</span>
 </code></pre>
-<p class="has-line-data" data-line-start="433" data-line-end="434">Verificamos si tenemos algo en los metadatos:</p>
-<pre><code class="has-line-data" data-line-start="435" data-line-end="462" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+<p class="has-line-data" data-line-start="435" data-line-end="436">Verificamos si tenemos algo en los metadatos:</p>
+<pre><code class="has-line-data" data-line-start="437" data-line-end="464" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
 └─$ exiftool marsperse.jpeg
 ExifTool Version Number : <span class="hljs-number">12.16</span>
 File Name : marsperse.jpeg
@@ -367,9 +368,9 @@ Y Cb Cr Sub Sampling : YCbCr4:<span class="hljs-number">2</span>:<span class="hl
 Image Size : <span class="hljs-number">1200</span>x675
 Megapixels : <span class="hljs-number">0.810</span>
 </code></pre>
-<p class="has-line-data" data-line-start="463" data-line-end="464">Vemos una entrada “Comment” que nos llama la atencion, y que pone: perseverance.</p>
-<p class="has-line-data" data-line-start="465" data-line-end="466">Verificamos si podemos sacar algun dato de la imagen, lo hacemos a traves de <strong><em>steghide</em></strong> y utilizando la palabra que hemos encontrado en los metadatos.</p>
-<pre><code class="has-line-data" data-line-start="468" data-line-end="480" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+<p class="has-line-data" data-line-start="465" data-line-end="466">Vemos una entrada “Comment” que nos llama la atencion, y que pone: perseverance.</p>
+<p class="has-line-data" data-line-start="467" data-line-end="468">Verificamos si podemos sacar algun dato de la imagen, lo hacemos a traves de <strong><em>steghide</em></strong> y utilizando la palabra que hemos encontrado en los metadatos.</p>
+<pre><code class="has-line-data" data-line-start="470" data-line-end="482" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
 └─$ steghide --info marsperse.jpeg <span class="hljs-number">1</span> ⨯
 <span class="hljs-string">"marsperse.jpeg"</span>:
 formato: jpeg
@@ -381,8 +382,8 @@ tamao: <span class="hljs-number">186</span>,<span class="hljs-number">0</span> B
 encriptado: rijndael-<span class="hljs-number">128</span>, cbc
 compactado: si
 </code></pre>
-<p class="has-line-data" data-line-start="481" data-line-end="482">Procedemos a extraerlo y veremos que informacion nos arroja.</p>
-<pre><code class="has-line-data" data-line-start="483" data-line-end="494" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
+<p class="has-line-data" data-line-start="483" data-line-end="484">Procedemos a extraerlo y veremos que informacion nos arroja.</p>
+<pre><code class="has-line-data" data-line-start="485" data-line-end="496" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto16]
 └─$ steghide extract -sf marsperse.jpeg
 Anotar salvoconducto:
 anot los datos extrados e/<span class="hljs-string">"flag.txt"</span>.
@@ -393,101 +394,100 @@ Nos acaban de enviar los códigos para preparar la transmision. Cuando vayáis a
 
 flag{code_ready_<span class="hljs-keyword">for</span>_transmission}
 </code></pre>
-<p class="has-line-data" data-line-start="495" data-line-end="497">Obtenemos la flag solicitada:<br>
+<p class="has-line-data" data-line-start="497" data-line-end="499">Obtenemos la flag solicitada:<br>
 <strong><em>flag{code_ready_for_transmission}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=500 data-line-end=501 ><a id="Reto_17_500"></a><strong>Reto 17</strong></h2>
-<p class="has-line-data" data-line-start="502" data-line-end="503">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=502 data-line-end=503 ><a id="Reto_17_502"></a><strong>Reto 17</strong></h2>
+<p class="has-line-data" data-line-start="504" data-line-end="505">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="504" data-line-end="505"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="506" data-line-end="507">Se ha recibido un correo electrónico con un documento de texto adjunto con unos caracteres indescifrables.</p>
-<p class="has-line-data" data-line-start="508" data-line-end="509">Pregunta</p>
-<p class="has-line-data" data-line-start="510" data-line-end="511">¿Puedes recuperar el mensaje original?</p>
-<p class="has-line-data" data-line-start="512" data-line-end="513"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="514" data-line-end="515">flag.txt</p>
+<p class="has-line-data" data-line-start="506" data-line-end="507"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="508" data-line-end="509">Se ha recibido un correo electrónico con un documento de texto adjunto con unos caracteres indescifrables.</p>
+<p class="has-line-data" data-line-start="510" data-line-end="511">Pregunta</p>
+<p class="has-line-data" data-line-start="512" data-line-end="513">¿Puedes recuperar el mensaje original?</p>
+<p class="has-line-data" data-line-start="514" data-line-end="515"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="516" data-line-end="517">flag.txt</p>
 </blockquote>
-<p class="has-line-data" data-line-start="516" data-line-end="517">Nos entregan un fichero flag.txt, que si intentamos verlo, vemos que parece que contiene algunos iconos o imagenes.</p>
-<p class="has-line-data" data-line-start="518" data-line-end="519"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="520" data-line-end="521">En principio no nos da mayor informacion, asi que investigamos y encontramos que hay ejemplos (<a href="https://reese.dev/codemash2019-ctf-solutions/">https://reese.dev/codemash2019-ctf-solutions/</a>), y por ejemplo podemos usar un sitio donde podemos ver el codigo unicode de cada imagen. Donde copiamos los “caracteres” que nos entregan. (<a href="https://reese.dev/codemash2019-ctf-solutions/">https://reese.dev/codemash2019-ctf-solutions/</a>)</p>
-<p class="has-line-data" data-line-start="522" data-line-end="523"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="524" data-line-end="526">Tomando los valores “CodePoint” y descifrandolo desde hexadecimal, obtenemos la flag.<br>
-<strong><em>flag{una_fuente_puede_ser_un_codificador}</em></strong></p>
+<p class="has-line-data" data-line-start="518" data-line-end="519">Nos entregan un fichero flag.txt, que si intentamos verlo, vemos que parece que contiene algunos iconos o imagenes.</p>
+<p class="has-line-data" data-line-start="520" data-line-end="521"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="522" data-line-end="523">En principio no nos da mayor informacion, asi que investigamos y encontramos que hay ejemplos (<a href="https://reese.dev/codemash2019-ctf-solutions/">https://reese.dev/codemash2019-ctf-solutions/</a>), y por ejemplo podemos usar un sitio donde podemos ver el codigo unicode de cada imagen. Donde copiamos los “caracteres” que nos entregan. (<a href="https://reese.dev/codemash2019-ctf-solutions/">https://reese.dev/codemash2019-ctf-solutions/</a>)</p>
+<p class="has-line-data" data-line-start="524" data-line-end="525"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto17-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="526" data-line-end="527">Tomando los valores “CodePoint” y descifrandolo desde hexadecimal, obtenemos la flag.</p>
+<p class="has-line-data" data-line-start="528" data-line-end="529"><strong><em>flag{una_fuente_puede_ser_un_codificador}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=529 data-line-end=530 ><a id="Reto_18_529"></a><strong>Reto 18</strong></h2>
-<p class="has-line-data" data-line-start="531" data-line-end="532">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=532 data-line-end=533 ><a id="Reto_18_532"></a><strong>Reto 18</strong></h2>
+<p class="has-line-data" data-line-start="534" data-line-end="535">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="533" data-line-end="534"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="535" data-line-end="536">Se ha implantado en el colegio un sistema para entrar a clase mediante lectura de un código QR.</p>
-<p class="has-line-data" data-line-start="537" data-line-end="538">El profesor distribuye varios códigos QR para que los alumnos prueben sus teléfonos</p>
-<p class="has-line-data" data-line-start="539" data-line-end="541">Pregunta<br>
+<p class="has-line-data" data-line-start="536" data-line-end="537"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="538" data-line-end="539">Se ha implantado en el colegio un sistema para entrar a clase mediante lectura de un código QR.</p>
+<p class="has-line-data" data-line-start="540" data-line-end="541">El profesor distribuye varios códigos QR para que los alumnos prueben sus teléfonos</p>
+<p class="has-line-data" data-line-start="542" data-line-end="544">Pregunta<br>
 ¿Puedes leer el QR?</p>
-<p class="has-line-data" data-line-start="542" data-line-end="543"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="544" data-line-end="545">flag.txt</p>
+<p class="has-line-data" data-line-start="545" data-line-end="546"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="547" data-line-end="548">flag.txt</p>
 </blockquote>
-<p class="has-line-data" data-line-start="546" data-line-end="547">Nos entregan una imagen que es un QR Code:</p>
-<p class="has-line-data" data-line-start="548" data-line-end="549"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="550" data-line-end="551">Buscamos un sitio web que nos permita subir y leer el QR Code, o con el mismo movil podemos realizarlo. Utilizamos por ejemplo <a href="https://zxing.org/w/decode.jspx">https://zxing.org/w/decode.jspx</a></p>
-<p class="has-line-data" data-line-start="552" data-line-end="553">Al subir la imagen nos muestra la informacion que se “esconde” en el QR Code.</p>
-<p class="has-line-data" data-line-start="554" data-line-end="555"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="556" data-line-end="557">Obtenemos una secuencia de caracteres, asi que los copiamos y tratamos de verificar que tipo de cifrado se ha efectuado sobre el mismo.</p>
-<p class="has-line-data" data-line-start="558" data-line-end="559"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-3.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="560" data-line-end="562">Al realizar 11 veces que lo decodifique desde Base64, obtenemos la flag.<br>
-<strong><em>flag{QR_puede_usarse_para_esconder_mensajes}</em></strong></p>
+<p class="has-line-data" data-line-start="549" data-line-end="550">Nos entregan una imagen que es un QR Code:</p>
+<p class="has-line-data" data-line-start="551" data-line-end="552"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="553" data-line-end="554">Buscamos un sitio web que nos permita subir y leer el QR Code, o con el mismo movil podemos realizarlo. Utilizamos por ejemplo <a href="https://zxing.org/w/decode.jspx">https://zxing.org/w/decode.jspx</a></p>
+<p class="has-line-data" data-line-start="555" data-line-end="556">Al subir la imagen nos muestra la informacion que se “esconde” en el QR Code.</p>
+<p class="has-line-data" data-line-start="557" data-line-end="558"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="559" data-line-end="560">Obtenemos una secuencia de caracteres, asi que los copiamos y tratamos de verificar que tipo de cifrado se ha efectuado sobre el mismo.</p>
+<p class="has-line-data" data-line-start="561" data-line-end="562"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto18-3.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="563" data-line-end="564">Al realizar 11 veces que lo decodifique desde Base64, obtenemos la flag.</p>
+<p class="has-line-data" data-line-start="565" data-line-end="566"><strong><em>flag{QR_puede_usarse_para_esconder_mensajes}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=564 data-line-end=565 ><a id="Reto_19_564"></a><strong>Reto 19</strong></h2>
-<p class="has-line-data" data-line-start="566" data-line-end="567">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=568 data-line-end=569 ><a id="Reto_19_568"></a><strong>Reto 19</strong></h2>
+<p class="has-line-data" data-line-start="570" data-line-end="571">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="568" data-line-end="569"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="570" data-line-end="571">En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.</p>
-<p class="has-line-data" data-line-start="572" data-line-end="573">Pregunta</p>
-<p class="has-line-data" data-line-start="574" data-line-end="575">¿Puedes encontrar la cadena mágica que devuelve la flag?</p>
-<p class="has-line-data" data-line-start="576" data-line-end="577"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="578" data-line-end="579">flag</p>
+<p class="has-line-data" data-line-start="572" data-line-end="573"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="574" data-line-end="575">En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.</p>
+<p class="has-line-data" data-line-start="576" data-line-end="577">Pregunta</p>
+<p class="has-line-data" data-line-start="578" data-line-end="579">¿Puedes encontrar la cadena mágica que devuelve la flag?</p>
+<p class="has-line-data" data-line-start="580" data-line-end="581"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="582" data-line-end="583">flag</p>
 </blockquote>
-<p class="has-line-data" data-line-start="580" data-line-end="581">Nos entregan un binario, que al ejecutarlo sin parámetros, nos pone que debemos escribir “una cadena mágica”</p>
-<pre><code class="has-line-data" data-line-start="583" data-line-end="587" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
+<p class="has-line-data" data-line-start="584" data-line-end="585">Nos entregan un binario, que al ejecutarlo sin parámetros, nos pone que debemos escribir “una cadena mágica”</p>
+<pre><code class="has-line-data" data-line-start="587" data-line-end="591" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
 └─$ ./flag
 Introduce la cadena mágica como argumento
 </code></pre>
-<p class="has-line-data" data-line-start="588" data-line-end="589">Pero si ponemos cualquier cosa, nos pone que esta incorrecto.</p>
-<pre><code class="has-line-data" data-line-start="591" data-line-end="595" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
+<p class="has-line-data" data-line-start="592" data-line-end="593">Pero si ponemos cualquier cosa, nos pone que esta incorrecto.</p>
+<pre><code class="has-line-data" data-line-start="595" data-line-end="599" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
 └─$ ./flag loquesea
 Lo siento, loquesea no es correcto
 </code></pre>
-<p class="has-line-data" data-line-start="596" data-line-end="597">Así que debemos revisar el binario para tratar de identificar que espera como argumento. Revisando con IDA PRO (que lo podéis descargar [No promocionamos la piratería, pero para temas académicos, podemos pasarlo por alto] desde <a href="https://web.telegram.org/#/im?p=@idapro7">https://web.telegram.org/#/im?p=@idapro7)</a>)</p>
-<p class="has-line-data" data-line-start="598" data-line-end="600">Debugueando, encontramos que espera una cadena:<br>
+<p class="has-line-data" data-line-start="600" data-line-end="601">Así que debemos revisar el binario para tratar de identificar que espera como argumento. Revisando con IDA PRO (que lo podéis descargar [No promocionamos la piratería, pero para temas académicos, podemos pasarlo por alto] desde <a href="https://web.telegram.org/#/im?p=@idapro7">https://web.telegram.org/#/im?p=@idapro7)</a>)</p>
+<p class="has-line-data" data-line-start="602" data-line-end="604">Debugueando, encontramos que espera una cadena:<br>
 <strong><em>v7z7vw5rkcrsciwchmjmgmp</em></strong></p>
-<p class="has-line-data" data-line-start="601" data-line-end="602"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="603" data-line-end="604">Vemos que compara cada carácter introducido y le hace una rotación -4 caracteres. Así que probamos con algunos de los cifrados que conocemos con esta característica: Rot13 (cesar) o Rot47, y tratamos de descifrarlo.</p>
-<p class="has-line-data" data-line-start="605" data-line-end="606"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="607" data-line-end="608">Aplicando Rot47 y le colocamos -4, encontramos el argumento que espera, para que nos entregue la flag.</p>
-<pre><code class="has-line-data" data-line-start="610" data-line-end="614" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
+<p class="has-line-data" data-line-start="605" data-line-end="606"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="607" data-line-end="608">Vemos que compara cada carácter introducido y le hace una rotación -4 caracteres. Así que probamos con algunos de los cifrados que conocemos con esta característica: Rot13 (cesar) o Rot47, y tratamos de descifrarlo.</p>
+<p class="has-line-data" data-line-start="609" data-line-end="610"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto19-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="611" data-line-end="612">Aplicando Rot47 y le colocamos -4, encontramos el argumento que espera, para que nos entregue la flag.</p>
+<pre><code class="has-line-data" data-line-start="614" data-line-end="618" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto19]
 └─$ ./flag r3v3rs1ng_no_es_dificil
 flag{r3v3rs1ng_no_es_d1f1c1l}
 </code></pre>
-<p class="has-line-data" data-line-start="615" data-line-end="616"><strong><em>flag{r3v3rs1ng_no_es_d1f1c1l}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=618 data-line-end=619 ><a id="Reto_20_618"></a><strong>Reto 20</strong></h2>
-<p class="has-line-data" data-line-start="620" data-line-end="621">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=620 data-line-end=621 ><a id="Reto_20_620"></a><strong>Reto 20</strong></h2>
+<p class="has-line-data" data-line-start="622" data-line-end="623">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="622" data-line-end="623"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="624" data-line-end="625">En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.</p>
-<p class="has-line-data" data-line-start="626" data-line-end="627">Pregunta</p>
-<p class="has-line-data" data-line-start="628" data-line-end="629">¿Puedes encontrar la cadena mágica que devuelve la flag?</p>
-<p class="has-line-data" data-line-start="630" data-line-end="631"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="632" data-line-end="633">flag</p>
+<p class="has-line-data" data-line-start="624" data-line-end="625"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="626" data-line-end="627">En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.</p>
+<p class="has-line-data" data-line-start="628" data-line-end="629">Pregunta</p>
+<p class="has-line-data" data-line-start="630" data-line-end="631">¿Puedes encontrar la cadena mágica que devuelve la flag?</p>
+<p class="has-line-data" data-line-start="632" data-line-end="633"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="634" data-line-end="635">flag</p>
 </blockquote>
-<p class="has-line-data" data-line-start="634" data-line-end="635">Nos entregan un binario, que si lo ejecutamos solo (de nuevo) nos indica que debemos pasar “la cadena magica”</p>
-<pre><code class="has-line-data" data-line-start="637" data-line-end="641" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
+<p class="has-line-data" data-line-start="636" data-line-end="637">Nos entregan un binario, que si lo ejecutamos solo (de nuevo) nos indica que debemos pasar “la cadena magica”</p>
+<pre><code class="has-line-data" data-line-start="639" data-line-end="643" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
 └─$ ./flag-<span class="hljs-number">1</span> <span class="hljs-number">1</span> ⚙
 Introduce la cadena mágica como argumento
 </code></pre>
-<p class="has-line-data" data-line-start="642" data-line-end="644">Asi que nos toca hacer reversing, abriendo el IDA Pro, que os he dejado en la entrada anterior, podemos ver que espera una cadena bastante particular:<br>
+<p class="has-line-data" data-line-start="644" data-line-end="646">Asi que nos toca hacer reversing, abriendo el IDA Pro, que os he dejado en la entrada anterior, podemos ver que espera una cadena bastante particular:<br>
 <strong><em>i{2ldio348zAm=Qnlfju3jaJ-avDI1!x_a</em></strong></p>
-<p class="has-line-data" data-line-start="645" data-line-end="646">Si embargo, alli no acaba el asunto, tambien verifica que el nombre de tu ordenador coincida con la cadena que se especifica en el binario: <strong><em>C0p3rn1c0</em></strong></p>
-<p class="has-line-data" data-line-start="647" data-line-end="648"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto20-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="649" data-line-end="650">Podemos parchear el binario y cambiar esa cadena de hostname por el nuestro (no he logrado hacerlo en IDA, pero si en OllyDBG) o modificar temporalmente el nombre de tu maquina y lanzar el binario con la cadena que espera, para que nos de la flag que buscamos:</p>
-<pre><code class="has-line-data" data-line-start="652" data-line-end="664" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
+<p class="has-line-data" data-line-start="647" data-line-end="648">Si embargo, alli no acaba el asunto, tambien verifica que el nombre de tu ordenador coincida con la cadena que se especifica en el binario: <strong><em>C0p3rn1c0</em></strong></p>
+<p class="has-line-data" data-line-start="649" data-line-end="650"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto20-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="651" data-line-end="652">Podemos parchear el binario y cambiar esa cadena de hostname por el nuestro (no he logrado hacerlo en IDA, pero si en OllyDBG) o modificar temporalmente el nombre de tu maquina y lanzar el binario con la cadena que espera, para que nos de la flag que buscamos:</p>
+<pre><code class="has-line-data" data-line-start="654" data-line-end="666" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
 └─$ sudo hostname C0p3rn1c0                                                 <span class="hljs-number">1</span> ⚙
                                                                                 
 ┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">4</span> semana/reto20]
@@ -499,6 +499,7 @@ C0p3rn1c0
 Aquí tienes la flag:
 flag{usando_variables_del_sistema}
 </code></pre>
-<p class="has-line-data" data-line-start="665" data-line-end="667">obtenemos la flag solicitada:<br>
-<strong><em>flag{usando_variables_del_sistema}</em></strong></p>
+<p class="has-line-data" data-line-start="667" data-line-end="668">obtenemos la flag solicitada:</p>
+<p class="has-line-data" data-line-start="669" data-line-end="670"><strong><em>flag{usando_variables_del_sistema}</em></strong></p>
+
 </div>

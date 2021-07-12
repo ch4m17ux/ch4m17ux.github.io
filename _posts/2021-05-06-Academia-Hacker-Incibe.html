@@ -7,27 +7,16 @@ background: '/img/posts/06.jpg'
 ---
 
 <div align="justify">
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Academia_Hacker_Incibe_writeUp_0"></a>Academia Hacker Incibe- #writeUp - Semana 1 y 2</h1>
-<div align="center"><p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/academia-hacker-incibe.jpg" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="4" data-line-end="5">Durante el mes de Mayo y Junio de 2021, estaremos participando en Academia Hacker.  Una iniciativa de <a href="https://www.incibe.es/">Incibe</a> para formar y encontrar las capacidades en Ciberseguridad.</p>
-<p class="has-line-data" data-line-start="6" data-line-end="7">El registro esta cerrado, debido a que se ha tenido una convocatoria de 400 equipos con un minimo de 4 participantes y un maximo de 8.</p>
-<hr>
+<h2 class="code-line" data-line-start=17 data-line-end=18 ><a id="Reto_1_17"></a><strong>Reto 1</strong></h2>
+<p class="has-line-data" data-line-start="19" data-line-end="20">Nos entregan la descripción del reto:</p>
 <blockquote>
-<h3 class="code-line" data-line-start=9 data-line-end=10 ><a id="Disclaimer_9"></a>Disclaimer:</h3>
-<p class="has-line-data" data-line-start="10" data-line-end="12">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.<br>
-Espero que os guste y aprendamos juntos. #HackThePlanet</p>
-</blockquote>
-<hr>
-<h2 class="code-line" data-line-start=15 data-line-end=16 ><a id="Reto_1_15"></a><strong>Reto 1</strong></h2>
-<p class="has-line-data" data-line-start="17" data-line-end="18">Nos entregan la descripción del reto:</p>
-<blockquote>
-<p class="has-line-data" data-line-start="19" data-line-end="20"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="21" data-line-end="22">Desde la creación del instituto, algunos alumnos se han encargado de la gestión del periodido local, “El noticiero”, donde se intercambian mensajes y escriben artículos didácticos.</p>
-<p class="has-line-data" data-line-start="23" data-line-end="24">En uno de los artículos alguien anónim@ ha lanzado un reto. Asegura haber escondido un mensaje en el libro más universal de la literatura castellana. En su mensaje advierte que para empezar, nos proporciona algunas coordenadas para que las mentes mas brillantes del instituto puedan resolverlo.</p>
-<p class="has-line-data" data-line-start="25" data-line-end="26">¿Cuál es el mensaje secreto que ha enviado el alumno anónimo y ha escondido este alumn@?</p>
-<p class="has-line-data" data-line-start="27" data-line-end="28">Nota: En la solución, reemplaza espacios con “_”.</p>
-<p class="has-line-data" data-line-start="29" data-line-end="30">Datos proporcionados.</p>
-<p class="has-line-data" data-line-start="31" data-line-end="39">10:8:2<br>
+<p class="has-line-data" data-line-start="21" data-line-end="22"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="23" data-line-end="24">Desde la creación del instituto, algunos alumnos se han encargado de la gestión del periodido local, “El noticiero”, donde se intercambian mensajes y escriben artículos didácticos.</p>
+<p class="has-line-data" data-line-start="25" data-line-end="26">En uno de los artículos alguien anónim@ ha lanzado un reto. Asegura haber escondido un mensaje en el libro más universal de la literatura castellana. En su mensaje advierte que para empezar, nos proporciona algunas coordenadas para que las mentes mas brillantes del instituto puedan resolverlo.</p>
+<p class="has-line-data" data-line-start="27" data-line-end="28">¿Cuál es el mensaje secreto que ha enviado el alumno anónimo y ha escondido este alumn@?</p>
+<p class="has-line-data" data-line-start="29" data-line-end="30">Nota: En la solución, reemplaza espacios con “_”.</p>
+<p class="has-line-data" data-line-start="31" data-line-end="32">Datos proporcionados.</p>
+<p class="has-line-data" data-line-start="33" data-line-end="41">10:8:2<br>
 23:11:1<br>
 30:8:2<br>
 30:26:7<br>
@@ -36,52 +25,52 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 151:11:8<br>
 152:11:5</p>
 </blockquote>
-<p class="has-line-data" data-line-start="40" data-line-end="41">En el reto nos indican que un personaje ha &quot;<em>escondido un mensaje en el libro más universal de la literatura castellana</em>&quot;, por lo que deducimos que se trata de &quot;<em>El Quijote - Miguel de Cervantes Saavedra</em>&quot;; y dentro del zip que nos entregan con el reto, tenemos una copia del mismo.</p>
-<p class="has-line-data" data-line-start="42" data-line-end="43">Debido a estas conjeturas, procedemos a abrir el PDF del libro y encontramos que es una version del mismo; revisando los datos que nos han proporcionado, podriamos decir que nos estan indicando que debemos buscar algunas palabras para formar la flag, como no tenemos 152 capitulos, nos decantamos que nos estan indicando que debemos buscar: <strong><em>Pagina:Linea:Palabra</em></strong>.</p>
-<p class="has-line-data" data-line-start="44" data-line-end="46">Siguiendo esta premisa, encontramos:<br>
+<p class="has-line-data" data-line-start="42" data-line-end="43">En el reto nos indican que un personaje ha &quot;<em>escondido un mensaje en el libro más universal de la literatura castellana</em>&quot;, por lo que deducimos que se trata de &quot;<em>El Quijote - Miguel de Cervantes Saavedra</em>&quot;; y dentro del zip que nos entregan con el reto, tenemos una copia del mismo.</p>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Debido a estas conjeturas, procedemos a abrir el PDF del libro y encontramos que es una version del mismo; revisando los datos que nos han proporcionado, podriamos decir que nos estan indicando que debemos buscar algunas palabras para formar la flag, como no tenemos 152 capitulos, nos decantamos que nos estan indicando que debemos buscar: <strong><em>Pagina:Linea:Palabra</em></strong>.</p>
+<p class="has-line-data" data-line-start="46" data-line-end="48">Siguiendo esta premisa, encontramos:<br>
 queres, saber, noticia, sobre, conocer, misterio, quien, hizo</p>
-<p class="has-line-data" data-line-start="47" data-line-end="49">Y dando el formato de la flag:<br>
+<p class="has-line-data" data-line-start="49" data-line-end="51">Y dando el formato de la flag:<br>
 <strong>flag{querer_saber_noticia_sobre_conocer_misterio_quien_hizo}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=52 data-line-end=53 ><a id="Reto_2_52"></a><strong>Reto 2</strong></h2>
-<p class="has-line-data" data-line-start="54" data-line-end="55">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=54 data-line-end=55 ><a id="Reto_2_54"></a><strong>Reto 2</strong></h2>
+<p class="has-line-data" data-line-start="56" data-line-end="57">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="56" data-line-end="57"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="58" data-line-end="59">Después de muchos años recopilando documentación, fotos y artículos, se ha decidido realizar una limpieza y llevar la documentación antigua a una nueva sala que le ha cedido el instituto.</p>
-<p class="has-line-data" data-line-start="60" data-line-end="61">En esta sala se pueden archivar de una forma sencilla por fecha todos los documentos del periodico.</p>
-<p class="has-line-data" data-line-start="62" data-line-end="63">Durante este proceso moviendo documentos, una hoja extraña se cae entre los documentos que lleváis.</p>
-<p class="has-line-data" data-line-start="64" data-line-end="65">Contiene un texto ilegible junto a la referencia del emperador Julio César. ¿Podrás sacar en claro que quería decir la nota?</p>
-<p class="has-line-data" data-line-start="66" data-line-end="67"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="68" data-line-end="69">Yn fvthvragr vasbeznpvba rf pbasvqrapvny. Gr nlhqnen n cebfrthve ra yn vairfgvtnpvba. Ab gr pbasvrf, ab gbqnf ynf vasbeznpvbarf qr ynf dhr qvfcbarzbf fba gna snpvyrf pbzb rfgn ebgnpvba qr pnenpgrerf. Sveznqb: ha nzvtb.</p>
-<p class="has-line-data" data-line-start="70" data-line-end="71">synt{rfgnzbf_rzcrmnaqb_n_pbabpre_nytb_qr_uvfgbevn}</p>
+<p class="has-line-data" data-line-start="58" data-line-end="59"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="60" data-line-end="61">Después de muchos años recopilando documentación, fotos y artículos, se ha decidido realizar una limpieza y llevar la documentación antigua a una nueva sala que le ha cedido el instituto.</p>
+<p class="has-line-data" data-line-start="62" data-line-end="63">En esta sala se pueden archivar de una forma sencilla por fecha todos los documentos del periodico.</p>
+<p class="has-line-data" data-line-start="64" data-line-end="65">Durante este proceso moviendo documentos, una hoja extraña se cae entre los documentos que lleváis.</p>
+<p class="has-line-data" data-line-start="66" data-line-end="67">Contiene un texto ilegible junto a la referencia del emperador Julio César. ¿Podrás sacar en claro que quería decir la nota?</p>
+<p class="has-line-data" data-line-start="68" data-line-end="69"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="70" data-line-end="71">Yn fvthvragr vasbeznpvba rf pbasvqrapvny. Gr nlhqnen n cebfrthve ra yn vairfgvtnpvba. Ab gr pbasvrf, ab gbqnf ynf vasbeznpvbarf qr ynf dhr qvfcbarzbf fba gna snpvyrf pbzb rfgn ebgnpvba qr pnenpgrerf. Sveznqb: ha nzvtb.</p>
+<p class="has-line-data" data-line-start="72" data-line-end="73">synt{rfgnzbf_rzcrmnaqb_n_pbabpre_nytb_qr_uvfgbevn}</p>
 </blockquote>
-<p class="has-line-data" data-line-start="72" data-line-end="73">Nos estan proporcionando un mensaje que esta codificado, nos hacen alusion a Julio Cesar, asi que lo primero que pensamos es en cifrado Cesar (Rot13).  Por lo que procedemos a decodificarlo con cualquier web que nos permite hacerlo y obtenemos.</p>
-<p class="has-line-data" data-line-start="74" data-line-end="75">O por consola tambien podriamos realizarlo:</p>
-<div align="center"><p class="has-line-data" data-line-start="76" data-line-end="77"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto2.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="78" data-line-end="80">Facilmente podemos encontrar la flag solicitada:<br>
+<p class="has-line-data" data-line-start="74" data-line-end="75">Nos estan proporcionando un mensaje que esta codificado, nos hacen alusion a Julio Cesar, asi que lo primero que pensamos es en cifrado Cesar (Rot13).  Por lo que procedemos a decodificarlo con cualquier web que nos permite hacerlo y obtenemos.</p>
+<p class="has-line-data" data-line-start="76" data-line-end="77">O por consola tambien podriamos realizarlo:</p>
+<p class="has-line-data" data-line-start="78" data-line-end="79"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="80" data-line-end="82">Facilmente podemos encontrar la flag solicitada:<br>
 <strong>flag{estamos_empezando_a_conocer_algo_de_historia}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=83 data-line-end=84 ><a id="Reto_3_83"></a><strong>Reto 3</strong></h2>
-<p class="has-line-data" data-line-start="85" data-line-end="86">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=85 data-line-end=86 ><a id="Reto_3_85"></a><strong>Reto 3</strong></h2>
+<p class="has-line-data" data-line-start="87" data-line-end="88">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="87" data-line-end="88"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="89" data-line-end="90">Al darle la vuelta a la hoja, veis que también tiene otro texto escrito en esa parte, aunque tampoco lo entendéis. Se adjunta también un fichero con extensión pyc. ¿Nos servirá de ayuda?</p>
-<p class="has-line-data" data-line-start="91" data-line-end="92">¿Podrás proporcionarnos la otra información que está en la otra cara de la hoja?</p>
-<p class="has-line-data" data-line-start="93" data-line-end="94"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="95" data-line-end="96">Ax8VCB4HEAAGDDMEBRERPhENAh8DLQQcEQERMAgaBjERAhwEGgADHA==</p>
-<p class="has-line-data" data-line-start="97" data-line-end="99"><strong>Datos extra:</strong><br>
+<p class="has-line-data" data-line-start="89" data-line-end="90"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="91" data-line-end="92">Al darle la vuelta a la hoja, veis que también tiene otro texto escrito en esa parte, aunque tampoco lo entendéis. Se adjunta también un fichero con extensión pyc. ¿Nos servirá de ayuda?</p>
+<p class="has-line-data" data-line-start="93" data-line-end="94">¿Podrás proporcionarnos la otra información que está en la otra cara de la hoja?</p>
+<p class="has-line-data" data-line-start="95" data-line-end="96"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="97" data-line-end="98">Ax8VCB4HEAAGDDMEBRERPhENAh8DLQQcEQERMAgaBjERAhwEGgADHA==</p>
+<p class="has-line-data" data-line-start="99" data-line-end="101"><strong>Datos extra:</strong><br>
 <em>Os proporcionamos alguna indicación para empezar a resolver el reto: uncompyle6 es una herramienta que descompila el byte-code de Python. Devuelve el fichero original, que necesitarás para resolver la prueba</em>.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="100" data-line-end="101">Seguimos las instrucciones y nos instalamos uncompyle6, usando la versión para python 2.7: <a href="https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf">https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf</a></p>
-<p class="has-line-data" data-line-start="102" data-line-end="103">El paso mas importante es:</p>
-<pre><code class="language-console hljs" data-line-start="105" data-line-end="108"># sudo pip install uncompyle6-3.7.4-py2-none-any.whl
+<p class="has-line-data" data-line-start="102" data-line-end="103">Seguimos las instrucciones y nos instalamos uncompyle6, usando la versión para python 2.7: <a href="https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf">https://palomarinfosec.github.io/Presentations/InstallingUncompyle6.pdf</a></p>
+<p class="has-line-data" data-line-start="104" data-line-end="105">El paso mas importante es:</p>
+<pre><code class="has-line-data" data-line-start="107" data-line-end="110"># sudo pip install uncompyle6-3.7.4-py2-none-any.whl
 # uncompyle6 --version
 </code></pre>
-<p class="has-line-data" data-line-start="108" data-line-end="109">Esta herramienta nos decompila el el fichero python que esta en el zip (contraseña del zip: <em>reto03_afe0cb6c1bdfbc79e900a427244961cb24ee8141</em>)</p>
-<p class="has-line-data" data-line-start="110" data-line-end="111">En mi caso lo he volcado a otro fichero, de otro modo lo pone en la salida de la consola:</p>
-<div align="center"><p class="has-line-data" data-line-start="112" data-line-end="114"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto3.jpg" alt="Academia Hacker"><br></div>
+<p class="has-line-data" data-line-start="110" data-line-end="111">Esta herramienta nos decompila el el fichero python que esta en el zip (contraseña del zip: <em>reto03_afe0cb6c1bdfbc79e900a427244961cb24ee8141</em>)</p>
+<p class="has-line-data" data-line-start="112" data-line-end="113">En mi caso lo he volcado a otro fichero, de otro modo lo pone en la salida de la consola:</p>
+<p class="has-line-data" data-line-start="114" data-line-end="116"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto3.jpg" alt="Academia Hacker"><br>
 Verificamos el codigo que nos ha decompilado y vemos como realiza la codificacion del mensaje, vemos que tenemos dos opciones: cifrado y descifrado.</p>
-<pre><code class="language-console hljs" data-line-start="116" data-line-end="132">import binascii, itertools, base64, sys
+<pre><code class="has-line-data" data-line-start="118" data-line-end="134">import binascii, itertools, base64, sys
     def xor_crypt_string(data, key='estoesunaclaveparacifrar', encode=False, decode=False):
         from itertools import izip, cycle
         import base64
@@ -97,8 +86,8 @@ Verificamos el codigo que nos ha decompilado y vemos como realiza la codificacio
     print 'Descifrado'
     print xor_crypt_string(xor_crypt_string(secret_data, encode=True), decode=True)
 </code></pre>
-<p class="has-line-data" data-line-start="133" data-line-end="134">Lo modificamos para que nos arroje la salida que queremos (que seria decodificar el mensaje) y podemos tener el siguiente codigo:</p>
-<pre><code class="language-console hljs" data-line-start="136" data-line-end="150">import binascii, itertools, base64, sys
+<p class="has-line-data" data-line-start="135" data-line-end="136">Lo modificamos para que nos arroje la salida que queremos (que seria decodificar el mensaje) y podemos tener el siguiente codigo:</p>
+<pre><code class="has-line-data" data-line-start="138" data-line-end="152">import binascii, itertools, base64, sys
     def xor_crypt_string(data, key='estoesunaclaveparacifrar', encode=False, decode=False):
         from itertools import izip, cycle
         import base64
@@ -112,25 +101,25 @@ Verificamos el codigo que nos ha decompilado y vemos como realiza la codificacio
     claro = xor_crypt_string(secret_data,decode=True)
     print (claro)
 </code></pre>
-<p class="has-line-data" data-line-start="150" data-line-end="152">Al ejecutarlo, nos arroja la flag que estamos buscando:<br>
+<p class="has-line-data" data-line-start="152" data-line-end="154">Al ejecutarlo, nos arroja la flag que estamos buscando:<br>
 <strong>flag{tengo_esta_clave_entre_mis_papeles}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=155 data-line-end=156 ><a id="Reto_4_155"></a><strong>Reto 4</strong></h2>
-<p class="has-line-data" data-line-start="157" data-line-end="158">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=157 data-line-end=158 ><a id="Reto_4_157"></a><strong>Reto 4</strong></h2>
+<p class="has-line-data" data-line-start="159" data-line-end="160">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="159" data-line-end="160"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="161" data-line-end="163">Con la información que habéis obtenido, intentáis utilizar las credenciales para poder acceder al ordenador del periodico y al entrar os descargáis un archivo.<br>
+<p class="has-line-data" data-line-start="161" data-line-end="162"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="163" data-line-end="165">Con la información que habéis obtenido, intentáis utilizar las credenciales para poder acceder al ordenador del periodico y al entrar os descargáis un archivo.<br>
 El fichero original ha cifrado alguna información secreta que debes obtener para que la investigación no se atasque. Esto es lo que sabemos que ha devuelto la salida del fichero que has obtenido al entrar en la web del periódico.</p>
-<p class="has-line-data" data-line-start="164" data-line-end="165"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="166" data-line-end="167">Hemos recibido este mensaje junto a unas instrucciones para su manejo. Parece un completo enigma.</p>
-<p class="has-line-data" data-line-start="168" data-line-end="175">59556843656d517a545764684d3035355a4735425a317074526e526a626d646e57544a<br>
+<p class="has-line-data" data-line-start="166" data-line-end="167"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="168" data-line-end="169">Hemos recibido este mensaje junto a unas instrucciones para su manejo. Parece un completo enigma.</p>
+<p class="has-line-data" data-line-start="170" data-line-end="177">59556843656d517a545764684d3035355a4735425a317074526e526a626d646e57544a<br>
 61633249794e476461534842785a55644e5a316b7a566a42615630316e596c684f4d57<br>
 51795a32646156315a6f5a4668765a325674536e4e684d6e4e6e576d3543626d4e59515<br>
 7645a57454a74576a4a6e5a32517962486c684d30316e596c6857613246755a32645a57<br>
 48426f597a4e725a316c59516d356957456c6e59556477626c6c745557646c574842785<br>
 95663775a324e496144466b6257396e5a56646f64574a745a326469563342785930646a<br>
 5a32466e5054303d</p>
-<p class="has-line-data" data-line-start="176" data-line-end="188">Modelo: M3<br>
+<p class="has-line-data" data-line-start="178" data-line-end="190">Modelo: M3<br>
 Reflector: ???<br>
 ROT1.: 1<br>
 ROT2.: 2<br>
@@ -143,59 +132,58 @@ ANILLO2: B<br>
 ANILLO3: C<br>
 PLUGBOARD: bq cr di ej kw mt os px uz gh</p>
 </blockquote>
-<p class="has-line-data" data-line-start="189" data-line-end="190">Vemos que debemos utilizar una web que nos permita decodificar la maquina enigma.  Al tratar de hacerlo directamente, nos arroja un mensaje muy extraño, asi que analizamos y encontramos que si decodificamos el texto en <code>HEX</code> y 2 veces <code>BASE64</code> (<em>hecho desde linux para evitar historias raras de los conversores online</em>) sale esto:</p>
-<p class="has-line-data" data-line-start="191" data-line-end="192"><em>hpsws ksrvp famrx cflon dzjxc cutec msuwh eeauz zblkk fpgqp apfgh wirks mudjx azasy apgmr hjgbd yzjim pxuvj yhnnh mjjpg j</em></p>
-<div align="center"><p class="has-line-data" data-line-start="193" data-line-end="194"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto4.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="195" data-line-end="196">Obtenemos el mensaje:</p>
-<p class="has-line-data" data-line-start="197" data-line-end="198"><em>PONGA ATENC IONSI FRACA SAMOS ENEST AMISI ONNOS VEREM OSABO CADOS APERD ERLOT ODOAN OTEES TABAN DERAE NIGMA MTRES UKWBV I</em></p>
-<p class="has-line-data" data-line-start="199" data-line-end="200">Si lo organizamos, que sea mas legible:</p>
-<p class="has-line-data" data-line-start="201" data-line-end="202"><em>PONGA ATENCION SI FRACASAMOS EN ESTA MISION NOS VEREMOS ABOCADOS A PERDERLO TODO ANOTE ESTA BANDERA ENIGMAMTRES UKWBV I</em></p>
-<p class="has-line-data" data-line-start="203" data-line-end="205">Deducimos que la flag seria:<br>
+<p class="has-line-data" data-line-start="191" data-line-end="192">Vemos que debemos utilizar una web que nos permita decodificar la maquina enigma.  Al tratar de hacerlo directamente, nos arroja un mensaje muy extraño, asi que analizamos y encontramos que si decodificamos el texto en <code>HEX</code> y 2 veces <code>BASE64</code> (<em>hecho desde linux para evitar historias raras de los conversores online</em>) sale esto:</p>
+<p class="has-line-data" data-line-start="193" data-line-end="194"><em>hpsws ksrvp famrx cflon dzjxc cutec msuwh eeauz zblkk fpgqp apfgh wirks mudjx azasy apgmr hjgbd yzjim pxuvj yhnnh mjjpg j</em></p>
+<p class="has-line-data" data-line-start="195" data-line-end="196"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto4.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="197" data-line-end="198">Obtenemos el mensaje:</p>
+<p class="has-line-data" data-line-start="199" data-line-end="200"><em>PONGA ATENC IONSI FRACA SAMOS ENEST AMISI ONNOS VEREM OSABO CADOS APERD ERLOT ODOAN OTEES TABAN DERAE NIGMA MTRES UKWBV I</em></p>
+<p class="has-line-data" data-line-start="201" data-line-end="202">Si lo organizamos, que sea mas legible:</p>
+<p class="has-line-data" data-line-start="203" data-line-end="204"><em>PONGA ATENCION SI FRACASAMOS EN ESTA MISION NOS VEREMOS ABOCADOS A PERDERLO TODO ANOTE ESTA BANDERA ENIGMAMTRES UKWBV I</em></p>
+<p class="has-line-data" data-line-start="205" data-line-end="207">Deducimos que la flag seria:<br>
 <strong>flag{ENIGMAMTRESUKWBVI}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=208 data-line-end=209 ><a id="Reto_5_208"></a><strong>Reto 5</strong></h2>
-<p class="has-line-data" data-line-start="210" data-line-end="211">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=210 data-line-end=211 ><a id="Reto_5_210"></a><strong>Reto 5</strong></h2>
+<p class="has-line-data" data-line-start="212" data-line-end="213">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="212" data-line-end="213"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="214" data-line-end="215">Habláis con el director del instituto y os permite acceder al contenido del disco. Al entrar encontráis un “pcap”. ¿Qué es un “pcap”? os preguntáis. No lo sabemos, pero habrá que investigar.</p>
-<p class="has-line-data" data-line-start="216" data-line-end="217">Los datos os suenan codificados en hexadecimal, pero … ¿Cómo recomponer estas piezas de cada petición? Además, hay mucho ruido de navegación en el fichero.</p>
-<p class="has-line-data" data-line-start="218" data-line-end="219"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="220" data-line-end="221">Fichero “pcap” descargable</p>
+<p class="has-line-data" data-line-start="214" data-line-end="215"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="216" data-line-end="217">Habláis con el director del instituto y os permite acceder al contenido del disco. Al entrar encontráis un “pcap”. ¿Qué es un “pcap”? os preguntáis. No lo sabemos, pero habrá que investigar.</p>
+<p class="has-line-data" data-line-start="218" data-line-end="219">Los datos os suenan codificados en hexadecimal, pero … ¿Cómo recomponer estas piezas de cada petición? Además, hay mucho ruido de navegación en el fichero.</p>
+<p class="has-line-data" data-line-start="220" data-line-end="221"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="222" data-line-end="223">Fichero “pcap” descargable</p>
 </blockquote>
-<p class="has-line-data" data-line-start="222" data-line-end="223">Nos descargamos el pcap que nos entregan, y lo analizamos con wireshark.</p>
-<p class="has-line-data" data-line-start="224" data-line-end="225">Vemos mucho trafico UDP, TCP, TLS y demas, como nos han indicado en la descripcion del reto.  Asi que analizamos un poco mas y encontramos que hay algunas peticiones DNS, que tienen un formato inicial HEX, asi que lo filtramos:</p>
-<div align="center"><p class="has-line-data" data-line-start="226" data-line-end="227"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto5.jpg" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="228" data-line-end="229">Y podemos obtener (tomando solo los valores hexadecimales) el siguiente mensaje:</p>
-<div align="center"><p class="has-line-data" data-line-start="230" data-line-end="231"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto5-1.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="232" data-line-end="234">Conseguimos la flag:<br>
+<p class="has-line-data" data-line-start="224" data-line-end="225">Nos descargamos el pcap que nos entregan, y lo analizamos con wireshark.</p>
+<p class="has-line-data" data-line-start="226" data-line-end="227">Vemos mucho trafico UDP, TCP, TLS y demas, como nos han indicado en la descripcion del reto.  Asi que analizamos un poco mas y encontramos que hay algunas peticiones DNS, que tienen un formato inicial HEX, asi que lo filtramos:</p>
+<p class="has-line-data" data-line-start="228" data-line-end="229"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto5.jpg" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="230" data-line-end="231">Y podemos obtener (tomando solo los valores hexadecimales) el siguiente mensaje:</p>
+<p class="has-line-data" data-line-start="232" data-line-end="233"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto5-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="234" data-line-end="236">Conseguimos la flag:<br>
 <strong>flag{dns_spy_exfiltration}</strong></p>
 <hr>
-
-<h2 class="code-line" data-line-start=237 data-line-end=238 ><a id="Reto_6_237"></a><strong>Reto 6</strong></h2>
-<p class="has-line-data" data-line-start="239" data-line-end="240">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=239 data-line-end=240 ><a id="Reto_6_239"></a><strong>Reto 6</strong></h2>
+<p class="has-line-data" data-line-start="241" data-line-end="242">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="241" data-line-end="242"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="243" data-line-end="244">Parece que alguien desde una cuenta anónima está intentado ayudar en la investigación y os ha enviado otro fichero pcap. Lo ha capturado desde alguna clase de informática que se dio en el instituto.</p>
-<p class="has-line-data" data-line-start="245" data-line-end="246">Hay varias tramas que se corresponden a una subida FTP. Nos piden encontrar el contenido de lo que se ha descargado para proseguir en la investigación. Se trata de un fichero que se han descargado.</p>
-<p class="has-line-data" data-line-start="247" data-line-end="248"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="249" data-line-end="250">Fichero pcap descargable.</p>
+<p class="has-line-data" data-line-start="243" data-line-end="244"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="245" data-line-end="246">Parece que alguien desde una cuenta anónima está intentado ayudar en la investigación y os ha enviado otro fichero pcap. Lo ha capturado desde alguna clase de informática que se dio en el instituto.</p>
+<p class="has-line-data" data-line-start="247" data-line-end="248">Hay varias tramas que se corresponden a una subida FTP. Nos piden encontrar el contenido de lo que se ha descargado para proseguir en la investigación. Se trata de un fichero que se han descargado.</p>
+<p class="has-line-data" data-line-start="249" data-line-end="250"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="251" data-line-end="252">Fichero pcap descargable.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="251" data-line-end="252">Abrimos el pcap entregado que tenemos en Wireshark y observamos las tramas. Encontramos que se ha hecho una descarga de dos ficheros, por un lado tenemos un zip denominado: flag.zip y por otro lado un txt denominado: passwords.txt</p>
-<p class="has-line-data" data-line-start="253" data-line-end="254">Vamos filtrando el trafico por tramas y vemos que en el stream 2, tenemos:</p>
-<div align="center"><p class="has-line-data" data-line-start="255" data-line-end="256"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-1.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="257" data-line-end="258">Podemos ver que hay una traza que tiene un tamaño mas grande que los demas, asi que tratamos de sacar ese fichero que ha sido descargado (en este caso del ftp). seleccionamos dicha trama y nos selecciona la parte que nos interesa, que en este caso es el fichero requerido.</p>
-<div align="center"><p class="has-line-data" data-line-start="259" data-line-end="261"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-2.png" alt="Academia Hacker"><br></div>
+<p class="has-line-data" data-line-start="253" data-line-end="254">Abrimos el pcap entregado que tenemos en Wireshark y observamos las tramas. Encontramos que se ha hecho una descarga de dos ficheros, por un lado tenemos un zip denominado: flag.zip y por otro lado un txt denominado: passwords.txt</p>
+<p class="has-line-data" data-line-start="255" data-line-end="256">Vamos filtrando el trafico por tramas y vemos que en el stream 2, tenemos:</p>
+<p class="has-line-data" data-line-start="257" data-line-end="258"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="259" data-line-end="260">Podemos ver que hay una traza que tiene un tamaño mas grande que los demas, asi que tratamos de sacar ese fichero que ha sido descargado (en este caso del ftp). seleccionamos dicha trama y nos selecciona la parte que nos interesa, que en este caso es el fichero requerido.</p>
+<p class="has-line-data" data-line-start="261" data-line-end="263"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-2.png" alt="Academia Hacker"><br>
 Dandole clic derecho podemos exportar los bytes del fichero como un paquete.</p>
-<div align="center"><p class="has-line-data" data-line-start="262" data-line-end="263"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-3.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="264" data-line-end="265">Le ponemos un nombre y tenemos el fichero de la flag comprimido: flag.zip</p>
-<div align="center"><p class="has-line-data" data-line-start="266" data-line-end="267"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-4.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="268" data-line-end="269">Al intentar descomprimirlo, nos solicita una contraseña.</p>
-<div align="center"><p class="has-line-data" data-line-start="270" data-line-end="271"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-6.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="272" data-line-end="273">Por esta razon, debemos buscar el listado de passwords, que habiamos visto que se habia descargado tambien. Por lo que seguimos filtrando las tramas y encontramos la traza que nos interesa.</p>
-<div align="center"><p class="has-line-data" data-line-start="274" data-line-end="275"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-6.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="276" data-line-end="277">Y realizamos la misma operacion que hemos realizado con la anterior traza, para obtener un fichero de claves: passwords.txt</p>
-<p class="has-line-data" data-line-start="278" data-line-end="279">Utilizamos este fichero para trata de crackear a traves de jonhTheRipper la contraseña.</p>
-<pre><code class="language-console hljs" data-line-start="281" data-line-end="301" class="language-code">──(kali㉿kali)-[~/Descargas/incibe/reto06]
+<p class="has-line-data" data-line-start="264" data-line-end="265"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-3.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="266" data-line-end="267">Le ponemos un nombre y tenemos el fichero de la flag comprimido: flag.zip</p>
+<p class="has-line-data" data-line-start="268" data-line-end="269"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-4.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="270" data-line-end="271">Al intentar descomprimirlo, nos solicita una contraseña.</p>
+<p class="has-line-data" data-line-start="272" data-line-end="273"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-6.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="274" data-line-end="275">Por esta razon, debemos buscar el listado de passwords, que habiamos visto que se habia descargado tambien. Por lo que seguimos filtrando las tramas y encontramos la traza que nos interesa.</p>
+<p class="has-line-data" data-line-start="276" data-line-end="277"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto6-6.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="278" data-line-end="279">Y realizamos la misma operacion que hemos realizado con la anterior traza, para obtener un fichero de claves: passwords.txt</p>
+<p class="has-line-data" data-line-start="280" data-line-end="281">Utilizamos este fichero para trata de crackear a traves de jonhTheRipper la contraseña.</p>
+<pre><code class="has-line-data" data-line-start="283" data-line-end="303" class="language-code">──(kali㉿kali)-[~/Descargas/incibe/reto06]
 └─$ zip2john flag.zip &gt; secret.hash
 ver 1.0 efh 5455 efh 7875 flag.zip/flag.txt PKZIP Encr: 2b chk, TS_chk, cmplen=52, decmplen=40, crc=BF705D76
 
@@ -215,92 +203,92 @@ karina (flag.zip/flag.txt)
 Use the &quot;--show&quot; option to display all of the cracked passwords reliably
 Session completed
 </code></pre>
-<p class="has-line-data" data-line-start="302" data-line-end="303">Obtenemos la contraseña para descomprimir el fichero comprimido flag.zip, y dentro tenemos un txt con la flag solicitada.</p>
-<p class="has-line-data" data-line-start="304" data-line-end="306">Conseguimos la flag:<br>
+<p class="has-line-data" data-line-start="304" data-line-end="305">Obtenemos la contraseña para descomprimir el fichero comprimido flag.zip, y dentro tenemos un txt con la flag solicitada.</p>
+<p class="has-line-data" data-line-start="306" data-line-end="308">Conseguimos la flag:<br>
 <strong>flag{ftp_stream_pcap_with_credentials!}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=309 data-line-end=310 ><a id="Reto_7_309"></a><strong>Reto 7</strong></h2>
-<p class="has-line-data" data-line-start="311" data-line-end="312">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=311 data-line-end=312 ><a id="Reto_7_311"></a><strong>Reto 7</strong></h2>
+<p class="has-line-data" data-line-start="313" data-line-end="314">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="313" data-line-end="314"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="315" data-line-end="316">En el escritorio del usuario de uno de los ordenadores localizáis una aplicación. Os aseguráis de que no sea maliciosa y ejecutáis el fichero exe. Parece contener dos entradas de texto.</p>
-<p class="has-line-data" data-line-start="317" data-line-end="318">Hay dos flags en esta prueba, recupera la flag1 del fichero exe.</p>
-<p class="has-line-data" data-line-start="319" data-line-end="320"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="321" data-line-end="322">Fichero ejecutable.</p>
+<p class="has-line-data" data-line-start="315" data-line-end="316"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="317" data-line-end="318">En el escritorio del usuario de uno de los ordenadores localizáis una aplicación. Os aseguráis de que no sea maliciosa y ejecutáis el fichero exe. Parece contener dos entradas de texto.</p>
+<p class="has-line-data" data-line-start="319" data-line-end="320">Hay dos flags en esta prueba, recupera la flag1 del fichero exe.</p>
+<p class="has-line-data" data-line-start="321" data-line-end="322"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="323" data-line-end="324">Fichero ejecutable.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="323" data-line-end="324">Debugueando con IDA PRO (lo que ha realizado BitOverRun), podemos ver que se esperan dos entradas (Este reto es la primera parte y continua en el reto8).</p>
-<p class="has-line-data" data-line-start="325" data-line-end="326">En este reto se nos pide la Flag1. En el codigo vemos que tenemos un string:</p>
-<pre><code class="language-console hljs" data-line-start="328" data-line-end="330" class="language-code">AAICBBIOCQASCAUOAg4PAgQFCAUO
+<p class="has-line-data" data-line-start="325" data-line-end="326">Debugueando con IDA PRO (lo que ha realizado BitOverRun), podemos ver que se esperan dos entradas (Este reto es la primera parte y continua en el reto8).</p>
+<p class="has-line-data" data-line-start="327" data-line-end="328">En este reto se nos pide la Flag1. En el codigo vemos que tenemos un string:</p>
+<pre><code class="has-line-data" data-line-start="330" data-line-end="332" class="language-code">AAICBBIOCQASCAUOAg4PAgQFCAUO
 </code></pre>
-<div align="center"><p class="has-line-data" data-line-start="331" data-line-end="332"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-1.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="333" data-line-end="334">Que analizando mejor el codigo encontramos:</p>
-<div align="center"><p class="has-line-data" data-line-start="335" data-line-end="336"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-2.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="338" data-line-end="339">Se nos indica que esta codificado con XOR y un Base64. Aun mas, vemos que el XoR lo realiza con la key 41</p>
-<div align="center"><p class="has-line-data" data-line-start="340" data-line-end="341"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-3.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="342" data-line-end="343">Nos queda unicamente decodificarlo con los datos que hemos obtenido.</p>
-<div align="center"><p class="has-line-data" data-line-start="344" data-line-end="345"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-4.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="347" data-line-end="349">Obtenemos la flag:<br>
+<p class="has-line-data" data-line-start="333" data-line-end="334"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="335" data-line-end="336">Que analizando mejor el codigo encontramos:</p>
+<p class="has-line-data" data-line-start="337" data-line-end="338"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="340" data-line-end="341">Se nos indica que esta codificado con XOR y un Base64. Aun mas, vemos que el XoR lo realiza con la key 41</p>
+<p class="has-line-data" data-line-start="342" data-line-end="343"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-3.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="344" data-line-end="345">Nos queda unicamente decodificarlo con los datos que hemos obtenido.</p>
+<p class="has-line-data" data-line-start="346" data-line-end="347"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto7-4.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="349" data-line-end="351">Obtenemos la flag:<br>
 <strong>flag{ACCESOHASIDOCONCEDIDO}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=352 data-line-end=353 ><a id="Reto_8_352"></a><strong>Reto 8</strong></h2>
-<p class="has-line-data" data-line-start="354" data-line-end="355">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=354 data-line-end=355 ><a id="Reto_8_354"></a><strong>Reto 8</strong></h2>
+<p class="has-line-data" data-line-start="356" data-line-end="357">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="356" data-line-end="357"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="358" data-line-end="359">En el escritorio del usuario de uno de los ordenadores localizáis una aplicación. Os aseguráis de que no sea maliciosa y ejecutáis el fichero exe. Parece contener dos entradas de texto.</p>
-<p class="has-line-data" data-line-start="360" data-line-end="361">Hay dos flags en esta prueba, recupera la flag2 del fichero exe.</p>
-<p class="has-line-data" data-line-start="362" data-line-end="363"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="364" data-line-end="365">Fichero ejecutable.</p>
+<p class="has-line-data" data-line-start="358" data-line-end="359"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="360" data-line-end="361">En el escritorio del usuario de uno de los ordenadores localizáis una aplicación. Os aseguráis de que no sea maliciosa y ejecutáis el fichero exe. Parece contener dos entradas de texto.</p>
+<p class="has-line-data" data-line-start="362" data-line-end="363">Hay dos flags en esta prueba, recupera la flag2 del fichero exe.</p>
+<p class="has-line-data" data-line-start="364" data-line-end="365"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="366" data-line-end="367">Fichero ejecutable.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="366" data-line-end="367">Este reto es la secuela del anterior Reto. Siguiendo con el analisis del mismo, encontramos que hay una segunda flag, mas corta, pero que vemos claramente.</p>
-<pre><code class="language-console hljs" data-line-start="369" data-line-end="371" class="language-code">PBZCYRGNQB
+<p class="has-line-data" data-line-start="368" data-line-end="369">Este reto es la secuela del anterior Reto. Siguiendo con el analisis del mismo, encontramos que hay una segunda flag, mas corta, pero que vemos claramente.</p>
+<pre><code class="has-line-data" data-line-start="371" data-line-end="373" class="language-code">PBZCYRGNQB
 </code></pre>
-<div align="center"><p class="has-line-data" data-line-start="372" data-line-end="373"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-1.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="374" data-line-end="375">Revisando las funciones, encontramos que ha sido codificada en Rot13</p>
-<div align="center"><p class="has-line-data" data-line-start="376" data-line-end="377"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-2.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="378" data-line-end="379">Por lo que solo nos queda, realizar el proceso inverso.</p>
-<div align="center"><p class="has-line-data" data-line-start="380" data-line-end="381"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-3.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="382" data-line-end="384">Obtenemos la flag:<br>
+<p class="has-line-data" data-line-start="374" data-line-end="375"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="376" data-line-end="377">Revisando las funciones, encontramos que ha sido codificada en Rot13</p>
+<p class="has-line-data" data-line-start="378" data-line-end="379"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="380" data-line-end="381">Por lo que solo nos queda, realizar el proceso inverso.</p>
+<p class="has-line-data" data-line-start="382" data-line-end="383"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto8-3.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="384" data-line-end="386">Obtenemos la flag:<br>
 <strong>flag{COMPLETADO}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=387 data-line-end=388 ><a id="Reto_9_387"></a><strong>Reto 9</strong></h2>
-<p class="has-line-data" data-line-start="389" data-line-end="390">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=389 data-line-end=390 ><a id="Reto_9_389"></a><strong>Reto 9</strong></h2>
+<p class="has-line-data" data-line-start="391" data-line-end="392">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="391" data-line-end="392"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="393" data-line-end="394">Revisando la información en Documents, encontráis un mensaje muy extraño. ¿Podrías ayudar a resolverlo?</p>
-<p class="has-line-data" data-line-start="395" data-line-end="396">Se repiten con frecuencia algunos pares de caracteres. Parece hexadecimal.</p>
-<p class="has-line-data" data-line-start="397" data-line-end="398"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="399" data-line-end="400">2d 2e 2e 20 2e 2e 20 2e 2e 2e 20 2d 2e 2d 2e 20 2d 2d 2d 20 2e 2e 2e 2d 20 2e 20 2e 2d 2e 20 2e 2e 2d 2d 2e 2d</p>
-<p class="has-line-data" data-line-start="401" data-line-end="402">20 2e 2e 2e 2e 20 2e 20 2d 2e 2e 2d 20 2e 2e 2d 2d 2e 2d 20 2d 2d 20 2d 2d 2d 20 2e 2d 2e 20 2e 2e 2e 20 2e 20</p>
-<p class="has-line-data" data-line-start="403" data-line-end="404">2e 2e 2d 2d 2e 2d 20 2d 2e 2d 2e 20 2d 2d 2d 20 2d 2e 2e 20 2e</p>
+<p class="has-line-data" data-line-start="393" data-line-end="394"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="395" data-line-end="396">Revisando la información en Documents, encontráis un mensaje muy extraño. ¿Podrías ayudar a resolverlo?</p>
+<p class="has-line-data" data-line-start="397" data-line-end="398">Se repiten con frecuencia algunos pares de caracteres. Parece hexadecimal.</p>
+<p class="has-line-data" data-line-start="399" data-line-end="400"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="401" data-line-end="402">2d 2e 2e 20 2e 2e 20 2e 2e 2e 20 2d 2e 2d 2e 20 2d 2d 2d 20 2e 2e 2e 2d 20 2e 20 2e 2d 2e 20 2e 2e 2d 2d 2e 2d</p>
+<p class="has-line-data" data-line-start="403" data-line-end="404">20 2e 2e 2e 2e 20 2e 20 2d 2e 2e 2d 20 2e 2e 2d 2d 2e 2d 20 2d 2d 20 2d 2d 2d 20 2e 2d 2e 20 2e 2e 2e 20 2e 20</p>
+<p class="has-line-data" data-line-start="405" data-line-end="406">2e 2e 2d 2d 2e 2d 20 2d 2e 2d 2e 20 2d 2d 2d 20 2d 2e 2e 20 2e</p>
 </blockquote>
-<p class="has-line-data" data-line-start="405" data-line-end="406">Tenemos una serie de caracteres que estan en algun tipo de codificacion, asi que utilizamos CyberChef y, tratamos de determinar que tipo de cifrado tiene y si podemos decodificarlo.</p>
-<p class="has-line-data" data-line-start="407" data-line-end="408">Determinado que esta en Hexadecimal, y finalmente en codigo Morse.</p>
-<div align="center"><p class="has-line-data" data-line-start="409" data-line-end="410"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto9.png" alt="Academia Hacker"></p></div>
-<p class="has-line-data" data-line-start="411" data-line-end="413">Obtenemos nuestra flag:<br>
+<p class="has-line-data" data-line-start="407" data-line-end="408">Tenemos una serie de caracteres que estan en algun tipo de codificacion, asi que utilizamos CyberChef y, tratamos de determinar que tipo de cifrado tiene y si podemos decodificarlo.</p>
+<p class="has-line-data" data-line-start="409" data-line-end="410">Determinado que esta en Hexadecimal, y finalmente en codigo Morse.</p>
+<p class="has-line-data" data-line-start="411" data-line-end="412"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto9.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="413" data-line-end="415">Obtenemos nuestra flag:<br>
 <strong>flag{DISCOVER_HEX_MORSE_CODE}</strong></p>
 <hr>
-<h2 class="code-line" data-line-start=416 data-line-end=417 ><a id="Reto_10_416"></a><strong>Reto 10</strong></h2>
-<p class="has-line-data" data-line-start="418" data-line-end="419">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=418 data-line-end=419 ><a id="Reto_10_418"></a><strong>Reto 10</strong></h2>
+<p class="has-line-data" data-line-start="420" data-line-end="421">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="420" data-line-end="421"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="422" data-line-end="423">La profesora de música ha recibido un mensaje en su correo con un fichero donde aparecen algunas passwords cifradas.</p>
-<p class="has-line-data" data-line-start="424" data-line-end="425">Te pide descifrarlas. La solución son todas las contraseñas concatenadas con ‘_’.</p>
-<p class="has-line-data" data-line-start="426" data-line-end="428">Pregunta:<br>
+<p class="has-line-data" data-line-start="422" data-line-end="423"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="424" data-line-end="425">La profesora de música ha recibido un mensaje en su correo con un fichero donde aparecen algunas passwords cifradas.</p>
+<p class="has-line-data" data-line-start="426" data-line-end="427">Te pide descifrarlas. La solución son todas las contraseñas concatenadas con ‘_’.</p>
+<p class="has-line-data" data-line-start="428" data-line-end="430">Pregunta:<br>
 ¿Eres capaz de encontrar todas las contraseñas?</p>
-<p class="has-line-data" data-line-start="429" data-line-end="430">flag{password1_password2_password3_password4}</p>
-<p class="has-line-data" data-line-start="431" data-line-end="432"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="433" data-line-end="434">fichero txt.</p>
+<p class="has-line-data" data-line-start="431" data-line-end="432">flag{password1_password2_password3_password4}</p>
+<p class="has-line-data" data-line-start="433" data-line-end="434"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="435" data-line-end="436">fichero txt.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="435" data-line-end="436">Se nos ha entregado un fichero con algunos Hashes.</p>
-<pre><code class="language-console hljs" data-line-start="438" data-line-end="445" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+<p class="has-line-data" data-line-start="437" data-line-end="438">Se nos ha entregado un fichero con algunos Hashes.</p>
+<pre><code class="has-line-data" data-line-start="440" data-line-end="447" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
 └─$ cat shadow.txt
 $6$yMJT8Nf23i7Z1WkF$ChxmECeWSs3W8Or1Ogf4eapPz5FNcBM4SBvZG.21fI0wpNUmR1yCmK71r7sYFMXCL3deD5BWDD/6A4WU66cjv0
 $6$xonBhxE19HmG8.DR$LdediY0FTHMUPyeQAiEFVgUR6rKVrOGcCECCn.EQupIwH2EyZqib3gc5kJfuwp/ppLJY41Ap5KEUf7RCk3T4O0
 $6$ooyV5Z5dEaDfyPom$VnKneoTa7s7DJRFFarye2sjZiwWbrr1jQ28lzw36OGaAChy1K14GY6BEFTABLGjZ8Xs4iSmbaZdfDXYFi9ED71
 $6$a5m5M9J/FEJGzyrd$shv36BNOS58W8VQBbjLKESl/3QjJxomkBb84j9Mw2g04JW3TIVGstOmJQFT5wdpl1soe9XjI3YjDNNH6uXv7s1
 </code></pre>
-<p class="has-line-data" data-line-start="446" data-line-end="447">Segun nos indicas, debemos crackear las constraseñas que tenemos en este fichero. lo primero que debemos hacer es identificar que tipo de cifrado tienen.</p>
-<pre><code class="language-console hljs" data-line-start="449" data-line-end="462" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+<p class="has-line-data" data-line-start="448" data-line-end="449">Segun nos indicas, debemos crackear las constraseñas que tenemos en este fichero. lo primero que debemos hacer es identificar que tipo de cifrado tienen.</p>
+<pre><code class="has-line-data" data-line-start="451" data-line-end="464" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
 └─$ hashid shadow.txt
 --File 'shadow.txt'--
 Analyzing '$6$yMJT8Nf23i7Z1WkF$ChxmECeWSs3W8Or1Ogf4eapPz5FNcBM4SBvZG.21fI0wpNUmR1yCmK71r7sYFMXCL3deD5BWDD/6A4WU66cjv0'
@@ -313,8 +301,8 @@ Analyzing '$6$a5m5M9J/FEJGzyrd$shv36BNOS58W8VQBbjLKESl/3QjJxomkBb84j9Mw2g04JW3TI
 [+] SHA-512 Crypt
 --End of file 'shadow.txt'--
 </code></pre>
-<p class="has-line-data" data-line-start="463" data-line-end="464">Tenemos que estan en SHA-512, asi que procedemos a crackearlo con hashcat.</p>
-<pre><code class="language-console hljs" data-line-start="466" data-line-end="482" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+<p class="has-line-data" data-line-start="465" data-line-end="466">Tenemos que estan en SHA-512, asi que procedemos a crackearlo con hashcat.</p>
+<pre><code class="has-line-data" data-line-start="468" data-line-end="484" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
 └─$ hashcat -a 0 -m 1800 shadow.txt /usr/share/wordlists/rockyou.txt -o cracked.txt
 hashcat (v6.1.1) starting...
 
@@ -330,15 +318,15 @@ INFO: All hashes found in potfile! Use --show to display them.
 Started: Mon May 10 16:41:21 2021
 Stopped: Mon May 10 16:41:22 2021
 </code></pre>
-<p class="has-line-data" data-line-start="483" data-line-end="484">Nos arroja las contraseñas crackeadas.</p>
-<pre><code class="language-console hljs" data-line-start="486" data-line-end="493" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
+<p class="has-line-data" data-line-start="485" data-line-end="486">Nos arroja las contraseñas crackeadas.</p>
+<pre><code class="has-line-data" data-line-start="488" data-line-end="495" class="language-code">┌──(ch4m0㉿kali)-[~/Descargas/incibe/reto10]
 └─$ cat cracked.txt
 $6$xonBhxE19HmG8.DR$LdediY0FTHMUPyeQAiEFVgUR6rKVrOGcCECCn.EQupIwH2EyZqib3gc5kJfuwp/ppLJY41Ap5KEUf7RCk3T4O0:dragon
 $6$yMJT8Nf23i7Z1WkF$ChxmECeWSs3W8Or1Ogf4eapPz5FNcBM4SBvZG.21fI0wpNUmR1yCmK71r7sYFMXCL3deD5BWDD/6A4WU66cjv0:whatever
 $6$ooyV5Z5dEaDfyPom$VnKneoTa7s7DJRFFarye2sjZiwWbrr1jQ28lzw36OGaAChy1K14GY6BEFTABLGjZ8Xs4iSmbaZdfDXYFi9ED71:princesa
 $6$a5m5M9J/FEJGzyrd$shv36BNOS58W8VQBbjLKESl/3QjJxomkBb84j9Mw2g04JW3TIVGstOmJQFT5wdpl1soe9XjI3YjDNNH6uXv7s1:administrator
 </code></pre>
-<p class="has-line-data" data-line-start="494" data-line-end="496">Asi que la flag seria:<br>
+<p class="has-line-data" data-line-start="496" data-line-end="498">Asi que la flag seria:<br>
 <strong>flag{dragon_whatever_princesa_administrator}</strong></p> 
 
 </div>

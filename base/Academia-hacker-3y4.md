@@ -11,6 +11,9 @@ El registro esta cerrado, debido a que se ha tenido una convocatoria de 400 equi
 >Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.
 >Espero que os guste y aprendamos juntos. #HackThePlanet
  
+
+# TL:DR
+
 ---
 
 ## **Reto 11**
