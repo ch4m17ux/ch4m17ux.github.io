@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "Academia Hacker - WriteUp - Semana 5 y 6"
+title: "Academia Hacker - WriteUp - Semana 7"
 subtitle: "#CTF writeUp"
-date: 2021-07-13 21:44:00 +0100
+date: 2021-07-16 14:26:00 +0100
 background: '/img/posts/06.jpg'
 ---
 
 
 
 <div align="justify">
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Academia_Hacker_Incibe__writeUp__5_y_6_semana_0"></a>Academia Hacker Incibe - #writeUp - 5 y 6 semana</h1>
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Academia_Hacker_Incibe__writeUp__7_semana_0"></a>Academia Hacker Incibe - #writeUp - 7 semana</h1>
 <p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/academia-hacker-incibe.jpg" alt="Academia Hacker"></p>
 <p class="has-line-data" data-line-start="4" data-line-end="5">Durante el mes de Mayo y Junio de 2021, estaremos participando en Academia Hacker.  Una iniciativa de <a href="https://www.incibe.es/">Incibe</a> para formar y encontrar las capacidades en Ciberseguridad.</p>
 <p class="has-line-data" data-line-start="6" data-line-end="7">El registro esta cerrado, debido a que se ha tenido una convocatoria de 400 equipos con un minimo de 4 participantes y un maximo de 8.</p>
@@ -21,669 +21,502 @@ Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 </blockquote>
 <h1 class="code-line" data-line-start=14 data-line-end=15 ><a id="TLDR_14"></a>TL:DR</h1>
 <hr>
-<h2 class="code-line" data-line-start=18 data-line-end=19 ><a id="Reto_21_18"></a><strong>Reto 21</strong></h2>
+<h2 class="code-line" data-line-start=18 data-line-end=19 ><a id="Reto_31_18"></a><strong>Reto 31</strong></h2>
 <p class="has-line-data" data-line-start="20" data-line-end="21">Nos entregan la descripción del reto:</p>
 <blockquote>
 <p class="has-line-data" data-line-start="22" data-line-end="23"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="24" data-line-end="25">En clases de informática, el profesor está distribuyendo unos binarios que necesitan de una cadena mágica como parámetro para probar las habilidades de los alumnos.</p>
-<p class="has-line-data" data-line-start="26" data-line-end="28">Pregunta<br>
-¿Puedes encontrar la cadena mágica que devuelve la flag?</p>
-<p class="has-line-data" data-line-start="29" data-line-end="30"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="31" data-line-end="32">Flag.</p>
+<p class="has-line-data" data-line-start="24" data-line-end="25">La profesora de literatura ha olvidado su contraseña y la necesita para poder subir las notas a la plataforma oficial. Tú has aprobado, pero hasta que no estén en la aplicación no será efectivo y es necesario tenerlas subidas antes de 1 semana.</p>
+<p class="has-line-data" data-line-start="26" data-line-end="27">El personal de sistemas ha proporcionado un script para recuperarla, pero la profesora no recuerda la respuesta a la pregunta de recuperación.</p>
+<p class="has-line-data" data-line-start="28" data-line-end="30">Pregunta:<br>
+¿Podrías ayudarnos a recuperarla?</p>
+<p class="has-line-data" data-line-start="31" data-line-end="32"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="33" data-line-end="34">Script de python.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="33" data-line-end="34">Arrancamos IDA Pro para ver cómo funciona el binario y empezar a investigar:</p>
-<p class="has-line-data" data-line-start="35" data-line-end="36"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto21-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="37" data-line-end="38">Revisando el codigo, vemos que para que nos de la salida esperada:</p>
-<ul>
-<li class="has-line-data" data-line-start="39" data-line-end="41">
-<p class="has-line-data" data-line-start="39" data-line-end="40">Nos pide que el valor a añadir lo incluyamos como parámetro despues del nombre del binario: Ej: “flag XXXXXXXXXXXXX”.</p>
-</li>
-<li class="has-line-data" data-line-start="41" data-line-end="43">
-<p class="has-line-data" data-line-start="41" data-line-end="42">Por otra parte vemos que hay 2 compares “cmp”. Uno donde nos dice que el parámetro ha de contener 21 digitos/caracteres y el otro que la suma de esos digitos/caracteres pasados a char ha de sumar 929 en Hexadecimal, 2345 en decimal.</p>
-</li>
-</ul>
-<p class="has-line-data" data-line-start="43" data-line-end="44">Ahora probamos a ver si IDA nos puede dar el código:</p>
-<p class="has-line-data" data-line-start="45" data-line-end="46">(En IDA con F5 vemos el codigo en formato mas legible. (OJO solo se ve cuando no esta prótegido el codigo)</p>
-<p class="has-line-data" data-line-start="47" data-line-end="48"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto22-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="49" data-line-end="50">Cogemos la tabla ascii para ver valores char hasta completar una suma de 2345 en decimal con 21 valores:</p>
-<p class="has-line-data" data-line-start="51" data-line-end="52"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto23-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="53" data-line-end="54">Y pasarlos a formato ASCII sabiendo el char() correspondiente.</p>
-<p class="has-line-data" data-line-start="55" data-line-end="56">En Excel tenemos la posibilidad de hacer uso de la formula CODIGO() para que nos devuelva el valor char() de cualquier codigo ascii. Jugamos un poco con ellos y vemos que podemos probar con uno al azar:</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{</td>
-<td>123</td>
-</tr>
-<tr>
-<td>{</td>
-<td>123</td>
-</tr>
-<tr>
-<td>v</td>
-<td>118</td>
-</tr>
-<tr>
-<td>e</td>
-<td>101</td>
-</tr>
-<tr>
-<td>x</td>
-<td>120</td>
-</tr>
-<tr>
-<td>t</td>
-<td>116</td>
-</tr>
-<tr>
-<td>r</td>
-<td>114</td>
-</tr>
-<tr>
-<td>a</td>
-<td>97</td>
-</tr>
-<tr>
-<td>c</td>
-<td>99</td>
-</tr>
-<tr>
-<td>t</td>
-<td>116</td>
-</tr>
-<tr>
-<td>t</td>
-<td>116</td>
-</tr>
-<tr>
-<td>h</td>
-<td>104</td>
-</tr>
-<tr>
-<td>e</td>
-<td>101</td>
-</tr>
-<tr>
-<td>f</td>
-<td>102</td>
-</tr>
-<tr>
-<td>l</td>
-<td>108</td>
-</tr>
-<tr>
-<td>a</td>
-<td>97</td>
-</tr>
-<tr>
-<td>g</td>
-<td>103</td>
-</tr>
-<tr>
-<td>v</td>
-<td>118</td>
-</tr>
-<tr>
-<td>w</td>
-<td>119</td>
-</tr>
-<tr>
-<td>}</td>
-<td>125</td>
-</tr>
-<tr>
-<td>}</td>
-<td>125</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>2345</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="has-line-data" data-line-start="84" data-line-end="89" class="language-bash">┌──(kali㉿kali)-[~/Descargas/incibe/<span class="hljs-number">5</span> semana/reto21]
-└─$ ./flag {{vextracttheflagvw}}
-Aquí tienes la flag:
-flag{la_tabla_ASCII}
+<p class="has-line-data" data-line-start="35" data-line-end="36">Nos dan un fichero python, que parece estar compilado de alguna forma.</p>
+<p class="has-line-data" data-line-start="37" data-line-end="38">A continuación, ejecutamos el script en la línea de comandos:</p>
+<pre><code class="has-line-data" data-line-start="40" data-line-end="49" class="language-bash">┌──(root@kali)-[~/]
+└─<span class="hljs-comment"># python3 reto31.py</span>
+Welcome to the password recovery tool.
+What is your pet<span class="hljs-string">'s name?
+Dog
+Comparing strings...
+Wrong answer!:
+TRY HARDER!
+</span></code></pre>
+<p class="has-line-data" data-line-start="49" data-line-end="50">Como podemos observar nos solicita el nombre de la mascota para recuperar la contraseña. Si nos fijamos bien en el contenido del fichero parece código precompilado, por lo que vamos a intentar decompilarlo. Para ello utilizamos la herramienta <a href="https://github.com/zrax/pycdc,">https://github.com/zrax/pycdc,</a> obteniendo el siguiente resultado:</p>
+<pre><code class="has-line-data" data-line-start="52" data-line-end="55" class="language-bash">┌──(root@kali)-[~/]
+└─<span class="hljs-comment"># ./pycdc reto31.py &gt; reto31_decompiled.py</span>
 </code></pre>
-<p class="has-line-data" data-line-start="90" data-line-end="92">Y obtenemos la flag que nos estan pidiendo:<br>
-<strong><em>flag{la_tabla_ASCII}</em></strong></p>
+<p class="has-line-data" data-line-start="55" data-line-end="56"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto31-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="57" data-line-end="58">En la línea 34 tenemos la definición de la clase <em><code>“sCRCDlpYibqMekCnUWAszaUKNQLKRZWYTqoGuKtdieZYbYpqawbvzctGoHiZKFNE”</code></em>, que tiene dos parámetros: “<code>name</code>” y “<code>age</code>”, y además, tenemos la creación de un objeto de esta clase en la línea 53. De aquí podemos deducir que el nombre de la mascota es ‘<em><code>Y29tb3R1</code></em>’.</p>
+<p class="has-line-data" data-line-start="59" data-line-end="60">Decodificamos el texto en base64 y obtenemos el nombre:</p>
+<pre><code class="has-line-data" data-line-start="61" data-line-end="66" class="language-bash">┌──(root@kali)-[~/]
+└─<span class="hljs-comment"># python3 -c "import base64;print</span>
+(base64.b64decode(<span class="hljs-string">'Y29tb3R1'</span>).decode(<span class="hljs-string">'ascii'</span>))<span class="hljs-string">"
+comotu
+</span></code></pre>
+<p class="has-line-data" data-line-start="66" data-line-end="67">Por último, ejecutamos el script e introducimos el nombre de la mascota:</p>
+<pre><code class="has-line-data" data-line-start="69" data-line-end="78" class="language-bash">┌──(root@kali)-[~/]
+└─<span class="hljs-comment"># python3 reto31.py</span>
+Welcome to the password recovery tool.
+What is your pet<span class="hljs-string">'s name?
+comotu
+Comparing strings...
+Congratulations! Right answer:
+    comotu says flag{pyth0n_decompile_OK}
+</span></code></pre>
+<p class="has-line-data" data-line-start="79" data-line-end="80"><strong><em>flag{pyth0n_decompile_OK}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=94 data-line-end=95 ><a id="Reto_22_94"></a><strong>Reto 22</strong></h2>
-<p class="has-line-data" data-line-start="96" data-line-end="97">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=82 data-line-end=83 ><a id="Reto_32_82"></a><strong>Reto 32</strong></h2>
+<p class="has-line-data" data-line-start="84" data-line-end="85">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="98" data-line-end="99"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="100" data-line-end="101">Las clases de manualidades e informática han preparado de manera conjunta un problema para los alumnos en el que se esconde un mensaje en un collage.</p>
-<p class="has-line-data" data-line-start="102" data-line-end="104">Pregunta<br>
-¿Eres capaz de encontrar el mensaje oculto?</p>
-<p class="has-line-data" data-line-start="105" data-line-end="106"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="107" data-line-end="108">Flag.jpg</p>
+<p class="has-line-data" data-line-start="86" data-line-end="87"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="88" data-line-end="89">Como ejercicio final del módulo de forense, el profesor de informática ha propuesto la siguiente actividad: Descifrar el contenido del mensaje oculto en el fichero Mensaje.zip. Para ello tenemos una captura de tráfico y el propio fichero.</p>
+<p class="has-line-data" data-line-start="90" data-line-end="92">Pregunta:<br>
+¿Aprobarás este módulo?</p>
+<p class="has-line-data" data-line-start="93" data-line-end="94"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="95" data-line-end="96">Dos ficheros: Fichero pcap y fichero zip.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="109" data-line-end="110">Despues de verificar los strings, los metadatos, ver si hay alguna informacion oculta, a Dany se le ha ocurrido que la flag esta a simple vista; esto es que si codificamos cada imagen que compone el collage podemos sacar la flag en hexadecimal, teniendo en cuenta que:</p>
-<p class="has-line-data" data-line-start="111" data-line-end="112">“flag{” corresponde en Hex a “66 6C 61 67 7B”</p>
-<p class="has-line-data" data-line-start="113" data-line-end="114">Asi que tenemos la imagen que nos entregan:</p>
-<p class="has-line-data" data-line-start="115" data-line-end="116"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto22-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="117" data-line-end="118">Y al irla codificando obtenemos:</p>
-<p class="has-line-data" data-line-start="119" data-line-end="120"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto22-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="121" data-line-end="122">Que si lo pasamos a hexadecimal obtenemos (haciendo un poco de maquillaje y guessing):</p>
-<p class="has-line-data" data-line-start="123" data-line-end="124"><em>66 6c 61 67 7b 68 65 78 61 64 65 63 69 6d 61 6c 2d 63 6f 6e 76 65 72 74 69 64 30 2d 65 6e 2d 63 2a 6c 6c 61 67 65 2d 64 65 2d 69 6d 61 67 65 6e 7d</em></p>
-<p class="has-line-data" data-line-start="125" data-line-end="126">Que al decodificarlo obtenemos la flag:</p>
-<p class="has-line-data" data-line-start="127" data-line-end="128"><strong><em>flag{hexadecimal-convertid0-en-c</em>llage-de-imagen}</strong>*</p>
+<p class="has-line-data" data-line-start="97" data-line-end="98">Descargamos los ficheros. Intentamos descomprimir el fichero Mensaje.zip pero nos solicita contraseña:</p>
+<pre><code class="has-line-data" data-line-start="99" data-line-end="107" class="language-bash">┌──(root@kali)-[~/]
+└─<span class="hljs-comment"># unzip Mensaje.zip</span>
+Archive: Mensaje.zip
+[Mensaje.zip] Mensaje.pdf password:
+password incorrect--reenter:
+password incorrect--reenter:
+skipping: Mensaje.pdf incorrect password
+</code></pre>
+<p class="has-line-data" data-line-start="107" data-line-end="108">Analizando el pcap, vemos que predomina tráfico HTTP entre dos IPs concretas: <em>192.168.209.128</em> y <em>192.168.209.141</em>, en la que el primero es el servidor y el segundo es el cliente:</p>
+<p class="has-line-data" data-line-start="109" data-line-end="110"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto32-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="111" data-line-end="112">Si nos fijamoos en el paquete número <strong>16</strong> se hace una petición <code>POST</code> al recurso “/html/index.php” con parámetros <code>GET</code> que contiene lo que parece una sentencia SQL, aparecen palabras del tipo <code>SELECT</code> y <code>UNION</code>:</p>
+<p class="has-line-data" data-line-start="113" data-line-end="114"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto32-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="115" data-line-end="116">Si buscamos dentro del tráfico palabras típicas de consultas a bases de datos como SELECT, encontramos que existen muchos paquetes que contienen esa cadena, analizamos los de mayor tamaño para ver la respuesta:</p>
+<p class="has-line-data" data-line-start="117" data-line-end="118"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto32-3.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="119" data-line-end="120">Decodificamos el payload de la petición POST y obtenemos:</p>
+<pre><code class="has-line-data" data-line-start="122" data-line-end="132" class="language-bash">email=admin@admin.com<span class="hljs-string">'/**/UNION/**/ALL/**/SELECT/**/CONCAT(0x716b717a7
+1,0x716b727770446663716e7571674d5642766a6645586d636145457072535778494a
+4d63595a567854,0x717a7a6271),NULL,NULL/**/FROM/**/(SELECT/**/0/**/AS/*
+*/dSyq/**/UNION/**/SELECT/**/1/**/UNION/**/SELECT/**/2/**/UNION/**/SEL
+ECT/**/3/**/UNION/**/SELECT/**/4/**/UNION/**/SELECT/**/5/**/UNION/**/S
+ELECT/**/6/**/UNION/**/SELECT/**/7/**/UNION/**/SELECT/**/8/**/UNION/**
+/SELECT/**/9/**/UNION/**/SELECT/**/10/**/UNION/**/SELECT/**/11/**/UNIO
+N/**/SELECT/**/12/**/UNION/**/SELECT/**/13/**/UNION/**/SELECT/**/14)/*
+*/AS/**/iosi#&amp;pass=wedfc
+</span></code></pre>
+<p class="has-line-data" data-line-start="132" data-line-end="133">Vemos que en el cuerpo de la petición aparece un parámetro email cuyo valor contiene un intento de inyección SQL, por lo que podemos determinar que existe tráfico correspondiente a un ataque SQLi. Por la complejidad de la sentencia se puede deducir que ha sido realizada con una herramienta automática como puede ser sqlmap.</p>
+<p class="has-line-data" data-line-start="134" data-line-end="135">En este punto vamos a analizar las respuestas del servidor para ver si hay datos exfiltrados y qué contienen. Ordenamos los paquetes y nos vamos a analizar los últimos, ya que en un ataque con herramientas automáticas los datos son exfiltrados una vez comprobada la vulnerabilidad. En el último paquete vemos la siguiente información:</p>
+<p class="has-line-data" data-line-start="136" data-line-end="137"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto32-4.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="138" data-line-end="139">Parece un volcado de los datos de la tabla loginapp.usuarios. En el que, analizando la petición descubrimos que tiene tres columnas: ALG, user y password:</p>
+<pre><code class="has-line-data" data-line-start="141" data-line-end="147" class="language-bash">email=admin@admin.com<span class="hljs-string">'/**/UNION/**/ALL/**/SELECT/**/CONCAT(0x717671767
+1,IFNULL(CAST(ALG/**/AS/**/NCHAR),0x20),0x667661736868,IFNULL(CAST(`us
+er`/**/AS/**/NCHAR),0x20),0x667661736868,IFNULL(CAST(password/**/AS/**
+/NCHAR),0x20),0x7178717a71),NULL,NULL/**/FROM/**/loginapp.usuarios#&amp;pa
+ss=wedfc
+</span></code></pre>
+<p class="has-line-data" data-line-start="147" data-line-end="148">Como puede observarse la petición añade una serie de caracteres en hexadecimal delante y detrás de cada resultado, por lo que vamos a analizar dichas cadenas para poder obtener los resultados exactos:</p>
+<pre><code class="has-line-data" data-line-start="150" data-line-end="162" class="language-bash">┌──(root@kali)-[~/]
+└─<span class="hljs-comment"># python3</span>
+Python <span class="hljs-number">3.9</span>.<span class="hljs-number">1</span>+ (default, Feb <span class="hljs-number">5</span> <span class="hljs-number">2021</span>, <span class="hljs-number">13</span>:<span class="hljs-number">46</span>:<span class="hljs-number">56</span>) 
+[GCC <span class="hljs-number">10.2</span>.<span class="hljs-number">1</span> <span class="hljs-number">20210110</span>] on linux
+Type <span class="hljs-string">"help"</span>, <span class="hljs-string">"copyright"</span>, <span class="hljs-string">"credits"</span> or <span class="hljs-string">"license"</span> <span class="hljs-keyword">for</span> more information.
+&gt;&gt;&gt; bytes.fromhex(<span class="hljs-string">'7176717671'</span>).decode(<span class="hljs-string">'utf-8'</span>)
+<span class="hljs-string">'qvqvq'</span>
+&gt;&gt;&gt; bytes.fromhex(<span class="hljs-string">'667661736868'</span>).decode(<span class="hljs-string">'utf-8'</span>)
+<span class="hljs-string">'fvashh'</span>
+&gt;&gt;&gt; bytes.fromhex(<span class="hljs-string">'7178717a71'</span>).decode(<span class="hljs-string">'utf-8'</span>)
+<span class="hljs-string">'qxqzq'</span>
+</code></pre>
+<p class="has-line-data" data-line-start="162" data-line-end="163">Quitando esas cadenas de la respuesta del servidor tenemos los siguientes datos:</p>
+<pre><code class="has-line-data" data-line-start="165" data-line-end="175" class="language-bash">MD5;ciencias@escuela.local;NmYzYWM5MjMzMmZiMGNiZjI2ODU1ZmYxNzFmYmI0NjI
+=
+MD5;<span class="hljs-built_in">history</span>@escuela.local;MzM0OWIxZTE5MjMxMDU2MDEyYWFkZDQxZGNkNTVjNjI=
+MD5;informatica@escuela.local;OGI1YmFiNDE3MDdhNzJlYzdiYzhiMjZkMmYyOGZm
+MDQ=
+MD5;literatura@escuela.local;OTgzZTgzMzYwYjQxZjE5NTM1ZTAzYWY1MjEwOTMwZ
+TY=
+MD5;matematicas@escuela.local;YWYxMmUyODk1NWY0N2VhZWIzZTQzYzhkZDJkMDI4
+ZmI=
+</code></pre>
+<p class="has-line-data" data-line-start="175" data-line-end="176">Una vez comprobada la dinámica, vamos a buscar mas tablas dentro del tráfico que nos puedan dar más información.</p>
+<p class="has-line-data" data-line-start="177" data-line-end="178">Si nos fijamos en los paquetes anteriores, concretamente en el número 3484, tenemos otra tabla llamada “documentos”, dónde analizando la respuesta como en la tabla anterior tenemos los siguientes datos:</p>
+<p class="has-line-data" data-line-start="179" data-line-end="180"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto32-5.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="181" data-line-end="182">De estos datos podemos deducir que el fichero “Mensaje.zip” pertenece al profesor de literatura. Teniendo los datos de contraseñas del profesor de literatura vamos a intentar abrir el fichero “Mensaje.zip” con la contraseña de dicho profesor. Para ello, antes debemos descifrarla.</p>
+<p class="has-line-data" data-line-start="183" data-line-end="184">Por los datos de la tabla, la columna “ALG” debe indicar el algoritmo de cifrado ya que indica el algoritmo MD5 y por el formato parece ser base64. Decodificando en base64 nos da como resultado la siguiente cadena:</p>
+<pre><code class="has-line-data" data-line-start="186" data-line-end="190" class="language-bash">──(root@kali)-[~/]
+└─<span class="hljs-comment"># echo -n OTgzZTgzMzYwYjQxZjE5NTM1ZTAzYWY1MjEwOTMwZTY= | base64 -d</span>
+<span class="hljs-number">983</span>e83360b41f19535e03af5210930e6
+</code></pre>
+<p class="has-line-data" data-line-start="190" data-line-end="191">A continuación vamos a la web <a href="https://md5online.es/">https://md5online.es/</a> e intentamos descifrar el md5:</p>
+<p class="has-line-data" data-line-start="192" data-line-end="193"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto32-6.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="194" data-line-end="195">Y nos da como resultad “<em><code>xdH9UWhNF4XGkerK</code></em>”. El siguiente paso es intentar extraer el documento con esta contraseña:</p>
+<pre><code class="has-line-data" data-line-start="197" data-line-end="203" class="language-bash">┌──(root@kali)-[~/]
+└─<span class="hljs-comment"># unzip Mensaje.zip </span>
+Archive: Mensaje.zip
+[Mensaje.zip] Mensaje.pdf password: 
+ inflating: Mensaje.pdf
+</code></pre>
+<p class="has-line-data" data-line-start="203" data-line-end="204">Abrimos el fichero Mensaje.pdf y obtenemos la flag:</p>
+<p class="has-line-data" data-line-start="205" data-line-end="206"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto32-7.png" alt="Academia Hacker"></p>
 <hr>
-<h2 class="code-line" data-line-start=130 data-line-end=131 ><a id="Reto_23_130"></a><strong>Reto 23</strong></h2>
-<p class="has-line-data" data-line-start="132" data-line-end="133">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=208 data-line-end=209 ><a id="Reto_33_208"></a><strong>Reto 33</strong></h2>
+<p class="has-line-data" data-line-start="210" data-line-end="211">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="134" data-line-end="135"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="136" data-line-end="137">En clase de informática te piden que compruebes qué hace el siguiente trozo de código.</p>
-<p class="has-line-data" data-line-start="138" data-line-end="139">Aparentemente no realiza ninguna acción</p>
-<p class="has-line-data" data-line-start="140" data-line-end="141">Pregunta</p>
-<p class="has-line-data" data-line-start="142" data-line-end="143">¿Puedes hacerlo funcionar o extraer información de este?</p>
-<p class="has-line-data" data-line-start="144" data-line-end="145"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="146" data-line-end="147">Flag.js</p>
+<p class="has-line-data" data-line-start="212" data-line-end="213"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="214" data-line-end="215">Hoy es el día de visita al museo. Estáis todos esperando a entrar.</p>
+<p class="has-line-data" data-line-start="216" data-line-end="217">Te das cuenta de que la entrada al museo tiene un mensaje en el reverso “Descifra el mensaje.”. Lo firma Mr.EnglishBreakFast.</p>
+<p class="has-line-data" data-line-start="218" data-line-end="220">Pregunta:<br>
+¿Qué mensaje ha transmitido Mr.EnglishBreakFast?</p>
+<p class="has-line-data" data-line-start="221" data-line-end="222"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="223" data-line-end="224">fichero txt.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="148" data-line-end="149">Nos entregan un fichero javascript que parece estar ofuscado, asi que lo pasamos por un desofuscador y obtenemos:</p>
-<pre><code class="has-line-data" data-line-start="151" data-line-end="199" class="language-js"><span class="hljs-keyword">var</span> _0x30de = [<span class="hljs-string">'mZa1ntnUsLrKCKG'</span>, <span class="hljs-string">'zwPLyW'</span>, <span class="hljs-string">'s3jjsG'</span>, <span class="hljs-string">'ota2ntjHELPsvg4'</span>, <span class="hljs-string">'m21yBvviDG'</span>, <span class="hljs-string">'nJC4ouHKwfDzuq'</span>, <span class="hljs-string">'zNvUyW'</span>, <span class="hljs-string">'ndDzrLnir0S'</span>, <span class="hljs-string">'E25VxW'</span>, <span class="hljs-string">'odm3ndvzAuTPreS'</span>, <span class="hljs-string">'mtm1m1rXCg5rCG'</span>, <span class="hljs-string">'zMXHzW'</span>, <span class="hljs-string">'Aw9UFq'</span>, <span class="hljs-string">'mtK2oti1y1jSBgzT'</span>, <span class="hljs-string">'mti3sMnMCg9K'</span>, <span class="hljs-string">'DxrHCG'</span>, <span class="hljs-string">'mtnru2HKB2m'</span>, <span class="hljs-string">'mNfkBe9Nta'</span>, <span class="hljs-string">'Bg9N'</span>, <span class="hljs-string">'mta3nJG5wfrMEeHk'</span>, <span class="hljs-string">'B2X2Aq'</span>];
-<span class="hljs-keyword">var</span> _0x45c1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_0x41d678, _0x5378d3</span>) </span>{
-    _0x41d678 = _0x41d678 - (<span class="hljs-number">0x11</span> * -<span class="hljs-number">0x79</span> + <span class="hljs-number">0x2420</span> * -<span class="hljs-number">0x1</span> + -<span class="hljs-number">0x2d07</span> * -<span class="hljs-number">0x1</span>);
-    <span class="hljs-keyword">var</span> _0x6f67ce = _0x30de[_0x41d678];
-    <span class="hljs-keyword">if</span> (_0x45c1[<span class="hljs-string">'iTqplC'</span>] === <span class="hljs-literal">undefined</span>) {
-        <span class="hljs-keyword">var</span> _0x1f4261 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_0x1d2e0e</span>) </span>{
-            <span class="hljs-keyword">var</span> _0x18535e = <span class="hljs-string">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/='</span>;
-            <span class="hljs-keyword">var</span> _0x4d38ea = <span class="hljs-string">''</span>;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> _0x1f83ef = -<span class="hljs-number">0x2</span> * <span class="hljs-number">0x126a</span> + -<span class="hljs-number">0x17e2</span> + <span class="hljs-number">0x3cb6</span>, _0x40eab8, _0x4cab8c, _0x9867a0 = -<span class="hljs-number">0xa</span> * -<span class="hljs-number">0x52</span> + <span class="hljs-number">0x5</span> * -<span class="hljs-number">0x10</span> + <span class="hljs-number">0x4a</span> * -<span class="hljs-number">0xa</span>; _0x4cab8c = _0x1d2e0e[<span class="hljs-string">'charAt'</span>](_0x9867a0++); ~_0x4cab8c &amp;&amp; (_0x40eab8 = _0x1f83ef % (<span class="hljs-number">0x12c6</span> + <span class="hljs-number">0x52</span> * -<span class="hljs-number">0xd</span> + -<span class="hljs-number">0xe98</span>) ? _0x40eab8 * (<span class="hljs-number">0xcb</span> * -<span class="hljs-number">0x1c</span> + <span class="hljs-number">0x1</span> * -<span class="hljs-number">0x803</span> + <span class="hljs-number">0x1e77</span>) + _0x4cab8c : _0x4cab8c, _0x1f83ef++ % (-<span class="hljs-number">0x89</span> * <span class="hljs-number">0xd</span> + -<span class="hljs-number">0x12</span> * -<span class="hljs-number">0xdc</span> + -<span class="hljs-number">0x57</span> * <span class="hljs-number">0x19</span>)) ? _0x4d38ea += <span class="hljs-built_in">String</span>[<span class="hljs-string">'fromCharCode'</span>](<span class="hljs-number">0x23ce</span> + <span class="hljs-number">0x1cd8</span> + <span class="hljs-number">0x5</span> * -<span class="hljs-number">0xcbb</span> &amp; _0x40eab8 &gt;&gt; (-(-<span class="hljs-number">0xde8</span> + -<span class="hljs-number">0x4ae</span> * -<span class="hljs-number">0x3</span> + <span class="hljs-number">0x2</span> * -<span class="hljs-number">0x10</span>) * _0x1f83ef &amp; <span class="hljs-number">0x211b</span> * -<span class="hljs-number">0x1</span> + <span class="hljs-number">0x240d</span> * <span class="hljs-number">0x1</span> + <span class="hljs-number">0x44</span> * -<span class="hljs-number">0xb</span>)) : -<span class="hljs-number">0x230</span> * -<span class="hljs-number">0x5</span> + -<span class="hljs-number">0x52</span> * -<span class="hljs-number">0x1e</span> + -<span class="hljs-number">0x148c</span>) {
-                _0x4cab8c = _0x18535e[<span class="hljs-string">'indexOf'</span>](_0x4cab8c);
-            }
-            <span class="hljs-keyword">return</span> _0x4d38ea;
-        };
-        _0x45c1[<span class="hljs-string">'OpkxWb'</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_0x1cd694</span>) </span>{
-            <span class="hljs-keyword">var</span> _0x19aed2 = _0x1f4261(_0x1cd694);
-            <span class="hljs-keyword">var</span> _0x682b5b = [];
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> _0x10887a = -<span class="hljs-number">0x1f59</span> + -<span class="hljs-number">0x142f</span> * <span class="hljs-number">0x1</span> + <span class="hljs-number">0x11</span> * <span class="hljs-number">0x308</span>, _0x5616e7 = _0x19aed2[<span class="hljs-string">'length'</span>]; _0x10887a &lt; _0x5616e7; _0x10887a++) {
-                _0x682b5b += <span class="hljs-string">'%'</span> + (<span class="hljs-string">'00'</span> + _0x19aed2[<span class="hljs-string">'charCodeAt'</span>](_0x10887a)[<span class="hljs-string">'toString'</span>](-<span class="hljs-number">0x695</span> + -<span class="hljs-number">0x1241</span> * -<span class="hljs-number">0x2</span> + <span class="hljs-number">0x37</span> * -<span class="hljs-number">0x8b</span>))[<span class="hljs-string">'slice'</span>](-(<span class="hljs-number">0x11f</span> * -<span class="hljs-number">0x22</span> + -<span class="hljs-number">0xd</span> * <span class="hljs-number">0x11</span> + <span class="hljs-number">0xcff</span> * <span class="hljs-number">0x3</span>));
-            }
-            <span class="hljs-keyword">return</span> <span class="hljs-built_in">decodeURIComponent</span>(_0x682b5b);
-        }, _0x45c1[<span class="hljs-string">'FVpRax'</span>] = {}, _0x45c1[<span class="hljs-string">'iTqplC'</span>] = !![];
-    }
-    <span class="hljs-keyword">var</span> _0x3cf3d8 = _0x30de[-<span class="hljs-number">0x1b65</span> + -<span class="hljs-number">0x2118</span> + <span class="hljs-number">0x3c7d</span>],
-        _0x541f8e = _0x41d678 + _0x3cf3d8,
-        _0x1d915e = _0x45c1[<span class="hljs-string">'FVpRax'</span>][_0x541f8e];
-    <span class="hljs-keyword">return</span> _0x1d915e === <span class="hljs-literal">undefined</span> ? (_0x6f67ce = _0x45c1[<span class="hljs-string">'OpkxWb'</span>](_0x6f67ce), _0x45c1[<span class="hljs-string">'FVpRax'</span>][_0x541f8e] = _0x6f67ce) : _0x6f67ce = _0x1d915e, _0x6f67ce;
-};
-(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_0x41153a, _0x2421b4</span>) </span>{
-    <span class="hljs-keyword">var</span> _0x2618b3 = _0x45c1;
-    <span class="hljs-keyword">while</span> (!![]) {
-        <span class="hljs-keyword">try</span> {
-            <span class="hljs-keyword">var</span> _0x5c9249 = <span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xf0</span>)) * <span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xee</span>)) + -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xe2</span>)) * -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xe4</span>)) + -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xea</span>)) + <span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xe1</span>)) * -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xe6</span>)) + -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xe0</span>)) + -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xed</span>)) * -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xf2</span>)) + -<span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xe7</span>)) * <span class="hljs-built_in">parseInt</span>(_0x2618b3(<span class="hljs-number">0xeb</span>));
-            <span class="hljs-keyword">if</span> (_0x5c9249 === _0x2421b4) <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">else</span> _0x41153a[<span class="hljs-string">'push'</span>](_0x41153a[<span class="hljs-string">'shift'</span>]());
-        } <span class="hljs-keyword">catch</span> (_0x44fefa) {
-            _0x41153a[<span class="hljs-string">'push'</span>](_0x41153a[<span class="hljs-string">'shift'</span>]());
-        }
-    }
-}(_0x30de, <span class="hljs-number">0xe1a6</span> * -<span class="hljs-number">0x5</span> + <span class="hljs-number">0x56ea2</span> + -<span class="hljs-number">0x37</span> * -<span class="hljs-number">0xaed</span>));
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_146154141147</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">var</span> _0x52e3c3 = _0x45c1,
-        _0x4699b4 = {};
-    _0x4699b4[_0x52e3c3(<span class="hljs-number">0xdf</span>) + <span class="hljs-string">'D'</span>] = _0x52e3c3(<span class="hljs-number">0xe8</span>) + _0x52e3c3(<span class="hljs-number">0xe5</span>) + _0x52e3c3(<span class="hljs-number">0xf1</span>) + <span class="hljs-string">'des_'</span> + _0x52e3c3(<span class="hljs-number">0xde</span>) + _0x52e3c3(<span class="hljs-number">0xec</span>) + <span class="hljs-string">'_la_'</span> + _0x52e3c3(<span class="hljs-number">0xe3</span>) + _0x52e3c3(<span class="hljs-number">0xe9</span>);
-    <span class="hljs-keyword">var</span> _0x2a9b51 = _0x4699b4;
-    <span class="hljs-built_in">console</span>[_0x52e3c3(<span class="hljs-number">0xef</span>)](_0x2a9b51[_0x52e3c3(<span class="hljs-number">0xdf</span>) + <span class="hljs-string">'D'</span>]);
-}
+<p class="has-line-data" data-line-start="225" data-line-end="226">El nombre de la tarea y también el hecho de que tengamos diferentes tipos de letra, hacen pensar en el cifrado del bacon. El primer paso obvio es decodificar el cifrado de bacon para el caso de diferentes tipos de letra. Si lo decodificamos en notación A (normal)/B (negrita) según la que se suele utilizar obtenemos lo siguiente:</p>
+<pre><code class="has-line-data" data-line-start="228" data-line-end="240" class="language-bash">AABBA
+ABABB
+ABAAA
+BAABA
+AABBB
+AAAAB
+AAAAA
+AAABA
+ABBBA
+ABBAB
+glishbacon
 </code></pre>
-<p class="has-line-data" data-line-start="199" data-line-end="200">Que nos dice pocas cosas, pero revisando en un depurador de javascript (<a href="https://jshint.com/">https://jshint.com/</a>) menciona aparte de algunas alertas, que hay una funcion que nunca se hace uso de ella.  Asi que procedemos a ejecutar el javascript desde un navegador, y verificamos que nos dice dicha funcion.</p>
-<p class="has-line-data" data-line-start="201" data-line-end="202">Abrimos la consola del navegador (con F12) y pegamos alli el codigo (hay otra forma de hacerlo, que me lo explicaron pero no lo entendi, y era importando el fichero directamente)</p>
-<p class="has-line-data" data-line-start="203" data-line-end="204"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto23-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="205" data-line-end="206">Hacemos el llamado a la funcion y obtenemos la flag:</p>
-<p class="has-line-data" data-line-start="207" data-line-end="208"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto23-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="209" data-line-end="211">Obtenemos la flag:<br>
-<strong><em>flag{no_olvides_ejecutar_la_funcion}</em></strong></p>
+<p class="has-line-data" data-line-start="240" data-line-end="241">Esto parece una parte del texto plano. Pero, el texto también utiliza mayúsculas y minúsculas, que también es una forma conocida de codificar datos como cifrado bacon. Descodificando a partir de esta idea (minúsculas - A, mayúsculas - B), obtenemos lo siguiente:</p>
+<pre><code class="has-line-data" data-line-start="242" data-line-end="254" class="language-bash">AAABA
+ABAAA
+ABBAB
+AAABA
+ABBBA
+BAABA
+ABAAA
+BAAAB
+AABAA
+ABBAB
+cincosiren
+</code></pre>
+<p class="has-line-data" data-line-start="254" data-line-end="255">Otra forma de codificar los datos en este tipo de cifrado se basa en la posición de la letra en el alfabeto. Si está en posiciones impares - A, si está en posiciones pares - B. La decodificación produce lo siguiente:</p>
+<pre><code class="has-line-data" data-line-start="256" data-line-end="268" class="language-bash">ABBAB
+AABAA
+ABABB
+BAABB
+AABAA
+AAABB
+AABAA
+ABABB
+AAAAA
+BAABA
+neltedelas
+</code></pre>
+<p class="has-line-data" data-line-start="268" data-line-end="269">Para obtener la última parte, podemos utilizar de nuevo el cifrado basado en la posición de los caracteres. Si se trata de las primeras 13 letras - A, de lo contrario - B:</p>
+<pre><code class="has-line-data" data-line-start="270" data-line-end="282" class="language-bash">BBAAA
+BAABB
+AABAA
+AABAA
+BAABA
+ABBBB
+AABAA
+BAAAB
+ABBBA
+AABAA
+yteesperoe
+</code></pre>
+<p class="has-line-data" data-line-start="282" data-line-end="284">Con estos cuatro pasos obtenemos la flag.<br>
+<strong>yteesperoeneltedelascincosirenglishbacon</strong></p>
+<blockquote>
+<p class="has-line-data" data-line-start="285" data-line-end="286">Tenemos otra posible solucion y es traves de un script de Python que automatice esta decodificacion. Que podeis encontrar en: <a href="https://github.com/ch4m17ux/Scripts/blob/main/decode_bacon.py">https://github.com/ch4m17ux/Scripts/blob/main/decode_bacon.py</a></p>
+</blockquote>
 <hr>
-<h2 class="code-line" data-line-start=213 data-line-end=214 ><a id="Reto_24_213"></a><strong>Reto 24</strong></h2>
-<p class="has-line-data" data-line-start="215" data-line-end="216">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=288 data-line-end=289 ><a id="Reto_34_288"></a><strong>Reto 34</strong></h2>
+<p class="has-line-data" data-line-start="290" data-line-end="291">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="217" data-line-end="218"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="219" data-line-end="220">En clase de lengua se ha estudiado la táctica a seguir para optimizar juegos del tipo de la ruleta de la fortuna.</p>
-<p class="has-line-data" data-line-start="221" data-line-end="223">Pregunta<br>
-¿Podrás aplicar esos conocimientos al siguiente texto para encontrar el mensaje oculto?</p>
-<p class="has-line-data" data-line-start="224" data-line-end="225"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="226" data-line-end="227">text.txt</p>
+<p class="has-line-data" data-line-start="292" data-line-end="293"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="294" data-line-end="295">Dentro del club de competiciones al que perteneces se intercambian retos con otros países. Desde la empresa ByteCode Alliance os han propuesto resolver el flujo de un programa escrito en C y compilado para web como con emcc.</p>
+<p class="has-line-data" data-line-start="296" data-line-end="297">Demuestra a tu profesor que puedes resolver el reto y enviarlo para obtener la beca de desarrollo web.</p>
+<p class="has-line-data" data-line-start="298" data-line-end="300">Pregunta:<br>
+¿Qué mensaje se ha ocultado en la función getFlag?</p>
+<p class="has-line-data" data-line-start="301" data-line-end="302"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="303" data-line-end="304">Fichero WASM.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="228" data-line-end="229">Tenemos un fichero que contiene un texto que al leerlo no parece tener sentido, asi que lo he pasado por un analisis de cifrados (<a href="http://web.archive.org/web/20120624074941/http://home.comcast.net/~acabion/refscore.html">http://web.archive.org/web/20120624074941/http://home.comcast.net/~acabion/refscore.html</a>) y desde alli encuentro que es un cifrado Patristocrat.</p>
-<p class="has-line-data" data-line-start="230" data-line-end="231"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto24-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="232" data-line-end="233">Que en otras web lo llaman, cifrado de sustitucion monoalfabetica. Podriamos resolverlo con esta web. (<a href="https://www.boxentriq.com/code-breaking/cryptogram">https://www.boxentriq.com/code-breaking/cryptogram</a>) y nos arroja la solucion:</p>
-<p class="has-line-data" data-line-start="234" data-line-end="235"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto24-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="236" data-line-end="237">Asi que le damos a la lupa y podemos ver como lo ha resuelto:</p>
-<p class="has-line-data" data-line-start="238" data-line-end="239"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto24-3.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="240" data-line-end="241">Revisando ya el texto descifrado encontramos la fla al final:</p>
-<p class="has-line-data" data-line-start="242" data-line-end="243"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto24-4.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="244" data-line-end="246">Obtenemos la flag:<br>
-<strong><em>flag{analizando_la_frecuencia_en_un_texto}</em></strong></p>
+<p class="has-line-data" data-line-start="305" data-line-end="306">El participante se encuentra con un fichero compilado en C con emcc :</p>
+<pre><code class="has-line-data" data-line-start="307" data-line-end="310" class="language-bash">└─<span class="hljs-comment"># file WASM.wasm</span>
+WASM.wasm: WebAssembly (wasm) binary module version <span class="hljs-number">0</span>x1 (MVP)
+</code></pre>
+<p class="has-line-data" data-line-start="310" data-line-end="311">Se trata de un módulo preparado para ser incluido en un fichero js que cargue vía web. El fichero js o el html no está incluido. WebAssembly admite dos formatos, binario (el proprocionado) y texto. El participante deberá convertir el código al formato WAT ya que es el formato de texto que acepta WebAssembly.</p>
+<p class="has-line-data" data-line-start="312" data-line-end="313">Podemos convertirlo en <a href="https://webassembly.github.io/wabt/demo/wasm2wat/">https://webassembly.github.io/wabt/demo/wasm2wat/</a></p>
+<pre><code class="has-line-data" data-line-start="315" data-line-end="545" class="language-bash">(module
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t0</span> (func (result i32)))
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t1</span> (func (param i32)))
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t2</span> (func (param i32) (result i32)))
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t3</span> (func))
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t4</span> (func (param i32 i32) (result i32)))
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t5</span> (func (param i32 i32 i32) (result i32)))
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t6</span> (func (param i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 
+i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32) (result i32)))
+ (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t7</span> (func (param i32 i64 i32) (result i64)))
+ (func <span class="hljs-variable">$__wasm_call_ctors</span> (<span class="hljs-built_in">export</span> <span class="hljs-string">"__wasm_call_ctors"</span>) (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t3</span>)
+ (call <span class="hljs-variable">$emscripten_stack_init</span>))
+ (func <span class="hljs-variable">$_Z7getFlagiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</span> (<span class="hljs-built_in">export</span> <span class="hljs-string">"_Z7getFlagiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"</span>) (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t6</span>) (param <span class="hljs-variable">$p0</span> 
+i32) (param <span class="hljs-variable">$p1</span> i32) (param <span class="hljs-variable">$p2</span> i32) (param <span class="hljs-variable">$p3</span> i32) (param <span class="hljs-variable">$p4</span> i32) (param <span class="hljs-variable">$p5</span> i32) (param <span class="hljs-variable">$p6</span> i32) 
+(param <span class="hljs-variable">$p7</span> i32) (param <span class="hljs-variable">$p8</span> i32) (param <span class="hljs-variable">$p9</span> i32) (param <span class="hljs-variable">$p10</span> i32) (param <span class="hljs-variable">$p11</span> i32) (param <span class="hljs-variable">$p12</span> i32) 
+(param <span class="hljs-variable">$p13</span> i32) (param <span class="hljs-variable">$p14</span> i32) (param <span class="hljs-variable">$p15</span> i32) (param <span class="hljs-variable">$p16</span> i32) (param <span class="hljs-variable">$p17</span> i32) (param <span class="hljs-variable">$p18</span> i32) 
+(param <span class="hljs-variable">$p19</span> i32) (param <span class="hljs-variable">$p20</span> i32) (param <span class="hljs-variable">$p21</span> i32) (param <span class="hljs-variable">$p22</span> i32) (param <span class="hljs-variable">$p23</span> i32) (param <span class="hljs-variable">$p24</span> i32) 
+(param <span class="hljs-variable">$p25</span> i32) (param <span class="hljs-variable">$p26</span> i32) (param <span class="hljs-variable">$p27</span> i32) (param <span class="hljs-variable">$p28</span> i32) (param <span class="hljs-variable">$p29</span> i32) (param <span class="hljs-variable">$p30</span> i32) 
+(param <span class="hljs-variable">$p31</span> i32) (param <span class="hljs-variable">$p32</span> i32) (param <span class="hljs-variable">$p33</span> i32) (param <span class="hljs-variable">$p34</span> i32) (param <span class="hljs-variable">$p35</span> i32) (param <span class="hljs-variable">$p36</span> i32) 
+(param <span class="hljs-variable">$p37</span> i32) (param <span class="hljs-variable">$p38</span> i32) (param <span class="hljs-variable">$p39</span> i32) (result i32)
+ (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l40</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l41</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l42</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l43</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l44</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l45</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l46</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l47</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l48</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l49</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l50</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l51</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l52</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l53</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l54</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l55</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l56</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l57</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l58</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l59</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l60</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l61</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l62</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l63</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l64</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l65</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l66</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l67</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l68</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l69</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l70</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l71</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l72</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l73</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l74</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l75</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l76</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l77</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l78</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l79</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l80</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l81</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l82</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l83</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l84</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l85</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l86</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l87</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l88</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l89</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l90</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l91</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l92</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l93</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l94</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l95</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l96</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l97</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l98</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l99</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l100</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l101</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l102</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l103</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l104</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l105</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l106</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l107</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l108</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l109</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l110</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l111</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l112</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l113</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l114</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l115</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l116</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l117</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l118</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l119</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l120</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l121</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l122</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l123</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l124</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l125</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l126</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l127</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l128</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l129</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l130</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l131</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l132</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l133</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l134</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l135</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l136</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l137</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l138</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l139</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l140</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l141</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l142</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l143</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l144</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l145</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l146</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l147</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l148</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l149</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l150</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l151</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l152</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l153</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l154</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l155</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l156</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l157</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l158</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l159</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l160</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l161</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l162</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l163</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l164</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l165</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l166</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l167</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l168</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l169</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l170</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l171</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l172</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l173</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l174</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l175</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l176</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l177</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l178</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l179</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l180</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l181</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l182</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l183</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l184</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l185</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l186</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l187</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l188</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l189</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l190</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l191</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l192</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l193</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l194</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l195</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l196</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l197</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l198</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l199</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l200</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l201</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l202</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l203</span>
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l204</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l205</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l206</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l207</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l208</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l209</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l210</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l211</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l212</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l213</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l214</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l215</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l216</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l217</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l218</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l219</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l220</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l221</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l222</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l223</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l224</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l225</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l226</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l227</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l228</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l229</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l230</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l231</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l232</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l233</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l234</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l235</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l236</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l237</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l238</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l239</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l240</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l241</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l242</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l243</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l244</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l245</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l246</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l247</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l248</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l249</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l250</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l251</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l252</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l253</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l254</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l255</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l256</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l257</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l258</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l259</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l260</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l261</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l262</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l263</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l264</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l265</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l266</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l267</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l268</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l269</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l270</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l271</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l272</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l273</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l274</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l275</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l276</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l277</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l278</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l279</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l280</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l281</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l282</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l283</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l284</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l285</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l286</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l287</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l288</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l289</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l290</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l291</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l292</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l293</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l294</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l295</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l296</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l297</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l298</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l299</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l300</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l301</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l302</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l303</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l304</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l305</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l306</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l307</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l308</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l309</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l310</span> i32) (<span class="hljs-built_in">local</span> 
+<span class="hljs-variable">$l311</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l312</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l313</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l314</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l315</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l316</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l317</span> 
+i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l318</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l319</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l320</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l321</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l322</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l323</span> i32) 
+(<span class="hljs-built_in">local</span> <span class="hljs-variable">$l324</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l325</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l326</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l327</span> i32)
+ (local.set <span class="hljs-variable">$l40</span>
+ (global.get <span class="hljs-variable">$g0</span>))
+ (local.set <span class="hljs-variable">$l41</span>
+ (i32.const <span class="hljs-number">176</span>))
+ (local.set <span class="hljs-variable">$l42</span>
+ (i32.sub
+ (local.get <span class="hljs-variable">$l40</span>)
+ (local.get <span class="hljs-variable">$l41</span>)))
+ (global.set <span class="hljs-variable">$g0</span>
+ (local.get <span class="hljs-variable">$l42</span>))
+ (local.set <span class="hljs-variable">$l43</span>
+ (i32.const <span class="hljs-number">102</span>))
+ (i32.store offset=<span class="hljs-number">168</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p0</span>))
+ (i32.store offset=<span class="hljs-number">164</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p1</span>))
+ (i32.store offset=<span class="hljs-number">160</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p2</span>))
+ (i32.store offset=<span class="hljs-number">156</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p3</span>))
+ (i32.store offset=<span class="hljs-number">152</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p4</span>))
+ (i32.store offset=<span class="hljs-number">148</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p5</span>))
+ (i32.store offset=<span class="hljs-number">144</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p6</span>))
+ (i32.store offset=<span class="hljs-number">140</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p7</span>))
+ (i32.store offset=<span class="hljs-number">136</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p8</span>))
+ (i32.store offset=<span class="hljs-number">132</span>
+(local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p9</span>))
+ (i32.store offset=<span class="hljs-number">128</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p10</span>))
+ (i32.store offset=<span class="hljs-number">124</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p11</span>))
+ (i32.store offset=<span class="hljs-number">120</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p12</span>))
+ (i32.store offset=<span class="hljs-number">116</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p13</span>))
+ (i32.store offset=<span class="hljs-number">112</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p14</span>))
+ (i32.store offset=<span class="hljs-number">108</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p15</span>))
+ (i32.store offset=<span class="hljs-number">104</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p16</span>))
+ (i32.store offset=<span class="hljs-number">100</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p17</span>))
+ (i32.store offset=<span class="hljs-number">96</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p18</span>))
+ (i32.store offset=<span class="hljs-number">92</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p19</span>))
+ (i32.store offset=<span class="hljs-number">88</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p20</span>))
+ (i32.store offset=<span class="hljs-number">84</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p21</span>))
+ (i32.store offset=<span class="hljs-number">80</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ (local.get <span class="hljs-variable">$p22</span>))
+ (i32.store offset=<span class="hljs-number">76</span>
+ (local.get <span class="hljs-variable">$l42</span>)
+ … CORTADO 
+ (br_<span class="hljs-keyword">if</span> <span class="hljs-variable">$B7</span>
+ (i32.le_u
+ (i32.load offset=<span class="hljs-number">20</span>
+ (local.get <span class="hljs-variable">$p0</span>))
+ (i32.load offset=<span class="hljs-number">28</span>
+ (local.get <span class="hljs-variable">$p0</span>))))
+ (local.set <span class="hljs-variable">$l2</span>
+ (i32.or
+ (call <span class="hljs-variable">$f17</span>
+ (local.get <span class="hljs-variable">$p0</span>))
+ (local.get <span class="hljs-variable">$l2</span>))))
+ (block <span class="hljs-variable">$B8</span>
+ (br_<span class="hljs-keyword">if</span> <span class="hljs-variable">$B8</span>
+ (i32.eqz
+(local.get <span class="hljs-variable">$l1</span>)))
+ (call <span class="hljs-variable">$f11</span>
+ (local.get <span class="hljs-variable">$p0</span>)))
+ (br_<span class="hljs-keyword">if</span> <span class="hljs-variable">$L5</span>
+ (local.tee <span class="hljs-variable">$p0</span>
+ (i32.load offset=<span class="hljs-number">56</span>
+ (local.get <span class="hljs-variable">$p0</span>))))))
+ (call <span class="hljs-variable">$f15</span>))
+ (local.get <span class="hljs-variable">$l2</span>))
+ (func <span class="hljs-variable">$f17</span> (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t2</span>) (param <span class="hljs-variable">$p0</span> i32) (result i32)
+ (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l1</span> i32) (<span class="hljs-built_in">local</span> <span class="hljs-variable">$l2</span> i32)
+ (block <span class="hljs-variable">$B0</span>
+ (br_<span class="hljs-keyword">if</span> <span class="hljs-variable">$B0</span>
+ (i32.le_u
+ (i32.load offset=<span class="hljs-number">20</span>
+ (local.get <span class="hljs-variable">$p0</span>))
+ (i32.load offset=<span class="hljs-number">28</span>
+ (local.get <span class="hljs-variable">$p0</span>))))
+ (drop
+ (call_indirect <span class="hljs-variable">$__indirect_function_table</span> (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t5</span>)
+ (local.get <span class="hljs-variable">$p0</span>)
+ (i32.const <span class="hljs-number">0</span>)
+ (i32.const <span class="hljs-number">0</span>)
+ (i32.load offset=<span class="hljs-number">36</span>
+ (local.get <span class="hljs-variable">$p0</span>))))
+ (br_<span class="hljs-keyword">if</span> <span class="hljs-variable">$B0</span>
+ (i32.load offset=<span class="hljs-number">20</span>
+ (local.get <span class="hljs-variable">$p0</span>)))
+ (<span class="hljs-built_in">return</span>
+ (i32.const -<span class="hljs-number">1</span>)))
+ (block <span class="hljs-variable">$B1</span>
+ (br_<span class="hljs-keyword">if</span> <span class="hljs-variable">$B1</span>
+ (i32.ge_u
+ (local.tee <span class="hljs-variable">$l1</span>
+ (i32.load offset=<span class="hljs-number">4</span>
+ (local.get <span class="hljs-variable">$p0</span>)))
+ (local.tee <span class="hljs-variable">$l2</span>
+ (i32.load offset=<span class="hljs-number">8</span>
+ (local.get <span class="hljs-variable">$p0</span>)))))
+ (drop
+ (call_indirect <span class="hljs-variable">$__indirect_function_table</span> (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t7</span>)
+ (local.get <span class="hljs-variable">$p0</span>)
+ (i64.extend_i32_s
+ (i32.sub
+ (local.get <span class="hljs-variable">$l1</span>)
+ (local.get <span class="hljs-variable">$l2</span>)))
+ (i32.const <span class="hljs-number">1</span>)
+ (i32.load offset=<span class="hljs-number">40</span>
+ (local.get <span class="hljs-variable">$p0</span>)))))
+ (i32.store offset=<span class="hljs-number">28</span>
+ (local.get <span class="hljs-variable">$p0</span>)
+ (i32.const <span class="hljs-number">0</span>))
+ (i64.store offset=<span class="hljs-number">16</span>
+ (local.get <span class="hljs-variable">$p0</span>)
+ (i64.const <span class="hljs-number">0</span>))
+ (i64.store offset=<span class="hljs-number">4</span> align=<span class="hljs-number">4</span>
+ (local.get <span class="hljs-variable">$p0</span>)
+ (i64.const <span class="hljs-number">0</span>))
+ (i32.const <span class="hljs-number">0</span>))
+ (func <span class="hljs-variable">$__errno_location</span> (<span class="hljs-built_in">export</span> <span class="hljs-string">"__errno_location"</span>) (<span class="hljs-built_in">type</span> <span class="hljs-variable">$t0</span>) (result i32)
+(i32.const <span class="hljs-number">1040</span>))
+ (table <span class="hljs-variable">$__indirect_function_table</span> (<span class="hljs-built_in">export</span> <span class="hljs-string">"__indirect_function_table"</span>) <span class="hljs-number">1</span> <span class="hljs-number">1</span> funcref)
+ (memory <span class="hljs-variable">$memory</span> (<span class="hljs-built_in">export</span> <span class="hljs-string">"memory"</span>) <span class="hljs-number">256</span> <span class="hljs-number">256</span>)
+ (global <span class="hljs-variable">$g0</span> (mut i32) (i32.const <span class="hljs-number">5243936</span>))
+ (global <span class="hljs-variable">$g1</span> (mut i32) (i32.const <span class="hljs-number">0</span>))
+ (global <span class="hljs-variable">$g2</span> (mut i32) (i32.const <span class="hljs-number">0</span>)))
+</code></pre>
+<p class="has-line-data" data-line-start="545" data-line-end="546">Hay una flag falsa (que claramente se lee esta no es la flag) definida en el código. Al final el bloque nos interesa analizar es el siguiente, previo filtrado de constantes.</p>
+<pre><code class="has-line-data" data-line-start="548" data-line-end="566" class="language-bash">(i32.const <span class="hljs-number">102</span>))
+(i32.const <span class="hljs-number">108</span>))
+(i32.const <span class="hljs-number">97</span>))
+(i32.const <span class="hljs-number">103</span>))
+(i32.const <span class="hljs-number">123</span>))
+(i32.const <span class="hljs-number">78</span>))
+(i32.const <span class="hljs-number">79</span>))
+(i32.const <span class="hljs-number">84</span>))
+(i32.const <span class="hljs-number">72</span>))
+(i32.const <span class="hljs-number">69</span>))
+(i32.const <span class="hljs-number">70</span>))
+(i32.const <span class="hljs-number">76</span>))
+(i32.const <span class="hljs-number">65</span>))
+(i32.const <span class="hljs-number">71</span>))
+(i32.const <span class="hljs-number">82</span>))
+(i32.const <span class="hljs-number">88</span>))
+(i32.const <span class="hljs-number">125</span>))
+</code></pre>
+<p class="has-line-data" data-line-start="566" data-line-end="567">Ahora solo queda convertir de la tabla ASCII a texto para obtener la flag.</p>
+<p class="has-line-data" data-line-start="568" data-line-end="569"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto34-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="570" data-line-end="571"><strong><em>flag{WASM_REVERSING_IS_HARD_BUT_FASTEST}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=248 data-line-end=249 ><a id="Reto_25_248"></a><strong>Reto 25</strong></h2>
-<p class="has-line-data" data-line-start="250" data-line-end="251">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=573 data-line-end=574 ><a id="Reto_35_573"></a><strong>Reto 35</strong></h2>
+<p class="has-line-data" data-line-start="575" data-line-end="576">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="252" data-line-end="253"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="254" data-line-end="255">La profesora de música ha reproducido una canción que será el himno oficial de final de curso. Para conseguir aprobar la asignatura es necesario descubrir un código oculto en el mismo.</p>
-<p class="has-line-data" data-line-start="256" data-line-end="258">Pregunta:<br>
-¿Podrías descubrir el mensaje oculto?</p>
-<p class="has-line-data" data-line-start="259" data-line-end="260"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="261" data-line-end="262">Fichero de audio en formato wav descargable</p>
+<p class="has-line-data" data-line-start="577" data-line-end="578"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="579" data-line-end="580">A un compañero tuyo le gustan mucho las figuritas con alambres. Hace bicicletas con tan solo unos clips de oficina.</p>
+<p class="has-line-data" data-line-start="581" data-line-end="582">Esta vez te ha propuesto un desafío para conocer un código PIN de alguno de los muchos laboratorios existentes en el edificio. Como delegado de curso tiene acceso al laboratorio y posiblemente este código sea el de una de las puertas de acceso.</p>
+<p class="has-line-data" data-line-start="583" data-line-end="584">Si consigues descifrarlo vas a poder acceder a esos importantes recursos que te permitirán empezar a descubrir parte de la historia de la institución.</p>
+<p class="has-line-data" data-line-start="585" data-line-end="587">Pregunta:<br>
+¿Cuál es el código PIN mirando las figuras? Ayúdate del esquema adjunto.</p>
+<p class="has-line-data" data-line-start="588" data-line-end="589"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="590" data-line-end="591">Fichero esquema de decodificación.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="263" data-line-end="264">Tenemos un fichero wav, que nos confunde mucho, ya que no vemos nada entre sus string y su espectograma, lo cual es desconcertante.</p>
-<p class="has-line-data" data-line-start="265" data-line-end="266">Revisando los metadatos encontramos un comentario:</p>
-<pre><code class="has-line-data" data-line-start="268" data-line-end="289" class="language-bash">kali@kali:~/incibe$ exiftool reto25.wav
-ExifTool Version Number         : <span class="hljs-number">11.88</span>
-File Name                       : reto25.wav
-Directory                       : .
-File Size                       : <span class="hljs-number">38</span> MB
-File Modification Date/Time     : <span class="hljs-number">2021</span>:<span class="hljs-number">06</span>:<span class="hljs-number">04</span> <span class="hljs-number">13</span>:<span class="hljs-number">38</span>:<span class="hljs-number">43</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>
-File Access Date/Time           : <span class="hljs-number">2021</span>:<span class="hljs-number">06</span>:<span class="hljs-number">04</span> <span class="hljs-number">13</span>:<span class="hljs-number">38</span>:<span class="hljs-number">55</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>
-File Inode Change Date/Time     : <span class="hljs-number">2021</span>:<span class="hljs-number">06</span>:<span class="hljs-number">04</span> <span class="hljs-number">13</span>:<span class="hljs-number">38</span>:<span class="hljs-number">55</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>
-File Permissions                : rw-r--r--
-File Type                       : WAV
-File Type Extension             : wav
-MIME Type                       : audio/x-wav
-Encoding                        : Microsoft PCM
-Num Channels                    : <span class="hljs-number">2</span>
-Sample Rate                     : <span class="hljs-number">44100</span>
-Avg Bytes Per Sec               : <span class="hljs-number">176400</span>
-Bits Per Sample                 : <span class="hljs-number">16</span>
-Comment                         : ynDnHK6ZGwxXcz2e
-Duration        
-                : <span class="hljs-number">0</span>:<span class="hljs-number">03</span>:<span class="hljs-number">43</span>
-</code></pre>
-<p class="has-line-data" data-line-start="290" data-line-end="291">Despues de dar muchas vueltas, probamos con steghide para ver si contenia algo, pero nos encontramos que solicitaba una contraseña; probamos con lo que aparecia en el comentario y vimos que habian ficheros ocultos:</p>
-<pre><code class="has-line-data" data-line-start="293" data-line-end="304" class="language-bash">kali@kali:~/incibe$ steghide --info reto25.wav
-<span class="hljs-string">"reto25.wav"</span>:
-  format: wave audio, PCM encoding
-  capacity: <span class="hljs-number">1.2</span> MB
-Try to get information about embedded data ? (y/n) y
-Enter passphrase:
-  embedded data:
-    size: <span class="hljs-number">644.8</span> KB
-    encrypted: rijndael-<span class="hljs-number">128</span>, cbc
-    compressed: yes
-</code></pre>
-<p class="has-line-data" data-line-start="305" data-line-end="306">Procedemos entonces a obtener la informacion adjunta:</p>
-<pre><code class="has-line-data" data-line-start="308" data-line-end="312" class="language-bash">kali@kali:~/incibe$ steghide extract -sf reto25.wav
-Enter passphrase:
-steghide: please specify a file name <span class="hljs-keyword">for</span> the extracted data (there is no name embedded <span class="hljs-keyword">in</span> the stego file).
-</code></pre>
-<p class="has-line-data" data-line-start="313" data-line-end="314">Nos han adjuntado un fichero que debemos nosotros especificarle el nombre asi que lanzaremos un comando mas agradable para que nos lo copie. Y vemos que tipo de fichero nos extrae.</p>
-<pre><code class="has-line-data" data-line-start="316" data-line-end="321" class="language-bash">kali@kali:~/incibe$ steghide extract -sf reto25.wav -p ynDnHK6ZGwxXcz2e -xf flag
-wrote extracted data to <span class="hljs-string">"flag"</span>.
-kali@kali:~/incibe$ file flag
-flag: Zip archive data, at least v2.<span class="hljs-number">0</span> to extract
-</code></pre>
-<p class="has-line-data" data-line-start="321" data-line-end="322">Nos obtiene un fichero zip, procedemos a descomprimirlo:</p>
-<pre><code class="has-line-data" data-line-start="324" data-line-end="337" class="language-bash">kali@kali:~/incibe$ unzip flag
-Archive:  flag
-  inflating: file01.png
-  inflating: file02.png
-kali@kali:~/incibe$ ll
-total <span class="hljs-number">40060</span>
-drwxr-xr-x <span class="hljs-number">1</span> ch4m0 ch4m0     <span class="hljs-number">4096</span> Jun  <span class="hljs-number">4</span> <span class="hljs-number">13</span>:<span class="hljs-number">51</span> ./
-drwxr-xr-x <span class="hljs-number">1</span> ch4m0 ch4m0     <span class="hljs-number">4096</span> Jun  <span class="hljs-number">4</span> <span class="hljs-number">13</span>:<span class="hljs-number">26</span> ../
--rwxrwxrwx <span class="hljs-number">1</span> ch4m0 ch4m0   <span class="hljs-number">324134</span> Feb <span class="hljs-number">19</span> <span class="hljs-number">14</span>:<span class="hljs-number">37</span> file01.png*
--rwxrwxrwx <span class="hljs-number">1</span> ch4m0 ch4m0   <span class="hljs-number">335675</span> Feb <span class="hljs-number">19</span> <span class="hljs-number">14</span>:<span class="hljs-number">37</span> file02.png*
--rw-r--r-- <span class="hljs-number">1</span> ch4m0 ch4m0   <span class="hljs-number">660232</span> Jun  <span class="hljs-number">4</span> <span class="hljs-number">13</span>:<span class="hljs-number">48</span> flag
--rw-r--r-- <span class="hljs-number">1</span> ch4m0 ch4m0 <span class="hljs-number">39379096</span> Jun  <span class="hljs-number">4</span> <span class="hljs-number">13</span>:<span class="hljs-number">38</span> reto25.wav
-</code></pre>
-<p class="has-line-data" data-line-start="338" data-line-end="339">Ahora obtenemos dos ficheros png. Decidimos pasarlo por un web de Stego para ver si encontrabamos algo interesante, y en el fichero file01.png no habia nada que resaltar, pero en el fichero02.png, encontramos que jugando con los colores visualizabamos algun texto.</p>
-<p class="has-line-data" data-line-start="340" data-line-end="341"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto25-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="342" data-line-end="343">Esto se obtuvo con la opcion de LSB, y vemos en la parte superior izquierda la flag.</p>
-<p class="has-line-data" data-line-start="344" data-line-end="346">Obtenemos la flag:<br>
-<strong><em>flag{LSB_reto_superado}</em></strong></p>
-<hr>
-<h2 class="code-line" data-line-start=348 data-line-end=349 ><a id="Reto_26_348"></a><strong>Reto 26</strong></h2>
-<p class="has-line-data" data-line-start="350" data-line-end="351">Nos entregan la descripción del reto:</p>
-<blockquote>
-<p class="has-line-data" data-line-start="352" data-line-end="353"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="354" data-line-end="355">El director se ha dejado olvidado en una clase un USB con un fichero dentro, los datos parecen no ser muy relevantes, pero… parece que esconde un mensaje.</p>
-<p class="has-line-data" data-line-start="356" data-line-end="358">Pregunta:<br>
-¿Cómo podemos obtener el mensaje?</p>
-<p class="has-line-data" data-line-start="359" data-line-end="360"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="361" data-line-end="362">Fichero de texto con peticiones HTTP</p>
-</blockquote>
-<p class="has-line-data" data-line-start="363" data-line-end="364">Analizamos el fichero:</p>
-<pre><code class="has-line-data" data-line-start="366" data-line-end="384" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">6</span> semana/reto26]
-└─$ exiftool access.log 
-ExifTool Version Number         : <span class="hljs-number">12.16</span>
-File Name                       : access.log
-Directory                       : .
-File Size                       : <span class="hljs-number">92</span> KiB
-File Modification Date/Time     : <span class="hljs-number">2021</span>:<span class="hljs-number">03</span>:<span class="hljs-number">11</span> <span class="hljs-number">19</span>:<span class="hljs-number">13</span>:<span class="hljs-number">00</span>+<span class="hljs-number">01</span>:<span class="hljs-number">00</span>
-File Access Date/Time           : <span class="hljs-number">2021</span>:<span class="hljs-number">07</span>:<span class="hljs-number">09</span> <span class="hljs-number">13</span>:<span class="hljs-number">49</span>:<span class="hljs-number">31</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>
-File Inode Change Date/Time     : <span class="hljs-number">2021</span>:<span class="hljs-number">07</span>:<span class="hljs-number">09</span> <span class="hljs-number">13</span>:<span class="hljs-number">49</span>:<span class="hljs-number">31</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>
-File Permissions                : rwxrwxrwx
-File Type                       : TXT
-File Type Extension             : txt
-MIME Type                       : text/plain
-MIME Encoding                   : us-ascii
-Newlines                        : Unix LF
-Line Count                      : <span class="hljs-number">595</span>
-Word Count                      : <span class="hljs-number">11305</span>
-</code></pre>
-<p class="has-line-data" data-line-start="384" data-line-end="385">Importamos los datos a Excel y vemos que hay una secuencia entre las tramas, parecida al reto de Santa Clauss de Hackrock, pero s este caso solo tenemos tramas 200 y tramas 400.</p>
-<p class="has-line-data" data-line-start="386" data-line-end="388"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto26-1.png" alt="Academia Hacker"><br>
-Calculamos cuantas tramas 400 hay entre las tramas 200 y nos van dando valores en hexadecimal, en la captura del excel seria el comienzo: 757</p>
-<p class="has-line-data" data-line-start="389" data-line-end="390">Si seguimos contabilizando salen estos valores.</p>
-<pre><code class="has-line-data" data-line-start="392" data-line-end="394" class="language-bash"><span class="hljs-number">75736572732</span>C666C616769642C666C616731666C61677B6C30675F346E346C797A33725F6733336B7D
-</code></pre>
-<p class="has-line-data" data-line-start="394" data-line-end="395">Pasado por Cyberchef nos da la flag:</p>
-<pre><code class="has-line-data" data-line-start="397" data-line-end="399" class="language-bash">users,flagid,flag1flag{l0g_4n4lyz3r_g33k}
-</code></pre>
-<p class="has-line-data" data-line-start="399" data-line-end="403">Pero el sistema no la da por buena. Se prueban estas:<br>
-<strong><em>flag{l0g_4n4lyz3r_g33k}</em></strong><br>
-flag{l0g 4n4lyz3r g33k}<br>
-flag{log_analyzer_geek}</p>
-<p class="has-line-data" data-line-start="404" data-line-end="405">La flag final era <strong><em>flag{log_analyzer_g33k}</em></strong>. Desconocemos el motivo del cambio de la salida inicial.</p>
-<hr>
-<h2 class="code-line" data-line-start=407 data-line-end=408 ><a id="Reto_27_407"></a><strong>Reto 27</strong></h2>
-<p class="has-line-data" data-line-start="409" data-line-end="410">Nos entregan la descripción del reto:</p>
-<blockquote>
-<p class="has-line-data" data-line-start="411" data-line-end="412"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="413" data-line-end="414">Hoy tenemos un examen de matemáticas, concretamente del temario de criptografía y codificación de mensajes. El examen consiste en descifrar el mensaje oculto.</p>
-<p class="has-line-data" data-line-start="415" data-line-end="417">Pregunta:<br>
-¿Serás capaz de aprobar?</p>
-<p class="has-line-data" data-line-start="418" data-line-end="419"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="420" data-line-end="421">Fichero de texto</p>
-</blockquote>
-<p class="has-line-data" data-line-start="422" data-line-end="423">Descargamos el fichero reto27.txt y vemos el contenido:</p>
-<pre><code class="has-line-data" data-line-start="425" data-line-end="429" class="language-bash">┌──(ch4m0㉿kali)-[~/Descargas/incibe/<span class="hljs-number">6</span> semana/reto27]
-└─$ cat reto27.txt 
-Vxoskx tobkr jk iolxgju_OPACQ3XGTHYCM2JVLWWM65JYT4WM42RCSBCIG3RHUTVW====KA2ZYPPCMKYZKSHLM4FYQTZMKA3MMPPCSEYZKSHLM4EYQTFBKA3JQPPCMWYZSSPLMOEIQTFBKA3MQPPCSEYZQFW=KA3JSPPCSSYZSSPLME3YQT3IKA2JUPPAMSYZOTFLMWFYQTHZKA2JIPPAMKYZOSPLMW3YQTHXKA2JMPPBMWYZQTHLMA2IQTHZKA2ZOPPBMWYZOTFLMWFYQTPAKA2JIPPAMSYZOSPLMWFYQTHZKA2JUPPAMKYZOSPLMA2IQTPAKA2JMPPAMKYZQTHLMA2IQTPAKA2JM===KA3AO===
-</code></pre>
-<p class="has-line-data" data-line-start="429" data-line-end="430">Podemos observar un mensaje codificado. En los primeros caracteres aparecen espacios en blanco lo que nos puede inducir a pensar que son palabras y que pueden estar cifradas con el algoritmo del Cesar. Intentamos descifrar toda la cadena con tdas las posibles claves y con la clave igual a 6 obtenemos el siguiente texto: (<a href="https://cryptii.com/pipes/caesarcipher">https://cryptii.com/pipes/caesarcipher</a>)</p>
-<pre><code class="has-line-data" data-line-start="432" data-line-end="440" class="language-bash">Primer nivel de
-cifrado_IJUWK3RANBSWG2DPFQQG65DSN4QG42LWMVWCA3LBONPQ====EU2TSJJWGESTEM
-BFG4ZSKNTGEU3GGJJWMYSTEMBFG4YSKNZVEU3DKJJWGQSTMMJFGIYCKNZVEU3GKJJWMYST
-KZQ=EU3DMJJWMMSTMMJFGY3SKN3CEU2DOJJUGMSTINZFGQZSKNBTEU2DCJJUGESTIMJFGQ
-<span class="hljs-number">3</span>SKNBREU2DGJJVGQSTKNBFGU2CKNBTEU2TIJJVGQSTINZFGQZSKNJUEU2DCJJUGMSTIMJF
-GQZSKNBTEU2DOJJUGESTIMJFGU2CKNJUEU2DGJJUGESTKNBFGU2CKNJUEU2DG===EU3UI=
-==
-</code></pre>
-<p class="has-line-data" data-line-start="441" data-line-end="442"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto27-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="443" data-line-end="444">En la cadena resultante vemos unos primeros caracteres que nos muestra la frase “Primer nivel de cifrado_” loo que nos induce a pensar que los siguientes caracteres están cifrados/codificados con otro algoritmo. Por el formato parece base32 o base64, si decodificamos la cadena en base32 obtenemos el siguiente resultado:</p>
-<pre><code class="has-line-data" data-line-start="446" data-line-end="455" class="language-bash">┌──(root@kali)-[~/]
-└─<span class="hljs-comment"># base32 -d base32_data.txt &gt; base32_decoded.txt</span>
-┌──(root@kali)-[~/]
-└─<span class="hljs-comment"># cat base32_decoded.txt</span>
-Bien hecho, otro nivel
-mas_%<span class="hljs-number">59</span>%<span class="hljs-number">61</span>%<span class="hljs-number">20</span>%<span class="hljs-number">73</span>%<span class="hljs-number">6</span>f%<span class="hljs-number">6</span>c%<span class="hljs-number">6</span>f%<span class="hljs-number">20</span>%<span class="hljs-number">71</span>%<span class="hljs-number">75</span>%<span class="hljs-number">65</span>%<span class="hljs-number">64</span>%<span class="hljs-number">61</span>%<span class="hljs-number">20</span>%<span class="hljs-number">75</span>%<span class="hljs-number">6</span>e%<span class="hljs-number">6</span>f%<span class="hljs-number">5</span>f%<span class="hljs-number">66</span>%<span class="hljs-number">6</span>c%<span class="hljs-number">61</span>%<span class="hljs-number">67</span>
-%<span class="hljs-number">7</span>b%<span class="hljs-number">47</span>%<span class="hljs-number">43</span>%<span class="hljs-number">47</span>%<span class="hljs-number">43</span>%<span class="hljs-number">43</span>%<span class="hljs-number">41</span>%<span class="hljs-number">41</span>%<span class="hljs-number">41</span>%<span class="hljs-number">47</span>%<span class="hljs-number">41</span>%<span class="hljs-number">43</span>%<span class="hljs-number">54</span>%<span class="hljs-number">54</span>%<span class="hljs-number">54</span>%<span class="hljs-number">43</span>%<span class="hljs-number">54</span>%<span class="hljs-number">54</span>%<span class="hljs-number">47</span>%<span class="hljs-number">43</span>%<span class="hljs-number">54</span>%<span class="hljs-number">41</span>%<span class="hljs-number">43</span>%
-<span class="hljs-number">41</span>%<span class="hljs-number">43</span>%<span class="hljs-number">43</span>%<span class="hljs-number">47</span>%<span class="hljs-number">41</span>%<span class="hljs-number">41</span>%<span class="hljs-number">54</span>%<span class="hljs-number">54</span>%<span class="hljs-number">43</span>%<span class="hljs-number">41</span>%<span class="hljs-number">54</span>%<span class="hljs-number">54</span>%<span class="hljs-number">54</span>%<span class="hljs-number">43</span>%<span class="hljs-number">7</span>D
-</code></pre>
-<p class="has-line-data" data-line-start="455" data-line-end="456">Obtenemos la cadena en claro “Bien hecho, otro nivel más”. El resto de la cadena parece estar codificado con URLencode, por lo que aplicando el algoritmo de descifrado obtenemos (<a href="https://www.urldecoder.org/">https://www.urldecoder.org/</a>):</p>
-<pre><code class="has-line-data" data-line-start="458" data-line-end="460" class="language-bash">Ya solo queda uno_flag{GCGCCAAAGACTTTCTTGCTACACCGAATTCATTTC}
-</code></pre>
-<p class="has-line-data" data-line-start="460" data-line-end="461">Como indica el mensaje, parece que el contenido de la flag es “<em>GCGCCAAAGACTTTCTTGCTACACCGAATTCATTTC</em>”.</p>
-<p class="has-line-data" data-line-start="462" data-line-end="463">Si analizamos la cadena de caracteres está formada por las siguientes letras: “GCAT”, que coincide con las letras de las proteínas que forman el ADN (G:Guanina, C: Citosina, A:Adenina y T:Timina), por lo que podemos deducir que está cifrado con DNA Cypher. Con el siguiente script intentams descifrar el contenido:</p>
-<pre><code class="has-line-data" data-line-start="465" data-line-end="548" class="language-bash">┌──(root@kali)-[~/]
-└─<span class="hljs-comment"># cat dnadecode.py</span>
-mapping = {
-<span class="hljs-string">'AAA'</span>:<span class="hljs-string">'a'</span>,
-<span class="hljs-string">'AAC'</span>:<span class="hljs-string">'b'</span>,
-<span class="hljs-string">'AAG'</span>:<span class="hljs-string">'c'</span>,
-<span class="hljs-string">'AAT'</span>:<span class="hljs-string">'d'</span>,
-<span class="hljs-string">'ACA'</span>:<span class="hljs-string">'e'</span>,
-<span class="hljs-string">'ACC'</span>:<span class="hljs-string">'f'</span>,
-<span class="hljs-string">'ACG'</span>:<span class="hljs-string">'g'</span>,
-<span class="hljs-string">'ACT'</span>:<span class="hljs-string">'h'</span>,
-<span class="hljs-string">'AGA'</span>:<span class="hljs-string">'i'</span>,
-<span class="hljs-string">'AGC'</span>:<span class="hljs-string">'j'</span>,
-<span class="hljs-string">'AGG'</span>:<span class="hljs-string">'k'</span>,
-<span class="hljs-string">'AGT'</span>:<span class="hljs-string">'l'</span>,
-<span class="hljs-string">'ATA'</span>:<span class="hljs-string">'m'</span>,
-<span class="hljs-string">'ATC'</span>:<span class="hljs-string">'n'</span>,
-<span class="hljs-string">'ATG'</span>:<span class="hljs-string">'o'</span>,
-<span class="hljs-string">'ATT'</span>:<span class="hljs-string">'p'</span>,
-<span class="hljs-string">'CAA'</span>:<span class="hljs-string">'q'</span>,
-<span class="hljs-string">'CAC'</span>:<span class="hljs-string">'r'</span>,
-<span class="hljs-string">'CAG'</span>:<span class="hljs-string">'s'</span>,
-<span class="hljs-string">'CAT'</span>:<span class="hljs-string">'t'</span>,
-<span class="hljs-string">'CCA'</span>:<span class="hljs-string">'u'</span>,
-<span class="hljs-string">'CCC'</span>:<span class="hljs-string">'v'</span>,
-<span class="hljs-string">'CCG'</span>:<span class="hljs-string">'w'</span>,
-<span class="hljs-string">'CCT'</span>:<span class="hljs-string">'x'</span>,
-<span class="hljs-string">'CGA'</span>:<span class="hljs-string">'y'</span>,
-<span class="hljs-string">'CGC'</span>:<span class="hljs-string">'z'</span>,
-<span class="hljs-string">'CGG'</span>:<span class="hljs-string">'A'</span>,
-<span class="hljs-string">'CGT'</span>:<span class="hljs-string">'B'</span>,
-<span class="hljs-string">'CTA'</span>:<span class="hljs-string">'C'</span>,
-<span class="hljs-string">'CTC'</span>:<span class="hljs-string">'D'</span>,
-<span class="hljs-string">'CTG'</span>:<span class="hljs-string">'E'</span>,
-<span class="hljs-string">'CTT'</span>:<span class="hljs-string">'F'</span>,
-<span class="hljs-string">'GAA'</span>:<span class="hljs-string">'G'</span>,
-<span class="hljs-string">'GAC'</span>:<span class="hljs-string">'H'</span>,
-<span class="hljs-string">'GAG'</span>:<span class="hljs-string">'I'</span>,
-<span class="hljs-string">'GAT'</span>:<span class="hljs-string">'J'</span>,
-<span class="hljs-string">'GCA'</span>:<span class="hljs-string">'K'</span>,
-<span class="hljs-string">'GCC'</span>:<span class="hljs-string">'L'</span>,
-<span class="hljs-string">'GCG'</span>:<span class="hljs-string">'M'</span>,
-<span class="hljs-string">'GCT'</span>:<span class="hljs-string">'N'</span>,
-<span class="hljs-string">'GGA'</span>:<span class="hljs-string">'O'</span>,
-<span class="hljs-string">'GGC'</span>:<span class="hljs-string">'P'</span>,
-<span class="hljs-string">'GGG'</span>:<span class="hljs-string">'Q'</span>,
-<span class="hljs-string">'GGT'</span>:<span class="hljs-string">'R'</span>,
-<span class="hljs-string">'GTA'</span>:<span class="hljs-string">'S'</span>,
-<span class="hljs-string">'GTC'</span>:<span class="hljs-string">'T'</span>,
-<span class="hljs-string">'GTG'</span>:<span class="hljs-string">'U'</span>,
-<span class="hljs-string">'GTT'</span>:<span class="hljs-string">'V'</span>,
-<span class="hljs-string">'TAA'</span>:<span class="hljs-string">'W'</span>,
-<span class="hljs-string">'TAC'</span>:<span class="hljs-string">'X'</span>,
-<span class="hljs-string">'TAG'</span>:<span class="hljs-string">'Y'</span>,
-<span class="hljs-string">'TAT'</span>:<span class="hljs-string">'Z'</span>,
-<span class="hljs-string">'TCA'</span>:<span class="hljs-string">'1'</span>,
-<span class="hljs-string">'TCC'</span>:<span class="hljs-string">'2'</span>,
-<span class="hljs-string">'TCG'</span>:<span class="hljs-string">'3'</span>,
-<span class="hljs-string">'TCT'</span>:<span class="hljs-string">'4'</span>,
-<span class="hljs-string">'TGA'</span>:<span class="hljs-string">'5'</span>,
-<span class="hljs-string">'TGC'</span>:<span class="hljs-string">'6'</span>,
-<span class="hljs-string">'TGG'</span>:<span class="hljs-string">'7'</span>,
-<span class="hljs-string">'TGT'</span>:<span class="hljs-string">'8'</span>,
-<span class="hljs-string">'TTA'</span>:<span class="hljs-string">'9'</span>,
-<span class="hljs-string">'TTC'</span>:<span class="hljs-string">'0'</span>,
-<span class="hljs-string">'TTG'</span>:<span class="hljs-string">' '</span>,
-<span class="hljs-string">'TTT'</span>:<span class="hljs-string">'.'</span>
-}
-
-string = <span class="hljs-string">'GCGCCAAAGACTTTCTTGCTACACCGAATTCATTTC'</span>
-def decode_dna( string ):
-    pieces = []
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range( <span class="hljs-number">0</span>, len(string), <span class="hljs-number">3</span> ):
-        piece = string[i:i+<span class="hljs-number">3</span>]
-        <span class="hljs-comment"># pieces.append()</span>
-        pieces.append( mapping[piece] )
-    <span class="hljs-built_in">return</span> <span class="hljs-string">""</span>.join(pieces)
-<span class="hljs-built_in">print</span> decode_dna(string)
-
-┌──(root@kali)-[~/]
-└─<span class="hljs-comment"># python2 dnacode.py</span>
-Much0 Crypt0
-</code></pre>
-<p class="has-line-data" data-line-start="548" data-line-end="550">Con este texto reconstruimos la flag:<br>
-<strong><em>flag{Much0 Crypt0}</em></strong></p>
-<hr>
-<h2 class="code-line" data-line-start=552 data-line-end=553 ><a id="Reto_28_552"></a><strong>Reto 28</strong></h2>
-<p class="has-line-data" data-line-start="554" data-line-end="555">Nos entregan la descripción del reto:</p>
-<blockquote>
-<p class="has-line-data" data-line-start="556" data-line-end="557"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="558" data-line-end="559">El equipo del profesor de tecnología ha sido cifrado y no tiene acceso a sus datos. Tenemos el contenido de la memoria y el disco cifrado.</p>
-<p class="has-line-data" data-line-start="560" data-line-end="562">Pregunta:<br>
-¿Podríamos ayudarle a recuperar los datos?</p>
-<p class="has-line-data" data-line-start="563" data-line-end="564"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="565" data-line-end="566">Fichero comprimido en formato “rar” que contiene un fichero de volcado de memoria en formato “.raw” y otro “.vmdk”</p>
-</blockquote>
-<ol>
-<li class="has-line-data" data-line-start="567" data-line-end="569">Revisamos la imagen para ver que podemos extraer:</li>
-</ol>
-<p class="has-line-data" data-line-start="569" data-line-end="570">Revisando con la herramienta “passware kit Forensic” recuperamos la contraseña con la que esta encriptada, via BitLocker.</p>
-<p class="has-line-data" data-line-start="571" data-line-end="572"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto28-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="573" data-line-end="574">Esa contraseña la guardamos para poder desencriptar la imagen y ver que hay dentro:</p>
-<p class="has-line-data" data-line-start="575" data-line-end="576">BitLocker Master Key: <strong>UW/1w6QYbMx5LV0/EDNa7i20zfXENrTBoby4Pz+nmLs=</strong></p>
-<p class="has-line-data" data-line-start="577" data-line-end="578">Recovery key:** 425777-567578-377586-013365-658427-126456-641872-309683**</p>
-<ol start="2">
-<li class="has-line-data" data-line-start="579" data-line-end="581">Ahora probaremos una utilidad para abrir imágenes:</li>
-</ol>
-<p class="has-line-data" data-line-start="581" data-line-end="582">Esta utilidad permite abrir imágenes encriptadas con BitLocker si tenemos la contraseña con las que se han firmado.</p>
-<p class="has-line-data" data-line-start="583" data-line-end="584"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto28-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="585" data-line-end="586"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto28-3.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="587" data-line-end="588">Abrimos ese archivo secret.txt</p>
-<p class="has-line-data" data-line-start="589" data-line-end="591">Obtenemos la flag:<br>
-<strong><em>flag{b1tl0ck3r_4cc3ss}</em></strong></p>
-<hr>
-<h2 class="code-line" data-line-start=593 data-line-end=594 ><a id="Reto_29_593"></a><strong>Reto 29</strong></h2>
-<p class="has-line-data" data-line-start="595" data-line-end="596">Nos entregan la descripción del reto:</p>
-<blockquote>
-<p class="has-line-data" data-line-start="597" data-line-end="598"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="599" data-line-end="600">Los datos del equipo del director han vuelto a ser robados, el método ha sido por DNS. El atacante ha intentado que estos datos no sean descubiertos y ha ofuscado todo el proceso.</p>
-<p class="has-line-data" data-line-start="601" data-line-end="603">Pregunta:<br>
-¿Podrías ayudarnos a conseguir los datos exfiltrados?</p>
-<p class="has-line-data" data-line-start="604" data-line-end="605"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="606" data-line-end="607">Fichero de log descargable</p>
-</blockquote>
-<p class="has-line-data" data-line-start="608" data-line-end="609">Descargamos el log y lo analizamos. Comprobamos que existen múltiples peticiones a subdominios de <a href="http://getdata.io">getdata.io</a> con valores que parecen hexadecimales.</p>
-<p class="has-line-data" data-line-start="610" data-line-end="611"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto29-1.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="612" data-line-end="613">Si filtramos y nos quedamos solo con las peticiones a <a href="http://getdata.io">getdata.io</a>, comprobamos que todos los subdominios solicitados son cadenas de caracteres que parecen estar codificados en base64:</p>
-<p class="has-line-data" data-line-start="614" data-line-end="615"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto29-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="616" data-line-end="617">Si decodificamos línea por línea de forma individual vemos que en la línea 29 tenemos el principio de un vector de números. El siguiente código en bash nos permite realizar esta operación:</p>
-<pre><code class="has-line-data" data-line-start="619" data-line-end="629" class="language-bash"><span class="hljs-shebang">#!/bin/bash</span>
-num=<span class="hljs-number">1</span>
-cat base64_data.txt | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> line
-<span class="hljs-keyword">do</span>
-     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$line</span> &gt; ./temp.txt
-     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$num</span>
-     base64 <span class="hljs-operator">-d</span> ./temp.txt
-     num=$((num + <span class="hljs-number">1</span>))
-<span class="hljs-keyword">done</span>
-</code></pre>
-<p class="has-line-data" data-line-start="630" data-line-end="631">Obteniendo como resultado:</p>
-<p class="has-line-data" data-line-start="632" data-line-end="633"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto29-3.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="634" data-line-end="635">Si unimos las líneas desde la 29 al final y decodificamos tenemos el siguiente vector de número enteros:</p>
-<p class="has-line-data" data-line-start="636" data-line-end="637"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto29-4.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="638" data-line-end="639">Analizando el vector de enteros los números van desde el 0 al 27, y teniendo en cuenta que en el log tenemos 32 líneas, podemos deducir que las últimas 4 se corresponden con este vector y las demás líneas a los datos exfiltrados.</p>
-<p class="has-line-data" data-line-start="640" data-line-end="641">El siguiente paso es ordenar las peticiones según el vector, de tal forma que el primer bloque de datos se encuentra en la línea 19, el segundo en la línea 4 y así sucesivamente. Con el siguiente código podemos ordenarlo para obtener el base64 final:</p>
-<pre><code class="has-line-data" data-line-start="643" data-line-end="651" class="language-bash">orden = [<span class="hljs-number">15</span>,<span class="hljs-number">27</span>,<span class="hljs-number">21</span>,<span class="hljs-number">17</span>,<span class="hljs-number">8</span>,<span class="hljs-number">24</span>,<span class="hljs-number">12</span>,<span class="hljs-number">25</span>,<span class="hljs-number">20</span>,<span class="hljs-number">18</span>,<span class="hljs-number">9</span>,<span class="hljs-number">22</span>,<span class="hljs-number">4</span>,<span class="hljs-number">0</span>,<span class="hljs-number">16</span>,<span class="hljs-number">5</span>,<span class="hljs-number">11</span>,<span class="hljs-number">23</span>,<span class="hljs-number">10</span>,<span class="hljs-number">14</span>,<span class="hljs-number">26</span>,<span class="hljs-number">19</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">1</span>,<span class="hljs-number">13</span>,<span class="hljs-number">2</span>]
-b64list = open(<span class="hljs-string">"./base64_data.txt"</span>,<span class="hljs-string">"r"</span>).readlines()
-base64_final = <span class="hljs-string">""</span>
-<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(len(orden)):
-     index = orden.index(x)
-     base64_final += b64list[index].replace(<span class="hljs-string">"\n"</span>,<span class="hljs-string">""</span>)
-<span class="hljs-built_in">print</span> base64_final
-</code></pre>
-<p class="has-line-data" data-line-start="651" data-line-end="652">De esta forma obtenemos el siguiente bloque de datos:</p>
-<pre><code class="has-line-data" data-line-start="654" data-line-end="665" class="language-bash">root@kali:~<span class="hljs-comment"># python base64_ordenar.py</span>
-UEsDBBQAAAAIAO9kWlK3tRNAYgEAAHcHAAAHABwAbG9nLnR4dFVUCQAD8d04YPndOGB1eAsAAQQAAAAABAAAAA
-C9k0tPwjAAx+<span class="hljs-number">98</span>it4JMHRBIeEwtsEgJO7hADUe5ihd92hr27mxTy/xVjhaPTXpob/+X6OSIkyGLGMgjtxwBjil
-EgyAb0XR/il0ZmBtmFV2wsnl0rJtN4pAFP+cy3g77L057iJevQM/EaKh/AggSfmZSXgEDZYZCG1z2OuNrinJsc
-JEwSxKl5S6MRIKVYxtmGbeh3opqL7GeC5CEzSfa8VgcqIKxSmattw86qVcklEhrjkpRk5HA6NeoQPRCqvO4rO8
-<span class="hljs-number">0</span>hRPC7/LJXIN2zP0aqsF5GodCmP6Fw5igoXkiaQqbr0LzNx/nt43mqtBeZKWUJUWB1k26lq6X+tlnSS78vClLf
-peyyrNIIbVTZXBOH/VnBWrGYP/sN2ECPxxk5AxzvoP<span class="hljs-built_in">cd</span>WJ5cHqb60oPcog5GkrxCYTej8A07vBTf2twkLlZWza
-+/iVIJ4Q1VffDRr9vnY1hze6vF2AitrRvzOF8puXvwFQSwECHgMUAAAACADvZFpSt7UTQGIBAAB3BwAABwAYAA
-AAAAABAAAApIEAAAAAbG9nLnR4dFVUBQAD8d04YHV4CwABBAAAAAAEAAAAAFBLBQYAAAAAAQABAE0AAACjAQAA
-AAA=
-</code></pre>
-<p class="has-line-data" data-line-start="665" data-line-end="666">Descifrando el contenido en un fichero comprobamos que tenemos un fichero “.zip”:</p>
-<p class="has-line-data" data-line-start="667" data-line-end="668"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto29-5.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="669" data-line-end="670">A continuación, descomprimimos el “.zip” y obtenemos un fichero llamado “log.txt” con el siguiente contenido:</p>
-<p class="has-line-data" data-line-start="671" data-line-end="672"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto29-6.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="673" data-line-end="674">Analizando los datos vemos que se trata de un registro de accesos donde se guarda la contraseña cifrada en RC4. A continuación vamos a realizar una fuerza bruta sobre una de las contraseñas para intentar averiguar la clave de cifrado. Utilizaremos la función rc4.php del repositorio <a href="https://github.com/cotdp/php-rc4">https://github.com/cotdp/php-rc4</a></p>
-<p class="has-line-data" data-line-start="675" data-line-end="676">De todas las “contraseñas” cifradas nos fijamos en la que parece tener mayor longitud: “CU01h+7UmzsFXA+LAScdtQRrcxssJhs=” y filtramos los resultados que contienen la palabra flag:</p>
-<pre><code class="has-line-data" data-line-start="678" data-line-end="707" class="language-php">root@kali:~<span class="hljs-comment"># cat bf_rc4.php</span>
-<span class="hljs-preprocessor">&lt;?php</span>
-error_reporting(<span class="hljs-number">0</span>);
-<span class="hljs-keyword">require_once</span>(<span class="hljs-string">"./rc4.php"</span>);
-<span class="hljs-variable">$ciphertext</span> = <span class="hljs-string">"CU01h+7UmzsFXA+LAScdtQRrcxssJhs="</span>;
-<span class="hljs-keyword">echo</span> <span class="hljs-string">"Start date: "</span>.date(<span class="hljs-string">"Y M d H:i"</span>).<span class="hljs-string">"\n"</span>;
-<span class="hljs-variable">$fp</span> = fopen(<span class="hljs-string">"rockyou.txt"</span>, <span class="hljs-string">"r"</span>);
-<span class="hljs-keyword">while</span> (!feof(<span class="hljs-variable">$fp</span>)){
-     <span class="hljs-variable">$linea</span> = str_replace(<span class="hljs-string">"\n"</span>,<span class="hljs-string">""</span>,fgets(<span class="hljs-variable">$fp</span>));
-     <span class="hljs-variable">$data</span> = <span class="hljs-string">""</span>;
-     <span class="hljs-keyword">try</span>{
-        <span class="hljs-variable">$data</span> = rc4(<span class="hljs-variable">$linea</span>,base64_decode(<span class="hljs-variable">$ciphertext</span>));
-     }
-     <span class="hljs-keyword">catch</span> (DivisionByZeroError <span class="hljs-variable">$e</span>){
-         <span class="hljs-keyword">continue</span>;
-     }
-     <span class="hljs-variable">$valid</span> = strstr(<span class="hljs-variable">$data</span>,<span class="hljs-string">"flag"</span>);
-     <span class="hljs-keyword">if</span> (<span class="hljs-variable">$valid</span>){
-         <span class="hljs-keyword">echo</span> <span class="hljs-string">"Clave: "</span>.<span class="hljs-variable">$linea</span>.<span class="hljs-string">" - Datos: "</span>.<span class="hljs-variable">$data</span>;
-     }
-     <span class="hljs-variable">$data</span>=<span class="hljs-string">""</span>;
-}
-fclose(<span class="hljs-variable">$fp</span>);
-<span class="hljs-preprocessor">?&gt;</span>
-
-root@kali:~/<span class="hljs-comment"># php bf_rc4.php</span>
-Clave: <span class="hljs-number">014789632587410014789632587410014789632587410014789632587410</span> - Datos: 
-flag{DNS_3xf1ltr4t10n}
-</code></pre>
-<p class="has-line-data" data-line-start="708" data-line-end="710">Obtenemos la flag:<br>
-<strong><em>flag{DNS_3xf1ltr4t10n}</em></strong></p>
-<hr>
-<h2 class="code-line" data-line-start=712 data-line-end=713 ><a id="Reto_30_712"></a><strong>Reto 30</strong></h2>
-<p class="has-line-data" data-line-start="714" data-line-end="715">Nos entregan la descripción del reto:</p>
-<blockquote>
-<p class="has-line-data" data-line-start="716" data-line-end="717"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="718" data-line-end="719">El profesor de historia ha sido engañado y le han robado datos de su carpeta personal. Hemos capturado el tráfico de red durante el ataque.</p>
-<p class="has-line-data" data-line-start="720" data-line-end="721">Pregunta:</p>
-<p class="has-line-data" data-line-start="722" data-line-end="723">¿Podrás analizar y encontrar qué datos han sido robados?</p>
-<p class="has-line-data" data-line-start="724" data-line-end="725"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="726" data-line-end="727">Fichero pcap descargable</p>
-</blockquote>
-<ol>
-<li class="has-line-data" data-line-start="728" data-line-end="731"><strong>Arrancamos wireshark para ver que contiene:</strong><br>
-<img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto30-1.png" alt="Academia Hacker"></li>
-</ol>
-<p class="has-line-data" data-line-start="731" data-line-end="732">Hay que extraer ese archivo EXE con nombre CruceroGratis.exe:</p>
-<p class="has-line-data" data-line-start="733" data-line-end="734">a. Revisamos que se trata de un binario de windows, podriamos probar a ver si esta hecho con .Net.</p>
-<p class="has-line-data" data-line-start="735" data-line-end="736">b. Buscamos utilidades que nos puedan decompilar este tipo de ejecutables.</p>
-<ol start="2">
-<li class="has-line-data" data-line-start="737" data-line-end="739">Probamos la utilidad dotPeek que permite decompilar archivos EXE creados con .NET.</li>
-</ol>
-<p class="has-line-data" data-line-start="739" data-line-end="740"><a href="https://www.jetbrains.com/decompiler/">https://www.jetbrains.com/decompiler/</a></p>
-<p class="has-line-data" data-line-start="741" data-line-end="742">Lo ejecutamos y abrimos el archivo EXE:</p>
-<p class="has-line-data" data-line-start="743" data-line-end="744"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto30-2.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="745" data-line-end="746">Podemos ver el codigo y se detalla como utiliza una clave para encriptar el mensaje que viene de un GET por HTTP.</p>
-<p class="has-line-data" data-line-start="747" data-line-end="748">1.- Buscamos en el PCAP que nos han dado en el reto para ver si aparece un dato asi por GET.</p>
-<p class="has-line-data" data-line-start="749" data-line-end="750">2.- Exportamos el exe decompilado para poder abrirlo como proyecto en Visual Studio.</p>
-<ol start="3">
-<li class="has-line-data" data-line-start="751" data-line-end="753">Lo montamos todo en Visual Studio.</li>
-</ol>
-<p class="has-line-data" data-line-start="753" data-line-end="754">Captura PCAP:</p>
-<p class="has-line-data" data-line-start="755" data-line-end="756"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto30-3.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="757" data-line-end="758"><em>o0ylbT4B146ILznhUFqBBkv9Cq+8VtR9Svr4Ux7Cnsg=</em></p>
-<p class="has-line-data" data-line-start="759" data-line-end="760">En Visual Studio arrancamos el archivo “sln” que nos ha generado la exportación:</p>
-<p class="has-line-data" data-line-start="761" data-line-end="762"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto30-4.png" alt="Academia Hacker"></p>
-<p class="has-line-data" data-line-start="763" data-line-end="764">Cuando lo abrimos en VisualStudio vemos que no lo ejecuta bien si no tienes todo el pack instalado de VS, por lo que simplificamos el codigo inicial para que nos deje compilar de nuevo:</p>
-<p class="has-line-data" data-line-start="765" data-line-end="766"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto30-5.png" alt="Academia Hacker"></p>
-<pre><code class="has-line-data" data-line-start="768" data-line-end="778" class="language-bash">private static void Main(string[] args)
-       {
-            byte[] key = Program.GetKey(<span class="hljs-string">"KHx4V2LSBsFKtAk8"</span>);
-            ICryptoTransform decryptor = Aes.Create().CreateDecryptor(key, key);
-            byte[] encrypted = Convert.FromBase64String(<span class="hljs-string">"o0ylbT4B146ILznhUFqBBkv9Cq+8VtR9Svr4Ux7Cnsg="</span>);
-            string base64String = Convert.ToBase64String(decryptor.TransformFinalBlock(encrypted, <span class="hljs-number">0</span>, encrypted.Length));
-            Console.WriteLine(base64String);
-        }
-          }
-</code></pre>
-<p class="has-line-data" data-line-start="779" data-line-end="780">Basicamente ese codigo se compila y volvemos a tener el EXE preparado para que extraiga la flag, pero SALE en BASE64.</p>
-<pre><code class="has-line-data" data-line-start="782" data-line-end="785" class="language-bash">c:\temp&gt;CruceroGratis.exe
-ZmxhZ3tQT1BfU01UUF80bjRsMXMxc19PS30=
-</code></pre>
-<p class="has-line-data" data-line-start="786" data-line-end="788">Lo decodificamos y tenemos la flag.<br>
-Flag = <strong><em>flag{POP_SMTP_4n4l1s1s_OK}</em></strong></p>
-
+<p class="has-line-data" data-line-start="592" data-line-end="593">Se nos presenta un fichero de imagen con unos símbolos.</p>
+<p class="has-line-data" data-line-start="594" data-line-end="595"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto35-1.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="596" data-line-end="597">De igual forma tenemos un mensaje que descifrar. Es el número PIN de una estancia del edificio.</p>
+<p class="has-line-data" data-line-start="598" data-line-end="599"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto35-2.png" alt="Academia Hacker"></p>
+<p class="has-line-data" data-line-start="600" data-line-end="601">Las filas de arriba abajo pertenecen a unidades, decenas, centenas y miles. Tan solo debemos partir esta figura en estas cuatro “geometrías” en orden inverso. Primero miles, centenas, decenas y unidades.</p>
+<p class="has-line-data" data-line-start="602" data-line-end="603">No se ha mencionado, pero es deducible que el orden de izquierda a derecha incrementa la numeración representativa de cada fila. Esto es, la última fila y en orden tendrá el valor de 1000, 2000, 3000, … y así con las centenas, 100, 2000, 300, …</p>
+<p class="has-line-data" data-line-start="604" data-line-end="605">De tal forma que si superponemos las figuras obtendremos el código PIN 5703.</p>
+<p class="has-line-data" data-line-start="606" data-line-end="607">No hay figura que corresponda con la tercera posicion.</p>
+<p class="has-line-data" data-line-start="608" data-line-end="609"><img src="https://ch4m17ux.github.io/img/posts/academia-hacker/reto35-3.png" alt="Academia Hacker"></p>
 
 </div>
