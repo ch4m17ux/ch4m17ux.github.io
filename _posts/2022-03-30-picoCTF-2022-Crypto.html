@@ -7,44 +7,42 @@ background: '/img/posts/06.jpg'
 ---
 
 <div align="justify">
-
-
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="picoCTF_2022__Crypto_0"></a>picoCTF 2022 - Crypto</h1>
-<p class="has-line-data" data-line-start="3" data-line-end="4">Durante los dias 17 al 29 de Marzo de 2022, estuvimos participando como el team <strong>H4ck3rT34m</strong> en los retos de <strong>picoCTF</strong>.</p>
-<p class="has-line-data" data-line-start="5" data-line-end="6">En esta ocasion quiero desarrollar algunos retos que pudimos resolver en la categoria de <strong><em>Crypto</em></strong>.</p>
+<h1 class="code-line" data-line-start=1 data-line-end=2 ><a id="picoCTF_2022__Crypto_1"></a>picoCTF 2022 - Crypto</h1>
+<p class="has-line-data" data-line-start="4" data-line-end="5">Durante los dias 17 al 29 de Marzo de 2022, estuvimos participando como el team <strong>H4ck3rT34m</strong> en los retos de <strong>picoCTF</strong>.</p>
+<p class="has-line-data" data-line-start="6" data-line-end="7">En esta ocasion quiero desarrollar algunos retos que pudimos resolver en la categoria de <strong><em>Crypto</em></strong>.</p>
 <hr>
 <blockquote>
-<h3 class="code-line" data-line-start=8 data-line-end=9 ><a id="Disclaimer_8"></a>Disclaimer:</h3>
-<p class="has-line-data" data-line-start="9" data-line-end="11">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sea reportada para poder subsanarla.<br>
+<h3 class="code-line" data-line-start=9 data-line-end=10 ><a id="Disclaimer_9"></a>Disclaimer:</h3>
+<p class="has-line-data" data-line-start="10" data-line-end="12">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sea reportada para poder subsanarla.<br>
 Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 </blockquote>
-<h1 class="code-line" data-line-start=13 data-line-end=14 ><a id="TLDR_13"></a>TL:DR</h1>
+<h1 class="code-line" data-line-start=14 data-line-end=15 ><a id="TLDR_14"></a>TL:DR</h1>
 <hr>
-<h2 class="code-line" data-line-start=16 data-line-end=17 ><a id="basicmod1_16"></a><strong>basic-mod1</strong></h2>
-<p class="has-line-data" data-line-start="18" data-line-end="19">Nos entregan la descripción del reto:</p>
+<h2 class="code-line" data-line-start=17 data-line-end=18 ><a id="basicmod1_17"></a><strong>basic-mod1</strong></h2>
+<p class="has-line-data" data-line-start="19" data-line-end="20">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="20" data-line-end="21"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="22" data-line-end="26">We found this weird message being passed around on the servers, we think we have a working decrpytion scheme.<br>
+<p class="has-line-data" data-line-start="21" data-line-end="22"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="23" data-line-end="27">We found this weird message being passed around on the servers, we think we have a working decrpytion scheme.<br>
 Download the message <a href="https://artifacts.picoctf.net/c/399/message.txt">here</a>.<br>
 Take each number mod 37 and map it to the following character set: 0-25 is the alphabet (uppercase), 26-35 are the decimal digits, and 36 is an underscore.<br>
 Wrap your decrypted message in the picoCTF flag format (i.e. <code>picoCTF{decrypted_message}</code>).</p>
 </blockquote>
-<p class="has-line-data" data-line-start="28" data-line-end="29">Nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una serie de numeros:</p>
-<pre><code class="has-line-data" data-line-start="30" data-line-end="32" class="language-bash"><span class="hljs-number">387</span> <span class="hljs-number">248</span> <span class="hljs-number">131</span> <span class="hljs-number">272</span> <span class="hljs-number">373</span> <span class="hljs-number">221</span> <span class="hljs-number">161</span> <span class="hljs-number">110</span> <span class="hljs-number">91</span> <span class="hljs-number">359</span> <span class="hljs-number">390</span> <span class="hljs-number">50</span> <span class="hljs-number">225</span> <span class="hljs-number">184</span> <span class="hljs-number">223</span> <span class="hljs-number">137</span> <span class="hljs-number">225</span> <span class="hljs-number">327</span> <span class="hljs-number">42</span> <span class="hljs-number">179</span> <span class="hljs-number">220</span> <span class="hljs-number">365</span>
+<p class="has-line-data" data-line-start="29" data-line-end="30">Nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una serie de numeros:</p>
+<pre><code class="has-line-data" data-line-start="31" data-line-end="33" class="language-bash"><span class="hljs-number">387</span> <span class="hljs-number">248</span> <span class="hljs-number">131</span> <span class="hljs-number">272</span> <span class="hljs-number">373</span> <span class="hljs-number">221</span> <span class="hljs-number">161</span> <span class="hljs-number">110</span> <span class="hljs-number">91</span> <span class="hljs-number">359</span> <span class="hljs-number">390</span> <span class="hljs-number">50</span> <span class="hljs-number">225</span> <span class="hljs-number">184</span> <span class="hljs-number">223</span> <span class="hljs-number">137</span> <span class="hljs-number">225</span> <span class="hljs-number">327</span> <span class="hljs-number">42</span> <span class="hljs-number">179</span> <span class="hljs-number">220</span> <span class="hljs-number">365</span>
 </code></pre>
-<p class="has-line-data" data-line-start="32" data-line-end="33">Siguiendo las instrucciones del reto, nos pone que:</p>
+<p class="has-line-data" data-line-start="33" data-line-end="34">Siguiendo las instrucciones del reto, nos pone que:</p>
 <ol>
-<li class="has-line-data" data-line-start="34" data-line-end="35">Debemos tomar cada numero entregado y calcular <strong>mod37</strong></li>
-<li class="has-line-data" data-line-start="35" data-line-end="40">Mapear cada modulo obtenido en un diccionario que se compone:<br>
+<li class="has-line-data" data-line-start="35" data-line-end="36">Debemos tomar cada numero entregado y calcular <strong>mod37</strong></li>
+<li class="has-line-data" data-line-start="36" data-line-end="41">Mapear cada modulo obtenido en un diccionario que se compone:<br>
 a. Las posiciones <em>0-25</em> letras en <em>mayusculas</em>.<br>
 b. Las posiciones <em>26-35</em> son <em>decimales</em>.<br>
 c. La posicion <em>36</em> es el simbolo &quot;<em>_</em>&quot;</li>
 </ol>
-<p class="has-line-data" data-line-start="40" data-line-end="42">De esta forma tenemos nuestro diccionario:<br>
+<p class="has-line-data" data-line-start="41" data-line-end="43">De esta forma tenemos nuestro diccionario:<br>
 <strong><em>“ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_”</em></strong></p>
-<p class="has-line-data" data-line-start="43" data-line-end="44">Podemos crear un script que nos permita realizar el calculo del modulo a cada numero, y que nos vaya adicionando su resultado en un array convertido en su correspondiente de acuerdo al diccionario.</p>
-<p class="has-line-data" data-line-start="45" data-line-end="46">Con todo estopodemos generar el script para descifrar la flag:</p>
-<pre><code class="has-line-data" data-line-start="48" data-line-end="61" class="language-bash"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Podemos crear un script que nos permita realizar el calculo del modulo a cada numero, y que nos vaya adicionando su resultado en un array convertido en su correspondiente de acuerdo al diccionario.</p>
+<p class="has-line-data" data-line-start="46" data-line-end="47">Con todo esto podemos generar el script para descifrar la flag:</p>
+<pre><code class="has-line-data" data-line-start="49" data-line-end="62" class="language-bash"><span class="hljs-comment">#!/usr/bin/env python3</span>
 <span class="hljs-comment">#creamos un array con los numeros que nos dan en el mensaje</span>
 a = [<span class="hljs-number">387</span>,<span class="hljs-number">248</span>,<span class="hljs-number">131</span>,<span class="hljs-number">272</span>,<span class="hljs-number">373</span>,<span class="hljs-number">221</span>,<span class="hljs-number">161</span>,<span class="hljs-number">110</span>,<span class="hljs-number">91</span>,<span class="hljs-number">359</span>,<span class="hljs-number">390</span>,<span class="hljs-number">50</span>,<span class="hljs-number">225</span>,<span class="hljs-number">184</span>,<span class="hljs-number">223</span>,<span class="hljs-number">137</span>,<span class="hljs-number">225</span>,<span class="hljs-number">327</span>,<span class="hljs-number">42</span>,<span class="hljs-number">179</span>,<span class="hljs-number">220</span>,<span class="hljs-number">365</span>]
 
@@ -57,12 +55,63 @@ alph = <span class="hljs-string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"</span>
 b = [alph[i%<span class="hljs-number">37</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a]
 <span class="hljs-built_in">print</span>(<span class="hljs-string">"picoCTF{"</span>+<span class="hljs-string">''</span>.join(b)+<span class="hljs-string">"}"</span>)
 </code></pre>
-<p class="has-line-data" data-line-start="61" data-line-end="62">Ejecutando el script obtenemos la flag:</p>
-<pre><code class="has-line-data" data-line-start="64" data-line-end="68" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+<p class="has-line-data" data-line-start="62" data-line-end="63">Ejecutando el script obtenemos la flag:</p>
+<pre><code class="has-line-data" data-line-start="65" data-line-end="69" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
 └─$ python3 calculate-mod.py          
 picoCTF{R0UND_N_R0UND_B0D5F596}
 </code></pre>
-<p class="has-line-data" data-line-start="68" data-line-end="69"><strong><em>picoCTF{R0UND_N_R0UND_B0D5F596}</em></strong></p>
+<p class="has-line-data" data-line-start="69" data-line-end="70"><strong><em>picoCTF{R0UND_N_R0UND_B0D5F596}</em></strong></p>
 <hr>
-<h1 class="code-line" data-line-start=71 data-line-end=72 ><a id="Fin_71"></a>Fin</h1>
+<h2 class="code-line" data-line-start=73 data-line-end=74 ><a id="basicmod2_73"></a><strong>basic-mod2</strong></h2>
+<p class="has-line-data" data-line-start="75" data-line-end="76">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="77" data-line-end="78"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="79" data-line-end="83">A new modular challenge!<br>
+Download the message <a href="https://artifacts.picoctf.net/c/505/message.txt">here</a>.<br>
+Take each number mod 41 and find the modular inverse for the result. Then map to the following character set: 1-26 are the alphabet, 27-36 are the decimal digits, and 37 is an underscore.<br>
+Wrap your decrypted message in the picoCTF flag format (i.e. <code>picoCTF{decrypted_message}</code>).</p>
+</blockquote>
+<p class="has-line-data" data-line-start="84" data-line-end="85">Al igual que en el reto anterior, nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una serie de numeros:</p>
+<pre><code class="has-line-data" data-line-start="86" data-line-end="88" class="language-bash"><span class="hljs-number">145</span> <span class="hljs-number">126</span> <span class="hljs-number">356</span> <span class="hljs-number">272</span> <span class="hljs-number">98</span> <span class="hljs-number">378</span> <span class="hljs-number">395</span> <span class="hljs-number">352</span> <span class="hljs-number">392</span> <span class="hljs-number">215</span> <span class="hljs-number">446</span> <span class="hljs-number">168</span> <span class="hljs-number">180</span> <span class="hljs-number">359</span> <span class="hljs-number">51</span> <span class="hljs-number">190</span> <span class="hljs-number">404</span> <span class="hljs-number">209</span> <span class="hljs-number">185</span> <span class="hljs-number">115</span> <span class="hljs-number">363</span> <span class="hljs-number">431</span> <span class="hljs-number">103</span>
+</code></pre>
+<p class="has-line-data" data-line-start="88" data-line-end="89">Como hemos visto en el reto anterior, debemos seguir las instrucciones que nos dan, para poder resolver el reto:</p>
+<ol>
+<li class="has-line-data" data-line-start="90" data-line-end="91">Debemos tomar cada numero entregado y calcular el inverso modular <strong>mod41</strong></li>
+<li class="has-line-data" data-line-start="91" data-line-end="96">Mapear cada inverso modular obtenido en un diccionario que se compone:<br>
+a. Las posiciones <em>1-26</em> son las letras del alfabeto en <em>mayusculas</em>.<br>
+b. Las posiciones <em>27-36</em> son <em>decimales</em>.<br>
+c. La posicion <em>37</em> es el simbolo &quot;<em>_</em>&quot;</li>
+</ol>
+<p class="has-line-data" data-line-start="96" data-line-end="98">Tomamos el diccionario que obtuvimos en el reto anterior y lo reutilizamos (son los mismos parametros):<br>
+<strong><em>“ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_”</em></strong></p>
+<p class="has-line-data" data-line-start="99" data-line-end="100">Python3 tiene una funcion que nos puede ayudar con este calculo del inverso modular, asi que lo utilizaremos en el script que vamos a contruir como solucion.  Como se explico en el reto anterior, el script realizara los calculos y los va a adicionando a un array de acuerdo al valor correspondiente del diccionario.</p>
+<p class="has-line-data" data-line-start="101" data-line-end="102">Nuestro script para encontrar la flag es:</p>
+<pre><code class="has-line-data" data-line-start="104" data-line-end="122" class="language-bash"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<span class="hljs-comment">#creamos un array con los numeros que nos dan en el mensaje</span>
+a = [<span class="hljs-number">145</span>,<span class="hljs-number">126</span>,<span class="hljs-number">356</span>,<span class="hljs-number">272</span>,<span class="hljs-number">98</span>,<span class="hljs-number">378</span>,<span class="hljs-number">395</span>,<span class="hljs-number">352</span>,<span class="hljs-number">392</span>,<span class="hljs-number">215</span>,<span class="hljs-number">446</span>,<span class="hljs-number">168</span>,<span class="hljs-number">180</span>,<span class="hljs-number">359</span>,<span class="hljs-number">51</span>,<span class="hljs-number">190</span>,<span class="hljs-number">404</span>,<span class="hljs-number">209</span>,<span class="hljs-number">185</span>,<span class="hljs-number">115</span>,<span class="hljs-number">363</span>,<span class="hljs-number">431</span>,<span class="hljs-number">103</span>]
+<span class="hljs-comment">#Creamos un array vacio, que nos servira para guardar los resultados de la flag.</span>
+d = []
+m = <span class="hljs-number">41</span>
+
+alph = <span class="hljs-string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"</span>
+
+<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> a:
+        <span class="hljs-comment">#Calculamos el modulo inverso</span>
+    b = pow(c, -<span class="hljs-number">1</span>, m)
+    <span class="hljs-comment">#Guardamos los resultado en otro array</span>
+    d += alph[b-<span class="hljs-number">1</span>]
+    
+<span class="hljs-comment">#Imprimimos la flag.</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"picoCTF{"</span>+<span class="hljs-string">''</span>.join(d)+<span class="hljs-string">"}"</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="122" data-line-end="123">Ejecutando el script obtenemos la flag:</p>
+<pre><code class="has-line-data" data-line-start="125" data-line-end="129" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ python3 calculate-inverse-module.py          
+picoCTF{<span class="hljs-number">1</span>NV3R53LY_H4RD_374BE7BB}
+</code></pre>
+<p class="has-line-data" data-line-start="129" data-line-end="130"><strong><em>picoCTF{1NV3R53LY_H4RD_374BE7BB}</em></strong></p>
+<hr>
+<h1 class="code-line" data-line-start=133 data-line-end=134 ><a id="Fin_133"></a>Fin</h1>
+
+
 </div>
