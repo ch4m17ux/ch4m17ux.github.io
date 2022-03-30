@@ -1,6 +1,5 @@
 # picoCTF 2022 - Crypto
 
-
 Durante los dias 17 al 29 de Marzo de 2022, estuvimos participando como el team **H4ck3rT34m** en los retos de **picoCTF**.
 
 En esta ocasion quiero desarrollar algunos retos que pudimos resolver en la categoria de ***Crypto***.
