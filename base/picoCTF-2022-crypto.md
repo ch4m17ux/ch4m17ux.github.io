@@ -1,5 +1,6 @@
 # picoCTF 2022 - Crypto
 
+
 Durante los dias 17 al 29 de Marzo de 2022, estuvimos participando como el team **H4ck3rT34m** en los retos de **picoCTF**.
 
 En esta ocasion quiero desarrollar algunos retos que pudimos resolver en la categoria de ***Crypto***.
@@ -31,14 +32,14 @@ Nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una se
 ```
 Siguiendo las instrucciones del reto, nos pone que:
 
- 1. Debemos tomar cada numero entregado calcular **mod37**
+ 1. Debemos tomar cada numero entregado y calcular **mod37**
  2. Mapear cada modulo obtenido en un diccionario que se compone:
 	 a. Las posiciones *0-25* letras en *mayusculas*.
 	 b. Las posiciones *26-35* son *decimales*.
 	 c. La posicion *36* es el simbolo "*_*"
 
 De esta forma tenemos nuestro diccionario:
-*"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"*
+***"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"***
 
 Podemos crear un script que nos permita realizar el calculo del modulo a cada numero, y que nos vaya adicionando su resultado en un array convertido en su correspondiente de acuerdo al diccionario.
 
@@ -52,7 +53,9 @@ a = [387,248,131,272,373,221,161,110,91,359,390,50,225,184,223,137,225,327,42,17
 # Construimos el diccionario, de acuerdo a las instrucciones
 alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 
-#Calculamos el modulo de cada numero y su correspondiente valor en el diccionario, lo guardamos en un array para imprimir el resultado al final.
+#Calculamos el modulo de cada numero y su correspondiente valor en el
+#diccionario, lo guardamos en un array para imprimir el resultado al 
+#final.
 b = [alph[i%37] for i in a]
 print("picoCTF{"+''.join(b)+"}")
 ```
