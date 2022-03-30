@@ -1,0 +1,65 @@
+---
+layout: post
+title: "picoCTF 2022 - Crypto"
+subtitle: "# WriteUp"
+date: 2022-03-30 16:40:13 +0100
+background: '/img/posts/06.jpg'
+---
+
+<div align="justify">
+
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="picoCTF_2022__Crypto_0"></a>picoCTF 2022 - Crypto</h1>
+<p class="has-line-data" data-line-start="3" data-line-end="4">Durante los dias 17 al 29 de Marzo de 2022, estuvimos participando como el team <strong>H4ck3rT34m</strong> en los retos de <strong>picoCTF</strong>.</p>
+<p class="has-line-data" data-line-start="5" data-line-end="6">En esta ocasion quiero desarrollar algunos retos que pudimos resolver en la categoria de <strong><em>Crypto</em></strong>.</p>
+<hr>
+<blockquote>
+<h3 class="code-line" data-line-start=8 data-line-end=9 ><a id="Disclaimer_8"></a>Disclaimer:</h3>
+<p class="has-line-data" data-line-start="9" data-line-end="11">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sea reportada para poder subsanarla.<br>
+Espero que os guste y aprendamos juntos. #HackThePlanet</p>
+</blockquote>
+<h1 class="code-line" data-line-start=13 data-line-end=14 ><a id="TLDR_13"></a>TL:DR</h1>
+<hr>
+<h2 class="code-line" data-line-start=16 data-line-end=17 ><a id="basicmod1_16"></a><strong>basic-mod1</strong></h2>
+<p class="has-line-data" data-line-start="18" data-line-end="19">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="20" data-line-end="21"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="22" data-line-end="26">We found this weird message being passed around on the servers, we think we have a working decrpytion scheme.<br>
+Download the message <a href="https://artifacts.picoctf.net/c/399/message.txt">here</a>.<br>
+Take each number mod 37 and map it to the following character set: 0-25 is the alphabet (uppercase), 26-35 are the decimal digits, and 36 is an underscore.<br>
+Wrap your decrypted message in the picoCTF flag format (i.e. <code>picoCTF{decrypted_message}</code>).</p>
+</blockquote>
+<p class="has-line-data" data-line-start="28" data-line-end="29">Nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una serie de numeros:</p>
+<pre><code class="has-line-data" data-line-start="30" data-line-end="32" class="language-bash"><span class="hljs-number">387</span> <span class="hljs-number">248</span> <span class="hljs-number">131</span> <span class="hljs-number">272</span> <span class="hljs-number">373</span> <span class="hljs-number">221</span> <span class="hljs-number">161</span> <span class="hljs-number">110</span> <span class="hljs-number">91</span> <span class="hljs-number">359</span> <span class="hljs-number">390</span> <span class="hljs-number">50</span> <span class="hljs-number">225</span> <span class="hljs-number">184</span> <span class="hljs-number">223</span> <span class="hljs-number">137</span> <span class="hljs-number">225</span> <span class="hljs-number">327</span> <span class="hljs-number">42</span> <span class="hljs-number">179</span> <span class="hljs-number">220</span> <span class="hljs-number">365</span>
+</code></pre>
+<p class="has-line-data" data-line-start="32" data-line-end="33">Siguiendo las instrucciones del reto, nos pone que:</p>
+<ol>
+<li class="has-line-data" data-line-start="34" data-line-end="35">Debemos tomar cada numero entregado calcular <strong>mod37</strong></li>
+<li class="has-line-data" data-line-start="35" data-line-end="40">Mapear cada modulo obtenido en un diccionario que se compone:<br>
+a. Las posiciones <em>0-25</em> letras en <em>mayusculas</em>.<br>
+b. Las posiciones <em>26-35</em> son <em>decimales</em>.<br>
+c. La posicion <em>36</em> es el simbolo &quot;<em>_</em>&quot;</li>
+</ol>
+<p class="has-line-data" data-line-start="40" data-line-end="42">De esta forma tenemos nuestro diccionario:<br>
+<em>“ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_”</em></p>
+<p class="has-line-data" data-line-start="43" data-line-end="44">Podemos crear un script que nos permita realizar el calculo del modulo a cada numero, y que nos vaya adicionando su resultado en un array convertido en su correspondiente de acuerdo al diccionario.</p>
+<p class="has-line-data" data-line-start="45" data-line-end="46">Con todo estopodemos generar el script para descifrar la flag:</p>
+<pre><code class="has-line-data" data-line-start="48" data-line-end="59" class="language-bash"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<span class="hljs-comment">#creamos un array con los numeros que nos dan en el mensaje</span>
+a = [<span class="hljs-number">387</span>,<span class="hljs-number">248</span>,<span class="hljs-number">131</span>,<span class="hljs-number">272</span>,<span class="hljs-number">373</span>,<span class="hljs-number">221</span>,<span class="hljs-number">161</span>,<span class="hljs-number">110</span>,<span class="hljs-number">91</span>,<span class="hljs-number">359</span>,<span class="hljs-number">390</span>,<span class="hljs-number">50</span>,<span class="hljs-number">225</span>,<span class="hljs-number">184</span>,<span class="hljs-number">223</span>,<span class="hljs-number">137</span>,<span class="hljs-number">225</span>,<span class="hljs-number">327</span>,<span class="hljs-number">42</span>,<span class="hljs-number">179</span>,<span class="hljs-number">220</span>,<span class="hljs-number">365</span>]
+
+<span class="hljs-comment"># Construimos el diccionario, de acuerdo a las instrucciones</span>
+alph = <span class="hljs-string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"</span>
+
+<span class="hljs-comment">#Calculamos el modulo de cada numero y su correspondiente valor en el diccionario, lo guardamos en un array para imprimir el resultado al final.</span>
+b = [alph[i%<span class="hljs-number">37</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"picoCTF{"</span>+<span class="hljs-string">''</span>.join(b)+<span class="hljs-string">"}"</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="59" data-line-end="60">Ejecutando el script obtenemos la flag:</p>
+<pre><code class="has-line-data" data-line-start="62" data-line-end="66" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ python3 calculate-mod.py          
+picoCTF{R0UND_N_R0UND_B0D5F596}
+</code></pre>
+<p class="has-line-data" data-line-start="66" data-line-end="67"><strong><em>picoCTF{R0UND_N_R0UND_B0D5F596}</em></strong></p>
+<hr>
+<h1 class="code-line" data-line-start=69 data-line-end=70 ><a id="Fin_69"></a>Fin</h1>
+</div>
