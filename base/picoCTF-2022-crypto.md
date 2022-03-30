@@ -112,7 +112,7 @@ m = 41
 alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 
 for c in a:
-		#Calculamos el modulo inverso
+	#Calculamos el modulo inverso
     b = pow(c, -1, m)
     #Guardamos los resultado en otro array
     d += alph[b-1]
