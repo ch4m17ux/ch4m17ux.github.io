@@ -1,4 +1,3 @@
-
 # picoCTF 2022 - Crypto
 
 
@@ -131,6 +130,7 @@ picoCTF{1NV3R53LY_H4RD_374BE7BB}
 Encontramos la flag:
 ***picoCTF{1NV3R53LY_H4RD_374BE7BB}***
 
+---
 ## **credstuff**
 
 Nos entregan la descripción del reto:

@@ -114,41 +114,42 @@ picoCTF{<span class="hljs-number">1</span>NV3R53LY_H4RD_374BE7BB}
 </code></pre>
 <p class="has-line-data" data-line-start="129" data-line-end="131">Encontramos la flag:<br>
 <strong><em>picoCTF{1NV3R53LY_H4RD_374BE7BB}</em></strong></p>
-<h2 class="code-line" data-line-start=132 data-line-end=133 ><a id="credstuff_132"></a><strong>credstuff</strong></h2>
-<p class="has-line-data" data-line-start="134" data-line-end="135">Nos entregan la descripción del reto:</p>
+<hr>
+<h2 class="code-line" data-line-start=133 data-line-end=134 ><a id="credstuff_133"></a><strong>credstuff</strong></h2>
+<p class="has-line-data" data-line-start="135" data-line-end="136">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="136" data-line-end="137"><strong><em>DESCRIPCION</em></strong>:</p>
-<p class="has-line-data" data-line-start="138" data-line-end="141">We found a leak of a blackmarket website’s login credentials. Can you find the password of the user <code>cultiris</code> and successfully decrypt it?<br>
+<p class="has-line-data" data-line-start="137" data-line-end="138"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="139" data-line-end="142">We found a leak of a blackmarket website’s login credentials. Can you find the password of the user <code>cultiris</code> and successfully decrypt it?<br>
 Download the leak <a href="https://artifacts.picoctf.net/c/534/leak.tar">here</a>.<br>
 The first user in <code>usernames.txt</code> corresponds to the first password in <code>passwords.txt</code>. The second user corresponds to the second password, and so on.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="142" data-line-end="143">Este reto es relativamente muy facil, nos entregan un fichero que esta comprimido en <code>tar</code>,  al descomprimirlo tenemos dos ficheros txt:</p>
+<p class="has-line-data" data-line-start="143" data-line-end="144">Este reto es relativamente muy facil, nos entregan un fichero que esta comprimido en <code>tar</code>,  al descomprimirlo tenemos dos ficheros txt:</p>
 <ul>
-<li class="has-line-data" data-line-start="144" data-line-end="145">usernames.txt</li>
-<li class="has-line-data" data-line-start="145" data-line-end="147">passwords.txt</li>
+<li class="has-line-data" data-line-start="145" data-line-end="146">usernames.txt</li>
+<li class="has-line-data" data-line-start="146" data-line-end="148">passwords.txt</li>
 </ul>
-<p class="has-line-data" data-line-start="147" data-line-end="148">Segun las instrucciones al comparar estos dos ficheros tenemos que la primera linea del fichero de <code>usernames</code> su usuario, corresponde a la primera linea del fichero <code>passwords</code> y esta seria su contraseña.</p>
-<p class="has-line-data" data-line-start="149" data-line-end="150">Asi que debemos buscar en qué línea tenemos al usuario <code>cultiris</code>, y con ellos buscar entre los password dicha linea, alli estara su contraseña.</p>
-<p class="has-line-data" data-line-start="151" data-line-end="152">Abrimos una consola y podemos realizarlo de forma sencilla.  Lo primero seria descomprimir el fichero dado:</p>
-<pre><code class="has-line-data" data-line-start="154" data-line-end="160" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+<p class="has-line-data" data-line-start="148" data-line-end="149">Segun las instrucciones al comparar estos dos ficheros tenemos que la primera linea del fichero de <code>usernames</code> su usuario, corresponde a la primera linea del fichero <code>passwords</code> y esta seria su contraseña.</p>
+<p class="has-line-data" data-line-start="150" data-line-end="151">Asi que debemos buscar en qué línea tenemos al usuario <code>cultiris</code>, y con ellos buscar entre los password dicha linea, alli estara su contraseña.</p>
+<p class="has-line-data" data-line-start="152" data-line-end="153">Abrimos una consola y podemos realizarlo de forma sencilla.  Lo primero seria descomprimir el fichero dado:</p>
+<pre><code class="has-line-data" data-line-start="155" data-line-end="161" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
 └─$ tar xvf leak.tar          
 leak/
 leak/passwords.txt
 leak/usernames.txt
 </code></pre>
-<p class="has-line-data" data-line-start="160" data-line-end="161">Buscamos en qué linea esta el usuario solicitado:</p>
-<pre><code class="has-line-data" data-line-start="162" data-line-end="166" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+<p class="has-line-data" data-line-start="161" data-line-end="162">Buscamos en qué linea esta el usuario solicitado:</p>
+<pre><code class="has-line-data" data-line-start="163" data-line-end="167" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
 └─$ grep -n cultiris usernames.txt
 <span class="hljs-number">378</span>:cultiris
 </code></pre>
-<p class="has-line-data" data-line-start="166" data-line-end="167">Con este numero de linea, vamos al fichero passwords y buscamos que tenemos alli:</p>
-<pre><code class="has-line-data" data-line-start="168" data-line-end="172" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+<p class="has-line-data" data-line-start="167" data-line-end="168">Con este numero de linea, vamos al fichero passwords y buscamos que tenemos alli:</p>
+<pre><code class="has-line-data" data-line-start="169" data-line-end="173" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
 └─$ sed -n <span class="hljs-number">378</span>p passwords.txt
 cvpbPGS{P7e1S_54I35_71Z3}
 </code></pre>
-<p class="has-line-data" data-line-start="172" data-line-end="173">Por ultimo, encontramos que la contraseña esta con algun tipo de cifrado basico, por lo que conociendo que tiene toda la pinta de ser la flag, debe comenzar por <code>&quot;picoCTF{&quot;</code>, entre la <code>p</code> de la flag y la <code>c</code> de la contraseña encontrada, tenemos 13 posiciones, asi que es un <code>ROT13</code>.</p>
-<p class="has-line-data" data-line-start="174" data-line-end="175">Haciendo uso de python o de un sitio web lo podemos descrifrar facilmente:</p>
-<pre><code class="has-line-data" data-line-start="176" data-line-end="185" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+<p class="has-line-data" data-line-start="173" data-line-end="174">Por ultimo, encontramos que la contraseña esta con algun tipo de cifrado basico, por lo que conociendo que tiene toda la pinta de ser la flag, debe comenzar por <code>&quot;picoCTF{&quot;</code>, entre la <code>p</code> de la flag y la <code>c</code> de la contraseña encontrada, tenemos 13 posiciones, asi que es un <code>ROT13</code>.</p>
+<p class="has-line-data" data-line-start="175" data-line-end="176">Haciendo uso de python o de un sitio web lo podemos descrifrar facilmente:</p>
+<pre><code class="has-line-data" data-line-start="177" data-line-end="186" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
 └─$ python3
 Python <span class="hljs-number">3.8</span>.<span class="hljs-number">10</span>
 &gt;&gt;&gt; import codecs
@@ -157,10 +158,12 @@ Python <span class="hljs-number">3.8</span>.<span class="hljs-number">10</span>
 &gt;&gt;&gt; <span class="hljs-built_in">print</span>(msg)
 picoCTF{C7r1F_54V35_71M3}
 </code></pre>
-<p class="has-line-data" data-line-start="185" data-line-end="187">Encontramos la flag:<br>
+<p class="has-line-data" data-line-start="186" data-line-end="188">Encontramos la flag:<br>
 <strong><em>picoCTF{C7r1F_54V35_71M3}</em></strong></p>
 <hr>
-<h1 class="code-line" data-line-start=189 data-line-end=190 ><a id="Fin_189"></a>Fin</h1>
+<h1 class="code-line" data-line-start=190 data-line-end=191 ><a id="Fin_190"></a>Fin</h1>
+
+
 
 
 
