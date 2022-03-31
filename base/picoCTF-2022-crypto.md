@@ -67,6 +67,7 @@ Ejecutando el script obtenemos la flag:
 └─$ python3 calculate-mod.py          
 picoCTF{R0UND_N_R0UND_B0D5F596}
 ```
+Encontramos la flag:
 ***picoCTF{R0UND_N_R0UND_B0D5F596}***
 
 ---
@@ -80,7 +81,7 @@ Nos entregan la descripción del reto:
 >A new modular challenge! 
 >Download the message [here](https://artifacts.picoctf.net/c/505/message.txt). 
 >Take each number mod 41 and find the modular inverse for the result. Then map to the following character set: 1-26 are the alphabet, 27-36 are the decimal digits, and 37 is an underscore. 
->Wrap your decrypted message in the picoCTF flag format (i.e. `picoCTF{decrypted_message}`).
+>Wrap your decrypted message in the picoCTF flag format (i.e. `picoCTF{decrypted_message}`.
 >
 Al igual que en el reto anterior, nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una serie de numeros:
 ```bash
@@ -127,8 +128,64 @@ Ejecutando el script obtenemos la flag:
 └─$ python3 calculate-inverse-module.py          
 picoCTF{1NV3R53LY_H4RD_374BE7BB}
 ```
+Encontramos la flag:
 ***picoCTF{1NV3R53LY_H4RD_374BE7BB}***
 
+## **credstuff**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+>We found a leak of a blackmarket website's login credentials. Can you find the password of the user `cultiris` and successfully decrypt it? 
+>Download the leak [here](https://artifacts.picoctf.net/c/534/leak.tar). 
+>The first user in `usernames.txt` corresponds to the first password in `passwords.txt`. The second user corresponds to the second password, and so on.
+>
+Este reto es relativamente muy facil, nos entregan un fichero que esta comprimido en `tar`,  al descomprimirlo tenemos dos ficheros txt:
+
+ - usernames.txt
+ - passwords.txt
+
+Segun las instrucciones al comparar estos dos ficheros tenemos que la primera linea del fichero de `usernames` su usuario, corresponde a la primera linea del fichero `passwords` y esta seria su contraseña.
+
+Asi que debemos buscar en qué línea tenemos al usuario `cultiris`, y con ellos buscar entre los password dicha linea, alli estara su contraseña.
+
+Abrimos una consola y podemos realizarlo de forma sencilla.  Lo primero seria descomprimir el fichero dado:
+
+```bash
+┌──(root㉿kali)-[~/picoCTF]
+└─$ tar xvf leak.tar          
+leak/
+leak/passwords.txt
+leak/usernames.txt
+```
+Buscamos en qué linea esta el usuario solicitado:
+```bash
+┌──(root㉿kali)-[~/picoCTF]
+└─$ grep -n cultiris usernames.txt
+378:cultiris
+```
+Con este numero de linea, vamos al fichero passwords y buscamos que tenemos alli:
+```bash
+┌──(root㉿kali)-[~/picoCTF]
+└─$ sed -n 378p passwords.txt
+cvpbPGS{P7e1S_54I35_71Z3}
+```
+Por ultimo, encontramos que la contraseña esta con algun tipo de cifrado basico, por lo que conociendo que tiene toda la pinta de ser la flag, debe comenzar por `"picoCTF{"`, entre la `p` de la flag y la `c` de la contraseña encontrada, tenemos 13 posiciones, asi que es un `ROT13`.
+
+Haciendo uso de python o de un sitio web lo podemos descrifrar facilmente:
+```bash
+┌──(root㉿kali)-[~/picoCTF]
+└─$ python3
+Python 3.8.10
+>>> import codecs
+>>> secret = 'cvpbPGS{P7e1S_54I35_71Z3}'
+>>> msg = codecs.decode(secret, 'rot13')
+>>> print(msg)
+picoCTF{C7r1F_54V35_71M3}
+```
+Encontramos la flag:
+***picoCTF{C7r1F_54V35_71M3}***
 
 ----------
 # Fin
