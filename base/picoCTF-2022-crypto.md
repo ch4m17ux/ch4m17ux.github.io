@@ -1,3 +1,4 @@
+
 # picoCTF 2022 - Crypto
 
 
@@ -70,7 +71,6 @@ Encontramos la flag:
 ***picoCTF{R0UND_N_R0UND_B0D5F596}***
 
 ---
-
 ## **basic-mod2**
 
 Nos entregan la descripción del reto:
@@ -186,6 +186,31 @@ picoCTF{C7r1F_54V35_71M3}
 ```
 Encontramos la flag:
 ***picoCTF{C7r1F_54V35_71M3}***
+
+---
+## **morse-code**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+>Morse code is well known. Can you decrypt this? 
+>Download the file [here](https://artifacts.picoctf.net/c/235/morse_chal.wav). 
+>Wrap your answer with picoCTF{}, put underscores in place of pauses, and use all lowercase.
+>
+Encontramos que nos entregan un fichero de audio, que al reproducirlo tenemos una secuencia de sonidos, como indica el titulo del reto es un audio morse.
+
+Podemos utilizar una web que nos decodifique el audio, por ejemplo: https://morsecode.world/international/decoder/audio-decoder-adaptive.html
+
+Subimos alli el fichero entregado y reproducimos, a medida que va reproduciendo nos va indicando que letras y numeros corresponden en el mensaje:
+
+![morse-code](https://ch4m17ux.github.io/img/posts/picoctf/morse-code.png)
+
+El mensaje obtenido es:
+`wh47 h47h 90d w20u9h7`
+
+Ajustando la flag como nos la solicitan, obtenemos:
+***picoCTF{wh47_h47h_90d_w20u9h7}***
 
 ----------
 # Fin
