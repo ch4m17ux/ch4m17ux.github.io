@@ -212,5 +212,106 @@ El mensaje obtenido es:
 Ajustando la flag como nos la solicitan, obtenemos:
 ***picoCTF{wh47_h47h_90d_w20u9h7}***
 
+---
+## **rail-fence**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+>A type of transposition cipher is the rail fence cipher, which is described [here](https://en.wikipedia.org/wiki/Rail_fence_cipher). Here is one such cipher encrypted using the rail fence with 4 rails. Can you decrypt it? 
+>Download the message [here](https://artifacts.picoctf.net/c/278/message.txt). 
+>Put the decoded message in the picoCTF flag format, `picoCTF{decoded_message}`.
+>
+En la descripcion del reto podemos ver una URL de Wikipedia, donde se explica el cifrado. Es muy sencillo de realizar de forma manual, pero por cuestiones de tiempo en el CTF podemos utilizar un decodificar online. 
+
+Asi que teniendo el mensaje entregado:
+
+    Ta _7N6D34hlg:W3D_H3C31N__198ef sHR053F38N43D80 i33___NF
+
+Utilizamos el decodificar online [Cryptii](https://cryptii.com/pipes/rail-fence-cipher)
+
+Obtenemos el mensaje decodificado:
+
+![rail-fence](https://ch4m17ux.github.io/img/posts/picoctf/rail-fence.png)
+
+Asi que la flag buscada es:
+***picoCTF{WH3R3_D035_7H3_F3NC3_8361N_4ND_3ND_318F0948}***
+
+---
+## **substitution0**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+>A message has come in but it seems to be all scrambled. Luckily it seems to have the key at the beginning. Can you crack this substitution cipher? 
+>Download the message [here](https://artifacts.picoctf.net/c/385/message.txt).
+>
+Nos entregan un fichero que corresponde a un mensaje cifrado, por la descripcion del reto, es un cifrado de sustitucion. 
+
+Revisando el mensaje entregado tenemos:
+```
+PJFRENTZHOMQKLAIUVSWCYDXGB 
+
+Zevecial Qetvplr pvase, dhwz p tvpye plr swpweqg phv, plr jvactzw ke wze jeewqe
+nvak p tqpss fpse hl dzhfz hw dps elfqaser. Hw dps p jepcwhncq sfpvpjpecs, plr, pw
+wzpw whke, clmladl wa lpwcvpqhsws—an facvse p tvepw ivhbe hl p sfhelwhnhf iahlw
+an yhed. Wzeve deve wda vaclr jqpfm siaws lepv ale exwvekhwg an wze jpfm, plr p
+qalt ale lepv wze awzev. Wze sfpqes deve exfeerhltqg zpvr plr tqassg, dhwz pqq wze
+piiepvplfe an jcvlhszer taqr. Wze dehtzw an wze hlsefw dps yevg vekpvmpjqe, plr,
+wpmhlt pqq wzhlts hlwa falshrevpwhal, H facqr zpvrqg jqpke Ocihwev nav zhs aihlhal
+vesiefwhlt hw.
+
+Wze nqpt hs: ihfaFWN{5CJ5717C710L_3Y0QC710L_N96P338E}
+```
+En la pista que nos entregan, nos refieren a tratar de romper el cifrado con un analisi de frecuencia de las letras, podemos encontrar varias herramientas que nos ayudan para esto, Utilizamos el decodificar online [Cryptii](https://cryptii.com/pipes/alphabetical-substitution)
+
+Obtenemos el mensaje decodificado:
+
+![substitution0](https://ch4m17ux.github.io/img/posts/picoctf/substitution0.png)
+
+Asi que la flag buscada es:
+***picoCTF{5UB5717U710N_3V0LU710N_F96A338E}***
+
+---
+## **substitution1**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+>A second message has come in the mail, and it seems almost identical to the first one. Maybe the same thing will work again. 
+>Download the message [here](https://artifacts.picoctf.net/c/420/message.txt).
+>
+Como en el reto anterior, nos entregan un fichero que corresponde a un mensaje cifrado, por la descripcion del reto, muy similar al anterior. 
+
+Revisando el mensaje entregado tenemos:
+```
+PJFRENTZHOMQKLAIUVSWCYDXGB 
+
+DAFq (qgjwa fjw dkxahwz agz frke) kwz k aoxz jf djbxhazw qzdhwtao djbxzatatjn. 
+Djnazqaknaq kwz xwzqznazs mtag k qza jf dgkrrznezq mgtdg azqa agztw dwzkatltao, 
+azdgntdkr (kns ejjertne) qutrrq, kns xwjyrzb-qjrltne kytrtao. Dgkrrznezq hqhkrro 
+djlzw k nhbyzw jf dkazejwtzq, kns mgzn qjrlzs, zkdg otzrsq k qawtne (dkrrzs k 
+frke) mgtdg tq qhybtaazs aj kn jnrtnz qdjwtne qzwltdz. DAFq kwz k ewzka mko aj 
+rzkwn k mtsz kwwko jf djbxhazw qzdhwtao qutrrq tn k qkfz, rzekr znltwjnbzna, kns 
+kwz gjqazs kns xrkozs yo bkno qzdhwtao ewjhxq kwjhns agz mjwrs fjw fhn kns 
+xwkdatdz. Fjw agtq xwjyrzb, agz frke tq: 
+xtdjDAF{FW3VH3NDO_4774DU5_4W3_D001_3645YZD6}
+```
+Como en el reto anterior, tenemos multiples herramientas online que rompen el cifrado, asi que por ejemplo tenemos:
+
+ - https://www.guballa.de/substitution-solver
+ - https://quipqiup.com/
+
+Utilizando el primero obtenemos el mensaje decodificado:
+
+![substitution1](https://ch4m17ux.github.io/img/posts/picoctf/substitution1.png)
+
+Asi que la flag buscada es:
+***picoCTF{FR3QU3NCY_4774CK5_4R3_C001_3645BEC6}***
+
+
 ----------
 # Fin
