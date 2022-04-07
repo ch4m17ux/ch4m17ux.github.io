@@ -7,6 +7,8 @@ background: '/img/posts/06.jpg'
 ---
 
 <div align="justify">
+
+
 <h1 class="code-line" data-line-start=1 data-line-end=2 ><a id="picoCTF_2022__Crypto_1"></a>picoCTF 2022 - Crypto</h1>
 <p class="has-line-data" data-line-start="4" data-line-end="5">Durante los dias 17 al 29 de Marzo de 2022, estuvimos participando como el team <strong>H4ck3rT34m</strong> en los retos de <strong>picoCTF</strong>.</p>
 <p class="has-line-data" data-line-start="6" data-line-end="7">En esta ocasion quiero desarrollar algunos retos que pudimos resolver en la categoria de <strong><em>Crypto</em></strong>.</p>
@@ -231,9 +233,7 @@ Download the message <a href="https://artifacts.picoctf.net/c/420/message.txt">h
 </blockquote>
 <p class="has-line-data" data-line-start="286" data-line-end="287">Como en el reto anterior, nos entregan un fichero que corresponde a un mensaje cifrado, por la descripcion del reto, muy similar al anterior.</p>
 <p class="has-line-data" data-line-start="288" data-line-end="289">Revisando el mensaje entregado tenemos:</p>
-<pre><code class="has-line-data" data-line-start="290" data-line-end="302">PJFRENTZHOMQKLAIUVSWCYDXGB 
-
-DAFq (qgjwa fjw dkxahwz agz frke) kwz k aoxz jf djbxhazw qzdhwtao djbxzatatjn. 
+<pre><code class="has-line-data" data-line-start="290" data-line-end="300">DAFq (qgjwa fjw dkxahwz agz frke) kwz k aoxz jf djbxhazw qzdhwtao djbxzatatjn. 
 Djnazqaknaq kwz xwzqznazs mtag k qza jf dgkrrznezq mgtdg azqa agztw dwzkatltao, 
 azdgntdkr (kns ejjertne) qutrrq, kns xwjyrzb-qjrltne kytrtao. Dgkrrznezq hqhkrro 
 djlzw k nhbyzw jf dkazejwtzq, kns mgzn qjrlzs, zkdg otzrsq k qawtne (dkrrzs k 
@@ -243,15 +243,52 @@ kwz gjqazs kns xrkozs yo bkno qzdhwtao ewjhxq kwjhns agz mjwrs fjw fhn kns
 xwkdatdz. Fjw agtq xwjyrzb, agz frke tq: 
 xtdjDAF{FW3VH3NDO_4774DU5_4W3_D001_3645YZD6}
 </code></pre>
-<p class="has-line-data" data-line-start="302" data-line-end="303">Como en el reto anterior, tenemos multiples herramientas online que rompen el cifrado, asi que por ejemplo tenemos:</p>
+<p class="has-line-data" data-line-start="300" data-line-end="301">Como en el reto anterior, tenemos multiples herramientas online que rompen el cifrado, asi que por ejemplo tenemos:</p>
 <ul>
-<li class="has-line-data" data-line-start="304" data-line-end="305"><a href="https://www.guballa.de/substitution-solver">https://www.guballa.de/substitution-solver</a></li>
-<li class="has-line-data" data-line-start="305" data-line-end="307"><a href="https://quipqiup.com/">https://quipqiup.com/</a></li>
+<li class="has-line-data" data-line-start="302" data-line-end="303"><a href="https://www.guballa.de/substitution-solver">https://www.guballa.de/substitution-solver</a></li>
+<li class="has-line-data" data-line-start="303" data-line-end="305"><a href="https://quipqiup.com/">https://quipqiup.com/</a></li>
 </ul>
-<p class="has-line-data" data-line-start="307" data-line-end="308">Utilizando el primero obtenemos el mensaje decodificado:</p>
-<p class="has-line-data" data-line-start="309" data-line-end="310"><img src="https://ch4m17ux.github.io/img/posts/picoctf/substitution1.png" alt="substitution1"></p>
-<p class="has-line-data" data-line-start="311" data-line-end="313">Asi que la flag buscada es:<br>
+<p class="has-line-data" data-line-start="305" data-line-end="306">Utilizando el primero obtenemos el mensaje decodificado:</p>
+<p class="has-line-data" data-line-start="307" data-line-end="308"><img src="https://ch4m17ux.github.io/img/posts/picoctf/substitution1.png" alt="substitution1"></p>
+<p class="has-line-data" data-line-start="309" data-line-end="311">Asi que la flag buscada es:<br>
 <strong><em>picoCTF{FR3QU3NCY_4774CK5_4R3_C001_3645BEC6}</em></strong></p>
 <hr>
-<h1 class="code-line" data-line-start=316 data-line-end=317 ><a id="Fin_316"></a>Fin</h1>
+<h2 class="code-line" data-line-start=313 data-line-end=314 ><a id="substitution2_313"></a><strong>substitution2</strong></h2>
+<p class="has-line-data" data-line-start="315" data-line-end="316">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="317" data-line-end="318"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="319" data-line-end="321">It seems that another encrypted message has been intercepted. The encryptor seems to have learned their lesson though and now there isn’t any punctuation! Can you still crack the cipher?<br>
+Download the message <a href="https://artifacts.picoctf.net/c/113/message.txt">here</a>.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="322" data-line-end="323">Este reto es muy similar a los anteriores, asi que seguimos el mismo procedimiento.</p>
+<p class="has-line-data" data-line-start="324" data-line-end="325">Revisando el mensaje entregado tenemos:</p>
+<pre><code class="has-line-data" data-line-start="326" data-line-end="343">xkjvjjapmxmjcjvnifxkjvdjiijmxneipmkjokphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrmpryilo
+prhyzejvunxvpfxnrolmyzejvykniijrhjxkjmjyfsujxpxpfrmqfylmuvpsnvpizfrmzmxjsmnosprpm
+xvnxpfrqlronsjrxnimdkpyknvjcjvzlmjqlinrosnvtjxneijmtpiimkfdjcjvdjejipjcjxkjuvfujv
+ulvufmjfqnkphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrpmrfxfrizxfxjnykcnilneijmtpiimelxn
+imfxfhjxmxlojrxmprxjvjmxjoprnrojaypxjoneflxyfsulxjvmypjryjojqjrmpcjyfsujxpxpfrmnv
+jfqxjrinefvpflmnqqnpvmnroyfsjofdrxfvlrrprhykjytipmxmnrojajylxprhyfrqphmyvpuxmfqqj
+rmjfrxkjfxkjvknropmkjncpizqfylmjofrjauifvnxpfrnropsuvfcpmnxpfrnrofqxjrknmjijsjrxm
+fquinzdjejipjcjnyfsujxpxpfrxflykprhfrxkjfqqjrmpcjjijsjrxmfqyfsulxjvmjylvpxzpmxkjv
+jqfvjnejxxjvcjkpyijqfvxjykjcnrhjipmsxfmxlojrxmprnsjvpynrkphkmykffimqlvxkjvdjejipj
+cjxknxnrlrojvmxnroprhfqfqqjrmpcjxjykrpgljmpmjmmjrxpniqfvsflrxprhnrjqqjyxpcjojqjrm
+jnroxknxxkjxffimnroyfrqphlvnxpfrqfylmjryflrxjvjoprojqjrmpcjyfsujxpxpfrmofjmrfxijn
+omxlojrxmxftrfdxkjpvjrjsznmjqqjyxpcjiznmxjnykprhxkjsxfnyxpcjizxkprtiptjnrnxxnytjv
+upyfyxqpmnrfqqjrmpcjizfvpjrxjokphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrxknxmjjtmxfhjr
+jvnxjprxjvjmxpryfsulxjvmypjryjnsfrhkphkmykffijvmxjnykprhxkjsjrflhkneflxyfsulxjvmj
+ylvpxzxfupgljxkjpvylvpfmpxzsfxpcnxprhxkjsxfjauifvjfrxkjpvfdrnrojrneiprhxkjsxfejxx
+jvojqjroxkjpvsnykprjmxkjqinhpmupyfYXQ{R6V4S_4R41Z515_15_73O10L5_Y823O467}
+</code></pre>
+<p class="has-line-data" data-line-start="343" data-line-end="344">Como en los retos anteriores, tenemos multiples herramientas online que rompen el cifrado, pero no todos funciona igual de correcto, asi que he utilizado el siguiente:</p>
+<ul>
+<li class="has-line-data" data-line-start="345" data-line-end="347"><a href="https://www.guballa.de/substitution-solver">https://www.guballa.de/substitution-solver</a></li>
+</ul>
+<p class="has-line-data" data-line-start="347" data-line-end="348">Utilizando esta herramienta, tenemos el mensaje decodificado:</p>
+<p class="has-line-data" data-line-start="349" data-line-end="350"><img src="https://ch4m17ux.github.io/img/posts/picoctf/substitution2.png" alt="substitution1"></p>
+<p class="has-line-data" data-line-start="351" data-line-end="353">Asi que la flag buscada es:<br>
+<strong><em>picoCTF{N6R4M_4N41Y515_15_73D10U5_C823D467}</em></strong></p>
+<hr>
+<h1 class="code-line" data-line-start=355 data-line-end=356 ><a id="Fin_355"></a>Fin</h1>
+
+
 </div>

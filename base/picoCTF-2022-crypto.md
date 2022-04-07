@@ -288,8 +288,6 @@ Como en el reto anterior, nos entregan un fichero que corresponde a un mensaje c
 
 Revisando el mensaje entregado tenemos:
 ```
-PJFRENTZHOMQKLAIUVSWCYDXGB 
-
 DAFq (qgjwa fjw dkxahwz agz frke) kwz k aoxz jf djbxhazw qzdhwtao djbxzatatjn. 
 Djnazqaknaq kwz xwzqznazs mtag k qza jf dgkrrznezq mgtdg azqa agztw dwzkatltao, 
 azdgntdkr (kns ejjertne) qutrrq, kns xwjyrzb-qjrltne kytrtao. Dgkrrznezq hqhkrro 
@@ -312,6 +310,47 @@ Utilizando el primero obtenemos el mensaje decodificado:
 Asi que la flag buscada es:
 ***picoCTF{FR3QU3NCY_4774CK5_4R3_C001_3645BEC6}***
 
+---
+## **substitution2**
+
+Nos entregan la descripción del reto:
+
+> ***DESCRIPCION***:
+> 
+>It seems that another encrypted message has been intercepted. The encryptor seems to have learned their lesson though and now there isn't any punctuation! Can you still crack the cipher? 
+>Download the message [here](https://artifacts.picoctf.net/c/113/message.txt).
+>
+Este reto es muy similar a los anteriores, asi que seguimos el mismo procedimiento. 
+
+Revisando el mensaje entregado tenemos:
+```
+xkjvjjapmxmjcjvnifxkjvdjiijmxneipmkjokphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrmpryilo
+prhyzejvunxvpfxnrolmyzejvykniijrhjxkjmjyfsujxpxpfrmqfylmuvpsnvpizfrmzmxjsmnosprpm
+xvnxpfrqlronsjrxnimdkpyknvjcjvzlmjqlinrosnvtjxneijmtpiimkfdjcjvdjejipjcjxkjuvfujv
+ulvufmjfqnkphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrpmrfxfrizxfxjnykcnilneijmtpiimelxn
+imfxfhjxmxlojrxmprxjvjmxjoprnrojaypxjoneflxyfsulxjvmypjryjojqjrmpcjyfsujxpxpfrmnv
+jfqxjrinefvpflmnqqnpvmnroyfsjofdrxfvlrrprhykjytipmxmnrojajylxprhyfrqphmyvpuxmfqqj
+rmjfrxkjfxkjvknropmkjncpizqfylmjofrjauifvnxpfrnropsuvfcpmnxpfrnrofqxjrknmjijsjrxm
+fquinzdjejipjcjnyfsujxpxpfrxflykprhfrxkjfqqjrmpcjjijsjrxmfqyfsulxjvmjylvpxzpmxkjv
+jqfvjnejxxjvcjkpyijqfvxjykjcnrhjipmsxfmxlojrxmprnsjvpynrkphkmykffimqlvxkjvdjejipj
+cjxknxnrlrojvmxnroprhfqfqqjrmpcjxjykrpgljmpmjmmjrxpniqfvsflrxprhnrjqqjyxpcjojqjrm
+jnroxknxxkjxffimnroyfrqphlvnxpfrqfylmjryflrxjvjoprojqjrmpcjyfsujxpxpfrmofjmrfxijn
+omxlojrxmxftrfdxkjpvjrjsznmjqqjyxpcjiznmxjnykprhxkjsxfnyxpcjizxkprtiptjnrnxxnytjv
+upyfyxqpmnrfqqjrmpcjizfvpjrxjokphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrxknxmjjtmxfhjr
+jvnxjprxjvjmxpryfsulxjvmypjryjnsfrhkphkmykffijvmxjnykprhxkjsjrflhkneflxyfsulxjvmj
+ylvpxzxfupgljxkjpvylvpfmpxzsfxpcnxprhxkjsxfjauifvjfrxkjpvfdrnrojrneiprhxkjsxfejxx
+jvojqjroxkjpvsnykprjmxkjqinhpmupyfYXQ{R6V4S_4R41Z515_15_73O10L5_Y823O467}
+```
+Como en los retos anteriores, tenemos multiples herramientas online que rompen el cifrado, pero no todos funciona igual de correcto, asi que he utilizado el siguiente:
+
+ - https://www.guballa.de/substitution-solver
+
+Utilizando esta herramienta, tenemos el mensaje decodificado:
+
+![substitution1](https://ch4m17ux.github.io/img/posts/picoctf/substitution2.png)
+
+Asi que la flag buscada es:
+***picoCTF{N6R4M_4N41Y515_15_73D10U5_C823D467}***
 
 ----------
 # Fin
