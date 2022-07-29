@@ -1,5 +1,13 @@
 ---
 layout: post
+title: "picoCTF 2022 - Crypto ----TEST"
+subtitle: "# WriteUp"
+date: 2022-03-30 16:40:13 +0100
+background: '/img/posts/06.jpg'
+---
+
+---
+layout: post
 title: "picoCTF 2022 - Crypto"
 subtitle: "# WriteUp"
 date: 2022-03-30 16:40:13 +0100
@@ -7,101 +15,286 @@ background: '/img/posts/06.jpg'
 ---
 
 <div align="justify">
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="CTF_IntelCon_2022__writeUp_0"></a>CTF IntelCon 2022 - #writeUp</h1>
-<div align="center"><p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/logo-intelcon.png" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="4" data-line-end="5">He estado participando en un CTF organizado por Gingseg con el apoyo de ZeroLynx, basado en retos de tipo OSINT.</p>
-<p class="has-line-data" data-line-start="6" data-line-end="7">No soy experto en OSINT, asi que es una experiencia enriquecedora y agradezco a la organizacion por la realizacion y el trabajo realizado.</p>
-<p class="has-line-data" data-line-start="8" data-line-end="9">Se han presentado en total 9 retos, en 3 lineas, que llamaremos, de investigacion.</p>
+<h1 class="code-line" data-line-start=1 data-line-end=2 ><a id="picoCTF_2022__Crypto_1"></a>picoCTF 2022 - Crypto</h1>
+<p class="has-line-data" data-line-start="4" data-line-end="5">Durante los dias 17 al 29 de Marzo de 2022, estuvimos participando como el team <strong>H4ck3rT34m</strong> en los retos de <strong>picoCTF</strong>.</p>
+<p class="has-line-data" data-line-start="6" data-line-end="7">En esta ocasion quiero desarrollar algunos retos que pudimos resolver en la categoria de <strong><em>Crypto</em></strong>.</p>
 <hr>
 <blockquote>
-<h3 class="code-line" data-line-start=11 data-line-end=12 ><a id="Disclaimer_11"></a>Disclaimer:</h3>
-<p class="has-line-data" data-line-start="12" data-line-end="14">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.<br>
+<h3 class="code-line" data-line-start=9 data-line-end=10 ><a id="Disclaimer_9"></a>Disclaimer:</h3>
+<p class="has-line-data" data-line-start="10" data-line-end="12">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sea reportada para poder subsanarla.<br>
 Espero que os guste y aprendamos juntos. #HackThePlanet</p>
 </blockquote>
-<h1 class="code-line" data-line-start=16 data-line-end=17 ><a id="TLDR_16"></a>TL:DR</h1>
+<h1 class="code-line" data-line-start=14 data-line-end=15 ><a id="TLDR_14"></a>TL:DR</h1>
 <hr>
-<h2 class="code-line" data-line-start=19 data-line-end=20 ><a id="Insider_I_19"></a><strong>Insider I</strong></h2>
-<p class="has-line-data" data-line-start="21" data-line-end="22">Nos entregan la descripción del reto:</p>
-<div align="center"><p class="has-line-data" data-line-start="23" data-line-end="24"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-I.jpg" alt="CTF IntelCon 2022"></p></div>
+<h2 class="code-line" data-line-start=17 data-line-end=18 ><a id="basicmod1_17"></a><strong>basic-mod1</strong></h2>
+<p class="has-line-data" data-line-start="19" data-line-end="20">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="25" data-line-end="26"><strong>Datos proporcionados:</strong></p>
-<p class="has-line-data" data-line-start="27" data-line-end="28">Fichero 7zip.</p>
+<p class="has-line-data" data-line-start="21" data-line-end="22"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="23" data-line-end="27">We found this weird message being passed around on the servers, we think we have a working decrpytion scheme.<br>
+Download the message <a href="https://artifacts.picoctf.net/c/399/message.txt">here</a>.<br>
+Take each number mod 37 and map it to the following character set: 0-25 is the alphabet (uppercase), 26-35 are the decimal digits, and 36 is an underscore.<br>
+Wrap your decrypted message in the picoCTF flag format (i.e. <code>picoCTF{decrypted_message}</code>).</p>
 </blockquote>
-<p class="has-line-data" data-line-start="29" data-line-end="30">En este reto se nos entrega un fichero 7zip, que al abrirlo contiene un Readme y un fichero txt, que contiene una cadena de texto al parecer en Base64, pero al tratar de decodificarlo, no muestra nada legible.  Por otra parte, se nos indica en el Readme que los ficheros han sido cifrados en AES-256.  Tambien nos detallamos en el comentario “Contamos CONTI GO ;)”, asi que todo indica que tiene alguna relacion con el grupo CONTI.</p>
-<p class="has-line-data" data-line-start="31" data-line-end="32">Buscamos en Google cosas relacionadas con CONTI y dentro del millar de resultados vemos que hay una cuenta en español de @conti_es.</p>
-<p class="has-line-data" data-line-start="33" data-line-end="34">Analizamos este usuario y no tiene mucha información, tambien contiene muy pocos post, asi como muy pocos seguidores, sin embargo, revisando a que personas sigue en twitter, la mayoria son personas relacionadas con la ciberseguridad en España, a excepcion de uno que resalta por tener su descripcion en Ingles.</p>
-<div align="center"><p class="has-line-data" data-line-start="35" data-line-end="37"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-I-1.jpg" alt="CTF IntelCon 2022"><br></div>
-He revisado su perfil entendiendo que debia buscar alguna clave, pero finalmente, luego de algunos fallos, he descubierto que la flag era el nombre de usuario.</p>
-<p class="has-line-data" data-line-start="38" data-line-end="40">Por lo que encontramos que la flag es:<br>
-<strong><code>FLAG: INT{m1Geelka}</code></strong></p>
+<p class="has-line-data" data-line-start="29" data-line-end="30">Nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una serie de numeros:</p>
+<pre><code class="has-line-data" data-line-start="31" data-line-end="33" class="language-bash"><span class="hljs-number">387</span> <span class="hljs-number">248</span> <span class="hljs-number">131</span> <span class="hljs-number">272</span> <span class="hljs-number">373</span> <span class="hljs-number">221</span> <span class="hljs-number">161</span> <span class="hljs-number">110</span> <span class="hljs-number">91</span> <span class="hljs-number">359</span> <span class="hljs-number">390</span> <span class="hljs-number">50</span> <span class="hljs-number">225</span> <span class="hljs-number">184</span> <span class="hljs-number">223</span> <span class="hljs-number">137</span> <span class="hljs-number">225</span> <span class="hljs-number">327</span> <span class="hljs-number">42</span> <span class="hljs-number">179</span> <span class="hljs-number">220</span> <span class="hljs-number">365</span>
+</code></pre>
+<p class="has-line-data" data-line-start="33" data-line-end="34">Siguiendo las instrucciones del reto, nos pone que:</p>
+<ol>
+<li class="has-line-data" data-line-start="35" data-line-end="36">Debemos tomar cada numero entregado y calcular <strong>mod37</strong></li>
+<li class="has-line-data" data-line-start="36" data-line-end="41">Mapear cada modulo obtenido en un diccionario que se compone:<br>
+a. Las posiciones <em>0-25</em> letras en <em>mayusculas</em>.<br>
+b. Las posiciones <em>26-35</em> son <em>decimales</em>.<br>
+c. La posicion <em>36</em> es el simbolo &quot;<em>_</em>&quot;</li>
+</ol>
+<p class="has-line-data" data-line-start="41" data-line-end="43">De esta forma tenemos nuestro diccionario:<br>
+<strong><em>“ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_”</em></strong></p>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Podemos crear un script que nos permita realizar el calculo del modulo a cada numero, y que nos vaya adicionando su resultado en un array convertido en su correspondiente de acuerdo al diccionario.</p>
+<p class="has-line-data" data-line-start="46" data-line-end="47">Con todo esto podemos generar el script para descifrar la flag:</p>
+<pre><code class="has-line-data" data-line-start="49" data-line-end="62" class="language-bash"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<span class="hljs-comment">#creamos un array con los numeros que nos dan en el mensaje</span>
+a = [<span class="hljs-number">387</span>,<span class="hljs-number">248</span>,<span class="hljs-number">131</span>,<span class="hljs-number">272</span>,<span class="hljs-number">373</span>,<span class="hljs-number">221</span>,<span class="hljs-number">161</span>,<span class="hljs-number">110</span>,<span class="hljs-number">91</span>,<span class="hljs-number">359</span>,<span class="hljs-number">390</span>,<span class="hljs-number">50</span>,<span class="hljs-number">225</span>,<span class="hljs-number">184</span>,<span class="hljs-number">223</span>,<span class="hljs-number">137</span>,<span class="hljs-number">225</span>,<span class="hljs-number">327</span>,<span class="hljs-number">42</span>,<span class="hljs-number">179</span>,<span class="hljs-number">220</span>,<span class="hljs-number">365</span>]
+
+<span class="hljs-comment"># Construimos el diccionario, de acuerdo a las instrucciones</span>
+alph = <span class="hljs-string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"</span>
+
+<span class="hljs-comment">#Calculamos el modulo de cada numero y su correspondiente valor en el</span>
+<span class="hljs-comment">#diccionario, lo guardamos en un array para imprimir el resultado al </span>
+<span class="hljs-comment">#final.</span>
+b = [alph[i%<span class="hljs-number">37</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"picoCTF{"</span>+<span class="hljs-string">''</span>.join(b)+<span class="hljs-string">"}"</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="62" data-line-end="63">Ejecutando el script obtenemos la flag:</p>
+<pre><code class="has-line-data" data-line-start="65" data-line-end="69" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ python3 calculate-mod.py          
+picoCTF{R0UND_N_R0UND_B0D5F596}
+</code></pre>
+<p class="has-line-data" data-line-start="69" data-line-end="71">Encontramos la flag:<br>
+<strong><em>picoCTF{R0UND_N_R0UND_B0D5F596}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=42 data-line-end=43 ><a id="Insider_II_42"></a><strong>Insider II</strong></h2>
-<p class="has-line-data" data-line-start="44" data-line-end="45">Nos entregan la descripción del reto:</p>
-<div align="center"><p class="has-line-data" data-line-start="46" data-line-end="47"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-II.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="48" data-line-end="49">Para este reto, revisando los post del usuario en twitter que encontramos en el reto anterior (<em><code>@m1Geelka</code></em>) vemos que hay pocos post, sin embargo, encontramos cadenas de texto y una URLS.</p>
-<p class="has-line-data" data-line-start="50" data-line-end="51">He probado las URLs que estan alli, pero o bien no accede, en el caso de ONION, en el otro es un banner, como es un CTF de OSINT no he tirado por stego de la imagen para no rizar el rizo, probando las cadenas como flag da error, así que he tomado las cadenas y las URL’s y he ido reemplazando en las URL’s encontradas, para ver si por casualidad alguna mostraba alguna informacion interesante.  Al final una de ellas es la correcta:</p>
-<p class="has-line-data" data-line-start="52" data-line-end="54">Reemplazando en la URL de anonfiles con una de las cadenas:<br>
-7eK111z2yd -&gt;&gt; <a href="https://anonfiles.com/7eK111z2yd">https://anonfiles.com/7eK111z2yd</a></p>
-<p class="has-line-data" data-line-start="55" data-line-end="56">Obtenemos un HTML que al visualizarlo nos muestra un texto: PB: m4v8z6AK</p>
-<p class="has-line-data" data-line-start="57" data-line-end="59">Por lo que encontramos que la flag es:<br>
-<strong><code>FLAG: INT{m4v8z6AK}</code></strong></p>
-<hr>
-<h2 class="code-line" data-line-start=61 data-line-end=62 ><a id="Insider_III_61"></a><strong>Insider III</strong></h2>
-<p class="has-line-data" data-line-start="63" data-line-end="64">Nos entregan la descripción del reto:</p>
-<div align="center"><p class="has-line-data" data-line-start="65" data-line-end="66"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="67" data-line-end="68">En este reto luego de probar con las cadenas que aparecen en Twitter, y ver que no daba con la llave de descifrado, he visto que en el ID anterior indicaba algo de PB. Pues luego de dar muchas vueltas se me ocurrió que PB podría ser Pastebin, además que es un sitio donde regularmente se publican datos de exfiltraciones, y se ha iluminado el camino.</p>
-<div align="center"><p class="has-line-data" data-line-start="69" data-line-end="70"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-1.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="71" data-line-end="72">En este pastebin no encuentro nada, así que decido buscar en su usuario para ver si tiene más publicaciones.</p>
-<p class="has-line-data" data-line-start="73" data-line-end="74">En todas se trata de exfiltraciones que quiza ha encontrado, pero me ha llamado la atención una que hace referencia a un bucket de S3 en Amazon.</p>
-<div align="center"><p class="has-line-data" data-line-start="75" data-line-end="76"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-2.jpg" alt="CTF IntelCon 2022"></p></div>
+<h2 class="code-line" data-line-start=73 data-line-end=74 ><a id="basicmod2_73"></a><strong>basic-mod2</strong></h2>
+<p class="has-line-data" data-line-start="75" data-line-end="76">Nos entregan la descripción del reto:</p>
 <blockquote>
-<p class="has-line-data" data-line-start="77" data-line-end="78"><code>conti-the-filecrypter-repo.s3.eu-west-3</code></p>
+<p class="has-line-data" data-line-start="77" data-line-end="78"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="79" data-line-end="83">A new modular challenge!<br>
+Download the message <a href="https://artifacts.picoctf.net/c/505/message.txt">here</a>.<br>
+Take each number mod 41 and find the modular inverse for the result. Then map to the following character set: 1-26 are the alphabet, 27-36 are the decimal digits, and 37 is an underscore.<br>
+Wrap your decrypted message in the picoCTF flag format (i.e. <code>picoCTF{decrypted_message}</code>.</p>
 </blockquote>
-<p class="has-line-data" data-line-start="79" data-line-end="81">Agregando lo que le falta para que la URL de Amazon sea correcta, tenemos:<br>
-<em><a href="https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/">https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/</a></em></p>
-<div align="center"><p class="has-line-data" data-line-start="82" data-line-end="83"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-3.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="84" data-line-end="86">Vemos que en el xml se muestra una carpeta que contiene un fichero <code>key.bk</code>, asi que con la URL anterior y completando de nuevo con estos datos, podemos descargarlo.<br>
-<em><a href="https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/Configs/key.bk">https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/Configs/key.bk</a></em></p>
-<p class="has-line-data" data-line-start="87" data-line-end="88">Y al revisar el contenido, tenemos:</p>
-<div align="center"><p class="has-line-data" data-line-start="89" data-line-end="90"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-4.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="91" data-line-end="92">Así que hacemos uso del contenido del fichero y esta key.</p>
-<div align="center"><p class="has-line-data" data-line-start="93" data-line-end="94"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-5.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="95" data-line-end="97">Por lo que encontramos que la flag es:<br>
-<strong><code>FLAG: INT{_c0n71_15_d4n63r0u5_}</code></strong></p>
+<p class="has-line-data" data-line-start="84" data-line-end="85">Al igual que en el reto anterior, nos entregan un fichero que contiene un mensaje, al abrirlo vemos que son una serie de numeros:</p>
+<pre><code class="has-line-data" data-line-start="86" data-line-end="88" class="language-bash"><span class="hljs-number">145</span> <span class="hljs-number">126</span> <span class="hljs-number">356</span> <span class="hljs-number">272</span> <span class="hljs-number">98</span> <span class="hljs-number">378</span> <span class="hljs-number">395</span> <span class="hljs-number">352</span> <span class="hljs-number">392</span> <span class="hljs-number">215</span> <span class="hljs-number">446</span> <span class="hljs-number">168</span> <span class="hljs-number">180</span> <span class="hljs-number">359</span> <span class="hljs-number">51</span> <span class="hljs-number">190</span> <span class="hljs-number">404</span> <span class="hljs-number">209</span> <span class="hljs-number">185</span> <span class="hljs-number">115</span> <span class="hljs-number">363</span> <span class="hljs-number">431</span> <span class="hljs-number">103</span>
+</code></pre>
+<p class="has-line-data" data-line-start="88" data-line-end="89">Como hemos visto en el reto anterior, debemos seguir las instrucciones que nos dan, para poder resolver el reto:</p>
+<ol>
+<li class="has-line-data" data-line-start="90" data-line-end="91">Debemos tomar cada numero entregado y calcular el inverso modular <strong>mod41</strong></li>
+<li class="has-line-data" data-line-start="91" data-line-end="96">Mapear cada inverso modular obtenido en un diccionario que se compone:<br>
+a. Las posiciones <em>1-26</em> son las letras del alfabeto en <em>mayusculas</em>.<br>
+b. Las posiciones <em>27-36</em> son <em>decimales</em>.<br>
+c. La posicion <em>37</em> es el simbolo &quot;<em>_</em>&quot;</li>
+</ol>
+<p class="has-line-data" data-line-start="96" data-line-end="98">Tomamos el diccionario que obtuvimos en el reto anterior y lo reutilizamos (son los mismos parametros):<br>
+<strong><em>“ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_”</em></strong></p>
+<p class="has-line-data" data-line-start="99" data-line-end="100">Python3 tiene una funcion que nos puede ayudar con este calculo del inverso modular, asi que lo utilizaremos en el script que vamos a contruir como solucion.  Como se explico en el reto anterior, el script realizara los calculos y los va a adicionando a un array de acuerdo al valor correspondiente del diccionario.</p>
+<p class="has-line-data" data-line-start="101" data-line-end="102">Nuestro script para encontrar la flag es:</p>
+<pre><code class="has-line-data" data-line-start="104" data-line-end="122" class="language-bash"><span class="hljs-comment">#!/usr/bin/env python3</span>
+<span class="hljs-comment">#creamos un array con los numeros que nos dan en el mensaje</span>
+a = [<span class="hljs-number">145</span>,<span class="hljs-number">126</span>,<span class="hljs-number">356</span>,<span class="hljs-number">272</span>,<span class="hljs-number">98</span>,<span class="hljs-number">378</span>,<span class="hljs-number">395</span>,<span class="hljs-number">352</span>,<span class="hljs-number">392</span>,<span class="hljs-number">215</span>,<span class="hljs-number">446</span>,<span class="hljs-number">168</span>,<span class="hljs-number">180</span>,<span class="hljs-number">359</span>,<span class="hljs-number">51</span>,<span class="hljs-number">190</span>,<span class="hljs-number">404</span>,<span class="hljs-number">209</span>,<span class="hljs-number">185</span>,<span class="hljs-number">115</span>,<span class="hljs-number">363</span>,<span class="hljs-number">431</span>,<span class="hljs-number">103</span>]
+<span class="hljs-comment">#Creamos un array vacio, que nos servira para guardar los resultados de la flag.</span>
+d = []
+m = <span class="hljs-number">41</span>
+
+alph = <span class="hljs-string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"</span>
+
+<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> a:
+    <span class="hljs-comment">#Calculamos el modulo inverso</span>
+    b = pow(c, -<span class="hljs-number">1</span>, m)
+    <span class="hljs-comment">#Guardamos los resultado en otro array</span>
+    d += alph[b-<span class="hljs-number">1</span>]
+    
+<span class="hljs-comment">#Imprimimos la flag.</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"picoCTF{"</span>+<span class="hljs-string">''</span>.join(d)+<span class="hljs-string">"}"</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="122" data-line-end="123">Ejecutando el script obtenemos la flag:</p>
+<pre><code class="has-line-data" data-line-start="125" data-line-end="129" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ python3 calculate-inverse-module.py          
+picoCTF{<span class="hljs-number">1</span>NV3R53LY_H4RD_374BE7BB}
+</code></pre>
+<p class="has-line-data" data-line-start="129" data-line-end="131">Encontramos la flag:<br>
+<strong><em>picoCTF{1NV3R53LY_H4RD_374BE7BB}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=99 data-line-end=100 ><a id="Destino_I_99"></a><strong>Destino I</strong></h2>
-<p class="has-line-data" data-line-start="101" data-line-end="102">Nos entregan la descripción del reto:</p>
-<div align="center"><p class="has-line-data" data-line-start="103" data-line-end="104"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-1.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="105" data-line-end="106">Este reto hay que hacer uso de Google images, Yandex u otro similar, subiendo la imagen y viendo las mas parecidas he encontrado que en algunas pone que se parece a una fotos del aeropuerto de Naxos.</p>
-<p class="has-line-data" data-line-start="107" data-line-end="108">No ha sido fácil, ya que no hay coincidencia directa (por lo menos a mi no me ha salido), por lo que ha sido probar, con el aeropuerto de Naxos, que era el que salia en las coincidencias.</p>
-<div align="center"><p class="has-line-data" data-line-start="109" data-line-end="110"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-I-1.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="111" data-line-end="113">Encontramos que la flag es:<br>
-<strong><code>FLAG: INT{NAXOS}</code></strong></p>
+<h2 class="code-line" data-line-start=133 data-line-end=134 ><a id="credstuff_133"></a><strong>credstuff</strong></h2>
+<p class="has-line-data" data-line-start="135" data-line-end="136">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="137" data-line-end="138"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="139" data-line-end="142">We found a leak of a blackmarket website’s login credentials. Can you find the password of the user <code>cultiris</code> and successfully decrypt it?<br>
+Download the leak <a href="https://artifacts.picoctf.net/c/534/leak.tar">here</a>.<br>
+The first user in <code>usernames.txt</code> corresponds to the first password in <code>passwords.txt</code>. The second user corresponds to the second password, and so on.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="143" data-line-end="144">Este reto es relativamente muy facil, nos entregan un fichero que esta comprimido en <code>tar</code>,  al descomprimirlo tenemos dos ficheros txt:</p>
+<ul>
+<li class="has-line-data" data-line-start="145" data-line-end="146">usernames.txt</li>
+<li class="has-line-data" data-line-start="146" data-line-end="148">passwords.txt</li>
+</ul>
+<p class="has-line-data" data-line-start="148" data-line-end="149">Segun las instrucciones al comparar estos dos ficheros tenemos que la primera linea del fichero de <code>usernames</code> su usuario, corresponde a la primera linea del fichero <code>passwords</code> y esta seria su contraseña.</p>
+<p class="has-line-data" data-line-start="150" data-line-end="151">Asi que debemos buscar en qué línea tenemos al usuario <code>cultiris</code>, y con ellos buscar entre los password dicha linea, alli estara su contraseña.</p>
+<p class="has-line-data" data-line-start="152" data-line-end="153">Abrimos una consola y podemos realizarlo de forma sencilla.  Lo primero seria descomprimir el fichero dado:</p>
+<pre><code class="has-line-data" data-line-start="155" data-line-end="161" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ tar xvf leak.tar          
+leak/
+leak/passwords.txt
+leak/usernames.txt
+</code></pre>
+<p class="has-line-data" data-line-start="161" data-line-end="162">Buscamos en qué linea esta el usuario solicitado:</p>
+<pre><code class="has-line-data" data-line-start="163" data-line-end="167" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ grep -n cultiris usernames.txt
+<span class="hljs-number">378</span>:cultiris
+</code></pre>
+<p class="has-line-data" data-line-start="167" data-line-end="168">Con este numero de linea, vamos al fichero passwords y buscamos que tenemos alli:</p>
+<pre><code class="has-line-data" data-line-start="169" data-line-end="173" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ sed -n <span class="hljs-number">378</span>p passwords.txt
+cvpbPGS{P7e1S_54I35_71Z3}
+</code></pre>
+<p class="has-line-data" data-line-start="173" data-line-end="174">Por ultimo, encontramos que la contraseña esta con algun tipo de cifrado basico, por lo que conociendo que tiene toda la pinta de ser la flag, debe comenzar por <code>&quot;picoCTF{&quot;</code>, entre la <code>p</code> de la flag y la <code>c</code> de la contraseña encontrada, tenemos 13 posiciones, asi que es un <code>ROT13</code>.</p>
+<p class="has-line-data" data-line-start="175" data-line-end="176">Haciendo uso de python o de un sitio web lo podemos descrifrar facilmente:</p>
+<pre><code class="has-line-data" data-line-start="177" data-line-end="186" class="language-bash">┌──(root㉿kali)-[~/picoCTF]
+└─$ python3
+Python <span class="hljs-number">3.8</span>.<span class="hljs-number">10</span>
+&gt;&gt;&gt; import codecs
+&gt;&gt;&gt; secret = <span class="hljs-string">'cvpbPGS{P7e1S_54I35_71Z3}'</span>
+&gt;&gt;&gt; msg = codecs.decode(secret, <span class="hljs-string">'rot13'</span>)
+&gt;&gt;&gt; <span class="hljs-built_in">print</span>(msg)
+picoCTF{C7r1F_54V35_71M3}
+</code></pre>
+<p class="has-line-data" data-line-start="186" data-line-end="188">Encontramos la flag:<br>
+<strong><em>picoCTF{C7r1F_54V35_71M3}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=115 data-line-end=116 ><a id="Destino_II_115"></a><strong>Destino II</strong></h2>
-<p class="has-line-data" data-line-start="117" data-line-end="118">Nos entregan la descripción del reto:</p>
-<div align="center"><p class="has-line-data" data-line-start="119" data-line-end="120"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-II.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="121" data-line-end="122">Este reto es muy difícil, no hay de donde tirar, así que he dado muchas vueltas que no detallare aquí que me enrollo, asi que no quiero que parezca que ha sido magia, pero atando cabos he buscado los vuelos que salen desde allí de forma directa y me sale uno que es hacia Atenas.</p>
-<div align="center"><p class="has-line-data" data-line-start="123" data-line-end="124"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-II-1.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="125" data-line-end="126">Pero sigo dando vueltas, como unir esto con alguien que le haya recomendado cosas? Se me ha ocurrido que buscar en la red social por excelencia de ocupaciones puede ser una buena opcion, pero no me salía nada con tripulantes de cabina que estén en Grecia o similares, luego he unido esto con las siglas del aeropuerto de naxos, pero nada, así que he puesto la ruta JNX-ATH junto con tripulante de cabina y no había nada que fuese algo para este CTF, al final he decidido probar con el puesto de trabajo en griego para ver si sonaba alguna campana, y aunque lo dude, sono.</p>
-<p class="has-line-data" data-line-start="127" data-line-end="128">He visto un perfil mas falso que la leche y tenía que ser ese.  De nuevo digo que no es sencillo este reto, lo dicho, he tardado muchas horas en solo este reto.</p>
-<div align="center"><p class="has-line-data" data-line-start="129" data-line-end="131"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-II-2.jpg" alt="CTF IntelCon 2022"><br></div>
-He probado con su nombre completo y no valia, asi que he puesto solo su primer nombre.</p>
-<p class="has-line-data" data-line-start="132" data-line-end="134">Encontramos que la flag es:<br>
-<strong><code>FLAG: INT{IOSIF}</code></strong></p>
+<h2 class="code-line" data-line-start=190 data-line-end=191 ><a id="morsecode_190"></a><strong>morse-code</strong></h2>
+<p class="has-line-data" data-line-start="192" data-line-end="193">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="194" data-line-end="195"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="196" data-line-end="199">Morse code is well known. Can you decrypt this?<br>
+Download the file <a href="https://artifacts.picoctf.net/c/235/morse_chal.wav">here</a>.<br>
+Wrap your answer with picoCTF{}, put underscores in place of pauses, and use all lowercase.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="200" data-line-end="201">Encontramos que nos entregan un fichero de audio, que al reproducirlo tenemos una secuencia de sonidos, como indica el titulo del reto es un audio morse.</p>
+<p class="has-line-data" data-line-start="202" data-line-end="203">Podemos utilizar una web que nos decodifique el audio, por ejemplo: <a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html">https://morsecode.world/international/decoder/audio-decoder-adaptive.html</a></p>
+<p class="has-line-data" data-line-start="204" data-line-end="205">Subimos alli el fichero entregado y reproducimos, a medida que va reproduciendo nos va indicando que letras y numeros corresponden en el mensaje:</p>
+<p class="has-line-data" data-line-start="206" data-line-end="207"><img src="https://ch4m17ux.github.io/img/posts/picoctf/morse-code.png" alt="morse-code"></p>
+<p class="has-line-data" data-line-start="208" data-line-end="210">El mensaje obtenido es:<br>
+<code>wh47 h47h 90d w20u9h7</code></p>
+<p class="has-line-data" data-line-start="211" data-line-end="213">Ajustando la flag como nos la solicitan, obtenemos:<br>
+<strong><em>picoCTF{wh47_h47h_90d_w20u9h7}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=136 data-line-end=137 ><a id="Destino_III_136"></a><strong>Destino III</strong></h2>
-<p class="has-line-data" data-line-start="138" data-line-end="139">Nos entregan la descripción del reto:</p>
-<div align="center"><p class="has-line-data" data-line-start="140" data-line-end="141"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-III.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="142" data-line-end="143">Este reto también es complicado, pero viendo las fotos del linkedin del tripulante vemos que hay unas vistas, dice que te recomienda un hotel con esas vistas, porque su casa esta ocupada. Revisando la foto en Google images sale que es una imagen de una plaza, y revisando qué plaza es, encontramos que es Plaza Monastikari.</p>
-<p class="has-line-data" data-line-start="144" data-line-end="145">Así que he buscado los hoteles que dan en esa plaza y encontré dos, en ambos hice una búsqueda en booking y tripadvisor para ver si encontraba algo relacionado al CTF y solo en el siguiente de la imagen, encontré como primera recomendacion. (también cabe aclarar que viendo los demás retos era ese y ya tenia datos para los demás que me hacia falta)</p>
-<div align="center"><p class="has-line-data" data-line-start="146" data-line-end="147"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-III-1.jpg" alt="CTF IntelCon 2022"></p></div>
-<div align="center"><p class="has-line-data" data-line-start="148" data-line-end="149"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-III-2.jpg" alt="CTF IntelCon 2022"></p></div>
-<p class="has-line-data" data-line-start="150" data-line-end="151">He probado con su nombre completo y no valia, asi que he puesto solo su primer nombre.</p>
-<p class="has-line-data" data-line-start="152" data-line-end="154">Encontramos que la flag es:<br>
-<strong><code>FLAG: INT{p0SMzGL1oAMhWin}</code></strong></p>
+<h2 class="code-line" data-line-start=215 data-line-end=216 ><a id="railfence_215"></a><strong>rail-fence</strong></h2>
+<p class="has-line-data" data-line-start="217" data-line-end="218">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="219" data-line-end="220"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="221" data-line-end="224">A type of transposition cipher is the rail fence cipher, which is described <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher">here</a>. Here is one such cipher encrypted using the rail fence with 4 rails. Can you decrypt it?<br>
+Download the message <a href="https://artifacts.picoctf.net/c/278/message.txt">here</a>.<br>
+Put the decoded message in the picoCTF flag format, <code>picoCTF{decoded_message}</code>.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="225" data-line-end="226">En la descripcion del reto podemos ver una URL de Wikipedia, donde se explica el cifrado. Es muy sencillo de realizar de forma manual, pero por cuestiones de tiempo en el CTF podemos utilizar un decodificar online.</p>
+<p class="has-line-data" data-line-start="227" data-line-end="228">Asi que teniendo el mensaje entregado:</p>
+<pre><code>Ta _7N6D34hlg:W3D_H3C31N__198ef sHR053F38N43D80 i33___NF
+</code></pre>
+<p class="has-line-data" data-line-start="231" data-line-end="232">Utilizamos el decodificar online <a href="https://cryptii.com/pipes/rail-fence-cipher">Cryptii</a></p>
+<p class="has-line-data" data-line-start="233" data-line-end="234">Obtenemos el mensaje decodificado:</p>
+<p class="has-line-data" data-line-start="235" data-line-end="236"><img src="https://ch4m17ux.github.io/img/posts/picoctf/rail-fence.png" alt="rail-fence"></p>
+<p class="has-line-data" data-line-start="237" data-line-end="239">Asi que la flag buscada es:<br>
+<strong><em>picoCTF{WH3R3_D035_7H3_F3NC3_8361N_4ND_3ND_318F0948}</em></strong></p>
 <hr>
-<h2 class="code-line" data-line-start=156 data-line-end=158 ><a id="Espero_que_os_haya_gustado_156"></a>Espero que os haya gustado</h2>
-<h1 class="code-line" data-line-start=158 data-line-end=159 ><a id="Fin_158"></a>Fin</h1>
-<p class="has-line-data" data-line-start="159" data-line-end="160">Cualquier errata o duda es bienvenida.</p>
+<h2 class="code-line" data-line-start=241 data-line-end=242 ><a id="substitution0_241"></a><strong>substitution0</strong></h2>
+<p class="has-line-data" data-line-start="243" data-line-end="244">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="245" data-line-end="246"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="247" data-line-end="249">A message has come in but it seems to be all scrambled. Luckily it seems to have the key at the beginning. Can you crack this substitution cipher?<br>
+Download the message <a href="https://artifacts.picoctf.net/c/385/message.txt">here</a>.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="250" data-line-end="251">Nos entregan un fichero que corresponde a un mensaje cifrado, por la descripcion del reto, es un cifrado de sustitucion.</p>
+<p class="has-line-data" data-line-start="252" data-line-end="253">Revisando el mensaje entregado tenemos:</p>
+<pre><code class="has-line-data" data-line-start="254" data-line-end="267">PJFRENTZHOMQKLAIUVSWCYDXGB 
+
+Zevecial Qetvplr pvase, dhwz p tvpye plr swpweqg phv, plr jvactzw ke wze jeewqe
+nvak p tqpss fpse hl dzhfz hw dps elfqaser. Hw dps p jepcwhncq sfpvpjpecs, plr, pw
+wzpw whke, clmladl wa lpwcvpqhsws—an facvse p tvepw ivhbe hl p sfhelwhnhf iahlw
+an yhed. Wzeve deve wda vaclr jqpfm siaws lepv ale exwvekhwg an wze jpfm, plr p
+qalt ale lepv wze awzev. Wze sfpqes deve exfeerhltqg zpvr plr tqassg, dhwz pqq wze
+piiepvplfe an jcvlhszer taqr. Wze dehtzw an wze hlsefw dps yevg vekpvmpjqe, plr,
+wpmhlt pqq wzhlts hlwa falshrevpwhal, H facqr zpvrqg jqpke Ocihwev nav zhs aihlhal
+vesiefwhlt hw.
+
+Wze nqpt hs: ihfaFWN{5CJ5717C710L_3Y0QC710L_N96P338E}
+</code></pre>
+<p class="has-line-data" data-line-start="267" data-line-end="268">En la pista que nos entregan, nos refieren a tratar de romper el cifrado con un analisi de frecuencia de las letras, podemos encontrar varias herramientas que nos ayudan para esto, Utilizamos el decodificar online <a href="https://cryptii.com/pipes/alphabetical-substitution">Cryptii</a></p>
+<p class="has-line-data" data-line-start="269" data-line-end="270">Obtenemos el mensaje decodificado:</p>
+<p class="has-line-data" data-line-start="271" data-line-end="272"><img src="https://ch4m17ux.github.io/img/posts/picoctf/substitution0.png" alt="substitution0"></p>
+<p class="has-line-data" data-line-start="273" data-line-end="275">Asi que la flag buscada es:<br>
+<strong><em>picoCTF{5UB5717U710N_3V0LU710N_F96A338E}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=277 data-line-end=278 ><a id="substitution1_277"></a><strong>substitution1</strong></h2>
+<p class="has-line-data" data-line-start="279" data-line-end="280">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="281" data-line-end="282"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="283" data-line-end="285">A second message has come in the mail, and it seems almost identical to the first one. Maybe the same thing will work again.<br>
+Download the message <a href="https://artifacts.picoctf.net/c/420/message.txt">here</a>.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="286" data-line-end="287">Como en el reto anterior, nos entregan un fichero que corresponde a un mensaje cifrado, por la descripcion del reto, muy similar al anterior.</p>
+<p class="has-line-data" data-line-start="288" data-line-end="289">Revisando el mensaje entregado tenemos:</p>
+<pre><code class="has-line-data" data-line-start="290" data-line-end="300">DAFq (qgjwa fjw dkxahwz agz frke) kwz k aoxz jf djbxhazw qzdhwtao djbxzatatjn. 
+Djnazqaknaq kwz xwzqznazs mtag k qza jf dgkrrznezq mgtdg azqa agztw dwzkatltao, 
+azdgntdkr (kns ejjertne) qutrrq, kns xwjyrzb-qjrltne kytrtao. Dgkrrznezq hqhkrro 
+djlzw k nhbyzw jf dkazejwtzq, kns mgzn qjrlzs, zkdg otzrsq k qawtne (dkrrzs k 
+frke) mgtdg tq qhybtaazs aj kn jnrtnz qdjwtne qzwltdz. DAFq kwz k ewzka mko aj 
+rzkwn k mtsz kwwko jf djbxhazw qzdhwtao qutrrq tn k qkfz, rzekr znltwjnbzna, kns 
+kwz gjqazs kns xrkozs yo bkno qzdhwtao ewjhxq kwjhns agz mjwrs fjw fhn kns 
+xwkdatdz. Fjw agtq xwjyrzb, agz frke tq: 
+xtdjDAF{FW3VH3NDO_4774DU5_4W3_D001_3645YZD6}
+</code></pre>
+<p class="has-line-data" data-line-start="300" data-line-end="301">Como en el reto anterior, tenemos multiples herramientas online que rompen el cifrado, asi que por ejemplo tenemos:</p>
+<ul>
+<li class="has-line-data" data-line-start="302" data-line-end="303"><a href="https://www.guballa.de/substitution-solver">https://www.guballa.de/substitution-solver</a></li>
+<li class="has-line-data" data-line-start="303" data-line-end="305"><a href="https://quipqiup.com/">https://quipqiup.com/</a></li>
+</ul>
+<p class="has-line-data" data-line-start="305" data-line-end="306">Utilizando el primero obtenemos el mensaje decodificado:</p>
+<p class="has-line-data" data-line-start="307" data-line-end="308"><img src="https://ch4m17ux.github.io/img/posts/picoctf/substitution1.png" alt="substitution1"></p>
+<p class="has-line-data" data-line-start="309" data-line-end="311">Asi que la flag buscada es:<br>
+<strong><em>picoCTF{FR3QU3NCY_4774CK5_4R3_C001_3645BEC6}</em></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=313 data-line-end=314 ><a id="substitution2_313"></a><strong>substitution2</strong></h2>
+<p class="has-line-data" data-line-start="315" data-line-end="316">Nos entregan la descripción del reto:</p>
+<blockquote>
+<p class="has-line-data" data-line-start="317" data-line-end="318"><strong><em>DESCRIPCION</em></strong>:</p>
+<p class="has-line-data" data-line-start="319" data-line-end="321">It seems that another encrypted message has been intercepted. The encryptor seems to have learned their lesson though and now there isn’t any punctuation! Can you still crack the cipher?<br>
+Download the message <a href="https://artifacts.picoctf.net/c/113/message.txt">here</a>.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="322" data-line-end="323">Este reto es muy similar a los anteriores, asi que seguimos el mismo procedimiento.</p>
+<p class="has-line-data" data-line-start="324" data-line-end="325">Revisando el mensaje entregado tenemos:</p>
+<pre><code class="has-line-data" data-line-start="326" data-line-end="343">xkjvjjapmxmjcjvnifxkjvdjiijmxneipmkjokphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrmpryilo
+prhyzejvunxvpfxnrolmyzejvykniijrhjxkjmjyfsujxpxpfrmqfylmuvpsnvpizfrmzmxjsmnosprpm
+xvnxpfrqlronsjrxnimdkpyknvjcjvzlmjqlinrosnvtjxneijmtpiimkfdjcjvdjejipjcjxkjuvfujv
+ulvufmjfqnkphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrpmrfxfrizxfxjnykcnilneijmtpiimelxn
+imfxfhjxmxlojrxmprxjvjmxjoprnrojaypxjoneflxyfsulxjvmypjryjojqjrmpcjyfsujxpxpfrmnv
+jfqxjrinefvpflmnqqnpvmnroyfsjofdrxfvlrrprhykjytipmxmnrojajylxprhyfrqphmyvpuxmfqqj
+rmjfrxkjfxkjvknropmkjncpizqfylmjofrjauifvnxpfrnropsuvfcpmnxpfrnrofqxjrknmjijsjrxm
+fquinzdjejipjcjnyfsujxpxpfrxflykprhfrxkjfqqjrmpcjjijsjrxmfqyfsulxjvmjylvpxzpmxkjv
+jqfvjnejxxjvcjkpyijqfvxjykjcnrhjipmsxfmxlojrxmprnsjvpynrkphkmykffimqlvxkjvdjejipj
+cjxknxnrlrojvmxnroprhfqfqqjrmpcjxjykrpgljmpmjmmjrxpniqfvsflrxprhnrjqqjyxpcjojqjrm
+jnroxknxxkjxffimnroyfrqphlvnxpfrqfylmjryflrxjvjoprojqjrmpcjyfsujxpxpfrmofjmrfxijn
+omxlojrxmxftrfdxkjpvjrjsznmjqqjyxpcjiznmxjnykprhxkjsxfnyxpcjizxkprtiptjnrnxxnytjv
+upyfyxqpmnrfqqjrmpcjizfvpjrxjokphkmykffiyfsulxjvmjylvpxzyfsujxpxpfrxknxmjjtmxfhjr
+jvnxjprxjvjmxpryfsulxjvmypjryjnsfrhkphkmykffijvmxjnykprhxkjsjrflhkneflxyfsulxjvmj
+ylvpxzxfupgljxkjpvylvpfmpxzsfxpcnxprhxkjsxfjauifvjfrxkjpvfdrnrojrneiprhxkjsxfejxx
+jvojqjroxkjpvsnykprjmxkjqinhpmupyfYXQ{R6V4S_4R41Z515_15_73O10L5_Y823O467}
+</code></pre>
+<p class="has-line-data" data-line-start="343" data-line-end="344">Como en los retos anteriores, tenemos multiples herramientas online que rompen el cifrado, pero no todos funciona igual de correcto, asi que he utilizado el siguiente:</p>
+<ul>
+<li class="has-line-data" data-line-start="345" data-line-end="347"><a href="https://www.guballa.de/substitution-solver">https://www.guballa.de/substitution-solver</a></li>
+</ul>
+<p class="has-line-data" data-line-start="347" data-line-end="348">Utilizando esta herramienta, tenemos el mensaje decodificado:</p>
+<p class="has-line-data" data-line-start="349" data-line-end="350"><img src="https://ch4m17ux.github.io/img/posts/picoctf/substitution2.png" alt="substitution1"></p>
+<p class="has-line-data" data-line-start="351" data-line-end="353">Asi que la flag buscada es:<br>
+<strong><em>picoCTF{N6R4M_4N41Y515_15_73D10U5_C823D467}</em></strong></p>
+<hr>
+<h1 class="code-line" data-line-start=355 data-line-end=356 ><a id="Fin_355"></a>Fin</h1>
+
+
 </div>
