@@ -1,0 +1,107 @@
+---
+layout: post
+title: "CTF IntelCon 2022 - #WriteUp"
+subtitle: "#CTF writeUp"
+date: 2022-07-29 23:37:00 +0100
+background: '/img/posts/06.jpg'
+---
+
+<div align="justify">
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="CTF_IntelCon_2022__writeUp_0"></a>CTF IntelCon 2022 - #writeUp</h1>
+<div align="center"><p class="has-line-data" data-line-start="2" data-line-end="3"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/logo-intelcon.png" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="4" data-line-end="5">He estado participando en un CTF organizado por Gingseg con el apoyo de ZeroLynx, basado en retos de tipo OSINT.</p>
+<p class="has-line-data" data-line-start="6" data-line-end="7">No soy experto en OSINT, asi que es una experiencia enriquecedora y agradezco a la organizacion por la realizacion y el trabajo realizado.</p>
+<p class="has-line-data" data-line-start="8" data-line-end="9">Se han presentado en total 9 retos, en 3 lineas, que llamaremos, de investigacion.</p>
+<hr>
+<blockquote>
+<h3 class="code-line" data-line-start=11 data-line-end=12 ><a id="Disclaimer_11"></a>Disclaimer:</h3>
+<p class="has-line-data" data-line-start="12" data-line-end="14">Estas entradas no pretenden indicar que sea la unica forma de solucionar, todo se realiza de forma academica, cualquier errata se agradece que sear reportada para poder subsanar.<br>
+Espero que os guste y aprendamos juntos. #HackThePlanet</p>
+</blockquote>
+<h1 class="code-line" data-line-start=16 data-line-end=17 ><a id="TLDR_16"></a>TL:DR</h1>
+<hr>
+<h2 class="code-line" data-line-start=19 data-line-end=20 ><a id="Insider_I_19"></a><strong>Insider I</strong></h2>
+<p class="has-line-data" data-line-start="21" data-line-end="22">Nos entregan la descripción del reto:</p>
+<div align="center"><p class="has-line-data" data-line-start="23" data-line-end="24"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-I.jpg" alt="CTF IntelCon 2022"></p></div>
+<blockquote>
+<p class="has-line-data" data-line-start="25" data-line-end="26"><strong>Datos proporcionados:</strong></p>
+<p class="has-line-data" data-line-start="27" data-line-end="28">Fichero 7zip.</p>
+</blockquote>
+<p class="has-line-data" data-line-start="29" data-line-end="30">En este reto se nos entrega un fichero 7zip, que al abrirlo contiene un Readme y un fichero txt, que contiene una cadena de texto al parecer en Base64, pero al tratar de decodificarlo, no muestra nada legible.  Por otra parte, se nos indica en el Readme que los ficheros han sido cifrados en AES-256.  Tambien nos detallamos en el comentario “Contamos CONTI GO ;)”, asi que todo indica que tiene alguna relacion con el grupo CONTI.</p>
+<p class="has-line-data" data-line-start="31" data-line-end="32">Buscamos en Google cosas relacionadas con CONTI y dentro del millar de resultados vemos que hay una cuenta en español de @conti_es.</p>
+<p class="has-line-data" data-line-start="33" data-line-end="34">Analizamos este usuario y no tiene mucha información, tambien contiene muy pocos post, asi como muy pocos seguidores, sin embargo, revisando a que personas sigue en twitter, la mayoria son personas relacionadas con la ciberseguridad en España, a excepcion de uno que resalta por tener su descripcion en Ingles.</p>
+<div align="center"><p class="has-line-data" data-line-start="35" data-line-end="37"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-I-1.jpg" alt="CTF IntelCon 2022"><br></div>
+He revisado su perfil entendiendo que debia buscar alguna clave, pero finalmente, luego de algunos fallos, he descubierto que la flag era el nombre de usuario.</p>
+<p class="has-line-data" data-line-start="38" data-line-end="40">Por lo que encontramos que la flag es:<br>
+<strong><code>FLAG: INT{m1Geelka}</code></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=42 data-line-end=43 ><a id="Insider_II_42"></a><strong>Insider II</strong></h2>
+<p class="has-line-data" data-line-start="44" data-line-end="45">Nos entregan la descripción del reto:</p>
+<div align="center"><p class="has-line-data" data-line-start="46" data-line-end="47"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-II.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="48" data-line-end="49">Para este reto, revisando los post del usuario en twitter que encontramos en el reto anterior (<em><code>@m1Geelka</code></em>) vemos que hay pocos post, sin embargo, encontramos cadenas de texto y una URLS.</p>
+<p class="has-line-data" data-line-start="50" data-line-end="51">He probado las URLs que estan alli, pero o bien no accede, en el caso de ONION, en el otro es un banner, como es un CTF de OSINT no he tirado por stego de la imagen para no rizar el rizo, probando las cadenas como flag da error, así que he tomado las cadenas y las URL’s y he ido reemplazando en las URL’s encontradas, para ver si por casualidad alguna mostraba alguna informacion interesante.  Al final una de ellas es la correcta:</p>
+<p class="has-line-data" data-line-start="52" data-line-end="54">Reemplazando en la URL de anonfiles con una de las cadenas:<br>
+7eK111z2yd -&gt;&gt; <a href="https://anonfiles.com/7eK111z2yd">https://anonfiles.com/7eK111z2yd</a></p>
+<p class="has-line-data" data-line-start="55" data-line-end="56">Obtenemos un HTML que al visualizarlo nos muestra un texto: PB: m4v8z6AK</p>
+<p class="has-line-data" data-line-start="57" data-line-end="59">Por lo que encontramos que la flag es:<br>
+<strong><code>FLAG: INT{m4v8z6AK}</code></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=61 data-line-end=62 ><a id="Insider_III_61"></a><strong>Insider III</strong></h2>
+<p class="has-line-data" data-line-start="63" data-line-end="64">Nos entregan la descripción del reto:</p>
+<div align="center"><p class="has-line-data" data-line-start="65" data-line-end="66"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="67" data-line-end="68">En este reto luego de probar con las cadenas que aparecen en Twitter, y ver que no daba con la llave de descifrado, he visto que en el ID anterior indicaba algo de PB. Pues luego de dar muchas vueltas se me ocurrió que PB podría ser Pastebin, además que es un sitio donde regularmente se publican datos de exfiltraciones, y se ha iluminado el camino.</p>
+<div align="center"><p class="has-line-data" data-line-start="69" data-line-end="70"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-1.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="71" data-line-end="72">En este pastebin no encuentro nada, así que decido buscar en su usuario para ver si tiene más publicaciones.</p>
+<p class="has-line-data" data-line-start="73" data-line-end="74">En todas se trata de exfiltraciones que quiza ha encontrado, pero me ha llamado la atención una que hace referencia a un bucket de S3 en Amazon.</p>
+<div align="center"><p class="has-line-data" data-line-start="75" data-line-end="76"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-2.jpg" alt="CTF IntelCon 2022"></p></div>
+<blockquote>
+<p class="has-line-data" data-line-start="77" data-line-end="78"><code>conti-the-filecrypter-repo.s3.eu-west-3</code></p>
+</blockquote>
+<p class="has-line-data" data-line-start="79" data-line-end="81">Agregando lo que le falta para que la URL de Amazon sea correcta, tenemos:<br>
+<em><a href="https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/">https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/</a></em></p>
+<div align="center"><p class="has-line-data" data-line-start="82" data-line-end="83"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-3.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="84" data-line-end="86">Vemos que en el xml se muestra una carpeta que contiene un fichero <code>key.bk</code>, asi que con la URL anterior y completando de nuevo con estos datos, podemos descargarlo.<br>
+<em><a href="https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/Configs/key.bk">https://conti-the-filecrypter-repo.s3.eu-west-3.amazonaws.com/Configs/key.bk</a></em></p>
+<p class="has-line-data" data-line-start="87" data-line-end="88">Y al revisar el contenido, tenemos:</p>
+<div align="center"><p class="has-line-data" data-line-start="89" data-line-end="90"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-4.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="91" data-line-end="92">Así que hacemos uso del contenido del fichero y esta key.</p>
+<div align="center"><p class="has-line-data" data-line-start="93" data-line-end="94"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/insider-III-5.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="95" data-line-end="97">Por lo que encontramos que la flag es:<br>
+<strong><code>FLAG: INT{_c0n71_15_d4n63r0u5_}</code></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=99 data-line-end=100 ><a id="Destino_I_99"></a><strong>Destino I</strong></h2>
+<p class="has-line-data" data-line-start="101" data-line-end="102">Nos entregan la descripción del reto:</p>
+<div align="center"><p class="has-line-data" data-line-start="103" data-line-end="104"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-1.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="105" data-line-end="106">Este reto hay que hacer uso de Google images, Yandex u otro similar, subiendo la imagen y viendo las mas parecidas he encontrado que en algunas pone que se parece a una fotos del aeropuerto de Naxos.</p>
+<p class="has-line-data" data-line-start="107" data-line-end="108">No ha sido fácil, ya que no hay coincidencia directa (por lo menos a mi no me ha salido), por lo que ha sido probar, con el aeropuerto de Naxos, que era el que salia en las coincidencias.</p>
+<div align="center"><p class="has-line-data" data-line-start="109" data-line-end="110"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-I-1.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="111" data-line-end="113">Encontramos que la flag es:<br>
+<strong><code>FLAG: INT{NAXOS}</code></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=115 data-line-end=116 ><a id="Destino_II_115"></a><strong>Destino II</strong></h2>
+<p class="has-line-data" data-line-start="117" data-line-end="118">Nos entregan la descripción del reto:</p>
+<div align="center"><p class="has-line-data" data-line-start="119" data-line-end="120"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-II.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="121" data-line-end="122">Este reto es muy difícil, no hay de donde tirar, así que he dado muchas vueltas que no detallare aquí que me enrollo, asi que no quiero que parezca que ha sido magia, pero atando cabos he buscado los vuelos que salen desde allí de forma directa y me sale uno que es hacia Atenas.</p>
+<div align="center"><p class="has-line-data" data-line-start="123" data-line-end="124"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-II-1.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="125" data-line-end="126">Pero sigo dando vueltas, como unir esto con alguien que le haya recomendado cosas? Se me ha ocurrido que buscar en la red social por excelencia de ocupaciones puede ser una buena opcion, pero no me salía nada con tripulantes de cabina que estén en Grecia o similares, luego he unido esto con las siglas del aeropuerto de naxos, pero nada, así que he puesto la ruta JNX-ATH junto con tripulante de cabina y no había nada que fuese algo para este CTF, al final he decidido probar con el puesto de trabajo en griego para ver si sonaba alguna campana, y aunque lo dude, sono.</p>
+<p class="has-line-data" data-line-start="127" data-line-end="128">He visto un perfil mas falso que la leche y tenía que ser ese.  De nuevo digo que no es sencillo este reto, lo dicho, he tardado muchas horas en solo este reto.</p>
+<div align="center"><p class="has-line-data" data-line-start="129" data-line-end="131"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-II-2.jpg" alt="CTF IntelCon 2022"><br></div>
+He probado con su nombre completo y no valia, asi que he puesto solo su primer nombre.</p>
+<p class="has-line-data" data-line-start="132" data-line-end="134">Encontramos que la flag es:<br>
+<strong><code>FLAG: INT{IOSIF}</code></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=136 data-line-end=137 ><a id="Destino_III_136"></a><strong>Destino III</strong></h2>
+<p class="has-line-data" data-line-start="138" data-line-end="139">Nos entregan la descripción del reto:</p>
+<div align="center"><p class="has-line-data" data-line-start="140" data-line-end="141"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-III.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="142" data-line-end="143">Este reto también es complicado, pero viendo las fotos del linkedin del tripulante vemos que hay unas vistas, dice que te recomienda un hotel con esas vistas, porque su casa esta ocupada. Revisando la foto en Google images sale que es una imagen de una plaza, y revisando qué plaza es, encontramos que es Plaza Monastikari.</p>
+<p class="has-line-data" data-line-start="144" data-line-end="145">Así que he buscado los hoteles que dan en esa plaza y encontré dos, en ambos hice una búsqueda en booking y tripadvisor para ver si encontraba algo relacionado al CTF y solo en el siguiente de la imagen, encontré como primera recomendacion. (también cabe aclarar que viendo los demás retos era ese y ya tenia datos para los demás que me hacia falta)</p>
+<div align="center"><p class="has-line-data" data-line-start="146" data-line-end="147"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-III-1.jpg" alt="CTF IntelCon 2022"></p></div>
+<div align="center"><p class="has-line-data" data-line-start="148" data-line-end="149"><img src="https://ch4m17ux.github.io/img/posts/intelcon-2022/Destino-III-2.jpg" alt="CTF IntelCon 2022"></p></div>
+<p class="has-line-data" data-line-start="150" data-line-end="151">He probado con su nombre completo y no valia, asi que he puesto solo su primer nombre.</p>
+<p class="has-line-data" data-line-start="152" data-line-end="154">Encontramos que la flag es:<br>
+<strong><code>FLAG: INT{p0SMzGL1oAMhWin}</code></strong></p>
+<hr>
+<h2 class="code-line" data-line-start=156 data-line-end=158 ><a id="Espero_que_os_haya_gustado_156"></a>Espero que os haya gustado</h2>
+<h1 class="code-line" data-line-start=158 data-line-end=159 ><a id="Fin_158"></a>Fin</h1>
+<p class="has-line-data" data-line-start="159" data-line-end="160">Cualquier errata o duda es bienvenida.</p>
+</div>
